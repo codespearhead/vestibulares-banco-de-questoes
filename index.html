@@ -368,11 +368,24 @@
         wrapper.appendChild(type);
 
         if (item && item.tipo === "imagem") {
+          if (item.pendente === true) {
+            const error = document.createElement("div");
+
+            error.className = "error";
+            error.textContent =
+              "Imagem pendente. Substitua o campo 'conteudo' pelo base64 da imagem.";
+
+            wrapper.appendChild(error);
+            return wrapper;
+          }
+
           const image = document.createElement("img");
           const mimeType = item.mimeType || "image/png";
+
           image.className = "image-content";
           image.alt = "Imagem do contexto";
           image.src = buildImageSource(mimeType, item.conteudo || "");
+
           wrapper.appendChild(image);
           return wrapper;
         }
