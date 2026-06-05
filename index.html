@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visualizador de prova.json</title>
+    <style>
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1f2937;
+        background: #f3f4f6;
+      }
+
+      body {
+        margin: 0;
+        padding: 24px;
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: 28px;
+      }
+
+      .card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr 240px;
+        gap: 12px;
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 15px;
+        background: #ffffff;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .pill {
+        display: inline-block;
+        background: #eef2ff;
+        border: 1px solid #c7d2fe;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      h3 {
+        margin: 22px 0 10px;
+        font-size: 17px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 6px;
+      }
+
+      .context-item {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 10px;
+        background: #fafafa;
+      }
+
+      .context-type {
+        font-size: 12px;
+        font-weight: 700;
+        color: #6b7280;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .text-content {
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .image-content {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        background: #ffffff;
+      }
+
+      .command {
+        white-space: pre-wrap;
+        line-height: 1.5;
+        font-weight: 700;
+      }
+
+      .alternatives {
+        display: grid;
+        gap: 8px;
+      }
+
+      .answer-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 12px;
+        user-select: none;
+      }
+
+      .answer-controls input {
+        width: auto;
+      }
+
+      .alternative {
+        width: 100%;
+        text-align: left;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px;
+        background: #ffffff;
+        line-height: 1.45;
+        cursor: pointer;
+        font: inherit;
+        color: inherit;
+      }
+
+      .alternative:hover {
+        background: #f9fafb;
+      }
+
+      .selected {
+        border-color: #93c5fd;
+        background: #eff6ff;
+      }
+
+      .answer {
+        border-color: #86efac;
+        background: #f0fdf4;
+      }
+
+      .wrong {
+        border-color: #fca5a5;
+        background: #fef2f2;
+      }
+
+      .answer-status {
+        margin-top: 10px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .empty,
+      .error {
+        color: #6b7280;
+        line-height: 1.5;
+      }
+
+      .error {
+        color: #b91c1c;
+        font-weight: 700;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 14px;
+        }
+
+        .controls {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Visualizador de prova.json</h1>
+
+      <section class="card controls">
+        <div>
+          <label for="fileInput">Arquivo prova.json</label>
+          <input id="fileInput" type="file" accept="application/json,.json" />
+        </div>
+        <div>
+          <label for="questionSelect">Questão</label>
+          <select id="questionSelect" disabled>
+            <option>Carregue um arquivo</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="viewer" class="card">
+        <p class="empty">
+          Carregue um arquivo <strong>prova.json</strong> para visualizar as
+          questões.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const fileInput = document.getElementById("fileInput");
+      const questionSelect = document.getElementById("questionSelect");
+      const viewer = document.getElementById("viewer");
+
+      let questions = [];
+      let selectedAlternative = null;
+      let forceShowAnswer = false;
+
+      fileInput.addEventListener("change", async function () {
+        const file = fileInput.files[0];
+
+        if (!file) {
+          resetViewer();
+          return;
+        }
+
+        try {
+          const text = await file.text();
+          const json = JSON.parse(text);
+          questions = extractQuestions(json);
+
+          if (!questions.length) {
+            throw new Error(
+              "Nenhuma questão encontrada. Esperado: prova.questoes[] ou questoes[].",
+            );
+          }
+
+          populateSelect(questions);
+          renderQuestion(questions[0]);
+        } catch (error) {
+          questions = [];
+          questionSelect.disabled = true;
+          questionSelect.innerHTML = "<option>Erro ao carregar</option>";
+          viewer.innerHTML =
+            '<p class="error">' + escapeHtml(error.message) + "</p>";
+        }
+      });
+
+      questionSelect.addEventListener("change", function () {
+        const index = Number(questionSelect.value);
+        selectedAlternative = null;
+        forceShowAnswer = false;
+        renderQuestion(questions[index]);
+      });
+
+      function extractQuestions(json) {
+        if (json && json.prova && Array.isArray(json.prova.questoes)) {
+          return json.prova.questoes;
+        }
+
+        if (json && Array.isArray(json.questoes)) {
+          return json.questoes;
+        }
+
+        return [];
+      }
+
+      function populateSelect(items) {
+        questionSelect.disabled = false;
+        questionSelect.innerHTML = "";
+
+        items.forEach(function (question, index) {
+          const option = document.createElement("option");
+          option.value = String(index);
+          option.textContent =
+            "Questão " + formatValue(question.numero, index + 1);
+          questionSelect.appendChild(option);
+        });
+      }
+
+      function renderQuestion(question) {
+        if (!question) {
+          viewer.innerHTML =
+            '<p class="empty">Nenhuma questão selecionada.</p>';
+          return;
+        }
+
+        viewer.innerHTML = "";
+        viewer.appendChild(createTitle(question));
+        viewer.appendChild(createContextSection(question.contexto));
+        viewer.appendChild(createCommandSection(question.comando));
+        viewer.appendChild(
+          createAlternativesSection(question.alternativas, question.gabarito),
+        );
+      }
+
+      function createTitle(question) {
+        const wrapper = document.createElement("div");
+        const title = document.createElement("h2");
+        const meta = document.createElement("div");
+
+        title.textContent = "Questão " + formatValue(question.numero, "—");
+        meta.className = "meta";
+
+        meta.appendChild(
+          createPill("Página: " + formatValue(question.pagina, "—")),
+        );
+        meta.appendChild(
+          createPill("Taxonomia: " + formatValue(question.taxonomiaId, "—")),
+        );
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(meta);
+
+        return wrapper;
+      }
+
+      function createContextSection(context) {
+        const section = document.createElement("section");
+        const heading = document.createElement("h3");
+        heading.textContent = "Contexto";
+        section.appendChild(heading);
+
+        if (!Array.isArray(context) || !context.length) {
+          const empty = document.createElement("p");
+          empty.className = "empty";
+          empty.textContent = "Esta questão não possui contexto.";
+          section.appendChild(empty);
+          return section;
+        }
+
+        context.forEach(function (item, index) {
+          section.appendChild(createContextItem(item, index));
+        });
+
+        return section;
+      }
+
+      function createContextItem(item, index) {
+        const wrapper = document.createElement("div");
+        const type = document.createElement("div");
+
+        wrapper.className = "context-item";
+        type.className = "context-type";
+        type.textContent =
+          "Contexto " +
+          (index + 1) +
+          " · " +
+          formatValue(item && item.tipo, "desconhecido");
+        wrapper.appendChild(type);
+
+        if (item && item.tipo === "imagem") {
+          const image = document.createElement("img");
+          const mimeType = item.mimeType || "image/png";
+          image.className = "image-content";
+          image.alt = "Imagem do contexto";
+          image.src = buildImageSource(mimeType, item.conteudo || "");
+          wrapper.appendChild(image);
+          return wrapper;
+        }
+
+        const text = document.createElement("div");
+        text.className = "text-content";
+        text.textContent = item && item.conteudo ? item.conteudo : "";
+        wrapper.appendChild(text);
+
+        return wrapper;
+      }
+
+      function createCommandSection(command) {
+        const section = document.createElement("section");
+        const heading = document.createElement("h3");
+        const content = document.createElement("div");
+
+        heading.textContent = "Comando";
+        content.className = "command";
+        content.textContent = command || "—";
+
+        section.appendChild(heading);
+        section.appendChild(content);
+
+        return section;
+      }
+
+      function createAlternativesSection(alternatives, answer) {
+        const section = document.createElement("section");
+        const heading = document.createElement("h3");
+        const controls = document.createElement("label");
+        const checkbox = document.createElement("input");
+        const list = document.createElement("div");
+        const status = document.createElement("div");
+        const normalizedAnswer = String(answer || "").toUpperCase();
+        const shouldShowAnswer =
+          forceShowAnswer || Boolean(selectedAlternative);
+
+        heading.textContent = "Alternativas";
+
+        controls.className = "answer-controls";
+        checkbox.type = "checkbox";
+        checkbox.checked = forceShowAnswer;
+        checkbox.addEventListener("change", function () {
+          forceShowAnswer = checkbox.checked;
+          renderQuestion(questions[Number(questionSelect.value)]);
+        });
+        controls.appendChild(checkbox);
+        controls.appendChild(document.createTextNode("Mostrar gabarito"));
+
+        list.className = "alternatives";
+
+        ["A", "B", "C", "D", "E"].forEach(function (letter) {
+          const alternative = document.createElement("button");
+          alternative.type = "button";
+          alternative.className = "alternative";
+
+          if (selectedAlternative === letter) {
+            alternative.classList.add("selected");
+          }
+
+          if (shouldShowAnswer && normalizedAnswer === letter) {
+            alternative.classList.add("answer");
+          }
+
+          if (
+            selectedAlternative === letter &&
+            selectedAlternative !== normalizedAnswer
+          ) {
+            alternative.classList.add("wrong");
+          }
+
+          alternative.textContent =
+            "(" +
+            letter +
+            ") " +
+            formatValue(alternatives && alternatives[letter], "—");
+          alternative.addEventListener("click", function () {
+            selectedAlternative = letter;
+            renderQuestion(questions[Number(questionSelect.value)]);
+          });
+          list.appendChild(alternative);
+        });
+
+        status.className = "answer-status";
+        if (shouldShowAnswer) {
+          if (selectedAlternative) {
+            status.textContent =
+              selectedAlternative === normalizedAnswer
+                ? "Correto. Gabarito: " + formatValue(normalizedAnswer, "—")
+                : "Resposta selecionada: " +
+                  selectedAlternative +
+                  ". Gabarito: " +
+                  formatValue(normalizedAnswer, "—");
+          } else {
+            status.textContent =
+              "Gabarito: " + formatValue(normalizedAnswer, "—");
+          }
+        }
+
+        section.appendChild(heading);
+        section.appendChild(controls);
+        section.appendChild(list);
+        section.appendChild(status);
+
+        return section;
+      }
+
+      function buildImageSource(mimeType, content) {
+        if (content.startsWith("data:")) {
+          return content;
+        }
+
+        return "data:" + mimeType + ";base64," + content;
+      }
+
+      function createPill(text) {
+        const span = document.createElement("span");
+        span.className = "pill";
+        span.textContent = text;
+        return span;
+      }
+
+      function formatValue(value, fallback) {
+        if (value === null || value === undefined || value === "") {
+          return fallback;
+        }
+
+        return String(value);
+      }
+
+      function resetViewer() {
+        questions = [];
+        selectedAlternative = null;
+        forceShowAnswer = false;
+        questionSelect.disabled = true;
+        questionSelect.innerHTML = "<option>Carregue um arquivo</option>";
+        viewer.innerHTML =
+          '<p class="empty">Carregue um arquivo <strong>prova.json</strong> para visualizar as questões.</p>';
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    </script>
+  </body>
+</html>
