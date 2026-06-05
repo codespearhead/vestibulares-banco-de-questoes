@@ -166,11 +166,11 @@
   "regrasContexto": [
     {
       "id": "RC001",
-      "texto": "O campo contexto deve conter todo o material necessário para resolver a questão."
+      "texto": "O campo contexto deve conter exclusivamente os elementos necessários para resolver a questão. O comando da questão e as alternativas nunca devem ser armazenados no campo contexto. Devem ser armazenados exclusivamente nos campos comando e alternativas."
     },
     {
       "id": "RC002",
-      "texto": "Cada questão deve ser completamente independente."
+      "texto": "Nunca inclua no contexto textos, imagens, comandos, alternativas ou qualquer outro elemento pertencente a questões diferentes da questão atual."
     },
     {
       "id": "RC003",
