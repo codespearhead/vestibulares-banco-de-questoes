@@ -1,0 +1,253 @@
+Você receberá:
+
+1. Um PDF de uma prova de vestibular.
+2. Opcionalmente, um PDF de gabarito.
+3. Um arquivo taxonomia.json contendo a taxonomia atual.
+
+Sua tarefa é gerar dois arquivos para download:
+
+1. prova.json
+2. taxonomia.json atualizado
+
+OBJETIVO
+
+Construir uma base de dados estruturada de vestibulares, permitindo:
+
+- estatísticas por disciplina;
+- estatísticas por assunto;
+- estatísticas por subassunto;
+- estatísticas por tópico;
+- análise histórica da incidência de conteúdos;
+- reclassificação futura sem perda de informação.
+
+REGRAS GERAIS
+
+- Analise todas as questões da prova.
+- Utilize a taxonomia existente sempre que possível.
+- Considere a estrutura existente da taxonomia como imutável.
+- Não remova itens existentes da taxonomia.
+- Não altere IDs existentes.
+- Não renomeie IDs existentes.
+- Não altere nomes existentes.
+- Não altere níveis existentes.
+- Não altere sinônimos existentes.
+- Não modifique a hierarquia existente.
+- Não reordene nós existentes.
+- Não aplique ordenação alfabética na taxonomia.
+- Não mova nós existentes para outra posição.
+- Não crie categorias redundantes.
+- Antes de criar um novo item, verifique se já existe um equivalente semântico.
+- Quando for necessário criar um novo item, adicione-o diretamente ao taxonomia.json.
+- Novos itens devem ser adicionados exclusivamente ao final da lista `filhos` do nó pai correspondente.
+- Se múltiplos itens forem adicionados ao mesmo pai, mantenha a ordem em que foram identificados durante a análise.
+- Preserve ao máximo a estrutura original do arquivo para minimizar alterações em diffs de Git.
+- Em um diff, idealmente apenas novas linhas devem aparecer adicionadas.
+- Todo taxonomiaId utilizado em prova.json deve existir no taxonomia.json final.
+- O JSON gerado deve ser válido.
+
+================================================================================
+ESTRUTURA DE taxonomia.json
+================================================================================
+
+A taxonomia é recursiva.
+
+Cada nó possui:
+
+{
+  "id": "string",
+  "nome": "string",
+  "nivel": "disciplina|assunto|subassunto|topico",
+  "sinonimos": [],
+  "filhos": []
+}
+
+Exemplo:
+
+{
+  "id": "biologia",
+  "nome": "Biologia",
+  "nivel": "disciplina",
+  "sinonimos": [],
+  "filhos": [
+    {
+      "id": "biologia_fisiologia_humana",
+      "nome": "Fisiologia humana",
+      "nivel": "assunto",
+      "sinonimos": [],
+      "filhos": [
+        {
+          "id": "biologia_fisiologia_humana_sistema_digestorio",
+          "nome": "Sistema digestório",
+          "nivel": "subassunto",
+          "sinonimos": [],
+          "filhos": [
+            {
+              "id": "biologia_fisiologia_humana_sistema_digestorio_pancreas_exocrino",
+              "nome": "Pâncreas exócrino",
+              "nivel": "topico",
+              "sinonimos": [
+                "Função exócrina do pâncreas",
+                "Secreção pancreática"
+              ],
+              "filhos": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+REGRAS PARA A TAXONOMIA
+
+- IDs devem ser estáveis.
+- IDs devem ser minúsculos.
+- IDs não devem possuir acentos.
+- IDs devem usar underscore (_).
+- IDs devem refletir a hierarquia.
+- Não utilizar espaços.
+- Não utilizar caracteres especiais.
+- Não criar dois nós equivalentes semanticamente.
+- Utilizar sinonimos para registrar nomenclaturas alternativas.
+- Sempre preencher filhos com uma lista, mesmo que vazia.
+
+================================================================================
+ESTRUTURA DE prova.json
+================================================================================
+
+{
+  "prova": {
+    "questoes": [
+      {
+        "numero": 1,
+        "pagina": 1,
+        "gabarito": "A",
+        "taxonomiaId": "string",
+        "contexto": [],
+        "comando": "string",
+        "alternativas": {
+          "A": "string",
+          "B": "string",
+          "C": "string",
+          "D": "string",
+          "E": "string"
+        }
+      }
+    ]
+  }
+}
+
+================================================================================
+REGRAS PARA QUESTÕES
+================================================================================
+
+Cada questão deve possuir:
+
+- numero
+- pagina
+- taxonomiaId
+- contexto
+- comando
+- alternativas
+
+O campo gabarito deve corresponder exatamente ao gabarito oficial.
+
+================================================================================
+SEPARAÇÃO ENTRE CONTEXTO E COMANDO
+================================================================================
+
+O campo contexto deve conter todo material necessário para resolver a questão.
+
+Exemplos:
+
+- texto-base;
+- tirinhas;
+- gráficos;
+- mapas;
+- fotografias;
+- tabelas;
+- diagramas;
+- esquemas;
+- imagens.
+
+O campo comando deve conter exclusivamente a pergunta ou instrução principal da questão.
+
+Exemplo:
+
+Contexto:
+
+"A televisão já foi vista como o fim do cinema..."
+
+Comando:
+
+"Dentro da perspectiva apresentada pelo autor, a Inteligência Artificial vai"
+
+================================================================================
+FORMATO DE CONTEXTO
+================================================================================
+
+Cada item de contexto deve possuir:
+
+{
+  "tipo": "texto",
+  "conteudo": "..."
+}
+
+ou
+
+{
+  "tipo": "imagem",
+  "mimeType": "image/png",
+  "conteudo": "base64..."
+}
+
+Tipos permitidos:
+
+- texto
+- imagem
+
+REGRAS:
+
+- Todo texto-base relevante deve estar em contexto.
+- Toda imagem relevante deve estar em contexto.
+- Imagens devem ser armazenadas em base64.
+- Se uma mesma tirinha, mapa ou texto for utilizado por múltiplas questões, ele deve ser repetido em cada questão para que cada questão seja completamente independente.
+
+================================================================================
+CLASSIFICAÇÃO
+================================================================================
+
+Escolha o taxonomiaId mais específico possível.
+
+Exemplo ruim:
+
+biologia
+
+Exemplo melhor:
+
+biologia_fisiologia_humana
+
+Exemplo ideal:
+
+biologia_fisiologia_humana_sistema_digestorio_pancreas_exocrino
+
+Priorize sempre o nível mais profundo aplicável.
+
+================================================================================
+VALIDAÇÃO FINAL
+================================================================================
+
+Antes de finalizar:
+
+- Verifique se todas as questões da prova foram extraídas.
+- Verifique se todas as alternativas foram extraídas.
+- Verifique se todas as imagens relevantes foram incluídas.
+- Verifique se todos os textos-base foram incluídos.
+- Verifique se todos os taxonomiaId utilizados existem no taxonomia.json final.
+- Verifique se o gabarito coincide com o gabarito oficial quando disponível.
+- Verifique se os dois arquivos são JSON válido.
+
+Saída esperada:
+
+- Arquivo para download: prova.json
+- Arquivo para download: taxonomia.json atualizado
