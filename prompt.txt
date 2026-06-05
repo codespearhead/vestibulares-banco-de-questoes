@@ -186,7 +186,24 @@ Comando:
 FORMATO DE CONTEXTO
 ================================================================================
 
-Cada item de contexto deve possuir:
+O campo contexto deve conter todo o material necessário para resolver a questão.
+
+Cada questão deve ser completamente independente. Portanto, todo texto, imagem ou elemento visual necessário para sua resolução deve estar presente em seu próprio contexto, mesmo que esse mesmo conteúdo seja compartilhado por outras questões da prova.
+
+O campo contexto é uma lista ordenada.
+
+Regras:
+
+- Preserve a ordem original dos elementos conforme aparecem na prova.
+- Cada elemento deve ocupar uma posição própria na lista.
+- Não combine múltiplos elementos em um único item de contexto.
+- Não agrupe textos distintos em um único item.
+- Não agrupe múltiplas imagens em um único item.
+- Se uma questão depender de dois gráficos, eles devem ser representados por dois itens distintos.
+- Se uma questão depender de um texto e de uma imagem, eles devem ser representados por dois itens distintos.
+- Se um mesmo texto ou elemento visual for utilizado por múltiplas questões, ele deve ser repetido em cada uma delas.
+
+Formato de cada item:
 
 {
   "tipo": "texto",
@@ -206,12 +223,30 @@ Tipos permitidos:
 - texto
 - imagem
 
-REGRAS:
+Representação:
 
-- Todo texto-base relevante deve estar em contexto.
-- Toda imagem relevante deve estar em contexto.
-- Imagens devem ser armazenadas em base64.
-- Se uma mesma tirinha, mapa ou texto for utilizado por múltiplas questões, ele deve ser repetido em cada questão para que cada questão seja completamente independente.
+- Conteúdo puramente textual deve ser armazenado como tipo "texto".
+- Qualquer elemento visual deve ser armazenado como tipo "imagem".
+
+Elementos visuais incluem, mas não se limitam a:
+
+- tirinhas;
+- fotografias;
+- gráficos;
+- mapas;
+- tabelas;
+- diagramas;
+- esquemas;
+- infográficos;
+- ilustrações;
+- capturas de tela;
+- figuras.
+
+Imagens devem ser armazenadas em base64.
+
+Princípio de preservação:
+
+O contexto deve preservar fielmente todas as informações necessárias para que um humano ou outro modelo consiga resolver a questão sem consultar o PDF original.
 
 ================================================================================
 CLASSIFICAÇÃO
