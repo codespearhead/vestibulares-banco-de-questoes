@@ -43,12 +43,20 @@
       "texto": "Analise todas as questões da prova."
     },
     {
-      "id": "RG011",
+      "id": "RG002",
       "texto": "Os arquivos gerados devem ser JSON válido."
     },
     {
-      "id": "RG012",
+      "id": "RG003",
       "texto": "Quando uma questão depender de imagem, gráfico, mapa, charge, fotografia, tirinha, diagrama ou qualquer elemento visual, utilize o elemento visual normalmente para interpretar, classificar e resolver a questão."
+    },
+    {
+      "id": "RG004",
+      "texto": "A resposta final deve conter exclusivamente o conteúdo do arquivo prova.json, sem explicações, comentários, markdown ou texto adicional."
+    },
+    {
+      "id": "RG005",
+      "texto": "Todo conteúdo textual extraído da prova deve ser transcrito integralmente, sem resumo, simplificação, correção gramatical ou parafraseamento."
     }
   ],
   "schemaProva": {
