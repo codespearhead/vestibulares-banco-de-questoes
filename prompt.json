@@ -28,6 +28,28 @@
     "Permitir análise histórica da incidência de conteúdos.",
     "Permitir reclassificação futura sem perda de informação."
   ],
+  "validacaoPrevia": [
+    {
+      "id": "VP001",
+      "texto": "Antes de iniciar qualquer extração ou classificação, valide a consistência dos arquivos recebidos."
+    },
+    {
+      "id": "VP002",
+      "texto": "Se taxonomia.json estiver vazio, contendo apenas {} ou estrutura equivalente sem nós de taxonomia, interrompa o processamento e informe: 'O arquivo taxonomia.json está vazio, o que significa que ou este é o arquivo errado ou essa é a primeira vez que você está executando este prompt.'"
+    },
+    {
+      "id": "VP003",
+      "texto": "Quando taxonomia.json estiver vazio, obtenha confirmação explícita do usuário antes de construir uma nova taxonomia."
+    },
+    {
+      "id": "VP004",
+      "texto": "Nunca utilize o gabarito sem validá-lo previamente contra a prova."
+    },
+    {
+      "id": "VP005",
+      "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução de pelo menos cinco questões distribuídas entre as primeiras páginas da prova. Caso sejam encontradas divergências relevantes, interrompa o processamento e solicite esclarecimentos ao usuário."
+    }
+  ],
   "regrasGerais": [
     {
       "id": "RG001",
