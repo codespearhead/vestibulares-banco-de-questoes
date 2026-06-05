@@ -94,6 +94,10 @@
     {
       "id": "RG011",
       "texto": "Os arquivos gerados devem ser JSON válido."
+    },
+    {
+      "id": "RG012",
+      "texto": "Quando uma questão depender de imagem, gráfico, mapa, charge, fotografia, tirinha, diagrama ou qualquer elemento visual, utilize o elemento visual normalmente para interpretar, classificar e resolver a questão."
     }
   ],
   "schemaTaxonomia": {
@@ -194,15 +198,7 @@
     },
     {
       "id": "RC008",
-      "texto": "Qualquer elemento visual deve ser armazenado como tipo imagem."
-    },
-    {
-      "id": "RC009",
-      "texto": "Imagens devem ser armazenadas em base64."
-    },
-    {
-      "id": "RC010",
-      "texto": "Se um mesmo texto ou elemento visual for utilizado por múltiplas questões, ele deve ser repetido em cada uma delas."
+      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor 'TODO'."
     }
   ],
   "tiposContexto": {
@@ -213,13 +209,13 @@
     "imagem": {
       "tipo": "imagem",
       "mimeType": "image/png",
-      "conteudo": "base64"
+      "conteudo": "TODO",
+      "pendente": true
     }
   },
   "validacaoFinal": [
     "Todas as questões da prova foram extraídas.",
     "Todas as alternativas foram extraídas.",
-    "Todas as imagens relevantes foram incluídas.",
     "Todos os textos-base foram incluídos.",
     "Todos os taxonomiaId utilizados existem no taxonomia.json final.",
     "O gabarito coincide com o gabarito oficial quando disponível.",
