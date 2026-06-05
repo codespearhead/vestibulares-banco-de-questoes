@@ -1,0 +1,214 @@
+{
+  "id": "gerar_json_prova_vestibular",
+  "entrada": {
+    "arquivos": [
+      {
+        "nome": "prova",
+        "tipo": "pdf",
+        "obrigatorio": true
+      },
+      {
+        "nome": "gabarito",
+        "tipo": "pdf",
+        "obrigatorio": false
+      },
+      {
+        "nome": "taxonomia",
+        "tipo": "json",
+        "obrigatorio": true
+      }
+    ]
+  },
+  "saida": {
+    "arquivos": ["prova.json", "taxonomia.json"]
+  },
+  "objetivo": [
+    "Construir uma base de dados estruturada de vestibulares.",
+    "Permitir estatísticas por disciplina, assunto, subassunto e tópico.",
+    "Permitir análise histórica da incidência de conteúdos.",
+    "Permitir reclassificação futura sem perda de informação."
+  ],
+  "regrasGerais": [
+    {
+      "id": "RG001",
+      "texto": "Analise todas as questões da prova."
+    },
+    {
+      "id": "RG002",
+      "texto": "Utilize a taxonomia existente sempre que possível."
+    },
+    {
+      "id": "RG003",
+      "texto": "Considere a estrutura existente da taxonomia como imutável."
+    },
+    {
+      "id": "RG004",
+      "texto": "Não remova, renomeie, reordene ou mova itens existentes da taxonomia."
+    },
+    {
+      "id": "RG005",
+      "texto": "Não altere IDs, nomes, níveis, sinônimos ou hierarquia existentes."
+    },
+    {
+      "id": "RG006",
+      "texto": "Não crie categorias redundantes."
+    },
+    {
+      "id": "RG007",
+      "texto": "Antes de criar um novo item, verifique se já existe um equivalente semântico."
+    },
+    {
+      "id": "RG008",
+      "texto": "Quando for necessário criar um novo item, adicione-o diretamente ao taxonomia.json."
+    },
+    {
+      "id": "RG009",
+      "texto": "Novos itens devem ser adicionados exclusivamente ao final da lista filhos do nó pai correspondente."
+    },
+    {
+      "id": "RG010",
+      "texto": "Todo taxonomiaId utilizado em prova.json deve existir no taxonomia.json final."
+    },
+    {
+      "id": "RG011",
+      "texto": "Os arquivos gerados devem ser JSON válido."
+    }
+  ],
+  "schemaTaxonomia": {
+    "tipo": "recursivo",
+    "node": {
+      "id": "string",
+      "nome": "string",
+      "nivel": "disciplina|assunto|subassunto|topico",
+      "sinonimos": [],
+      "filhos": []
+    }
+  },
+  "exemplos": {
+    "taxonomia": {
+      "id": "biologia",
+      "nome": "Biologia",
+      "nivel": "disciplina",
+      "sinonimos": [],
+      "filhos": [
+        {
+          "id": "biologia_fisiologia_humana",
+          "nome": "Fisiologia humana",
+          "nivel": "assunto",
+          "sinonimos": [],
+          "filhos": [
+            {
+              "id": "biologia_fisiologia_humana_sistema_digestorio",
+              "nome": "Sistema digestório",
+              "nivel": "subassunto",
+              "sinonimos": [],
+              "filhos": [
+                {
+                  "id": "biologia_fisiologia_humana_sistema_digestorio_pancreas_exocrino",
+                  "nome": "Pâncreas exócrino",
+                  "nivel": "topico",
+                  "sinonimos": [
+                    "Função exócrina do pâncreas",
+                    "Secreção pancreática"
+                  ],
+                  "filhos": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "schemaProva": {
+    "prova": {
+      "questoes": [
+        {
+          "numero": "number",
+          "pagina": "number",
+          "gabarito": "string",
+          "taxonomiaId": "string",
+          "contexto": [],
+          "comando": "string",
+          "alternativas": {
+            "A": "string",
+            "B": "string",
+            "C": "string",
+            "D": "string",
+            "E": "string"
+          }
+        }
+      ]
+    }
+  },
+  "regrasContexto": [
+    {
+      "id": "RC001",
+      "texto": "O campo contexto deve conter todo o material necessário para resolver a questão."
+    },
+    {
+      "id": "RC002",
+      "texto": "Cada questão deve ser completamente independente."
+    },
+    {
+      "id": "RC003",
+      "texto": "O campo contexto é uma lista ordenada."
+    },
+    {
+      "id": "RC004",
+      "texto": "Preserve a ordem original dos elementos conforme aparecem na prova."
+    },
+    {
+      "id": "RC005",
+      "texto": "Cada elemento deve ocupar uma posição própria na lista."
+    },
+    {
+      "id": "RC006",
+      "texto": "Não combine múltiplos elementos em um único item de contexto."
+    },
+    {
+      "id": "RC007",
+      "texto": "Conteúdo puramente textual deve ser armazenado como tipo texto."
+    },
+    {
+      "id": "RC008",
+      "texto": "Qualquer elemento visual deve ser armazenado como tipo imagem."
+    },
+    {
+      "id": "RC009",
+      "texto": "Imagens devem ser armazenadas em base64."
+    },
+    {
+      "id": "RC010",
+      "texto": "Se um mesmo texto ou elemento visual for utilizado por múltiplas questões, ele deve ser repetido em cada uma delas."
+    }
+  ],
+  "tiposContexto": {
+    "texto": {
+      "tipo": "texto",
+      "conteudo": "string"
+    },
+    "imagem": {
+      "tipo": "imagem",
+      "mimeType": "image/png",
+      "conteudo": "base64"
+    }
+  },
+  "classificacao": {
+    "regra": "Escolha o taxonomiaId mais específico possível.",
+    "exemplos": {
+      "ruim": "biologia",
+      "melhor": "biologia_fisiologia_humana",
+      "ideal": "biologia_fisiologia_humana_sistema_digestorio_pancreas_exocrino"
+    }
+  },
+  "validacaoFinal": [
+    "Todas as questões da prova foram extraídas.",
+    "Todas as alternativas foram extraídas.",
+    "Todas as imagens relevantes foram incluídas.",
+    "Todos os textos-base foram incluídos.",
+    "Todos os taxonomiaId utilizados existem no taxonomia.json final.",
+    "O gabarito coincide com o gabarito oficial quando disponível.",
+    "Os dois arquivos são JSON válido."
+  ]
+}
