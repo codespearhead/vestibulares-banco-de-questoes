@@ -77,7 +77,7 @@
     },
     {
       "id": "RG007",
-      "texto": "Antes de criar um novo item, verifique se já existe um equivalente semântico."
+      "texto": "Antes de criar um novo item, verifique se já existe um equivalente semântico. Classifique a questão pelo conhecimento, habilidade ou conteúdo efetivamente cobrado, não pelo tema circunstancial do texto-base, imagem ou enunciado. Não crie novos itens que representem apenas o tema contextual da questão quando já existir uma categoria adequada para a habilidade ou conteúdo avaliado."
     },
     {
       "id": "RG008",
@@ -214,14 +214,6 @@
       "tipo": "imagem",
       "mimeType": "image/png",
       "conteudo": "base64"
-    }
-  },
-  "classificacao": {
-    "regra": "Escolha o taxonomiaId mais específico possível.",
-    "exemplos": {
-      "ruim": "biologia",
-      "melhor": "biologia_fisiologia_humana",
-      "ideal": "biologia_fisiologia_humana_sistema_digestorio_pancreas_exocrino"
     }
   },
   "validacaoFinal": [
