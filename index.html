@@ -170,7 +170,7 @@
     </main>
 
     <script>
-      const { computed, createApp, ref } = Vue;
+      const { computed, createApp, onBeforeUnmount, onMounted, ref } = Vue;
 
       createApp({
         setup() {
@@ -341,6 +341,46 @@
             errorMessage.value = "";
             selectPlaceholder.value = "Carregue um arquivo";
           }
+
+          function goToNextQuestion() {
+            if (selectedQuestionIndex.value >= questions.value.length - 1) {
+              return;
+            }
+
+            selectedQuestionIndex.value += 1;
+            resetAnswerState();
+          }
+
+          function goToPreviousQuestion() {
+            if (selectedQuestionIndex.value <= 0) {
+              return;
+            }
+
+            selectedQuestionIndex.value -= 1;
+            resetAnswerState();
+          }
+
+          function handleKeyDown(event) {
+            if (!questions.value.length) {
+              return;
+            }
+
+            if (event.key === "ArrowRight") {
+              goToNextQuestion();
+            }
+
+            if (event.key === "ArrowLeft") {
+              goToPreviousQuestion();
+            }
+          }
+
+          onMounted(() => {
+            window.addEventListener("keydown", handleKeyDown);
+          });
+
+          onBeforeUnmount(() => {
+            window.removeEventListener("keydown", handleKeyDown);
+          });
 
           return {
             questions,
