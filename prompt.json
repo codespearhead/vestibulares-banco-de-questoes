@@ -69,7 +69,7 @@
   "validacaoIntermediaria": [
     {
       "id": "VI001",
-      "texto": "Após concluir a extração das três primeiras questões, interrompa o processamento e exiba no chat exatamente o JSON parcial que seria gravado em prova.json, contendo apenas as questões 01, 02 e 03 e seus respectivos gabaritos."
+      "texto": "Após concluir a extração das três primeiras questões, interrompa o processamento e exiba no chat exatamente o JSON parcial que seria gravado no arquivo JSON final, contendo apenas as questões 01, 02 e 03 e seus respectivos gabaritos."
     },
     {
       "id": "VI002",
