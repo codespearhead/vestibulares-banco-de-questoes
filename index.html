@@ -92,27 +92,38 @@
               class="mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3"
             >
               <div class="mb-2 text-xs font-bold uppercase text-gray-500">
-                Contexto {{ index + 1 }} · {{ formatValue(item && item.tipo,
+                Contexto {{ index + 1 }} · {{ formatValue(item && item.mimeType,
                 'desconhecido') }}
               </div>
 
               <div
-                v-if="item && item.tipo === 'imagem' && item.conteudo === 'TODO'"
-                class="font-bold leading-normal text-red-700"
+                v-if="item && item.mimeType === 'text/plain'"
+                class="whitespace-pre-wrap leading-normal"
               >
-                Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
-                imagem.
+                {{ item.conteudo || '' }}
               </div>
 
-              <img
-                v-else-if="item && item.tipo === 'imagem'"
-                class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
-                alt="Imagem do contexto"
-                :src="buildImageSource(item.mimeType || 'image/png', item.conteudo || '')"
-              />
+              <div
+                v-else-if="item && item.mimeType && item.mimeType.startsWith('image/')"
+              >
+                <div
+                  v-if="item.conteudo === 'TODO'"
+                  class="font-bold leading-normal text-red-700"
+                >
+                  Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
+                  imagem.
+                </div>
 
-              <div v-else class="whitespace-pre-wrap leading-normal">
-                {{ item && item.conteudo ? item.conteudo : '' }}
+                <img
+                  v-else
+                  class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
+                  alt="Imagem do contexto"
+                  :src="buildImageSource(item.mimeType, item.conteudo || '')"
+                />
+              </div>
+
+              <div v-else class="font-bold leading-normal text-red-700">
+                MIME type de contexto não suportado: {{ item && item.mimeType }}
               </div>
             </div>
           </section>
@@ -146,14 +157,45 @@
 
             <div v-if="alternativeEntries.length" class="grid gap-2">
               <button
-                v-for="[letter, text] in alternativeEntries"
+                v-for="[letter, alternative] in alternativeEntries"
                 :key="letter"
                 type="button"
                 class="w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50"
                 :class="alternativeClass(letter)"
                 @click="selectedAlternative = letter"
               >
-                ({{ letter }}) {{ formatValue(text, '—') }}
+                <span class="font-bold">({{ letter }}) </span>
+
+                <span v-if="alternative.mimeType === 'text/plain'">
+                  {{ formatValue(alternative.conteudo, '—') }}
+                </span>
+
+                <div
+                  v-else-if="alternative.mimeType.startsWith('image/')"
+                  class="mt-2"
+                >
+                  <span
+                    v-if="alternative.conteudo === 'TODO'"
+                    class="font-bold text-red-700"
+                  >
+                    Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
+                    imagem.
+                  </span>
+
+                  <img
+                    v-else
+                    class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
+                    alt="Imagem da alternativa"
+                    :src="buildImageSource(
+                      alternative.mimeType,
+                      alternative.conteudo
+                    )"
+                  />
+                </div>
+
+                <div v-else class="mt-2 font-bold text-red-700">
+                  MIME type não suportado: {{ alternative.mimeType }}
+                </div>
               </button>
             </div>
 
