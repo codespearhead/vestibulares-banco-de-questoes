@@ -35,7 +35,7 @@
           "contexto": [],
           "comando": "string",
           "alternativas": {
-            "id_da_alternativa": "string"
+            "id_da_alternativa": "objeto conforme tiposContexto"
           }
         }
       }
@@ -158,15 +158,20 @@
   ],
   "tiposContexto": {
     "texto": {
-      "tipo": "texto",
+      "mimeType": "text/plain",
       "conteudo": "string"
     },
     "imagem": {
-      "tipo": "imagem",
       "mimeType": "image/png",
       "conteudo": "TODO"
     }
   },
+  "regrasAlternativas": [
+    {
+      "id": "RA001",
+      "texto": "Cada alternativa deve seguir o mesmo padrão de tiposContexto."
+    }
+  ],
   "validacaoQuestao": [
     {
       "id": "VQ001",
