@@ -23,6 +23,26 @@
     "Permitir análise histórica da incidência de conteúdos.",
     "Permitir reclassificação futura sem perda de informação."
   ],
+  "schemaProva": {
+    "prova": {
+      "questoes": {
+        "id_da_questao": {
+          "contexto": [],
+          "comando": "string",
+          "alternativas": {
+            "A": "string",
+            "B": "string",
+            "C": "string",
+            "D": "string",
+            "E": "string"
+          }
+        }
+      }
+    },
+    "gabarito": {
+      "id_da_questao": "string"
+    }
+  },
   "validacaoPrevia": [
     {
       "id": "VP001",
@@ -77,26 +97,6 @@
       "texto": "Todo conteúdo textual extraído da prova deve ser transcrito integralmente, sem resumo, simplificação, correção gramatical ou parafraseamento."
     }
   ],
-  "schemaProva": {
-    "prova": {
-      "questoes": {
-        "id_da_questao": {
-          "contexto": [],
-          "comando": "string",
-          "alternativas": {
-            "A": "string",
-            "B": "string",
-            "C": "string",
-            "D": "string",
-            "E": "string"
-          }
-        }
-      }
-    },
-    "gabarito": {
-      "id_da_questao": "string"
-    }
-  },
   "regrasContexto": [
     {
       "id": "RC001",
