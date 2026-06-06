@@ -9,7 +9,7 @@
       },
       {
         "tipo": "pdf",
-        "obrigatorio": false,
+        "obrigatorio": true,
         "descricao": "PDF do gabarito"
       }
     ]
@@ -170,7 +170,7 @@
     "Todas as questões da prova foram extraídas.",
     "Todas as alternativas foram extraídas.",
     "Todos os textos-base foram incluídos.",
-    "O gabarito coincide com o gabarito oficial quando disponível.",
+    "O gabarito coincide com o gabarito oficial.",
     "Os dois arquivos são JSON válido."
   ]
 }
