@@ -37,6 +37,24 @@
       "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução de pelo menos cinco questões distribuídas entre as primeiras páginas da prova. Caso sejam encontradas divergências relevantes, interrompa o processamento e solicite esclarecimentos ao usuário."
     }
   ],
+  "validacaoIntermediaria": [
+    {
+      "id": "VI001",
+      "texto": "Após concluir a extração das três primeiras questões, interrompa o processamento e exiba no chat exatamente o JSON parcial que seria gravado em prova.json, contendo apenas as questões 01, 02 e 03 e seus respectivos gabaritos."
+    },
+    {
+      "id": "VI002",
+      "texto": "Não continue a análise das demais questões até que o usuário aprove explicitamente a estrutura, a classificação e a organização do JSON parcial."
+    },
+    {
+      "id": "VI003",
+      "texto": "O JSON exibido deve seguir exatamente o schema final de prova.json, apenas contendo um subconjunto das questões."
+    },
+    {
+      "id": "VI004",
+      "texto": "Após a aprovação do usuário, reinicie a extração desde a questão 01 e gere o arquivo completo."
+    }
+  ],
   "regrasGerais": [
     {
       "id": "RG001",
