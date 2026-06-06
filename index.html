@@ -249,7 +249,7 @@
 
           if (!questions.length) {
             throw new Error(
-              "Nenhuma questão encontrada. Esperado: prova.questoes[] ou questoes[].",
+              "Nenhuma questão encontrada. Esperado: prova.questoes{}.",
             );
           }
 
@@ -278,6 +278,28 @@
 
         if (json && Array.isArray(json.questoes)) {
           return json.questoes;
+        }
+
+        if (
+          json &&
+          json.prova &&
+          json.prova.questoes &&
+          typeof json.prova.questoes === "object"
+        ) {
+          return Object.entries(json.prova.questoes).map(function ([
+            numero,
+            question,
+          ]) {
+            return {
+              ...question,
+              numero: question.numero || numero,
+              gabarito:
+                question.gabarito ||
+                (json.gabarito && json.gabarito[numero]) ||
+                (json.prova.gabarito && json.prova.gabarito[numero]) ||
+                "",
+            };
+          });
         }
 
         return [];
