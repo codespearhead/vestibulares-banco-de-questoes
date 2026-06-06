@@ -63,7 +63,6 @@
     "prova": {
       "questoes": {
         "id_da_questao": {
-          "pagina": "number",
           "contexto": [],
           "comando": "string",
           "alternativas": {
