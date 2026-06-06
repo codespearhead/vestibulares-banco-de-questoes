@@ -164,10 +164,18 @@
       "pendente": true
     }
   },
-  "regrasAlternativasDaQuestao": [
+  "validacaoQuestao": [
     {
-      "id": "RA001",
-      "texto": "Após extrair as alternativas de cada questão, verifique se todas pertencem semanticamente ao comando da questão atual. Caso alguma alternativa mencione tema, enunciado, disciplina, imagem, texto-base ou vocabulário incompatível com a questão atual, trate isso como possível contaminação da questão subsequente e revise a delimitação antes de prosseguir."
+      "id": "VQ001",
+      "texto": "Verifique se contexto, comando e alternativas pertencem à mesma questão."
+    },
+    {
+      "id": "VQ002",
+      "texto": "Verifique se nenhum trecho do contexto, comando ou alternativas pertence à questão anterior ou à questão subsequente."
+    },
+    {
+      "id": "VQ003",
+      "texto": "Em caso de dúvida sobre os limites da questão, reanalise a página completa antes de concluir a extração."
     }
   ],
   "validacaoFinal": [
