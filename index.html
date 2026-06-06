@@ -269,19 +269,17 @@
           }
 
           function extractQuestions(json) {
+            let extractedQuestions = [];
+
             if (json?.prova && Array.isArray(json.prova.questoes)) {
-              return json.prova.questoes;
-            }
-
-            if (Array.isArray(json?.questoes)) {
-              return json.questoes;
-            }
-
-            if (
+              extractedQuestions = json.prova.questoes;
+            } else if (Array.isArray(json?.questoes)) {
+              extractedQuestions = json.questoes;
+            } else if (
               json?.prova?.questoes &&
               typeof json.prova.questoes === "object"
             ) {
-              return Object.entries(json.prova.questoes).map(
+              extractedQuestions = Object.entries(json.prova.questoes).map(
                 ([numero, question]) => ({
                   ...question,
                   numero: question.numero || numero,
@@ -294,7 +292,9 @@
               );
             }
 
-            return [];
+            return extractedQuestions.sort(
+              (a, b) => Number(a.numero) - Number(b.numero),
+            );
           }
 
           function alternativeClass(letter) {
