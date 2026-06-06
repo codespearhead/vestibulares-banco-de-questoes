@@ -35,11 +35,7 @@
           "contexto": [],
           "comando": "string",
           "alternativas": {
-            "A": "string",
-            "B": "string",
-            "C": "string",
-            "D": "string",
-            "E": "string"
+            "id_da_alternativa": "string"
           }
         }
       }
@@ -176,6 +172,14 @@
     {
       "id": "VQ003",
       "texto": "Em caso de dúvida sobre os limites da questão, reanalise a página completa antes de concluir a extração."
+    },
+    {
+      "id": "VQ004",
+      "texto": "A extração da questão termina após a última alternativa pertencente à questão atual. A última alternativa deve ser determinada pela sequência real de alternativas presente na prova, podendo ser D, E ou outro limite explicitamente identificado no documento."
+    },
+    {
+      "id": "VQ005",
+      "texto": "A extração da questão termina após a última alternativa pertencente à questão atual. A última alternativa deve ser determinada pela sequência real de alternativas presente na prova, podendo ser D, E ou outro limite explicitamente identificado no documento."
     }
   ],
   "validacaoFinal": [
