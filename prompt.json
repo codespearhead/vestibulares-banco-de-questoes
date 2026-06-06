@@ -143,6 +143,12 @@
       "pendente": true
     }
   },
+  "regrasAlternativasDaQuestao": [
+    {
+      "id": "RA001",
+      "texto": "Após extrair as alternativas de cada questão, verifique se todas pertencem semanticamente ao comando da questão atual. Caso alguma alternativa mencione tema, enunciado, disciplina, imagem, texto-base ou vocabulário incompatível com a questão atual, trate isso como possível contaminação da questão subsequente e revise a delimitação antes de prosseguir."
+    }
+  ],
   "validacaoFinal": [
     "Todas as questões da prova foram extraídas.",
     "Todas as alternativas foram extraídas.",
