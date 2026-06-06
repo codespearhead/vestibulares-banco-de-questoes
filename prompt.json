@@ -112,6 +112,10 @@
     {
       "id": "RG006",
       "texto": "O nome do arquivo JSON gerado deve ser exatamente o nome do arquivo identificado como prova, preservando todo o nome original e substituindo apenas a extensão por .json."
+    },
+    {
+      "id": "RG007",
+      "texto": "Antes de extrair qualquer questão, identifique todas as questões presentes na página e seus limites aproximados. Somente depois realize a extração individual de cada questão."
     }
   ],
   "regrasContexto": [
