@@ -61,11 +61,9 @@
   ],
   "schemaProva": {
     "prova": {
-      "questoes": [
-        {
-          "numero": "number",
+      "questoes": {
+        "id_da_questao": {
           "pagina": "number",
-          "gabarito": "string",
           "contexto": [],
           "comando": "string",
           "alternativas": {
@@ -76,7 +74,10 @@
             "E": "string"
           }
         }
-      ]
+      }
+    },
+    "gabarito": {
+      "id_da_questao": "string"
     }
   },
   "regrasContexto": [
