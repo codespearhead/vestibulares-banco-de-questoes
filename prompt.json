@@ -146,6 +146,14 @@
     {
       "id": "RC008",
       "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor 'TODO'."
+    },
+    {
+      "id": "RC009",
+      "texto": "Quando houver texto antes e/ou depois de um elemento visual, cada trecho textual deve ser extraído como um item independente do contexto, preservando exatamente a segmentação e a posição relativa ao elemento visual."
+    },
+    {
+      "id": "RC010",
+      "texto": "Legendas, créditos, fontes, referências bibliográficas, indicações de autoria, datas de publicação e textos introdutórios associados a imagens devem permanecer no campo contexto, na posição em que aparecem no documento, e nunca ser incorporados ao comando."
     }
   ],
   "tiposContexto": {
