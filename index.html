@@ -4,221 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Visualizador de prova.json</title>
-    <style>
-      :root {
-        font-family: Arial, Helvetica, sans-serif;
-        color: #1f2937;
-        background: #f3f4f6;
-      }
-
-      body {
-        margin: 0;
-        padding: 24px;
-      }
-
-      main {
-        max-width: 980px;
-        margin: 0 auto;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        font-size: 28px;
-      }
-
-      .card {
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 18px;
-        margin-bottom: 16px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-      }
-
-      .controls {
-        display: grid;
-        grid-template-columns: 1fr 240px;
-        gap: 12px;
-        align-items: end;
-      }
-
-      label {
-        display: block;
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 6px;
-      }
-
-      input,
-      select {
-        width: 100%;
-        box-sizing: border-box;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        padding: 10px;
-        font-size: 15px;
-        background: #ffffff;
-      }
-
-      .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-
-      .pill {
-        display: inline-block;
-        background: #eef2ff;
-        border: 1px solid #c7d2fe;
-        border-radius: 999px;
-        padding: 6px 10px;
-        font-size: 13px;
-      }
-
-      h2 {
-        margin: 0 0 12px;
-        font-size: 22px;
-      }
-
-      h3 {
-        margin: 22px 0 10px;
-        font-size: 17px;
-        border-bottom: 1px solid #e5e7eb;
-        padding-bottom: 6px;
-      }
-
-      .context-item {
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 12px;
-        margin-bottom: 10px;
-        background: #fafafa;
-      }
-
-      .context-type {
-        font-size: 12px;
-        font-weight: 700;
-        color: #6b7280;
-        text-transform: uppercase;
-        margin-bottom: 8px;
-      }
-
-      .text-content {
-        white-space: pre-wrap;
-        line-height: 1.5;
-      }
-
-      .image-content {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        border: 1px solid #e5e7eb;
-        background: #ffffff;
-      }
-
-      .command {
-        white-space: pre-wrap;
-        line-height: 1.5;
-        font-weight: 700;
-      }
-
-      .alternatives {
-        display: grid;
-        gap: 8px;
-      }
-
-      .answer-controls {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin: 0 0 12px;
-        user-select: none;
-      }
-
-      .answer-controls input {
-        width: auto;
-      }
-
-      .alternative {
-        width: 100%;
-        text-align: left;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 10px;
-        background: #ffffff;
-        line-height: 1.45;
-        cursor: pointer;
-        font: inherit;
-        color: inherit;
-      }
-
-      .alternative:hover {
-        background: #f9fafb;
-      }
-
-      .selected {
-        border-color: #93c5fd;
-        background: #eff6ff;
-      }
-
-      .answer {
-        border-color: #86efac;
-        background: #f0fdf4;
-      }
-
-      .wrong {
-        border-color: #fca5a5;
-        background: #fef2f2;
-      }
-
-      .answer-status {
-        margin-top: 10px;
-        font-weight: 700;
-        line-height: 1.5;
-      }
-
-      .empty,
-      .error {
-        color: #6b7280;
-        line-height: 1.5;
-      }
-
-      .error {
-        color: #b91c1c;
-        font-weight: 700;
-      }
-
-      @media (max-width: 720px) {
-        body {
-          padding: 14px;
-        }
-
-        .controls {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <main>
-      <h1>Visualizador de prova.json</h1>
+  <body class="m-0 bg-gray-100 p-3.5 font-sans text-gray-800 md:p-6">
+    <main class="mx-auto max-w-[980px]">
+      <h1 class="mb-4 text-[28px] font-bold leading-tight">
+        Visualizador de prova.json
+      </h1>
 
-      <section class="card controls">
+      <section
+        class="mb-4 grid gap-3 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm md:grid-cols-[1fr_240px] md:items-end"
+      >
         <div>
-          <label for="fileInput">Arquivo prova.json</label>
-          <input id="fileInput" type="file" accept="application/json,.json" />
+          <label class="mb-1.5 block text-sm font-bold" for="fileInput"
+            >Arquivo prova.json</label
+          >
+          <input
+            id="fileInput"
+            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
+            type="file"
+            accept="application/json,.json"
+          />
         </div>
         <div>
-          <label for="questionSelect">Questão</label>
-          <select id="questionSelect" disabled>
+          <label class="mb-1.5 block text-sm font-bold" for="questionSelect"
+            >Questão</label
+          >
+          <select
+            id="questionSelect"
+            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
+            disabled
+          >
             <option>Carregue um arquivo</option>
           </select>
         </div>
       </section>
 
-      <section id="viewer" class="card">
-        <p class="empty">
+      <section
+        id="viewer"
+        class="mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm"
+      >
+        <p class="leading-normal text-gray-500">
           Carregue um arquivo <strong>prova.json</strong> para visualizar as
           questões.
         </p>
@@ -229,6 +55,35 @@
       const fileInput = document.getElementById("fileInput");
       const questionSelect = document.getElementById("questionSelect");
       const viewer = document.getElementById("viewer");
+
+      const classNames = {
+        viewerCard:
+          "mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm",
+        empty: "leading-normal text-gray-500",
+        error: "font-bold leading-normal text-red-700",
+        meta: "mb-3.5 flex flex-wrap gap-2",
+        pill: "inline-block rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-[13px]",
+        title: "mb-3 text-[22px] font-bold leading-tight",
+        heading:
+          "mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight",
+        contextItem:
+          "mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3",
+        contextType: "mb-2 text-xs font-bold uppercase text-gray-500",
+        textContent: "whitespace-pre-wrap leading-normal",
+        imageContent:
+          "h-auto max-w-full rounded-lg border border-gray-200 bg-white",
+        command: "whitespace-pre-wrap font-bold leading-normal",
+        alternatives: "grid gap-2",
+        answerControls:
+          "mb-3 flex select-none items-center gap-2 text-sm font-bold",
+        answerCheckbox: "h-4 w-4",
+        alternative:
+          "w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50",
+        selected: "border-blue-300 bg-blue-50",
+        answer: "border-green-300 bg-green-50",
+        wrong: "border-red-300 bg-red-50",
+        answerStatus: "mt-2.5 font-bold leading-normal",
+      };
 
       let questions = [];
       let selectedAlternative = null;
@@ -260,7 +115,11 @@
           questionSelect.disabled = true;
           questionSelect.innerHTML = "<option>Erro ao carregar</option>";
           viewer.innerHTML =
-            '<p class="error">' + escapeHtml(error.message) + "</p>";
+            '<p class="' +
+            classNames.error +
+            '">' +
+            escapeHtml(error.message) +
+            "</p>";
         }
       });
 
@@ -321,11 +180,14 @@
       function renderQuestion(question) {
         if (!question) {
           viewer.innerHTML =
-            '<p class="empty">Nenhuma questão selecionada.</p>';
+            '<p class="' +
+            classNames.empty +
+            '">Nenhuma questão selecionada.</p>';
           return;
         }
 
         viewer.innerHTML = "";
+        viewer.className = classNames.viewerCard;
         viewer.appendChild(createTitle(question));
         viewer.appendChild(createContextSection(question.contexto));
         viewer.appendChild(createCommandSection(question.comando));
@@ -339,8 +201,9 @@
         const title = document.createElement("h2");
         const meta = document.createElement("div");
 
+        title.className = classNames.title;
         title.textContent = "Questão " + formatValue(question.numero, "—");
-        meta.className = "meta";
+        meta.className = classNames.meta;
 
         meta.appendChild(
           createPill("Taxonomia: " + formatValue(question.taxonomiaId, "—")),
@@ -355,12 +218,13 @@
       function createContextSection(context) {
         const section = document.createElement("section");
         const heading = document.createElement("h3");
+        heading.className = classNames.heading;
         heading.textContent = "Contexto";
         section.appendChild(heading);
 
         if (!Array.isArray(context) || !context.length) {
           const empty = document.createElement("p");
-          empty.className = "empty";
+          empty.className = classNames.empty;
           empty.textContent = "Esta questão não possui contexto.";
           section.appendChild(empty);
           return section;
@@ -377,8 +241,8 @@
         const wrapper = document.createElement("div");
         const type = document.createElement("div");
 
-        wrapper.className = "context-item";
-        type.className = "context-type";
+        wrapper.className = classNames.contextItem;
+        type.className = classNames.contextType;
         type.textContent =
           "Contexto " +
           (index + 1) +
@@ -390,7 +254,7 @@
           if (item.pendente === true) {
             const error = document.createElement("div");
 
-            error.className = "error";
+            error.className = classNames.error;
             error.textContent =
               "Imagem pendente. Substitua o campo 'conteudo' pelo base64 da imagem.";
 
@@ -401,7 +265,7 @@
           const image = document.createElement("img");
           const mimeType = item.mimeType || "image/png";
 
-          image.className = "image-content";
+          image.className = classNames.imageContent;
           image.alt = "Imagem do contexto";
           image.src = buildImageSource(mimeType, item.conteudo || "");
 
@@ -410,7 +274,7 @@
         }
 
         const text = document.createElement("div");
-        text.className = "text-content";
+        text.className = classNames.textContent;
         text.textContent = item && item.conteudo ? item.conteudo : "";
         wrapper.appendChild(text);
 
@@ -422,8 +286,9 @@
         const heading = document.createElement("h3");
         const content = document.createElement("div");
 
+        heading.className = classNames.heading;
         heading.textContent = "Comando";
-        content.className = "command";
+        content.className = classNames.command;
         content.textContent = command || "—";
 
         section.appendChild(heading);
@@ -443,9 +308,11 @@
         const shouldShowAnswer =
           forceShowAnswer || Boolean(selectedAlternative);
 
+        heading.className = classNames.heading;
         heading.textContent = "Alternativas";
 
-        controls.className = "answer-controls";
+        controls.className = classNames.answerControls;
+        checkbox.className = classNames.answerCheckbox;
         checkbox.type = "checkbox";
         checkbox.checked = forceShowAnswer;
         checkbox.addEventListener("change", function () {
@@ -455,28 +322,30 @@
         controls.appendChild(checkbox);
         controls.appendChild(document.createTextNode("Mostrar gabarito"));
 
-        list.className = "alternatives";
+        list.className = classNames.alternatives;
 
         ["A", "B", "C", "D", "E"].forEach(function (letter) {
           const alternative = document.createElement("button");
+          const classes = [classNames.alternative];
+
           alternative.type = "button";
-          alternative.className = "alternative";
 
           if (selectedAlternative === letter) {
-            alternative.classList.add("selected");
+            classes.push(classNames.selected);
           }
 
           if (shouldShowAnswer && normalizedAnswer === letter) {
-            alternative.classList.add("answer");
+            classes.push(classNames.answer);
           }
 
           if (
             selectedAlternative === letter &&
             selectedAlternative !== normalizedAnswer
           ) {
-            alternative.classList.add("wrong");
+            classes.push(classNames.wrong);
           }
 
+          alternative.className = classes.join(" ");
           alternative.textContent =
             "(" +
             letter +
@@ -489,7 +358,7 @@
           list.appendChild(alternative);
         });
 
-        status.className = "answer-status";
+        status.className = classNames.answerStatus;
         if (shouldShowAnswer) {
           if (selectedAlternative) {
             status.textContent =
@@ -523,7 +392,7 @@
 
       function createPill(text) {
         const span = document.createElement("span");
-        span.className = "pill";
+        span.className = classNames.pill;
         span.textContent = text;
         return span;
       }
@@ -542,8 +411,11 @@
         forceShowAnswer = false;
         questionSelect.disabled = true;
         questionSelect.innerHTML = "<option>Carregue um arquivo</option>";
+        viewer.className = classNames.viewerCard;
         viewer.innerHTML =
-          '<p class="empty">Carregue um arquivo <strong>prova.json</strong> para visualizar as questões.</p>';
+          '<p class="' +
+          classNames.empty +
+          '">Carregue um arquivo <strong>prova.json</strong> para visualizar as questões.</p>';
       }
 
       function escapeHtml(value) {
