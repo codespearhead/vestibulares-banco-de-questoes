@@ -164,8 +164,7 @@
     "imagem": {
       "tipo": "imagem",
       "mimeType": "image/png",
-      "conteudo": "TODO",
-      "pendente": true
+      "conteudo": "TODO"
     }
   },
   "validacaoQuestao": [
