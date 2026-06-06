@@ -3,19 +3,24 @@
   "entrada": {
     "arquivos": [
       {
-        "nome": "prova",
         "tipo": "pdf",
-        "obrigatorio": true
+        "obrigatorio": true,
+        "descricao": "PDF da prova"
       },
       {
-        "nome": "gabarito",
         "tipo": "pdf",
-        "obrigatorio": false
+        "obrigatorio": false,
+        "descricao": "PDF do gabarito"
       }
     ]
   },
   "saida": {
-    "arquivos": ["prova.json"]
+    "arquivos": [
+      {
+        "origem": "arquivo_da_prova_validado",
+        "extensao": ".json"
+      }
+    ]
   },
   "objetivo": [
     "Construir uma base de dados estruturada de vestibulares.",
@@ -55,6 +60,14 @@
     {
       "id": "VP005",
       "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução de pelo menos cinco questões distribuídas entre as primeiras páginas da prova. Caso sejam encontradas divergências relevantes, interrompa o processamento e solicite esclarecimentos ao usuário."
+    },
+    {
+      "id": "VP006",
+      "texto": "Identifique automaticamente qual arquivo corresponde à prova e qual corresponde ao gabarito utilizando conteúdo, estrutura, quantidade de páginas, títulos, cabeçalhos e demais evidências disponíveis. Não dependa do nome do arquivo."
+    },
+    {
+      "id": "VP007",
+      "texto": "Caso existam múltiplos PDFs candidatos a prova ou múltiplos candidatos a gabarito e não seja possível determinar a associação com alto grau de confiança, interrompa o processamento e solicite esclarecimentos ao usuário."
     }
   ],
   "validacaoIntermediaria": [
@@ -95,6 +108,10 @@
     {
       "id": "RG005",
       "texto": "Todo conteúdo textual extraído da prova deve ser transcrito integralmente, sem resumo, simplificação, correção gramatical ou parafraseamento."
+    },
+    {
+      "id": "RG006",
+      "texto": "O nome do arquivo JSON gerado deve ser exatamente o nome do arquivo identificado como prova, preservando todo o nome original e substituindo apenas a extensão por .json."
     }
   ],
   "regrasContexto": [
