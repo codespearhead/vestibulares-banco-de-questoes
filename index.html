@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Visualizador de prova.json</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body class="m-0 bg-gray-100 p-3.5 font-sans text-gray-800 md:p-6">
-    <main class="mx-auto max-w-[980px]">
+    <main id="app" class="mx-auto max-w-[980px]">
       <h1 class="mb-4 text-[28px] font-bold leading-tight">
         Visualizador de prova.json
       </h1>
@@ -24,6 +25,7 @@
             class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
             type="file"
             accept="application/json,.json"
+            @change="handleFileChange"
           />
         </div>
         <div>
@@ -33,399 +35,328 @@
           <select
             id="questionSelect"
             class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
-            disabled
+            v-model.number="selectedQuestionIndex"
+            :disabled="!questions.length"
+            @change="resetAnswerState"
           >
-            <option>Carregue um arquivo</option>
+            <option v-if="!questions.length" disabled value="0">
+              {{ selectPlaceholder }}
+            </option>
+            <option
+              v-for="(question, index) in questions"
+              :key="question.numero || index"
+              :value="index"
+            >
+              Questão {{ formatValue(question.numero, index + 1) }}
+            </option>
           </select>
         </div>
       </section>
 
       <section
-        id="viewer"
         class="mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm"
       >
-        <p class="leading-normal text-gray-500">
+        <p v-if="errorMessage" class="font-bold leading-normal text-red-700">
+          {{ errorMessage }}
+        </p>
+
+        <p v-else-if="!currentQuestion" class="leading-normal text-gray-500">
           Carregue um arquivo <strong>prova.json</strong> para visualizar as
           questões.
         </p>
+
+        <template v-else>
+          <div>
+            <h2 class="mb-3 text-[22px] font-bold leading-tight">
+              Questão {{ formatValue(currentQuestion.numero, '—') }}
+            </h2>
+            <div class="mb-3.5 flex flex-wrap gap-2">
+              <span
+                class="inline-block rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-[13px]"
+              >
+                Taxonomia: {{ formatValue(currentQuestion.taxonomiaId, '—') }}
+              </span>
+            </div>
+          </div>
+
+          <section>
+            <h3
+              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
+            >
+              Contexto
+            </h3>
+
+            <p
+              v-if="!currentQuestion.contexto || !currentQuestion.contexto.length"
+              class="leading-normal text-gray-500"
+            >
+              Esta questão não possui contexto.
+            </p>
+
+            <div
+              v-for="(item, index) in currentQuestion.contexto"
+              :key="index"
+              class="mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3"
+            >
+              <div class="mb-2 text-xs font-bold uppercase text-gray-500">
+                Contexto {{ index + 1 }} · {{ formatValue(item && item.tipo,
+                'desconhecido') }}
+              </div>
+
+              <div
+                v-if="item && item.tipo === 'imagem' && item.pendente === true"
+                class="font-bold leading-normal text-red-700"
+              >
+                Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
+                imagem.
+              </div>
+
+              <img
+                v-else-if="item && item.tipo === 'imagem'"
+                class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
+                alt="Imagem do contexto"
+                :src="buildImageSource(item.mimeType || 'image/png', item.conteudo || '')"
+              />
+
+              <div v-else class="whitespace-pre-wrap leading-normal">
+                {{ item && item.conteudo ? item.conteudo : '' }}
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3
+              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
+            >
+              Comando
+            </h3>
+            <div class="whitespace-pre-wrap leading-normal">
+              {{ currentQuestion.comando || '—' }}
+            </div>
+          </section>
+
+          <section>
+            <h3
+              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
+            >
+              Alternativas
+            </h3>
+
+            <label class="mb-3 flex select-none items-center gap-2 text-sm">
+              <input
+                class="h-4 w-4"
+                type="checkbox"
+                v-model="forceShowAnswer"
+              />
+              Mostrar gabarito
+            </label>
+
+            <div v-if="alternativeEntries.length" class="grid gap-2">
+              <button
+                v-for="[letter, text] in alternativeEntries"
+                :key="letter"
+                type="button"
+                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50"
+                :class="alternativeClass(letter)"
+                @click="selectedAlternative = letter"
+              >
+                ({{ letter }}) {{ formatValue(text, '—') }}
+              </button>
+            </div>
+
+            <p v-else class="leading-normal text-gray-500">
+              Esta questão não possui alternativas.
+            </p>
+
+            <div v-if="answerStatus" class="mt-2.5 font-bold leading-normal">
+              {{ answerStatus }}
+            </div>
+          </section>
+        </template>
       </section>
     </main>
 
     <script>
-      const fileInput = document.getElementById("fileInput");
-      const questionSelect = document.getElementById("questionSelect");
-      const viewer = document.getElementById("viewer");
+      const { computed, createApp, ref } = Vue;
 
-      const classNames = {
-        viewerCard:
-          "mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm",
-        empty: "leading-normal text-gray-500",
-        error: "font-bold leading-normal text-red-700",
-        meta: "mb-3.5 flex flex-wrap gap-2",
-        pill: "inline-block rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1.5 text-[13px]",
-        title: "mb-3 text-[22px] font-bold leading-tight",
-        heading:
-          "mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight",
-        contextItem:
-          "mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3",
-        contextType: "mb-2 text-xs font-bold uppercase text-gray-500",
-        textContent: "whitespace-pre-wrap leading-normal",
-        imageContent:
-          "h-auto max-w-full rounded-lg border border-gray-200 bg-white",
-        command: "whitespace-pre-wrap font-bold leading-normal",
-        alternatives: "grid gap-2",
-        answerControls:
-          "mb-3 flex select-none items-center gap-2 text-sm font-bold",
-        answerCheckbox: "h-4 w-4",
-        alternative:
-          "w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50",
-        selected: "border-blue-300 bg-blue-50",
-        answer: "border-green-300 bg-green-50",
-        wrong: "border-red-300 bg-red-50",
-        answerStatus: "mt-2.5 font-bold leading-normal",
-      };
+      createApp({
+        setup() {
+          const questions = ref([]);
+          const selectedQuestionIndex = ref(0);
+          const selectedAlternative = ref(null);
+          const forceShowAnswer = ref(false);
+          const errorMessage = ref("");
+          const selectPlaceholder = ref("Carregue um arquivo");
 
-      let questions = [];
-      let selectedAlternative = null;
-      let forceShowAnswer = false;
+          const currentQuestion = computed(() => {
+            return questions.value[selectedQuestionIndex.value] || null;
+          });
 
-      fileInput.addEventListener("change", async function () {
-        const file = fileInput.files[0];
+          const normalizedAnswer = computed(() => {
+            return String(currentQuestion.value?.gabarito || "").toUpperCase();
+          });
 
-        if (!file) {
-          resetViewer();
-          return;
-        }
+          const shouldShowAnswer = computed(() => {
+            return forceShowAnswer.value || Boolean(selectedAlternative.value);
+          });
 
-        try {
-          const text = await file.text();
-          const json = JSON.parse(text);
-          questions = extractQuestions(json);
+          const alternativeEntries = computed(() => {
+            const alternatives = currentQuestion.value?.alternativas;
 
-          if (!questions.length) {
-            throw new Error(
-              "Nenhuma questão encontrada. Esperado: prova.questoes{}.",
+            if (!alternatives || typeof alternatives !== "object") {
+              return [];
+            }
+
+            return Object.entries(alternatives);
+          });
+
+          const answerStatus = computed(() => {
+            if (!shouldShowAnswer.value) {
+              return "";
+            }
+
+            if (!selectedAlternative.value) {
+              return "Gabarito: " + formatValue(normalizedAnswer.value, "—");
+            }
+
+            if (selectedAlternative.value === normalizedAnswer.value) {
+              return (
+                "Correto. Gabarito: " + formatValue(normalizedAnswer.value, "—")
+              );
+            }
+
+            return (
+              "Resposta selecionada: " +
+              selectedAlternative.value +
+              ". Gabarito: " +
+              formatValue(normalizedAnswer.value, "—")
             );
+          });
+
+          async function handleFileChange(event) {
+            const file = event.target.files[0];
+
+            if (!file) {
+              resetViewer();
+              return;
+            }
+
+            try {
+              const text = await file.text();
+              const json = JSON.parse(text);
+              const extractedQuestions = extractQuestions(json);
+
+              if (!extractedQuestions.length) {
+                throw new Error(
+                  "Nenhuma questão encontrada. Esperado: prova.questoes{}.",
+                );
+              }
+
+              questions.value = extractedQuestions;
+              selectedQuestionIndex.value = 0;
+              selectedAlternative.value = null;
+              forceShowAnswer.value = false;
+              errorMessage.value = "";
+              selectPlaceholder.value = "Carregue um arquivo";
+            } catch (error) {
+              questions.value = [];
+              selectedQuestionIndex.value = 0;
+              selectedAlternative.value = null;
+              forceShowAnswer.value = false;
+              errorMessage.value = error.message;
+              selectPlaceholder.value = "Erro ao carregar";
+            }
           }
 
-          populateSelect(questions);
-          renderQuestion(questions[0]);
-        } catch (error) {
-          questions = [];
-          questionSelect.disabled = true;
-          questionSelect.innerHTML = "<option>Erro ao carregar</option>";
-          viewer.innerHTML =
-            '<p class="' +
-            classNames.error +
-            '">' +
-            escapeHtml(error.message) +
-            "</p>";
-        }
-      });
+          function extractQuestions(json) {
+            if (json?.prova && Array.isArray(json.prova.questoes)) {
+              return json.prova.questoes;
+            }
 
-      questionSelect.addEventListener("change", function () {
-        const index = Number(questionSelect.value);
-        selectedAlternative = null;
-        forceShowAnswer = false;
-        renderQuestion(questions[index]);
-      });
+            if (Array.isArray(json?.questoes)) {
+              return json.questoes;
+            }
 
-      function extractQuestions(json) {
-        if (json && json.prova && Array.isArray(json.prova.questoes)) {
-          return json.prova.questoes;
-        }
+            if (
+              json?.prova?.questoes &&
+              typeof json.prova.questoes === "object"
+            ) {
+              return Object.entries(json.prova.questoes).map(
+                ([numero, question]) => ({
+                  ...question,
+                  numero: question.numero || numero,
+                  gabarito:
+                    question.gabarito ||
+                    json.gabarito?.[numero] ||
+                    json.prova.gabarito?.[numero] ||
+                    "",
+                }),
+              );
+            }
 
-        if (json && Array.isArray(json.questoes)) {
-          return json.questoes;
-        }
+            return [];
+          }
 
-        if (
-          json &&
-          json.prova &&
-          json.prova.questoes &&
-          typeof json.prova.questoes === "object"
-        ) {
-          return Object.entries(json.prova.questoes).map(function ([
-            numero,
-            question,
-          ]) {
+          function alternativeClass(letter) {
             return {
-              ...question,
-              numero: question.numero || numero,
-              gabarito:
-                question.gabarito ||
-                (json.gabarito && json.gabarito[numero]) ||
-                (json.prova.gabarito && json.prova.gabarito[numero]) ||
-                "",
+              "border-blue-300 bg-blue-50":
+                selectedAlternative.value === letter,
+              "border-green-300 bg-green-50":
+                shouldShowAnswer.value && normalizedAnswer.value === letter,
+              "border-red-300 bg-red-50":
+                selectedAlternative.value === letter &&
+                selectedAlternative.value !== normalizedAnswer.value,
             };
-          });
-        }
-
-        return [];
-      }
-
-      function populateSelect(items) {
-        questionSelect.disabled = false;
-        questionSelect.innerHTML = "";
-
-        items.forEach(function (question, index) {
-          const option = document.createElement("option");
-          option.value = String(index);
-          option.textContent =
-            "Questão " + formatValue(question.numero, index + 1);
-          questionSelect.appendChild(option);
-        });
-      }
-
-      function renderQuestion(question) {
-        if (!question) {
-          viewer.innerHTML =
-            '<p class="' +
-            classNames.empty +
-            '">Nenhuma questão selecionada.</p>';
-          return;
-        }
-
-        viewer.innerHTML = "";
-        viewer.className = classNames.viewerCard;
-        viewer.appendChild(createTitle(question));
-        viewer.appendChild(createContextSection(question.contexto));
-        viewer.appendChild(createCommandSection(question.comando));
-        viewer.appendChild(
-          createAlternativesSection(question.alternativas, question.gabarito),
-        );
-      }
-
-      function createTitle(question) {
-        const wrapper = document.createElement("div");
-        const title = document.createElement("h2");
-        const meta = document.createElement("div");
-
-        title.className = classNames.title;
-        title.textContent = "Questão " + formatValue(question.numero, "—");
-        meta.className = classNames.meta;
-
-        meta.appendChild(
-          createPill("Taxonomia: " + formatValue(question.taxonomiaId, "—")),
-        );
-
-        wrapper.appendChild(title);
-        wrapper.appendChild(meta);
-
-        return wrapper;
-      }
-
-      function createContextSection(context) {
-        const section = document.createElement("section");
-        const heading = document.createElement("h3");
-        heading.className = classNames.heading;
-        heading.textContent = "Contexto";
-        section.appendChild(heading);
-
-        if (!Array.isArray(context) || !context.length) {
-          const empty = document.createElement("p");
-          empty.className = classNames.empty;
-          empty.textContent = "Esta questão não possui contexto.";
-          section.appendChild(empty);
-          return section;
-        }
-
-        context.forEach(function (item, index) {
-          section.appendChild(createContextItem(item, index));
-        });
-
-        return section;
-      }
-
-      function createContextItem(item, index) {
-        const wrapper = document.createElement("div");
-        const type = document.createElement("div");
-
-        wrapper.className = classNames.contextItem;
-        type.className = classNames.contextType;
-        type.textContent =
-          "Contexto " +
-          (index + 1) +
-          " · " +
-          formatValue(item && item.tipo, "desconhecido");
-        wrapper.appendChild(type);
-
-        if (item && item.tipo === "imagem") {
-          if (item.pendente === true) {
-            const error = document.createElement("div");
-
-            error.className = classNames.error;
-            error.textContent =
-              "Imagem pendente. Substitua o campo 'conteudo' pelo base64 da imagem.";
-
-            wrapper.appendChild(error);
-            return wrapper;
           }
 
-          const image = document.createElement("img");
-          const mimeType = item.mimeType || "image/png";
+          function buildImageSource(mimeType, content) {
+            if (content.startsWith("data:")) {
+              return content;
+            }
 
-          image.className = classNames.imageContent;
-          image.alt = "Imagem do contexto";
-          image.src = buildImageSource(mimeType, item.conteudo || "");
-
-          wrapper.appendChild(image);
-          return wrapper;
-        }
-
-        const text = document.createElement("div");
-        text.className = classNames.textContent;
-        text.textContent = item && item.conteudo ? item.conteudo : "";
-        wrapper.appendChild(text);
-
-        return wrapper;
-      }
-
-      function createCommandSection(command) {
-        const section = document.createElement("section");
-        const heading = document.createElement("h3");
-        const content = document.createElement("div");
-
-        heading.className = classNames.heading;
-        heading.textContent = "Comando";
-        content.className = classNames.command;
-        content.textContent = command || "—";
-
-        section.appendChild(heading);
-        section.appendChild(content);
-
-        return section;
-      }
-
-      function createAlternativesSection(alternatives, answer) {
-        const section = document.createElement("section");
-        const heading = document.createElement("h3");
-        const controls = document.createElement("label");
-        const checkbox = document.createElement("input");
-        const list = document.createElement("div");
-        const status = document.createElement("div");
-        const normalizedAnswer = String(answer || "").toUpperCase();
-        const shouldShowAnswer =
-          forceShowAnswer || Boolean(selectedAlternative);
-
-        heading.className = classNames.heading;
-        heading.textContent = "Alternativas";
-
-        controls.className = classNames.answerControls;
-        checkbox.className = classNames.answerCheckbox;
-        checkbox.type = "checkbox";
-        checkbox.checked = forceShowAnswer;
-        checkbox.addEventListener("change", function () {
-          forceShowAnswer = checkbox.checked;
-          renderQuestion(questions[Number(questionSelect.value)]);
-        });
-        controls.appendChild(checkbox);
-        controls.appendChild(document.createTextNode("Mostrar gabarito"));
-
-        list.className = classNames.alternatives;
-
-        ["A", "B", "C", "D", "E"].forEach(function (letter) {
-          const alternative = document.createElement("button");
-          const classes = [classNames.alternative];
-
-          alternative.type = "button";
-
-          if (selectedAlternative === letter) {
-            classes.push(classNames.selected);
+            return "data:" + mimeType + ";base64," + content;
           }
 
-          if (shouldShowAnswer && normalizedAnswer === letter) {
-            classes.push(classNames.answer);
+          function formatValue(value, fallback) {
+            if (value === null || value === undefined || value === "") {
+              return fallback;
+            }
+
+            return String(value);
           }
 
-          if (
-            selectedAlternative === letter &&
-            selectedAlternative !== normalizedAnswer
-          ) {
-            classes.push(classNames.wrong);
+          function resetAnswerState() {
+            selectedAlternative.value = null;
+            forceShowAnswer.value = false;
           }
 
-          alternative.className = classes.join(" ");
-          alternative.textContent =
-            "(" +
-            letter +
-            ") " +
-            formatValue(alternatives && alternatives[letter], "—");
-          alternative.addEventListener("click", function () {
-            selectedAlternative = letter;
-            renderQuestion(questions[Number(questionSelect.value)]);
-          });
-          list.appendChild(alternative);
-        });
-
-        status.className = classNames.answerStatus;
-        if (shouldShowAnswer) {
-          if (selectedAlternative) {
-            status.textContent =
-              selectedAlternative === normalizedAnswer
-                ? "Correto. Gabarito: " + formatValue(normalizedAnswer, "—")
-                : "Resposta selecionada: " +
-                  selectedAlternative +
-                  ". Gabarito: " +
-                  formatValue(normalizedAnswer, "—");
-          } else {
-            status.textContent =
-              "Gabarito: " + formatValue(normalizedAnswer, "—");
+          function resetViewer() {
+            questions.value = [];
+            selectedQuestionIndex.value = 0;
+            selectedAlternative.value = null;
+            forceShowAnswer.value = false;
+            errorMessage.value = "";
+            selectPlaceholder.value = "Carregue um arquivo";
           }
-        }
 
-        section.appendChild(heading);
-        section.appendChild(controls);
-        section.appendChild(list);
-        section.appendChild(status);
-
-        return section;
-      }
-
-      function buildImageSource(mimeType, content) {
-        if (content.startsWith("data:")) {
-          return content;
-        }
-
-        return "data:" + mimeType + ";base64," + content;
-      }
-
-      function createPill(text) {
-        const span = document.createElement("span");
-        span.className = classNames.pill;
-        span.textContent = text;
-        return span;
-      }
-
-      function formatValue(value, fallback) {
-        if (value === null || value === undefined || value === "") {
-          return fallback;
-        }
-
-        return String(value);
-      }
-
-      function resetViewer() {
-        questions = [];
-        selectedAlternative = null;
-        forceShowAnswer = false;
-        questionSelect.disabled = true;
-        questionSelect.innerHTML = "<option>Carregue um arquivo</option>";
-        viewer.className = classNames.viewerCard;
-        viewer.innerHTML =
-          '<p class="' +
-          classNames.empty +
-          '">Carregue um arquivo <strong>prova.json</strong> para visualizar as questões.</p>';
-      }
-
-      function escapeHtml(value) {
-        return String(value)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
+          return {
+            questions,
+            selectedQuestionIndex,
+            selectedAlternative,
+            forceShowAnswer,
+            errorMessage,
+            selectPlaceholder,
+            currentQuestion,
+            alternativeEntries,
+            answerStatus,
+            handleFileChange,
+            alternativeClass,
+            buildImageSource,
+            formatValue,
+            resetAnswerState,
+          };
+        },
+      }).mount("#app");
     </script>
   </body>
 </html>
