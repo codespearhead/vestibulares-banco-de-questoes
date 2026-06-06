@@ -176,6 +176,10 @@
     {
       "id": "VQ004",
       "texto": "A extração da questão termina após a última alternativa pertencente à questão atual. A última alternativa deve ser determinada pela sequência real de alternativas presente na prova, podendo ser D, E ou outro limite explicitamente identificado no documento."
+    },
+    {
+      "id": "VQ005",
+      "texto": "Todo conteúdo subsequente à última alternativa identificada deve ser analisado como possível início de nova questão, novo texto-base, nova imagem, nova seção da prova ou continuação gráfica legítima da própria alternativa, nunca como continuação automática da alternativa anterior."
     }
   ],
   "validacaoFinal": [
