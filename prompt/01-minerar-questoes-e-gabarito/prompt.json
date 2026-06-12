@@ -172,6 +172,20 @@
       "texto": "Cada alternativa deve seguir o mesmo padrão de tiposContexto."
     }
   ],
+  "regrasComando": [
+    {
+      "id": "regrasComando_001",
+      "texto": "Toda questão possui exatamente um comando. O campo comando é obrigatório e nunca pode ser vazio, nulo, indefinido ou preenchido com valores artificiais como '---', '-', 'N/A', 'TODO' ou equivalentes."
+    },
+    {
+      "id": "regrasComando_002",
+      "texto": "O comando corresponde à menor porção textual da questão que expressa a ação solicitada ao candidato. Normalmente contém verbos como assinale, marque, indique, identifique, determine, calcule, conclua, infira, selecione, julgue, responda, escolha, relacione, interprete, explique ou equivalentes."
+    },
+    {
+      "id": "regrasComando_003",
+      "texto": "Quando texto-base e comando estiverem misturados no mesmo parágrafo, extraia para o campo comando apenas a parte que solicita uma ação do candidato e mantenha o restante no contexto."
+    }
+  ],
   "validacaoQuestao": [
     {
       "id": "validacaoQuestao_001",
