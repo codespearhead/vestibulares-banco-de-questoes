@@ -46,113 +46,113 @@
   },
   "validacaoPrevia": [
     {
-      "id": "VP001",
+      "id": "validacaoPrevia_001",
       "texto": "Antes de iniciar qualquer extração ou classificação, valide a consistência dos arquivos recebidos."
     },
     {
-      "id": "VP004",
+      "id": "validacaoPrevia_004",
       "texto": "Nunca utilize o gabarito sem validá-lo previamente contra a prova."
     },
     {
-      "id": "VP005",
+      "id": "validacaoPrevia_005",
       "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução de pelo menos cinco questões distribuídas entre as primeiras páginas da prova. Caso sejam encontradas divergências relevantes, interrompa o processamento e solicite esclarecimentos ao usuário."
     },
     {
-      "id": "VP006",
+      "id": "validacaoPrevia_006",
       "texto": "Identifique automaticamente qual arquivo corresponde à prova e qual corresponde ao gabarito utilizando conteúdo, estrutura, quantidade de páginas, títulos, cabeçalhos e demais evidências disponíveis. Não dependa do nome do arquivo."
     },
     {
-      "id": "VP007",
+      "id": "validacaoPrevia_007",
       "texto": "Caso existam múltiplos PDFs candidatos a prova ou múltiplos candidatos a gabarito e não seja possível determinar a associação com alto grau de confiança, interrompa o processamento e solicite esclarecimentos ao usuário."
     }
   ],
   "validacaoIntermediaria": [
     {
-      "id": "VI001",
+      "id": "validacaoIntermediaria_001",
       "texto": "Após concluir a extração das três primeiras questões, interrompa o processamento e exiba no chat exatamente o JSON parcial que seria gravado no arquivo JSON final, contendo apenas as questões 01, 02 e 03 e seus respectivos gabaritos."
     },
     {
-      "id": "VI002",
+      "id": "validacaoIntermediaria_002",
       "texto": "Não continue a análise das demais questões até que o usuário aprove explicitamente a estrutura, a classificação e a organização do JSON parcial."
     },
     {
-      "id": "VI003",
+      "id": "validacaoIntermediaria_003",
       "texto": "O JSON exibido deve seguir exatamente o schema final de prova.json, apenas contendo um subconjunto das questões."
     },
     {
-      "id": "VI004",
+      "id": "validacaoIntermediaria_004",
       "texto": "Após a aprovação do usuário, reinicie a extração desde a questão 01 e gere o arquivo completo."
     }
   ],
   "regrasGerais": [
     {
-      "id": "RG001",
+      "id": "regrasGerais_001",
       "texto": "Analise todas as questões da prova."
     },
     {
-      "id": "RG002",
+      "id": "regrasGerais_002",
       "texto": "Os arquivos gerados devem ser JSON válido."
     },
     {
-      "id": "RG003",
+      "id": "regrasGerais_003",
       "texto": "Quando uma questão depender de imagem, gráfico, mapa, charge, fotografia, tirinha, diagrama ou qualquer elemento visual, utilize o elemento visual normalmente para interpretar, classificar e resolver a questão."
     },
     {
-      "id": "RG004",
+      "id": "regrasGerais_004",
       "texto": "A resposta final deve conter exclusivamente o conteúdo do arquivo prova.json, sem explicações, comentários, markdown ou texto adicional."
     },
     {
-      "id": "RG005",
+      "id": "regrasGerais_005",
       "texto": "Todo conteúdo textual extraído da prova deve ser transcrito integralmente, sem resumo, simplificação, correção gramatical ou parafraseamento."
     },
     {
-      "id": "RG006",
+      "id": "regrasGerais_006",
       "texto": "O nome do arquivo JSON gerado deve ser exatamente o nome do arquivo identificado como prova, preservando todo o nome original e substituindo apenas a extensão por .json."
     },
     {
-      "id": "RG007",
+      "id": "regrasGerais_007",
       "texto": "Antes de extrair qualquer questão, identifique todas as questões presentes na página e seus limites aproximados. Somente depois realize a extração individual de cada questão."
     }
   ],
   "regrasContexto": [
     {
-      "id": "RC001",
+      "id": "regrasContexto_001",
       "texto": "O campo contexto deve conter exclusivamente os elementos necessários para resolver a questão. O comando da questão e as alternativas nunca devem ser armazenados no campo contexto. Devem ser armazenados exclusivamente nos campos comando e alternativas."
     },
     {
-      "id": "RC002",
+      "id": "regrasContexto_002",
       "texto": "Nunca inclua no contexto textos, imagens, comandos, alternativas ou qualquer outro elemento pertencente a questões diferentes da questão atual."
     },
     {
-      "id": "RC003",
+      "id": "regrasContexto_003",
       "texto": "O campo contexto é uma lista ordenada."
     },
     {
-      "id": "RC004",
+      "id": "regrasContexto_004",
       "texto": "Preserve a ordem original dos elementos conforme aparecem na prova."
     },
     {
-      "id": "RC005",
+      "id": "regrasContexto_005",
       "texto": "Cada elemento deve ocupar uma posição própria na lista."
     },
     {
-      "id": "RC006",
+      "id": "regrasContexto_006",
       "texto": "Não combine múltiplos elementos em um único item de contexto."
     },
     {
-      "id": "RC007",
+      "id": "regrasContexto_007",
       "texto": "Conteúdo puramente textual deve ser armazenado como tipo texto."
     },
     {
-      "id": "RC008",
+      "id": "regrasContexto_008",
       "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor 'TODO'."
     },
     {
-      "id": "RC009",
+      "id": "regrasContexto_009",
       "texto": "Quando houver texto antes e/ou depois de um elemento visual, cada trecho textual deve ser extraído como um item independente do contexto, preservando exatamente a segmentação e a posição relativa ao elemento visual."
     },
     {
-      "id": "RC010",
+      "id": "regrasContexto_010",
       "texto": "Legendas, créditos, fontes, referências bibliográficas, indicações de autoria, datas de publicação e textos introdutórios associados a imagens devem permanecer no campo contexto, na posição em que aparecem no documento, e nunca ser incorporados ao comando."
     }
   ],
@@ -168,29 +168,29 @@
   },
   "regrasAlternativas": [
     {
-      "id": "RA001",
+      "id": "regrasAlternativas_001",
       "texto": "Cada alternativa deve seguir o mesmo padrão de tiposContexto."
     }
   ],
   "validacaoQuestao": [
     {
-      "id": "VQ001",
+      "id": "validacaoQuestao_001",
       "texto": "Verifique se contexto, comando e alternativas pertencem à mesma questão."
     },
     {
-      "id": "VQ002",
+      "id": "validacaoQuestao_002",
       "texto": "Verifique se nenhum trecho do contexto, comando ou alternativas pertence à questão anterior ou à questão subsequente."
     },
     {
-      "id": "VQ003",
+      "id": "validacaoQuestao_003",
       "texto": "Em caso de dúvida sobre os limites da questão, reanalise a página completa antes de concluir a extração."
     },
     {
-      "id": "VQ004",
+      "id": "validacaoQuestao_004",
       "texto": "A extração da questão termina após a última alternativa pertencente à questão atual. A última alternativa deve ser determinada pela sequência real de alternativas presente na prova, podendo ser D, E ou outro limite explicitamente identificado no documento."
     },
     {
-      "id": "VQ005",
+      "id": "validacaoQuestao_005",
       "texto": "Todo conteúdo subsequente à última alternativa identificada deve ser analisado como possível início de nova questão, novo texto-base, nova imagem, nova seção da prova ou continuação gráfica legítima da própria alternativa, nunca como continuação automática da alternativa anterior."
     }
   ],
