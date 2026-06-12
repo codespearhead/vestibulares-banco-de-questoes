@@ -315,11 +315,10 @@
 
               if (!extractedQuestions.length) {
                 throw new Error(
-                  "Nenhuma questão encontrada. Esperado: prova.questoes{}.",
+                  "Nenhuma questão encontrada. Formatos aceitos: prova.questoes, questoes ou chaves de provas na raiz.",
                 );
               }
 
-              questions.value = extractedQuestions;
               answerKey.value = extractedAnswerKey;
               selectedQuestionIndex.value = 0;
               selectedAlternative.value = null;
@@ -327,7 +326,6 @@
               errorMessage.value = "";
               selectPlaceholder.value = "Carregue um arquivo";
             } catch (error) {
-              questions.value = [];
               answerKey.value = {};
               selectedQuestionIndex.value = 0;
               selectedAlternative.value = null;
@@ -393,28 +391,82 @@
               }, {});
           }
 
+          function compareQuestions(a, b) {
+            const aNumber = Number.parseInt(
+              String(a.numero || "").replace(/\D/g, ""),
+              10,
+            );
+            const bNumber = Number.parseInt(
+              String(b.numero || "").replace(/\D/g, ""),
+              10,
+            );
+
+            return aNumber - bNumber;
+          }
+
           function extractExams(json) {
             if (!json || typeof json !== "object") {
               return {};
+            }
+
+            if (json?.prova && Array.isArray(json.prova.questoes)) {
+              return {
+                Prova: json.prova.questoes
+                  .map(normalizeOldQuestion)
+                  .sort(compareQuestions),
+              };
+            }
+
+            if (Array.isArray(json?.questoes)) {
+              return {
+                Prova: json.questoes.map(normalizeOldQuestion),
+              };
+            }
+
+            if (
+              json?.prova?.questoes &&
+              typeof json.prova.questoes === "object"
+            ) {
+              return {
+                Prova: Object.entries(json.prova.questoes)
+                  .map(([numero, question]) =>
+                    normalizeOldQuestion({
+                      ...question,
+                      numero: question.numero || numero,
+                    }),
+                  )
+                  .sort(compareQuestions),
+              };
             }
 
             return Object.entries(json)
               .filter(([, value]) => Array.isArray(value))
               .reduce((exams, [examName, examQuestions]) => {
                 exams[examName] = examQuestions
-                  .map((question) => ({
-                    exame: examName,
-                    numero: question.questao,
-                    contexto: question.saida_esperada?.contexto || [],
-                    comando: question.saida_esperada?.comando || "",
-                    alternativas: question.saida_esperada?.alternativas || {},
-                    gabarito: question.gabarito || "",
-                    motivo: question.motivo || "",
-                  }))
-                  .sort((a, b) => Number(a.numero) - Number(b.numero));
+                  .map((question) => normalizeNewQuestion(question, examName))
+                  .sort(compareQuestions);
 
                 return exams;
               }, {});
+          }
+
+          function normalizeOldQuestion(question) {
+            return {
+              ...question,
+              numero: question.numero || question.questao,
+            };
+          }
+
+          function normalizeNewQuestion(question, examName) {
+            return {
+              exame: examName,
+              numero: question.questao,
+              contexto: question.saida_esperada?.contexto || [],
+              comando: question.saida_esperada?.comando || "",
+              alternativas: question.saida_esperada?.alternativas || {},
+              gabarito: question.gabarito || "",
+              motivo: question.motivo || "",
+            };
           }
 
           function alternativeClass(letter) {
