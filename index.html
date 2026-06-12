@@ -51,6 +51,22 @@
             </option>
           </select>
         </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-bold" for="examSelect">
+            Prova
+          </label>
+          <select
+            id="examSelect"
+            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
+            v-model="selectedExamKey"
+            :disabled="!examKeys.length"
+            @change="selectedQuestionIndex = 0; resetAnswerState()"
+          >
+            <option v-for="examKey in examKeys" :key="examKey" :value="examKey">
+              {{ examKey }}
+            </option>
+          </select>
+        </div>
       </section>
 
       <section
@@ -216,7 +232,12 @@
 
       createApp({
         setup() {
-          const questions = ref([]);
+          const examKeys = ref([]);
+          const selectedExamKey = ref("");
+          const questionsByExam = ref({});
+          const questions = computed(
+            () => questionsByExam.value[selectedExamKey.value] || [],
+          );
           const answerKey = ref({});
           const selectedQuestionIndex = ref(0);
           const selectedAlternative = ref(null);
@@ -282,8 +303,15 @@
             try {
               const text = await file.text();
               const json = JSON.parse(text);
-              const extractedQuestions = extractQuestions(json);
+              const extractedExams = extractExams(json);
+              const firstExamKey = Object.keys(extractedExams)[0] || "";
+
+              const extractedQuestions = extractedExams[firstExamKey] || [];
               const extractedAnswerKey = extractAnswerKey(json);
+
+              examKeys.value = Object.keys(extractedExams);
+              questionsByExam.value = extractedExams;
+              selectedExamKey.value = firstExamKey;
 
               if (!extractedQuestions.length) {
                 throw new Error(
@@ -326,19 +354,67 @@
                   numero: question.numero || numero,
                 }),
               );
+            } else if (json && typeof json === "object") {
+              extractedQuestions = Object.values(json)
+                .filter(Array.isArray)
+                .flat()
+                .map((question) => ({
+                  numero: question.questao,
+                  contexto: question.saida_esperada?.contexto || [],
+                  comando: question.saida_esperada?.comando || "",
+                  alternativas: question.saida_esperada?.alternativas || {},
+                  gabarito: question.gabarito || "",
+                  motivo: question.motivo || "",
+                }));
             }
-
             return extractedQuestions.sort(
               (a, b) => Number(a.numero) - Number(b.numero),
             );
           }
 
           function extractAnswerKey(json) {
-            if (!json?.gabarito || typeof json.gabarito !== "object") {
+            if (json?.gabarito && typeof json.gabarito === "object") {
+              return json.gabarito;
+            }
+
+            if (!json || typeof json !== "object") {
               return {};
             }
 
-            return json.gabarito;
+            return Object.values(json)
+              .filter(Array.isArray)
+              .flat()
+              .reduce((answerKey, question) => {
+                if (question.questao && question.gabarito) {
+                  answerKey[question.questao] = question.gabarito;
+                }
+
+                return answerKey;
+              }, {});
+          }
+
+          function extractExams(json) {
+            if (!json || typeof json !== "object") {
+              return {};
+            }
+
+            return Object.entries(json)
+              .filter(([, value]) => Array.isArray(value))
+              .reduce((exams, [examName, examQuestions]) => {
+                exams[examName] = examQuestions
+                  .map((question) => ({
+                    exame: examName,
+                    numero: question.questao,
+                    contexto: question.saida_esperada?.contexto || [],
+                    comando: question.saida_esperada?.comando || "",
+                    alternativas: question.saida_esperada?.alternativas || {},
+                    gabarito: question.gabarito || "",
+                    motivo: question.motivo || "",
+                  }))
+                  .sort((a, b) => Number(a.numero) - Number(b.numero));
+
+                return exams;
+              }, {});
           }
 
           function alternativeClass(letter) {
@@ -425,6 +501,9 @@
           });
 
           return {
+            examKeys,
+            selectedExamKey,
+            questionsByExam,
             questions,
             answerKey,
             selectedQuestionIndex,
