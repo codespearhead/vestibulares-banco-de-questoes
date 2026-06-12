@@ -10,7 +10,7 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "TODO" }
+          { "mimeType": "image/png", "conteudo": "[TODO]" }
         ],
         "comando": "Para a produção do efeito humorístico, o autor recorre, no quarto quadrinho,",
         "alternativas": {
@@ -32,7 +32,7 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "TODO" }
+          { "mimeType": "image/png", "conteudo": "[TODO]" }
         ],
         "comando": "Em relação ao momento em que o narrador conta a história, os fatos narrados acontecem",
         "alternativas": {
@@ -147,30 +147,30 @@
           },
           {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           }
         ],
         "comando": "A fórmula estrutural do aminoácido tirosina que forma esse tripeptídeo é:",
         "alternativas": {
           "A": {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           },
           "B": {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           },
           "C": {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           },
           "D": {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           },
           "E": {
             "mimeType": "image/png",
-            "conteudo": "TODO"
+            "conteudo": "[TODO]"
           }
         }
       }
