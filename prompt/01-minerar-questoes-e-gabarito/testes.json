@@ -212,6 +212,42 @@
           }
         }
       }
+    },
+    {
+      "questao": "22",
+      "gabarito": "E",
+      "motivo": "confirma que propriedade 'comando' não vai estar vazio",
+      "saida_esperada": {
+        "contexto": [
+          {
+            "mimeType": "text/plain",
+            "conteudo": "Um dos acidentes ambientais considerados mais graves é o vazamento de petróleo em mares e rios, pois essa ocorrência afeta diretamente a vida aquática e os ecossistemas costeiros."
+          }
+        ],
+        "comando": "Devido a importantes diferenças entre os aspectos físico-químicos da água e do petróleo, como a polaridade e a densidade, o vazamento de petróleo em ambiente oceânico traz problemas característicos dessas diferenças, como a",
+        "alternativas": {
+          "A": {
+            "mimeType": "text/plain",
+            "conteudo": "ocorrência de reações químicas entre petróleo e água, elevando a temperatura e o pH da água."
+          },
+          "B": {
+            "mimeType": "text/plain",
+            "conteudo": "formação de névoa por hidrocarbonetos voláteis, alterando o pH da água e a atmosfera local."
+          },
+          "C": {
+            "mimeType": "text/plain",
+            "conteudo": "deposição de petróleo no fundo do mar, afetando as correntes marinhas e contaminado a biota aquática."
+          },
+          "D": {
+            "mimeType": "text/plain",
+            "conteudo": "dissolução do petróleo na água, elevando o pH e contaminando a fauna e a flora aquática com substâncias orgânicas."
+          },
+          "E": {
+            "mimeType": "text/plain",
+            "conteudo": "formação de uma camada opaca na superfície da água, dificultando a penetração da luz solar e trocas gasosas."
+          }
+        }
+      }
     }
   ]
 }
