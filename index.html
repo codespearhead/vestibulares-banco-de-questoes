@@ -47,7 +47,7 @@
               :key="question.numero || index"
               :value="index"
             >
-              Questão {{ question.numero, index + 1 }}
+              Questão {{ question.numero }}
             </option>
           </select>
         </div>
@@ -250,9 +250,9 @@
           });
 
           const normalizedAnswer = computed(() => {
-            const numero = currentQuestion.value?.numero;
+            const numero = currentQuestion.value.numero;
 
-            return String(answerKey.value?.[numero] || "").toUpperCase();
+            return String(answerKey.value[numero]).toUpperCase();
           });
 
           const shouldShowAnswer = computed(() => {
@@ -359,8 +359,8 @@
                   contexto: question.saida_esperada?.contexto || [],
                   comando: question.saida_esperada.comando,
                   alternativas: question.saida_esperada.alternativas,
-                  gabarito: question.gabarito || "",
-                  motivo: question.motivo || "",
+                  gabarito: question.gabarito,
+                  motivo: question.motivo,
                 }));
             }
             return extractedQuestions.sort(
@@ -370,18 +370,14 @@
 
           function extractAnswerKey(json) {
             if (
-              json?.prova?.gabarito &&
+              json.prova?.gabarito &&
               typeof json.prova.gabarito === "object"
             ) {
               return json.prova.gabarito;
             }
 
-            if (json?.gabarito && typeof json.gabarito === "object") {
+            if (json.gabarito && typeof json.gabarito === "object") {
               return json.gabarito;
-            }
-
-            if (!json || typeof json !== "object") {
-              return {};
             }
 
             return Object.values(json)
@@ -458,7 +454,7 @@
           function normalizeOldQuestion(question) {
             return {
               ...question,
-              numero: question.numero || question.questao,
+              numero: question.numero ?? question.questao,
             };
           }
 
@@ -466,11 +462,11 @@
             return {
               exame: examName,
               numero: question.questao,
-              contexto: question.saida_esperada?.contexto || [],
+              contexto: question.saida_esperada.contexto,
               comando: question.saida_esperada.comando,
               alternativas: question.saida_esperada.alternativas,
-              gabarito: question.gabarito || "",
-              motivo: question.motivo || "",
+              gabarito: question.gabarito,
+              motivo: question.motivo,
             };
           }
 
