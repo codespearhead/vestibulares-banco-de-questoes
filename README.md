@@ -62,3 +62,5 @@ Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais d
 
 D.01 - `[TODO:ADICIONAR_IMAGEM]`: a questão possui uma imagem. Faça uma captura de tela (screenshot) da imagem pendente em bom tamanho e qualidade, corte-a e salve-a em formato PNG. Em seguida, obtenha o respectivo base64 da imagem através do site [D.01.1], o qual deve ser inserido no lugar de onde esse termo com TODO se encontra.
 D.01.1 - https://base64.guru/converter/encode/image
+
+D.02 - `[TODO:ADICIONAR_TERMO_DESTACADO]`: a questão possui um termo destacado o qual não é detectável na extração textual, como termos em negrito ou sublinhados. Adicione manualmente `**` ao redor do termo em questão para que ele fique sublinhado.
