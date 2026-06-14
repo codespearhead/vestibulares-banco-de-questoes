@@ -369,6 +369,13 @@
           }
 
           function extractAnswerKey(json) {
+            if (
+              json?.prova?.gabarito &&
+              typeof json.prova.gabarito === "object"
+            ) {
+              return json.prova.gabarito;
+            }
+
             if (json?.gabarito && typeof json.gabarito === "object") {
               return json.gabarito;
             }

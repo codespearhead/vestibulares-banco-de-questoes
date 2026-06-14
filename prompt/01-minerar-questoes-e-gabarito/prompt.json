@@ -38,10 +38,10 @@
             "id_da_alternativa": "objeto conforme tiposContexto"
           }
         }
+      },
+      "gabarito": {
+        "id_da_questao": "string"
       }
-    },
-    "gabarito": {
-      "id_da_questao": "string"
     }
   },
   "validacaoPrevia": [
