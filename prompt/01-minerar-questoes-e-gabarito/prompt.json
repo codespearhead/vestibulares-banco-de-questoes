@@ -120,6 +120,10 @@
     {
       "id": "regrasGerais_009",
       "texto": "Fontes, referências bibliográficas, URLs, créditos e indicações de autoria devem ser transcritos sempre como texto simples. Nunca converta URLs ou referências em links markdown, HTML ou qualquer outro formato enriquecido. Exemplo correto: 'http://www.olhardigital.com.br, 02.05.2025. Adaptado.'. Exemplo incorreto: '([www.olhardigital.com.br](http://www.olhardigital.com.br), 02.05.2025. Adaptado.)'."
+    },
+    {
+      "id": "regrasGerais_010",
+      "texto": "Normalize aspas tipográficas para suas equivalentes ASCII. Aspas simples tipográficas ('‘' e '’') devem ser convertidas para aspas simples ASCII ('). Aspas duplas tipográficas ('“' e '”') devem ser convertidas para aspas duplas ASCII (\"). Nunca converta aspas simples em aspas duplas nem aspas duplas em aspas simples. Preserve o tipo original de aspa."
     }
   ],
   "regrasContexto": [
