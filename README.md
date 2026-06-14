@@ -59,3 +59,6 @@ Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais d
 
 > [!IMPORTANT]
 > Após qualquer alteração nos arquivos desse projeto, com no `index.html` e nos arquivos JSON, atualize a página do navegador, pois as alterações não serão refletidas automaticamente.
+
+D.01 - `[TODO:ADICIONAR_IMAGEM]`: a questão possui uma imagem. Faça uma captura de tela (screenshot) da imagem pendente em bom tamanho e qualidade, corte-a e salve-a em formato PNG. Em seguida, obtenha o respectivo base64 da imagem através do site [D.01.1], o qual deve ser inserido no lugar de onde esse termo com TODO se encontra.
+D.01.1 - https://base64.guru/converter/encode/image
