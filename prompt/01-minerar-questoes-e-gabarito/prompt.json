@@ -145,7 +145,7 @@
     },
     {
       "id": "regrasContexto_008",
-      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO]'."
+      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO:ADICIONAR_IMAGEM'."
     },
     {
       "id": "regrasContexto_009",
@@ -163,7 +163,7 @@
     },
     "imagem": {
       "mimeType": "image/png",
-      "conteudo": "[TODO]"
+      "conteudo": "[TODO:ADICIONAR_IMAGEM"
     }
   },
   "regrasAlternativas": [
@@ -175,7 +175,7 @@
   "regrasComando": [
     {
       "id": "regrasComando_001",
-      "texto": "Toda questão possui exatamente um comando. O campo comando é obrigatório e nunca pode ser vazio, nulo, indefinido ou preenchido com valores artificiais como '---', '-', 'N/A', '[TODO]' ou equivalentes."
+      "texto": "Toda questão possui exatamente um comando. O campo comando é obrigatório e nunca pode ser vazio, nulo, indefinido ou preenchido com valores artificiais como '---', '-', 'N/A', '[TODO:ADICIONAR_IMAGEM' ou equivalentes."
     },
     {
       "id": "regrasComando_002",
