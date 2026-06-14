@@ -116,6 +116,10 @@
     {
       "id": "regrasGerais_008",
       "texto": "Caso qualquer parte da questão mencione ou dependa de um termo visualmente destacado que provavelmente não seja preservado na extração textual do PDF, como termos indicados por expressões como 'termo destacado', 'palavra destacada', 'expressão destacada', 'trecho destacado', 'em destaque', 'em negrito', 'em itálico', 'sublinhado' ou equivalentes, adicione exatamente uma vez o marcador '[TODO:ADICIONAR_TERMO_DESTACADO]' no início do campo comando da questão. Nunca adicione o marcador mais de uma vez na mesma questão."
+    },
+    {
+      "id": "regrasGerais_009",
+      "texto": "Fontes, referências bibliográficas, URLs, créditos e indicações de autoria devem ser transcritos sempre como texto simples. Nunca converta URLs ou referências em links markdown, HTML ou qualquer outro formato enriquecido. Exemplo correto: 'http://www.olhardigital.com.br, 02.05.2025. Adaptado.'. Exemplo incorreto: '([www.olhardigital.com.br](http://www.olhardigital.com.br), 02.05.2025. Adaptado.)'."
     }
   ],
   "regrasContexto": [
