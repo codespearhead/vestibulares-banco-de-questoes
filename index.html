@@ -20,13 +20,14 @@
           <label class="mb-1.5 block text-sm font-bold" for="fileInput"
             >Arquivo prova.json</label
           >
-          <input
+          <button
             id="fileInput"
-            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
-            type="file"
-            accept="application/json,.json"
-            @change="handleFileChange"
-          />
+            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-left text-[15px]"
+            type="button"
+            @click="handleFileChange"
+          >
+            Selecionar prova.json
+          </button>
         </div>
         <div>
           <label class="mb-1.5 block text-sm font-bold" for="questionSelect"
@@ -228,7 +229,8 @@
     </main>
 
     <script>
-      const { computed, createApp, onBeforeUnmount, onMounted, ref } = Vue;
+      const { computed, createApp, onBeforeUnmount, onMounted, ref, watch } =
+        Vue;
 
       createApp({
         setup() {
@@ -290,46 +292,147 @@
             );
           });
 
-          async function handleFileChange(event) {
-            const file = event.target.files[0];
+          function openDatabase() {
+            return new Promise((resolve, reject) => {
+              const request = indexedDB.open("prova-viewer", 1);
 
-            if (!file) {
-              resetViewer();
+              request.onupgradeneeded = () => {
+                request.result.createObjectStore("settings");
+              };
+
+              request.onsuccess = () => {
+                resolve(request.result);
+              };
+
+              request.onerror = () => {
+                reject(request.error);
+              };
+            });
+          }
+
+          async function saveFileHandle(fileHandle) {
+            const database = await openDatabase();
+            const transaction = database.transaction("settings", "readwrite");
+            transaction
+              .objectStore("settings")
+              .put(fileHandle, "jsonFileHandle");
+          }
+
+          async function getSavedFileHandle() {
+            const database = await openDatabase();
+
+            return new Promise((resolve, reject) => {
+              const transaction = database.transaction("settings", "readonly");
+              const request = transaction
+                .objectStore("settings")
+                .get("jsonFileHandle");
+
+              request.onsuccess = () => {
+                resolve(request.result || null);
+              };
+
+              request.onerror = () => {
+                reject(request.error);
+              };
+            });
+          }
+
+          async function loadSavedFileHandle() {
+            const fileHandle = await getSavedFileHandle();
+
+            if (!fileHandle) {
               return;
             }
 
-            try {
-              const text = await file.text();
-              const json = JSON.parse(text);
-              const extractedExams = extractExams(json);
-              const firstExamKey = Object.keys(extractedExams)[0] || "";
+            const permission = await fileHandle.queryPermission({
+              mode: "read",
+            });
 
-              const extractedQuestions = extractedExams[firstExamKey] || [];
-              const extractedAnswerKey = extractAnswerKey(json);
+            if (permission !== "granted") {
+              selectPlaceholder.value =
+                "Clique em Selecionar prova.json para autorizar";
+              return;
+            }
 
-              examKeys.value = Object.keys(extractedExams);
-              questionsByExam.value = extractedExams;
+            const file = await fileHandle.getFile();
+
+            await loadJsonFile(file);
+          }
+
+          async function loadJsonFile(file) {
+            const text = await file.text();
+            const json = JSON.parse(text);
+
+            const extractedExams = extractExams(json);
+            const firstExamKey = Object.keys(extractedExams)[0] || "";
+            const extractedAnswerKey = extractAnswerKey(json);
+
+            examKeys.value = Object.keys(extractedExams);
+            questionsByExam.value = extractedExams;
+
+            if (!examKeys.value.length) {
+              throw new Error(
+                "Nenhuma questão encontrada. Formatos aceitos: prova.questoes, questoes ou chaves de provas na raiz.",
+              );
+            }
+
+            const savedExam = localStorage.getItem("exam");
+            const savedQuestion = localStorage.getItem("question");
+
+            if (savedExam && extractedExams[savedExam]) {
+              selectedExamKey.value = savedExam;
+            } else {
               selectedExamKey.value = firstExamKey;
+            }
 
-              if (!extractedQuestions.length) {
-                throw new Error(
-                  "Nenhuma questão encontrada. Formatos aceitos: prova.questoes, questoes ou chaves de provas na raiz.",
-                );
+            const selectedQuestions =
+              extractedExams[selectedExamKey.value] || [];
+
+            const restoredQuestionIndex = Number(savedQuestion);
+
+            if (
+              Number.isInteger(restoredQuestionIndex) &&
+              restoredQuestionIndex >= 0 &&
+              restoredQuestionIndex < selectedQuestions.length
+            ) {
+              selectedQuestionIndex.value = restoredQuestionIndex;
+            } else {
+              selectedQuestionIndex.value = 0;
+            }
+
+            answerKey.value = extractedAnswerKey;
+            selectedAlternative.value = null;
+            forceShowAnswer.value = false;
+            errorMessage.value = "";
+            selectPlaceholder.value = "Carregue um arquivo";
+          }
+
+          async function handleFileChange() {
+            try {
+              const [fileHandle] = await window.showOpenFilePicker({
+                types: [
+                  {
+                    description: "JSON",
+                    accept: {
+                      "application/json": [".json"],
+                    },
+                  },
+                ],
+                multiple: false,
+              });
+
+              await saveFileHandle(fileHandle);
+
+              const file = await fileHandle.getFile();
+
+              await loadJsonFile(file);
+            } catch (error) {
+              if (error.name === "AbortError") {
+                return;
               }
 
-              answerKey.value = extractedAnswerKey;
-              selectedQuestionIndex.value = 0;
-              selectedAlternative.value = null;
-              forceShowAnswer.value = false;
-              errorMessage.value = "";
-              selectPlaceholder.value = "Carregue um arquivo";
-            } catch (error) {
-              answerKey.value = {};
-              selectedQuestionIndex.value = 0;
-              selectedAlternative.value = null;
-              forceShowAnswer.value = false;
+              resetViewer();
               errorMessage.value = error.message;
-              selectPlaceholder.value = "Erro ao carregar";
             }
           }
 
@@ -546,7 +649,22 @@
             }
           }
 
-          onMounted(() => {
+          watch(
+            [selectedExamKey, selectedQuestionIndex],
+            ([exam, question]) => {
+              localStorage.setItem("exam", exam);
+              localStorage.setItem("question", question);
+            },
+          );
+
+          onMounted(async () => {
+            try {
+              await loadSavedFileHandle();
+            } catch (error) {
+              errorMessage.value =
+                "Não foi possível reabrir o JSON automaticamente. Clique em Selecionar prova.json para autorizar novamente.";
+            }
+
             window.addEventListener("keydown", handleKeyDown);
           });
 
