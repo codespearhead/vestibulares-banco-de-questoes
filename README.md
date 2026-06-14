@@ -52,3 +52,10 @@ O objetivo desta conversa é validar se o [A.1] continua produzindo os mesmos re
 [A.2] `prompt.json`
 [B.1] `saida_esperada`
 ```
+
+## D - Como tratar saída do LLM
+
+Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais devem ser lidadas manualmente. Após a geração do arquivo JSON pelo LLM, pesquise pelo termo `[TODO:` nele e faça as alterações abaixo de acordo com o que você vê no respectivo arquivo PDF.
+
+> [!IMPORTANT]
+> Após qualquer alteração nos arquivos desse projeto, com no `index.html` e nos arquivos JSON, atualize a página do navegador, pois as alterações não serão refletidas automaticamente.
