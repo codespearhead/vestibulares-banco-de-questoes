@@ -47,7 +47,7 @@
               :key="question.numero || index"
               :value="index"
             >
-              Questão {{ formatValue(question.numero, index + 1) }}
+              Questão {{ question.numero, index + 1 }}
             </option>
           </select>
         </div>
@@ -84,7 +84,7 @@
         <template v-else>
           <div>
             <h2 class="mb-3 text-[22px] font-bold leading-tight">
-              Questão {{ formatValue(currentQuestion.numero, '—') }}
+              Questão {{ currentQuestion.numero, '—' }}
             </h2>
           </div>
 
@@ -108,15 +108,14 @@
               class="mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3"
             >
               <div class="mb-2 text-xs font-bold uppercase text-gray-500">
-                Contexto {{ index + 1 }} · {{ formatValue(item && item.mimeType,
-                'desconhecido') }}
+                Contexto {{ index + 1 }} · {{ item.mimeType }}
               </div>
 
               <div
                 v-if="item && item.mimeType === 'text/plain'"
                 class="whitespace-pre-wrap leading-normal"
               >
-                {{ item.conteudo || '' }}
+                {{ item.conteudo }}
               </div>
 
               <div
@@ -151,7 +150,7 @@
               Comando
             </h3>
             <div class="whitespace-pre-wrap leading-normal">
-              {{ currentQuestion.comando || '—' }}
+              {{ currentQuestion.comando }}
             </div>
           </section>
 
@@ -183,7 +182,7 @@
                 <span class="font-bold">({{ letter }}) </span>
 
                 <span v-if="alternative.mimeType === 'text/plain'">
-                  {{ formatValue(alternative.conteudo, '—') }}
+                  {{ alternative.conteudo }}
                 </span>
 
                 <div
@@ -275,20 +274,18 @@
             }
 
             if (!selectedAlternative.value) {
-              return "Gabarito: " + formatValue(normalizedAnswer.value, "—");
+              return "Gabarito: " + normalizedAnswer.value;
             }
 
             if (selectedAlternative.value === normalizedAnswer.value) {
-              return (
-                "Correto. Gabarito: " + formatValue(normalizedAnswer.value, "—")
-              );
+              return ("Correto. Gabarito: " + normalizedAnswer.value, "—");
             }
 
             return (
               "Resposta selecionada: " +
               selectedAlternative.value +
               ". Gabarito: " +
-              formatValue(normalizedAnswer.value, "—")
+              normalizedAnswer.value
             );
           });
 
@@ -359,8 +356,8 @@
                 .map((question) => ({
                   numero: question.questao,
                   contexto: question.saida_esperada?.contexto || [],
-                  comando: question.saida_esperada?.comando || "",
-                  alternativas: question.saida_esperada?.alternativas || {},
+                  comando: question.saida_esperada.comando,
+                  alternativas: question.saida_esperada.alternativas,
                   gabarito: question.gabarito || "",
                   motivo: question.motivo || "",
                 }));
@@ -462,8 +459,8 @@
               exame: examName,
               numero: question.questao,
               contexto: question.saida_esperada?.contexto || [],
-              comando: question.saida_esperada?.comando || "",
-              alternativas: question.saida_esperada?.alternativas || {},
+              comando: question.saida_esperada.comando,
+              alternativas: question.saida_esperada.alternativas,
               gabarito: question.gabarito || "",
               motivo: question.motivo || "",
             };
@@ -487,14 +484,6 @@
             }
 
             return "data:" + mimeType + ";base64," + content;
-          }
-
-          function formatValue(value, fallback) {
-            if (value === null || value === undefined || value === "") {
-              return fallback;
-            }
-
-            return String(value);
           }
 
           function resetAnswerState() {
@@ -569,7 +558,6 @@
             handleFileChange,
             alternativeClass,
             buildImageSource,
-            formatValue,
             resetAnswerState,
           };
         },
