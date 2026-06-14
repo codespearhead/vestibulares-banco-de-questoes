@@ -84,7 +84,7 @@
         <template v-else>
           <div>
             <h2 class="mb-3 text-[22px] font-bold leading-tight">
-              Questão {{ currentQuestion.numero, '—' }}
+              Questão {{ currentQuestion.numero }}
             </h2>
           </div>
 
@@ -114,9 +114,8 @@
               <div
                 v-if="item && item.mimeType === 'text/plain'"
                 class="whitespace-pre-wrap leading-normal"
-              >
-                {{ item.conteudo }}
-              </div>
+                v-html="renderRichText(item.conteudo)"
+              ></div>
 
               <div
                 v-else-if="item && item.mimeType && item.mimeType.startsWith('image/')"
@@ -149,9 +148,10 @@
             >
               Comando
             </h3>
-            <div class="whitespace-pre-wrap leading-normal">
-              {{ currentQuestion.comando }}
-            </div>
+            <div
+              class="whitespace-pre-wrap leading-normal"
+              v-html="renderRichText(currentQuestion.comando)"
+            ></div>
           </section>
 
           <section>
@@ -181,9 +181,10 @@
               >
                 <span class="font-bold">({{ letter }}) </span>
 
-                <span v-if="alternative.mimeType === 'text/plain'">
-                  {{ alternative.conteudo }}
-                </span>
+                <span
+                  v-if="alternative.mimeType === 'text/plain'"
+                  v-html="renderRichText(alternative.conteudo)"
+                ></span>
 
                 <div
                   v-else-if="alternative.mimeType.startsWith('image/')"
@@ -278,7 +279,7 @@
             }
 
             if (selectedAlternative.value === normalizedAnswer.value) {
-              return ("Correto. Gabarito: " + normalizedAnswer.value, "—");
+              return "Correto. Gabarito: " + normalizedAnswer.value;
             }
 
             return (
@@ -486,6 +487,15 @@
             return "data:" + mimeType + ";base64," + content;
           }
 
+          function renderRichText(text) {
+            const escaped = String(text)
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;");
+
+            return escaped.replace(/\*\*(.*?)\*\*/g, "<u>$1</u>");
+          }
+
           function resetAnswerState() {
             selectedAlternative.value = null;
             forceShowAnswer.value = false;
@@ -558,6 +568,7 @@
             handleFileChange,
             alternativeClass,
             buildImageSource,
+            renderRichText,
             resetAnswerState,
           };
         },
