@@ -10,7 +10,7 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "[TODO]" }
+          { "mimeType": "image/png", "conteudo": "[TODO:ADICIONAR_IMAGEM" }
         ],
         "comando": "Para a produção do efeito humorístico, o autor recorre, no quarto quadrinho,",
         "alternativas": {
@@ -32,7 +32,7 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "[TODO]" }
+          { "mimeType": "image/png", "conteudo": "[TODO:ADICIONAR_IMAGEM" }
         ],
         "comando": "Em relação ao momento em que o narrador conta a história, os fatos narrados acontecem",
         "alternativas": {
@@ -147,30 +147,30 @@
           },
           {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           }
         ],
         "comando": "A fórmula estrutural do aminoácido tirosina que forma esse tripeptídeo é:",
         "alternativas": {
           "A": {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           },
           "B": {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           },
           "C": {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           },
           "D": {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           },
           "E": {
             "mimeType": "image/png",
-            "conteudo": "[TODO]"
+            "conteudo": "[TODO:ADICIONAR_IMAGEM"
           }
         }
       }
