@@ -157,7 +157,7 @@
     },
     {
       "id": "regrasContexto_008",
-      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO:ADICIONAR_IMAGEM'."
+      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO:ADICIONAR_IMAGEM]'."
     },
     {
       "id": "regrasContexto_009",
@@ -175,7 +175,7 @@
     },
     "imagem": {
       "mimeType": "image/png",
-      "conteudo": "[TODO:ADICIONAR_IMAGEM"
+      "conteudo": "[TODO:ADICIONAR_IMAGEM]"
     }
   },
   "regrasAlternativas": [
