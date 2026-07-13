@@ -20,7 +20,7 @@ Banco de questões de código aberto de vestibulares do ensino médio
 
 A.01 - Abra o arquivo `index.html` no seu navegador web.
 
-A.02 - Selecione o arquivo desejado da pasta `banco-de-questoes`. 
+A.02 - Selecione o arquivo desejado da pasta `banco-de-questoes`.
 
 
 ## B - Como executar os prompts
