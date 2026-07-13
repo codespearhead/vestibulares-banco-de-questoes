@@ -246,6 +246,7 @@
           const forceShowAnswer = ref(false);
           const errorMessage = ref("");
           const selectPlaceholder = ref("Carregue um arquivo");
+          const currentFileHandle = ref(null);
 
           const currentQuestion = computed(() => {
             return questions.value[selectedQuestionIndex.value] || null;
@@ -337,6 +338,16 @@
             });
           }
 
+          async function reloadCurrentFile() {
+            if (!currentFileHandle.value) {
+              return;
+            }
+
+            const file = await currentFileHandle.value.getFile();
+
+            await loadJsonFile(file);
+          }
+
           async function loadSavedFileHandle() {
             const fileHandle = await getSavedFileHandle();
 
@@ -344,19 +355,19 @@
               return;
             }
 
+            currentFileHandle.value = fileHandle;
+
             const permission = await fileHandle.queryPermission({
               mode: "read",
             });
 
             if (permission !== "granted") {
               selectPlaceholder.value =
-                "Clique em Selecionar prova.json para autorizar";
+                "Clique em Selecionar prova.json para escolher o arquivo novamente";
               return;
             }
 
-            const file = await fileHandle.getFile();
-
-            await loadJsonFile(file);
+            await reloadCurrentFile();
           }
 
           async function loadJsonFile(file) {
@@ -421,11 +432,10 @@
                 multiple: false,
               });
 
+              currentFileHandle.value = fileHandle;
+
               await saveFileHandle(fileHandle);
-
-              const file = await fileHandle.getFile();
-
-              await loadJsonFile(file);
+              await reloadCurrentFile();
             } catch (error) {
               if (error.name === "AbortError") {
                 return;
