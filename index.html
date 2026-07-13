@@ -596,6 +596,24 @@
           }
 
           function buildImageSource(mimeType, content) {
+            if (content.includes("[TODO:")) {
+              const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="160" height="40">
+                  <text x="0" y="28"
+                        fill="red"
+                        font-size="24"
+                        font-family="sans-serif"
+                        font-weight="bold">
+                    TODO
+                  </text>
+                </svg>
+              `;
+
+              return (
+                "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg)
+              );
+            }
+
             if (content.startsWith("data:")) {
               return content;
             }
