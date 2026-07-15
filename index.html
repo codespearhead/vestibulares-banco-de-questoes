@@ -77,7 +77,14 @@
           {{ errorMessage }}
         </p>
 
-        <p v-else-if="!currentQuestion" class="leading-normal text-gray-500">
+        <p
+          v-if="saveMessage"
+          class="mb-3 font-bold leading-normal text-green-700"
+        >
+          {{ saveMessage }}
+        </p>
+
+        <p v-if="!currentQuestion" class="leading-normal text-gray-500">
           Carregue um arquivo <strong>prova.json</strong> para visualizar as
           questões.
         </p>
@@ -122,11 +129,19 @@
                 v-else-if="item && item.mimeType && item.mimeType.startsWith('image/')"
               >
                 <div
-                  v-if="item.conteudo === '[TODO:ADICIONAR_IMAGEM'"
-                  class="font-bold leading-normal text-red-700"
+                  v-if="isMissingImage(item.conteudo)"
+                  class="rounded-lg border border-red-200 bg-red-50 p-3"
                 >
-                  Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
-                  imagem.
+                  <p class="font-bold leading-normal text-red-700">
+                    Imagem pendente. Copie a imagem e clique no botão abaixo.
+                  </p>
+                  <button
+                    type="button"
+                    class="mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                    @click="pasteImage(item)"
+                  >
+                    Colar imagem da área de transferência
+                  </button>
                 </div>
 
                 <img
@@ -172,13 +187,16 @@
             </label>
 
             <div v-if="alternativeEntries.length" class="grid gap-2">
-              <button
+              <div
                 v-for="[letter, alternative] in alternativeEntries"
                 :key="letter"
-                type="button"
+                role="button"
+                tabindex="0"
                 class="w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50"
                 :class="alternativeClass(letter)"
                 @click="selectedAlternative = letter"
+                @keydown.enter="selectedAlternative = letter"
+                @keydown.space.prevent="selectedAlternative = letter"
               >
                 <span class="font-bold">({{ letter }}) </span>
 
@@ -191,13 +209,22 @@
                   v-else-if="alternative.mimeType.startsWith('image/')"
                   class="mt-2"
                 >
-                  <span
-                    v-if="alternative.conteudo === '[TODO:ADICIONAR_IMAGEM'"
-                    class="font-bold text-red-700"
+                  <div
+                    v-if="isMissingImage(alternative.conteudo)"
+                    class="rounded-lg border border-red-200 bg-red-50 p-3"
+                    @click.stop
                   >
-                    Imagem pendente. Substitua o campo 'conteudo' pelo base64 da
-                    imagem.
-                  </span>
+                    <p class="font-bold text-red-700">
+                      Imagem pendente. Copie a imagem e clique no botão abaixo.
+                    </p>
+                    <button
+                      type="button"
+                      class="mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                      @click.stop="pasteImage(alternative)"
+                    >
+                      Colar imagem da área de transferência
+                    </button>
+                  </div>
 
                   <img
                     v-else
@@ -213,7 +240,7 @@
                 <div v-else class="mt-2 font-bold text-red-700">
                   MIME type não suportado: {{ alternative.mimeType }}
                 </div>
-              </button>
+              </div>
             </div>
 
             <p v-else class="leading-normal text-gray-500">
@@ -247,6 +274,8 @@
           const errorMessage = ref("");
           const selectPlaceholder = ref("Carregue um arquivo");
           const currentFileHandle = ref(null);
+          const loadedJson = ref(null);
+          const saveMessage = ref("");
 
           const currentQuestion = computed(() => {
             return questions.value[selectedQuestionIndex.value] || null;
@@ -373,6 +402,7 @@
           async function loadJsonFile(file) {
             const text = await file.text();
             const json = JSON.parse(text);
+            loadedJson.value = json;
 
             const extractedExams = extractExams(json);
             const firstExamKey = Object.keys(extractedExams)[0] || "";
@@ -415,6 +445,7 @@
             selectedAlternative.value = null;
             forceShowAnswer.value = false;
             errorMessage.value = "";
+            saveMessage.value = "";
             selectPlaceholder.value = "Carregue um arquivo";
           }
 
@@ -583,6 +614,109 @@
             };
           }
 
+          function isMissingImage(content) {
+            return content === "[TODO:ADICIONAR_IMAGEM]";
+          }
+
+          async function readClipboardImage() {
+            if (!navigator.clipboard?.read) {
+              throw new Error(
+                "Este navegador não permite ler imagens da área de transferência.",
+              );
+            }
+
+            const clipboardItems = await navigator.clipboard.read();
+
+            for (const clipboardItem of clipboardItems) {
+              const imageType = clipboardItem.types.find((type) =>
+                type.startsWith("image/"),
+              );
+
+              if (imageType) {
+                return clipboardItem.getType(imageType);
+              }
+            }
+
+            throw new Error(
+              "Nenhuma imagem foi encontrada na área de transferência.",
+            );
+          }
+
+          function blobToDataUrl(blob) {
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = () =>
+                reject(
+                  reader.error || new Error("Não foi possível ler a imagem."),
+                );
+
+              reader.readAsDataURL(blob);
+            });
+          }
+
+          async function ensureWritePermission(fileHandle) {
+            const options = { mode: "readwrite" };
+
+            if ((await fileHandle.queryPermission(options)) === "granted") {
+              return true;
+            }
+
+            return (await fileHandle.requestPermission(options)) === "granted";
+          }
+
+          async function saveCurrentJson() {
+            if (!currentFileHandle.value || !loadedJson.value) {
+              throw new Error("Nenhum arquivo JSON está aberto.");
+            }
+
+            const hasPermission = await ensureWritePermission(
+              currentFileHandle.value,
+            );
+
+            if (!hasPermission) {
+              throw new Error(
+                "A permissão para modificar o arquivo JSON não foi concedida.",
+              );
+            }
+
+            const writable = await currentFileHandle.value.createWritable();
+
+            try {
+              await writable.write(
+                JSON.stringify(loadedJson.value, null, 2) + "\n",
+              );
+              await writable.close();
+            } catch (error) {
+              await writable.abort();
+              throw error;
+            }
+          }
+
+          async function pasteImage(target) {
+            try {
+              saveMessage.value = "";
+              errorMessage.value = "";
+
+              const imageBlob = await readClipboardImage();
+              const dataUrl = await blobToDataUrl(imageBlob);
+
+              target.mimeType = imageBlob.type || "image/png";
+              target.conteudo = dataUrl;
+
+              await saveCurrentJson();
+
+              saveMessage.value =
+                "Imagem adicionada e arquivo JSON atualizado com sucesso.";
+            } catch (error) {
+              errorMessage.value =
+                error instanceof Error
+                  ? error.message
+                  : "Não foi possível adicionar a imagem.";
+            }
+          }
+
           function alternativeClass(letter) {
             return {
               "border-blue-300 bg-blue-50":
@@ -642,6 +776,7 @@
             selectedAlternative.value = null;
             forceShowAnswer.value = false;
             errorMessage.value = "";
+            saveMessage.value = "";
             selectPlaceholder.value = "Carregue um arquivo";
           }
 
@@ -730,6 +865,9 @@
             buildImageSource,
             renderRichText,
             resetAnswerState,
+            isMissingImage,
+            pasteImage,
+            saveMessage,
           };
         },
       }).mount("#app");

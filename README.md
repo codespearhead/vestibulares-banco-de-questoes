@@ -57,16 +57,13 @@ O objetivo desta conversa é validar se o [A.1] continua produzindo os mesmos re
 
 Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais devem ser lidadas manualmente. Após a geração do arquivo JSON pelo LLM, pesquise pelo termo `[TODO:` nele e faça as alterações abaixo de acordo com o que você vê no respectivo arquivo PDF.
 
-> [!IMPORTANT]
-> Após qualquer alteração nos arquivos desse projeto, com no `index.html` e nos arquivos JSON, atualize a página do navegador, pois as alterações não serão refletidas automaticamente.
-
 D.01.0 - `[TODO:ADICIONAR_IMAGEM]`: a questão possui uma imagem.
 
 D.01.1 - Converta todo o PDF para imagens usando o seguinte site: https://www.ilovepdf.com/pt/pdf_para_jpg .
 
 D.01.2 - Abra a imagem onde está a questão desejada no Microsoft Paint, selecione apenas a imagem desejada com sua ferramenta de seleção e aperte CRTL+C.
 
-D.01.3 - Abra [este arquivo](./util/clipboard-image-to-base64.html) e aperte CRTL+V.
+D.01.3 - Clique no botão "Colar imagem da área de transferência".
 
 D.01.4 - Selecione o termo citado no item [D.01.0] no JSON em questão e aperte CRTL+V.
 
