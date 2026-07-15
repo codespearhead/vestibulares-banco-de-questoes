@@ -14,7 +14,7 @@
       </h1>
 
       <section
-        class="mb-4 grid gap-3 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm md:grid-cols-[1fr_240px] md:items-end"
+        class="mb-4 grid gap-3 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm md:grid-cols-[1fr_180px_180px_180px] md:items-end"
       >
         <div>
           <label class="mb-1.5 block text-sm font-bold" for="fileInput"
@@ -27,6 +27,20 @@
             @click="handleFileChange"
           >
             Selecionar prova.json
+          </button>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-bold" for="jsonEditorButton"
+            >Editor</label
+          >
+          <button
+            id="jsonEditorButton"
+            class="w-full box-border rounded-lg bg-gray-800 p-2.5 text-[15px] font-bold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300"
+            type="button"
+            :disabled="!currentQuestion"
+            @click="openJsonEditor"
+          >
+            Editar questão
           </button>
         </div>
         <div>
@@ -253,6 +267,71 @@
           </section>
         </template>
       </section>
+
+      <div
+        v-if="isJsonEditorOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3"
+        @click.self="closeJsonEditor"
+      >
+        <section
+          class="flex max-h-[95vh] w-full max-w-6xl flex-col rounded-xl bg-white p-4 shadow-2xl md:p-5"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="jsonEditorTitle"
+        >
+          <div class="mb-3 flex items-start justify-between gap-4">
+            <div>
+              <h2 id="jsonEditorTitle" class="text-xl font-bold">
+                Editar questão em JSON
+              </h2>
+              <p class="mt-1 text-sm text-gray-600">
+                Apenas a questão selecionada será editada. No formato antigo, o
+                campo gabarito será salvo novamente no gabarito central.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="rounded-lg border border-gray-300 px-3 py-1.5 font-bold hover:bg-gray-100"
+              @click="closeJsonEditor"
+            >
+              Fechar
+            </button>
+          </div>
+
+          <textarea
+            v-model="jsonEditorText"
+            class="min-h-[55vh] w-full flex-1 resize-none rounded-lg border border-gray-300 p-3 font-mono text-sm leading-5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            aria-label="JSON da questão selecionada"
+            spellcheck="false"
+            @input="validateJsonEditor"
+          ></textarea>
+
+          <div class="mt-3 min-h-6">
+            <p v-if="jsonEditorError" class="font-bold text-red-700">
+              JSON inválido: {{ jsonEditorError }}
+            </p>
+            <p v-else class="font-bold text-green-700">JSON válido.</p>
+          </div>
+
+          <div class="mt-3 flex flex-wrap justify-end gap-2">
+            <button
+              type="button"
+              class="rounded-lg border border-gray-300 px-4 py-2 font-bold hover:bg-gray-100"
+              @click="formatJsonEditor"
+            >
+              Formatar JSON
+            </button>
+            <button
+              type="button"
+              class="rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+              :disabled="Boolean(jsonEditorError) || isSavingJson"
+              @click="saveJsonEditor"
+            >
+              {{ isSavingJson ? "Salvando..." : "Validar e salvar" }}
+            </button>
+          </div>
+        </section>
+      </div>
     </main>
 
     <script>
@@ -276,6 +355,11 @@
           const currentFileHandle = ref(null);
           const loadedJson = ref(null);
           const saveMessage = ref("");
+          const isJsonEditorOpen = ref(false);
+          const jsonEditorText = ref("");
+          const jsonEditorError = ref("");
+          const isSavingJson = ref(false);
+          const hiddenContentValues = new Map();
 
           const currentQuestion = computed(() => {
             return questions.value[selectedQuestionIndex.value] || null;
@@ -666,8 +750,8 @@
             return (await fileHandle.requestPermission(options)) === "granted";
           }
 
-          async function saveCurrentJson() {
-            if (!currentFileHandle.value || !loadedJson.value) {
+          async function saveCurrentJson(json = loadedJson.value) {
+            if (!currentFileHandle.value || !json) {
               throw new Error("Nenhum arquivo JSON está aberto.");
             }
 
@@ -684,13 +768,353 @@
             const writable = await currentFileHandle.value.createWritable();
 
             try {
-              await writable.write(
-                JSON.stringify(loadedJson.value, null, 2) + "\n",
-              );
+              await writable.write(JSON.stringify(json, null, 2) + "\n");
               await writable.close();
             } catch (error) {
               await writable.abort();
               throw error;
+            }
+          }
+
+          function getJsonErrorMessage(error, text) {
+            if (!(error instanceof SyntaxError)) {
+              return error instanceof Error ? error.message : String(error);
+            }
+
+            const positionMatch = error.message.match(/position\s+(\d+)/i);
+
+            if (!positionMatch) {
+              return error.message;
+            }
+
+            const position = Number(positionMatch[1]);
+            const beforeError = text.slice(0, position);
+            const line = beforeError.split("\n").length;
+            const lastLineBreak = beforeError.lastIndexOf("\n");
+            const column = position - lastLineBreak;
+
+            return `${error.message} (linha ${line}, coluna ${column})`;
+          }
+
+          function getJsonEditorText() {
+            return jsonEditorText.value;
+          }
+
+          function parseJsonEditor() {
+            const text = getJsonEditorText();
+
+            try {
+              const parsedJson = JSON.parse(text);
+              jsonEditorError.value = "";
+              return parsedJson;
+            } catch (error) {
+              jsonEditorError.value = getJsonErrorMessage(error, text);
+              return null;
+            }
+          }
+
+          function validateJsonEditor() {
+            parseJsonEditor();
+          }
+
+          function pathKey(path) {
+            return JSON.stringify(path);
+          }
+
+          function maskContentValues(value, path = []) {
+            if (Array.isArray(value)) {
+              return value.map((item, index) =>
+                maskContentValues(item, [...path, index]),
+              );
+            }
+
+            if (value && typeof value === "object") {
+              return Object.fromEntries(
+                Object.entries(value).map(([key, childValue]) => {
+                  const childPath = [...path, key];
+
+                  if (
+                    key === "conteudo" &&
+                    typeof childValue === "string" &&
+                    childValue.startsWith("data:")
+                  ) {
+                    hiddenContentValues.set(pathKey(childPath), childValue);
+                    return [key, "..."];
+                  }
+
+                  return [key, maskContentValues(childValue, childPath)];
+                }),
+              );
+            }
+
+            return value;
+          }
+
+          function restoreMaskedContentValues(value, path = []) {
+            if (Array.isArray(value)) {
+              return value.map((item, index) =>
+                restoreMaskedContentValues(item, [...path, index]),
+              );
+            }
+
+            if (value && typeof value === "object") {
+              return Object.fromEntries(
+                Object.entries(value).map(([key, childValue]) => {
+                  const childPath = [...path, key];
+                  const hiddenKey = pathKey(childPath);
+
+                  if (
+                    key === "conteudo" &&
+                    childValue === "..." &&
+                    hiddenContentValues.has(hiddenKey)
+                  ) {
+                    return [key, hiddenContentValues.get(hiddenKey)];
+                  }
+
+                  return [
+                    key,
+                    restoreMaskedContentValues(childValue, childPath),
+                  ];
+                }),
+              );
+            }
+
+            return value;
+          }
+
+          function initializeQuestionJsonEditor(value) {
+            hiddenContentValues.clear();
+            const maskedValue = maskContentValues(value);
+            jsonEditorText.value = JSON.stringify(maskedValue, null, 2);
+            jsonEditorError.value = "";
+          }
+
+          function findCurrentQuestionSource() {
+            const json = loadedJson.value;
+            const questionNumber = String(currentQuestion.value?.numero ?? "");
+
+            if (!json || !questionNumber) {
+              return null;
+            }
+
+            if (json.prova && Array.isArray(json.prova.questoes)) {
+              const index = json.prova.questoes.findIndex(
+                (question) =>
+                  String(question.numero ?? question.questao ?? "") ===
+                  questionNumber,
+              );
+
+              if (index >= 0) {
+                return {
+                  schema: "old-array",
+                  question: json.prova.questoes[index],
+                  setQuestion(question) {
+                    json.prova.questoes[index] = question;
+                  },
+                };
+              }
+            }
+
+            if (Array.isArray(json.questoes)) {
+              const index = json.questoes.findIndex(
+                (question) =>
+                  String(question.numero ?? question.questao ?? "") ===
+                  questionNumber,
+              );
+
+              if (index >= 0) {
+                return {
+                  schema: "old-array",
+                  question: json.questoes[index],
+                  setQuestion(question) {
+                    json.questoes[index] = question;
+                  },
+                };
+              }
+            }
+
+            if (
+              json.prova?.questoes &&
+              typeof json.prova.questoes === "object" &&
+              !Array.isArray(json.prova.questoes)
+            ) {
+              const entry = Object.entries(json.prova.questoes).find(
+                ([key, question]) =>
+                  String(question.numero ?? question.questao ?? key) ===
+                  questionNumber,
+              );
+
+              if (entry) {
+                const [key, question] = entry;
+
+                return {
+                  schema: "old-object",
+                  question,
+                  setQuestion(updatedQuestion) {
+                    json.prova.questoes[key] = updatedQuestion;
+                  },
+                };
+              }
+            }
+
+            const examQuestions = json[selectedExamKey.value];
+
+            if (Array.isArray(examQuestions)) {
+              const index = examQuestions.findIndex(
+                (question) => String(question.questao ?? "") === questionNumber,
+              );
+
+              if (index >= 0) {
+                return {
+                  schema: "new",
+                  question: examQuestions[index],
+                  setQuestion(question) {
+                    examQuestions[index] = question;
+                  },
+                };
+              }
+            }
+
+            return null;
+          }
+
+          function getOldSchemaAnswerKey() {
+            const json = loadedJson.value;
+
+            if (
+              json?.prova?.gabarito &&
+              typeof json.prova.gabarito === "object"
+            ) {
+              return json.prova.gabarito;
+            }
+
+            if (json?.gabarito && typeof json.gabarito === "object") {
+              return json.gabarito;
+            }
+
+            return null;
+          }
+
+          function buildQuestionEditorValue(source) {
+            const editorValue = JSON.parse(JSON.stringify(source.question));
+
+            if (source.schema !== "new") {
+              const questionNumber = String(currentQuestion.value.numero);
+              const oldAnswerKey = getOldSchemaAnswerKey();
+
+              if (oldAnswerKey && questionNumber in oldAnswerKey) {
+                editorValue.gabarito = oldAnswerKey[questionNumber];
+              }
+            }
+
+            return editorValue;
+          }
+
+          function openJsonEditor() {
+            const source = findCurrentQuestionSource();
+
+            if (!source) {
+              errorMessage.value =
+                "Não foi possível localizar a questão selecionada no JSON original.";
+              return;
+            }
+
+            const editorValue = buildQuestionEditorValue(source);
+            jsonEditorError.value = "";
+            isJsonEditorOpen.value = true;
+
+            requestAnimationFrame(() => {
+              initializeQuestionJsonEditor(editorValue);
+            });
+          }
+
+          function closeJsonEditor() {
+            if (isSavingJson.value) {
+              return;
+            }
+
+            isJsonEditorOpen.value = false;
+            jsonEditorError.value = "";
+            hiddenContentValues.clear();
+          }
+
+          function formatJsonEditor() {
+            const parsedJson = parseJsonEditor();
+
+            if (parsedJson) {
+              jsonEditorText.value = JSON.stringify(parsedJson, null, 2);
+            }
+          }
+
+          async function saveJsonEditor() {
+            const parsedQuestion = parseJsonEditor();
+
+            if (!parsedQuestion || isSavingJson.value) {
+              return;
+            }
+
+            if (
+              Array.isArray(parsedQuestion) ||
+              typeof parsedQuestion !== "object"
+            ) {
+              jsonEditorError.value = "A questão deve ser um objeto JSON.";
+              return;
+            }
+
+            const source = findCurrentQuestionSource();
+
+            if (!source) {
+              jsonEditorError.value =
+                "Não foi possível localizar a questão selecionada no JSON original.";
+              return;
+            }
+
+            try {
+              isSavingJson.value = true;
+              errorMessage.value = "";
+              saveMessage.value = "";
+
+              const restoredQuestion =
+                restoreMaskedContentValues(parsedQuestion);
+              const updatedQuestion = JSON.parse(
+                JSON.stringify(restoredQuestion),
+              );
+
+              if (source.schema !== "new") {
+                const questionNumber = String(currentQuestion.value.numero);
+                const oldAnswerKey = getOldSchemaAnswerKey();
+
+                if (
+                  Object.prototype.hasOwnProperty.call(
+                    updatedQuestion,
+                    "gabarito",
+                  )
+                ) {
+                  if (!oldAnswerKey) {
+                    throw new Error(
+                      "O formato antigo não possui um objeto de gabarito que possa ser atualizado.",
+                    );
+                  }
+
+                  oldAnswerKey[questionNumber] = updatedQuestion.gabarito;
+                  delete updatedQuestion.gabarito;
+                }
+              }
+
+              source.setQuestion(updatedQuestion);
+              await saveCurrentJson(loadedJson.value);
+              await reloadCurrentFile();
+
+              isJsonEditorOpen.value = false;
+              saveMessage.value =
+                "Questão validada e arquivo JSON atualizado com sucesso.";
+            } catch (error) {
+              jsonEditorError.value =
+                error instanceof Error
+                  ? error.message
+                  : "Não foi possível salvar a questão.";
+            } finally {
+              isSavingJson.value = false;
             }
           }
 
@@ -822,6 +1246,14 @@
           }
 
           function handleKeyDown(event) {
+            if (isJsonEditorOpen.value) {
+              if (event.key === "Escape") {
+                closeJsonEditor();
+              }
+
+              return;
+            }
+
             if (!questions.value.length) {
               return;
             }
@@ -892,6 +1324,16 @@
             isMissingImage,
             pasteImage,
             saveMessage,
+            loadedJson,
+            isJsonEditorOpen,
+            jsonEditorText,
+            jsonEditorError,
+            isSavingJson,
+            openJsonEditor,
+            closeJsonEditor,
+            validateJsonEditor,
+            formatJsonEditor,
+            saveJsonEditor,
           };
         },
       }).mount("#app");
