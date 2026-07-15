@@ -38,7 +38,7 @@
             class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
             v-model.number="selectedQuestionIndex"
             :disabled="!questions.length"
-            @change="resetAnswerState"
+            @change="handleQuestionChange"
           >
             <option v-if="!questions.length" disabled value="0">
               {{ selectPlaceholder }}
@@ -780,22 +780,45 @@
             selectPlaceholder.value = "Carregue um arquivo";
           }
 
-          function goToNextQuestion() {
-            if (selectedQuestionIndex.value >= questions.value.length - 1) {
+          async function refreshCurrentJson() {
+            if (!currentFileHandle.value) {
               return;
             }
 
-            selectedQuestionIndex.value += 1;
-            resetAnswerState();
+            localStorage.setItem("exam", selectedExamKey.value);
+            localStorage.setItem("question", selectedQuestionIndex.value);
+
+            try {
+              await reloadCurrentFile();
+            } catch (error) {
+              errorMessage.value =
+                error instanceof Error
+                  ? error.message
+                  : "Não foi possível atualizar o arquivo JSON.";
+            }
           }
 
-          function goToPreviousQuestion() {
-            if (selectedQuestionIndex.value <= 0) {
-              return;
+          async function handleQuestionChange() {
+            resetAnswerState();
+            await refreshCurrentJson();
+          }
+
+          async function goToNextQuestion() {
+            if (selectedQuestionIndex.value < questions.value.length - 1) {
+              selectedQuestionIndex.value += 1;
+              resetAnswerState();
             }
 
-            selectedQuestionIndex.value -= 1;
-            resetAnswerState();
+            await refreshCurrentJson();
+          }
+
+          async function goToPreviousQuestion() {
+            if (selectedQuestionIndex.value > 0) {
+              selectedQuestionIndex.value -= 1;
+              resetAnswerState();
+            }
+
+            await refreshCurrentJson();
           }
 
           function handleKeyDown(event) {
@@ -865,6 +888,7 @@
             buildImageSource,
             renderRichText,
             resetAnswerState,
+            handleQuestionChange,
             isMissingImage,
             pasteImage,
             saveMessage,
