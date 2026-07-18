@@ -110,6 +110,15 @@
             </h2>
           </div>
 
+          <div
+            v-if="loadedJson?.fonte === '[TODO:ADICIONAR_FONTE]'"
+            class="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-amber-900"
+          >
+            <strong>Atenção:</strong> A propriedade <code>fonte</code> ainda
+            está como <code>[TODO:ADICIONAR_FONTE]</code>. Preencha esse campo
+            no editor de JSON.
+          </div>
+
           <section>
             <h3
               class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
@@ -1047,6 +1056,8 @@
               const questionNumber = String(currentQuestion.value.numero);
               const examAnswerKey = getExamAnswerKey();
 
+              editorValue.fonte = loadedJson.value?.fonte ?? "";
+
               if (examAnswerKey && questionNumber in examAnswerKey) {
                 editorValue.gabarito = examAnswerKey[questionNumber];
               }
@@ -1128,6 +1139,13 @@
               if (source.schema === "exam") {
                 const questionNumber = String(currentQuestion.value.numero);
                 const examAnswerKey = getExamAnswerKey();
+
+                if (
+                  Object.prototype.hasOwnProperty.call(updatedQuestion, "fonte")
+                ) {
+                  loadedJson.value.fonte = updatedQuestion.fonte;
+                  delete updatedQuestion.fonte;
+                }
 
                 if (
                   Object.prototype.hasOwnProperty.call(
