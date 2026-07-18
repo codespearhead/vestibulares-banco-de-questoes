@@ -12,7 +12,6 @@ Banco de questões de código aberto de vestibulares do ensino médio
 
 <br>
 
-
 ## A - Como visualizar as questões do banco de questões
 
 > [!IMPORTANT]
@@ -22,7 +21,6 @@ A.01 - Abra o arquivo `index.html` no seu navegador web.
 
 A.02 - Selecione o arquivo desejado da pasta `banco-de-questoes`.
 
-
 ## B - Como executar os prompts
 
 B.01 - Leia a propriedade `entrada` do prompt desejado para saber o que enviar junto a ele.
@@ -30,6 +28,7 @@ B.01 - Leia a propriedade `entrada` do prompt desejado para saber o que enviar j
 B.02 - Leia o conteúdo da propriedade `validacaoPrevia`.
 
 B.03 - Envie a seguinte mensagem junto aos arquivos anexados:
+
 ```
 Execute o `prompt.json`.
 ```
@@ -39,6 +38,7 @@ Execute o `prompt.json`.
 C.01 - Forneça ao LLM todo o conteúdo da pasta do prompt (ex.: `prompt\01-minerar-questoes-e-gabarito`).
 
 C.02 - Envie a seguinte mensagem junto ao conteúdo fornecido na etapa anterior:
+
 ```
 Leia o arquivo [A.1] e execute as instruções definidas em [A.2] apenas para as questões citadas em [A.1].
 
