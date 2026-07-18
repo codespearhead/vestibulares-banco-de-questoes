@@ -285,8 +285,8 @@
                 Editar questão em JSON
               </h2>
               <p class="mt-1 text-sm text-gray-600">
-                Apenas a questão selecionada será editada. No formato antigo, o
-                campo gabarito será salvo novamente no gabarito central.
+                Apenas a questão selecionada será editada. Em arquivos de prova,
+                o campo gabarito será salvo no gabarito central.
               </p>
             </div>
             <button
@@ -497,7 +497,7 @@
 
             if (!examKeys.value.length) {
               throw new Error(
-                "Nenhuma questão encontrada. Formatos aceitos: prova.questoes, questoes ou chaves de provas na raiz.",
+                "Nenhuma questão encontrada. Formatos aceitos: objeto questoes na raiz ou arquivos de testes com provas na raiz.",
               );
             }
 
@@ -561,50 +561,8 @@
             }
           }
 
-          function extractQuestions(json) {
-            let extractedQuestions = [];
-
-            if (json?.prova && Array.isArray(json.prova.questoes)) {
-              extractedQuestions = json.prova.questoes;
-            } else if (Array.isArray(json?.questoes)) {
-              extractedQuestions = json.questoes;
-            } else if (
-              json?.prova?.questoes &&
-              typeof json.prova.questoes === "object"
-            ) {
-              extractedQuestions = Object.entries(json.prova.questoes).map(
-                ([numero, question]) => ({
-                  ...question,
-                  numero: question.numero || numero,
-                }),
-              );
-            } else if (json && typeof json === "object") {
-              extractedQuestions = Object.values(json)
-                .filter(Array.isArray)
-                .flat()
-                .map((question) => ({
-                  numero: question.questao,
-                  contexto: question.saida_esperada?.contexto || [],
-                  comando: question.saida_esperada.comando,
-                  alternativas: question.saida_esperada.alternativas,
-                  gabarito: question.gabarito,
-                  motivo: question.motivo,
-                }));
-            }
-            return extractedQuestions.sort(
-              (a, b) => Number(a.numero) - Number(b.numero),
-            );
-          }
-
           function extractAnswerKey(json) {
-            if (
-              json.prova?.gabarito &&
-              typeof json.prova.gabarito === "object"
-            ) {
-              return json.prova.gabarito;
-            }
-
-            if (json.gabarito && typeof json.gabarito === "object") {
+            if (json?.gabarito && typeof json.gabarito === "object") {
               return json.gabarito;
             }
 
@@ -638,26 +596,21 @@
               return {};
             }
 
-            if (json?.prova && Array.isArray(json.prova.questoes)) {
+            if (Array.isArray(json.questoes)) {
               return {
-                Prova: json.prova.questoes
+                Prova: json.questoes
                   .map(normalizeOldQuestion)
                   .sort(compareQuestions),
               };
             }
 
-            if (Array.isArray(json?.questoes)) {
-              return {
-                Prova: json.questoes.map(normalizeOldQuestion),
-              };
-            }
-
             if (
-              json?.prova?.questoes &&
-              typeof json.prova.questoes === "object"
+              json.questoes &&
+              typeof json.questoes === "object" &&
+              !Array.isArray(json.questoes)
             ) {
               return {
-                Prova: Object.entries(json.prova.questoes)
+                Prova: Object.entries(json.questoes)
                   .map(([numero, question]) =>
                     normalizeOldQuestion({
                       ...question,
@@ -897,48 +850,12 @@
               return null;
             }
 
-            if (json.prova && Array.isArray(json.prova.questoes)) {
-              const index = json.prova.questoes.findIndex(
-                (question) =>
-                  String(question.numero ?? question.questao ?? "") ===
-                  questionNumber,
-              );
-
-              if (index >= 0) {
-                return {
-                  schema: "old-array",
-                  question: json.prova.questoes[index],
-                  setQuestion(question) {
-                    json.prova.questoes[index] = question;
-                  },
-                };
-              }
-            }
-
-            if (Array.isArray(json.questoes)) {
-              const index = json.questoes.findIndex(
-                (question) =>
-                  String(question.numero ?? question.questao ?? "") ===
-                  questionNumber,
-              );
-
-              if (index >= 0) {
-                return {
-                  schema: "old-array",
-                  question: json.questoes[index],
-                  setQuestion(question) {
-                    json.questoes[index] = question;
-                  },
-                };
-              }
-            }
-
             if (
-              json.prova?.questoes &&
-              typeof json.prova.questoes === "object" &&
-              !Array.isArray(json.prova.questoes)
+              json.questoes &&
+              typeof json.questoes === "object" &&
+              !Array.isArray(json.questoes)
             ) {
-              const entry = Object.entries(json.prova.questoes).find(
+              const entry = Object.entries(json.questoes).find(
                 ([key, question]) =>
                   String(question.numero ?? question.questao ?? key) ===
                   questionNumber,
@@ -948,10 +865,10 @@
                 const [key, question] = entry;
 
                 return {
-                  schema: "old-object",
+                  schema: "exam",
                   question,
                   setQuestion(updatedQuestion) {
-                    json.prova.questoes[key] = updatedQuestion;
+                    json.questoes[key] = updatedQuestion;
                   },
                 };
               }
@@ -966,10 +883,10 @@
 
               if (index >= 0) {
                 return {
-                  schema: "new",
+                  schema: "test",
                   question: examQuestions[index],
-                  setQuestion(question) {
-                    examQuestions[index] = question;
+                  setQuestion(updatedQuestion) {
+                    examQuestions[index] = updatedQuestion;
                   },
                 };
               }
@@ -978,15 +895,8 @@
             return null;
           }
 
-          function getOldSchemaAnswerKey() {
+          function getExamAnswerKey() {
             const json = loadedJson.value;
-
-            if (
-              json?.prova?.gabarito &&
-              typeof json.prova.gabarito === "object"
-            ) {
-              return json.prova.gabarito;
-            }
 
             if (json?.gabarito && typeof json.gabarito === "object") {
               return json.gabarito;
@@ -998,12 +908,12 @@
           function buildQuestionEditorValue(source) {
             const editorValue = JSON.parse(JSON.stringify(source.question));
 
-            if (source.schema !== "new") {
+            if (source.schema === "exam") {
               const questionNumber = String(currentQuestion.value.numero);
-              const oldAnswerKey = getOldSchemaAnswerKey();
+              const examAnswerKey = getExamAnswerKey();
 
-              if (oldAnswerKey && questionNumber in oldAnswerKey) {
-                editorValue.gabarito = oldAnswerKey[questionNumber];
+              if (examAnswerKey && questionNumber in examAnswerKey) {
+                editorValue.gabarito = examAnswerKey[questionNumber];
               }
             }
 
@@ -1080,9 +990,9 @@
                 JSON.stringify(restoredQuestion),
               );
 
-              if (source.schema !== "new") {
+              if (source.schema === "exam") {
                 const questionNumber = String(currentQuestion.value.numero);
-                const oldAnswerKey = getOldSchemaAnswerKey();
+                const examAnswerKey = getExamAnswerKey();
 
                 if (
                   Object.prototype.hasOwnProperty.call(
@@ -1090,13 +1000,13 @@
                     "gabarito",
                   )
                 ) {
-                  if (!oldAnswerKey) {
+                  if (!examAnswerKey) {
                     throw new Error(
-                      "O formato antigo não possui um objeto de gabarito que possa ser atualizado.",
+                      "O arquivo da prova não possui um objeto gabarito que possa ser atualizado.",
                     );
                   }
 
-                  oldAnswerKey[questionNumber] = updatedQuestion.gabarito;
+                  examAnswerKey[questionNumber] = updatedQuestion.gabarito;
                   delete updatedQuestion.gabarito;
                 }
               }

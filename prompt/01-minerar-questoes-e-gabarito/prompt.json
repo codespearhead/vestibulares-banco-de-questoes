@@ -29,19 +29,17 @@
     "Permitir reclassificação futura sem perda de informação."
   ],
   "schemaProva": {
-    "prova": {
-      "questoes": {
-        "id_da_questao": {
-          "contexto": [],
-          "comando": "string",
-          "alternativas": {
-            "id_da_alternativa": "objeto conforme tiposContexto"
-          }
+    "questoes": {
+      "id_da_questao": {
+        "contexto": [],
+        "comando": "string",
+        "alternativas": {
+          "id_da_alternativa": "objeto conforme tiposContexto"
         }
-      },
-      "gabarito": {
-        "id_da_questao": "string"
       }
+    },
+    "gabarito": {
+      "id_da_questao": "string"
     }
   },
   "validacaoPrevia": [
