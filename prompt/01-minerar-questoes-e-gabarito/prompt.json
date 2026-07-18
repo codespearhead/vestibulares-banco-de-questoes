@@ -172,6 +172,10 @@
     {
       "id": "regrasContexto_010",
       "texto": "Legendas, créditos, fontes, referências bibliográficas, indicações de autoria, datas de publicação e textos introdutórios associados a imagens devem permanecer no campo contexto, na posição em que aparecem no documento, e nunca ser incorporados ao comando."
+    },
+    {
+      "id": "regrasContexto_011",
+      "texto": "Quando uma questão apresentar, antes da pergunta ou instrução principal, uma citação, um trecho reproduzido, uma frase destacada, uma fórmula, uma tabela, um gráfico, uma imagem ou qualquer outro elemento usado como referência para a resolução, transcreva esse elemento integralmente no campo contexto, preservando exatamente o texto e a ordem em que aparecem na prova. O campo comando deve conter exclusivamente a pergunta ou instrução principal dirigida ao candidato. Não reescreva, resuma, complete, introduza ou parafraseie o conteúdo ao separá-lo entre contexto e comando."
     }
   ],
   "tiposContexto": {
