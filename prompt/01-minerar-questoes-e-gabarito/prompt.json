@@ -126,6 +126,10 @@
     {
       "id": "regrasGerais_011",
       "texto": "O JSON deve terminar com a propriedade \"fonte\", cujo valor deve ser exatamente \"[TODO:ADICIONAR_FONTE]\"."
+    },
+    {
+      "id": "regrasGerais_012",
+      "texto": "Normalize os indicadores ordinais para os caracteres Unicode 'º' e 'ª'. Quando o documento apresentar visualmente um indicador ordinal após um número, transcreva-o sempre como 'º' para o masculino e 'ª' para o feminino, ainda que a extração textual do PDF retorne as letras comuns 'o' ou 'a'. Exemplos: '1o parágrafo' deve resultar em '1º parágrafo'; '2a edição' deve resultar em '2ª edição'. Não aplique essa normalização quando a letra após o número não funcionar como indicador ordinal."
     }
   ],
   "regrasContexto": [

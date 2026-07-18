@@ -470,7 +470,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Analise o gráfico que apresenta o desmatamento da Amazônia no período de 2008 até o 1o bimestre de 2024. 600 564"
+          "conteudo": "Analise o gráfico que apresenta o desmatamento da Amazônia no período de 2008 até o 1º bimestre de 2024. 600 564"
         },
         {
           "mimeType": "image/png",
@@ -1640,7 +1640,7 @@
     },
     "60": {
       "contexto": [],
-      "comando": "O setor de vendas de determinada empresa dividiu um bônus de R$ 15.000,00 entre os três funcionários que obtiveram os maiores valores em vendas no 1o bimestre de 2024, de modo diretamente proporcional ao valor das vendas de cada um. Desses três vendedores, Marcos não foi quem obteve o maior valor em vendas, e Pedro, que recebeu R$ 4.500,00 de bônus, foi quem obteve o menor valor em vendas. Sabendo que o valor das vendas feitas por Pedro foi 90% do valor das vendas feitas por Marcos e que o valor total das vendas feitas por esses três vendedores foi R$ 900.000,00, o bônus recebido pelo funcionário que obteve o maior valor em vendas foi",
+      "comando": "O setor de vendas de determinada empresa dividiu um bônus de R$ 15.000,00 entre os três funcionários que obtiveram os maiores valores em vendas no 1º bimestre de 2024, de modo diretamente proporcional ao valor das vendas de cada um. Desses três vendedores, Marcos não foi quem obteve o maior valor em vendas, e Pedro, que recebeu R$ 4.500,00 de bônus, foi quem obteve o menor valor em vendas. Sabendo que o valor das vendas feitas por Pedro foi 90% do valor das vendas feitas por Marcos e que o valor total das vendas feitas por esses três vendedores foi R$ 900.000,00, o bônus recebido pelo funcionário que obteve o maior valor em vendas foi",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -2626,7 +2626,7 @@
           "conteudo": "Leia o trecho do romance Capitães da areia, de Jorge Amado.\n\nPedro Bala e João Grande abalaram pela ladeira da Praça. Barandão abriu no mundo também. Mas o Sem-Pernas ficou encurralado na rua. Jogava picula1 com os guardas. Estes tinham se despreocupado dos outros, pensavam que já era alguma coisa pegar aquele coxo. Sem-Pernas corria de um lado para outro da rua, os guardas avançavam. Ele fez que ia escapulir por outro lado, driblou um dos guardas, saiu pela ladeira. Mas em vez de descer e tomar pela Baixa dos Sapateiros, se dirigiu para a praça do Palácio. Porque Sem-Pernas sabia que se corresse na rua o pegariam com certeza. Eram homens, de pernas maiores que as suas, e além do mais ele era coxo, pouco podia correr. E acima de tudo não queria que o pegassem. Lembrava-se da vez que fora à polícia. Dos sonhos das suas noites más. Não o pegariam e enquanto corre este é o único pensamento que vai com ele. [...] Não o levarão. Vêm em seus calcanhares, mas não o levarão. Pensam que ele vai parar junto ao grande elevador. Mas Sem-Pernas não para. Sobe para o pequeno muro, volve o rosto para os guardas que ainda correm, ri com toda a força do seu ódio, cospe na cara de um que se aproxima estendendo os braços, se atira de costas no espaço como se fosse um trapezista de circo. A praça toda fica em suspenso por um momento. \"Se jogou\", diz uma mulher, e desmaia. Sem-Pernas se rebenta na montanha como um trapezista de circo que não tivesse alcançado o outro trapézio. O cachorro late entre as grades do muro.\n\n(Capitães da areia, 2008.)\n\n1picula: brincadeira infantil também conhecida como pega-pega, pegador e manja-pega."
         }
       ],
-      "comando": "Na frase \"E **acima de tudo** não queria que o pegassem\" (1o parágrafo), a expressão sublinhada indica que a ação pretendida pelo personagem é",
+      "comando": "Na frase \"E **acima de tudo** não queria que o pegassem\" (1º parágrafo), a expressão sublinhada indica que a ação pretendida pelo personagem é",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -2661,11 +2661,11 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "\"sabia que **se** corresse na rua o pegariam com certeza\" (1o parágrafo)."
+          "conteudo": "\"sabia que **se** corresse na rua o pegariam com certeza\" (1º parágrafo)."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "\"cospe na cara de um que **se** aproxima estendendo os braços\" (1o parágrafo)."
+          "conteudo": "\"cospe na cara de um que **se** aproxima estendendo os braços\" (1º parágrafo)."
         },
         "C": {
           "mimeType": "text/plain",
@@ -2673,11 +2673,11 @@
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "\"Lembrava-**se** da vez que fora à polícia. Dos sonhos das suas noites más\" (1o parágrafo)."
+          "conteudo": "\"Lembrava-**se** da vez que fora à polícia. Dos sonhos das suas noites más\" (1º parágrafo)."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "\"Estes tinham **se** despreocupado dos outros\" (1o parágrafo)."
+          "conteudo": "\"Estes tinham **se** despreocupado dos outros\" (1º parágrafo)."
         }
       }
     },

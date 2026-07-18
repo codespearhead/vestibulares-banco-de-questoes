@@ -119,7 +119,7 @@
     {
       "questao": "04",
       "gabarito": "C",
-      "motivo": "Termo destacado não captado na extração textual",
+      "motivo": "Termo destacado não captado na extração textual. Texto com indicador ordinal",
       "saida_esperada": {
         "contexto": [
           {
@@ -127,7 +127,7 @@
             "conteudo": "Para responder às questões de 03 a 06, considere o artigo escrito por Rafael Magalhães dos Santos e editado por Layse Ventura.\n\nA televisão já foi vista como o fim do cinema. Mas, em vez de morrer, a sétima arte evoluiu: criou novas linguagens, reinventou formatos e encontrou seu próprio espaço. Hoje, a Inteligência Artificial é tratada como a próxima ameaça às indústrias criativas. Será? A história mostra que, diante de grandes mudanças, quem inova sobrevive — e ainda brilha.\n\nPara salvar a experiência do cinema diante da televisão, a indústria apostou na inovação técnica e estética. Vieram o widescreen, o 3D e o som multicanal, criando um espetáculo que nenhuma TV da época podia replicar. As produções também aceleraram a adoção do filme colorido e passaram a se associar a eventos de \"alta cultura\", como teatro e ópera, com filmes mais longos, aberturas e intervalos."
           }
         ],
-        "comando": "[TODO:ADICIONAR_TERMO_DESTACADO] \"Para salvar a experiência do cinema diante da televisão, a indústria apostou na inovação técnica e estética.\" (2o parágrafo)\n\nNo contexto em que se encontra, a palavra sublinhada deve ser entendida como:",
+        "comando": "[TODO:ADICIONAR_TERMO_DESTACADO] \"Para salvar a experiência do cinema diante da televisão, a indústria apostou na inovação técnica e estética.\" (2º parágrafo)\n\nNo contexto em que se encontra, a palavra sublinhada deve ser entendida como:",
         "alternativas": {
           "A": {
             "mimeType": "text/plain",
