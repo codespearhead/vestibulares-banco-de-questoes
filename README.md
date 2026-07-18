@@ -30,7 +30,7 @@ B.02 - Leia o conteúdo da propriedade `validacaoPrevia`.
 B.03 - Envie a seguinte mensagem junto aos arquivos anexados:
 
 ```
-Execute o `prompt.json`.
+Siga as especificações contidas no arquivo `prompt.json` para processar a prova.
 ```
 
 ## C - Como executar os testes
