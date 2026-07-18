@@ -603,22 +603,16 @@
               return {};
             }
 
-            if (Array.isArray(json.questoes)) {
-              return {
-                Prova: json.questoes.map(normalizeOldQuestion),
-              };
-            }
-
             if (
               json.questoes &&
               typeof json.questoes === "object" &&
               !Array.isArray(json.questoes)
             ) {
               return {
-                Prova: Object.entries(json.questoes).map(([numero, question]) =>
-                  normalizeOldQuestion({
+                Prova: Object.entries(json.questoes).map(
+                  ([numero, question]) => ({
                     ...question,
-                    numero: question.numero || numero,
+                    numero,
                   }),
                 ),
               };
@@ -628,21 +622,14 @@
               .filter(([, value]) => Array.isArray(value))
               .reduce((exams, [examName, examQuestions]) => {
                 exams[examName] = examQuestions.map((question) =>
-                  normalizeNewQuestion(question, examName),
+                  normalizeQuestion(question, examName),
                 );
 
                 return exams;
               }, {});
           }
 
-          function normalizeOldQuestion(question) {
-            return {
-              ...question,
-              numero: question.numero ?? question.questao,
-            };
-          }
-
-          function normalizeNewQuestion(question, examName) {
+          function normalizeQuestion(question, examName) {
             return {
               exame: examName,
               numero: question.questao,
