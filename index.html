@@ -343,9 +343,12 @@
           const examKeys = ref([]);
           const selectedExamKey = ref("");
           const questionsByExam = ref({});
-          const questions = computed(
-            () => questionsByExam.value[selectedExamKey.value] || [],
-          );
+          const questions = computed(() => {
+            const examQuestions =
+              questionsByExam.value[selectedExamKey.value] || [];
+
+            return [...examQuestions].sort(compareQuestions);
+          });
           const answerKey = ref({});
           const selectedQuestionIndex = ref(0);
           const selectedAlternative = ref(null);
@@ -354,6 +357,8 @@
           const selectPlaceholder = ref("Carregue um arquivo");
           const currentFileHandle = ref(null);
           const loadedJson = ref(null);
+          const questionKeyOrder = ref([]);
+          const answerKeyOrder = ref([]);
           const saveMessage = ref("");
           const isJsonEditorOpen = ref(false);
           const jsonEditorText = ref("");
@@ -487,6 +492,8 @@
             const text = await file.text();
             const json = JSON.parse(text);
             loadedJson.value = json;
+            questionKeyOrder.value = extractObjectKeyOrder(text, "questoes");
+            answerKeyOrder.value = extractObjectKeyOrder(text, "gabarito");
 
             const extractedExams = extractExams(json);
             const firstExamKey = Object.keys(extractedExams)[0] || "";
@@ -598,9 +605,7 @@
 
             if (Array.isArray(json.questoes)) {
               return {
-                Prova: json.questoes
-                  .map(normalizeOldQuestion)
-                  .sort(compareQuestions),
+                Prova: json.questoes.map(normalizeOldQuestion),
               };
             }
 
@@ -610,23 +615,21 @@
               !Array.isArray(json.questoes)
             ) {
               return {
-                Prova: Object.entries(json.questoes)
-                  .map(([numero, question]) =>
-                    normalizeOldQuestion({
-                      ...question,
-                      numero: question.numero || numero,
-                    }),
-                  )
-                  .sort(compareQuestions),
+                Prova: Object.entries(json.questoes).map(([numero, question]) =>
+                  normalizeOldQuestion({
+                    ...question,
+                    numero: question.numero || numero,
+                  }),
+                ),
               };
             }
 
             return Object.entries(json)
               .filter(([, value]) => Array.isArray(value))
               .reduce((exams, [examName, examQuestions]) => {
-                exams[examName] = examQuestions
-                  .map((question) => normalizeNewQuestion(question, examName))
-                  .sort(compareQuestions);
+                exams[examName] = examQuestions.map((question) =>
+                  normalizeNewQuestion(question, examName),
+                );
 
                 return exams;
               }, {});
@@ -703,6 +706,149 @@
             return (await fileHandle.requestPermission(options)) === "granted";
           }
 
+          function extractObjectKeyOrder(text, propertyName) {
+            const escapedPropertyName = propertyName.replace(
+              /[.*+?^${}()|[\]\\]/g,
+              "\\$&",
+            );
+            const propertyMatch = new RegExp(
+              `"${escapedPropertyName}"\\s*:\\s*\\{`,
+            ).exec(text);
+
+            if (!propertyMatch) {
+              return [];
+            }
+
+            const objectStart = text.indexOf("{", propertyMatch.index);
+            const keys = [];
+            let depth = 1;
+            let index = objectStart + 1;
+
+            while (index < text.length && depth > 0) {
+              const character = text[index];
+
+              if (character === '"') {
+                const stringStart = index;
+                index += 1;
+
+                while (index < text.length) {
+                  if (text[index] === "\\") {
+                    index += 2;
+                    continue;
+                  }
+
+                  if (text[index] === '"') {
+                    break;
+                  }
+
+                  index += 1;
+                }
+
+                const stringEnd = index;
+
+                if (depth === 1) {
+                  let nextIndex = stringEnd + 1;
+
+                  while (/\s/.test(text[nextIndex] || "")) {
+                    nextIndex += 1;
+                  }
+
+                  if (text[nextIndex] === ":") {
+                    try {
+                      keys.push(
+                        JSON.parse(text.slice(stringStart, stringEnd + 1)),
+                      );
+                    } catch {
+                      return [];
+                    }
+                  }
+                }
+              } else if (character === "{") {
+                depth += 1;
+              } else if (character === "}") {
+                depth -= 1;
+              }
+
+              index += 1;
+            }
+
+            return keys;
+          }
+
+          function stringifyJsonPreservingQuestionOrder(value) {
+            const indentation = "  ";
+
+            function serialize(currentValue, depth, path) {
+              if (
+                currentValue === null ||
+                typeof currentValue === "number" ||
+                typeof currentValue === "boolean" ||
+                typeof currentValue === "string"
+              ) {
+                return JSON.stringify(currentValue);
+              }
+
+              if (Array.isArray(currentValue)) {
+                if (!currentValue.length) {
+                  return "[]";
+                }
+
+                const items = currentValue.map(
+                  (item, index) =>
+                    indentation.repeat(depth + 1) +
+                    serialize(item, depth + 1, [...path, index]),
+                );
+
+                return `[\n${items.join(",\n")}\n${indentation.repeat(depth)}]`;
+              }
+
+              if (typeof currentValue === "object") {
+                let keys = Object.keys(currentValue);
+
+                if (path.length === 1) {
+                  const preservedOrder =
+                    path[0] === "questoes"
+                      ? questionKeyOrder.value
+                      : path[0] === "gabarito"
+                        ? answerKeyOrder.value
+                        : null;
+
+                  if (preservedOrder) {
+                    const existingKeys = new Set(keys);
+                    const preservedKeys = preservedOrder.filter((key) =>
+                      existingKeys.has(key),
+                    );
+                    const newKeys = keys.filter(
+                      (key) => !preservedOrder.includes(key),
+                    );
+
+                    keys = [...preservedKeys, ...newKeys];
+                  }
+                }
+
+                if (!keys.length) {
+                  return "{}";
+                }
+
+                const properties = keys.map(
+                  (key) =>
+                    indentation.repeat(depth + 1) +
+                    `${JSON.stringify(key)}: ${serialize(
+                      currentValue[key],
+                      depth + 1,
+                      [...path, key],
+                    )}`,
+                );
+
+                return `{\n${properties.join(",\n")}\n${indentation.repeat(depth)}}`;
+              }
+
+              return undefined;
+            }
+
+            return serialize(value, 0, []);
+          }
+
           async function saveCurrentJson(json = loadedJson.value) {
             if (!currentFileHandle.value || !json) {
               throw new Error("Nenhum arquivo JSON está aberto.");
@@ -721,7 +867,9 @@
             const writable = await currentFileHandle.value.createWritable();
 
             try {
-              await writable.write(JSON.stringify(json, null, 2) + "\n");
+              await writable.write(
+                stringifyJsonPreservingQuestionOrder(json) + "\n",
+              );
               await writable.close();
             } catch (error) {
               await writable.abort();
