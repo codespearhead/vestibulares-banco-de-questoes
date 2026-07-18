@@ -10,15 +10,33 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "[TODO:ADICIONAR_IMAGEM]" }
+          {
+            "mimeType": "image/png",
+            "conteudo": "[TODO:ADICIONAR_IMAGEM]"
+          }
         ],
         "comando": "Para a produção do efeito humorístico, o autor recorre, no quarto quadrinho,",
         "alternativas": {
-          "A": { "mimeType": "text/plain", "conteudo": "a uma hipérbole." },
-          "B": { "mimeType": "text/plain", "conteudo": "a um eufemismo." },
-          "C": { "mimeType": "text/plain", "conteudo": "a um paradoxo." },
-          "D": { "mimeType": "text/plain", "conteudo": "a uma comparação." },
-          "E": { "mimeType": "text/plain", "conteudo": "a uma gradação." }
+          "A": {
+            "mimeType": "text/plain",
+            "conteudo": "a uma hipérbole."
+          },
+          "B": {
+            "mimeType": "text/plain",
+            "conteudo": "a um eufemismo."
+          },
+          "C": {
+            "mimeType": "text/plain",
+            "conteudo": "a um paradoxo."
+          },
+          "D": {
+            "mimeType": "text/plain",
+            "conteudo": "a uma comparação."
+          },
+          "E": {
+            "mimeType": "text/plain",
+            "conteudo": "a uma gradação."
+          }
         }
       }
     },
@@ -32,7 +50,10 @@
             "mimeType": "text/plain",
             "conteudo": "Considere a tirinha a seguir, publicada no perfil @devaneioshq do Instagram em 11.06.2025, para responder às questões 01 e 02."
           },
-          { "mimeType": "image/png", "conteudo": "[TODO:ADICIONAR_IMAGEM]" }
+          {
+            "mimeType": "image/png",
+            "conteudo": "[TODO:ADICIONAR_IMAGEM]"
+          }
         ],
         "comando": "Em relação ao momento em que o narrador conta a história, os fatos narrados acontecem",
         "alternativas": {
