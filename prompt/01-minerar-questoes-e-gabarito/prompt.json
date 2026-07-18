@@ -124,6 +124,10 @@
     {
       "id": "regrasGerais_010",
       "texto": "Normalize aspas tipográficas para suas equivalentes ASCII. Aspas simples tipográficas ('‘' e '’') devem ser convertidas para aspas simples ASCII ('). Aspas duplas tipográficas ('“' e '”') devem ser convertidas para aspas duplas ASCII (\"). Nunca converta aspas simples em aspas duplas nem aspas duplas em aspas simples. Preserve o tipo original de aspa."
+    },
+    {
+      "id": "regrasGerais_011",
+      "texto": "O JSON deve terminar com a propriedade \"fonte\", cujo valor deve ser exatamente \"[TODO:ADICIONAR_FONTE]\"."
     }
   ],
   "regrasContexto": [

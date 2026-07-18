@@ -71,3 +71,5 @@ D.01.3 - Clique no botão "Colar imagem da área de transferência".
 D.01.4 - Selecione o termo citado no item [D.01.0] no JSON em questão e aperte CRTL+V.
 
 D.02 - `[TODO:ADICIONAR_TERMO_DESTACADO]`: a questão possui um termo destacado o qual não é detectável na extração textual, como termos em negrito ou sublinhados. Adicione manualmente `**` ao redor do termo em questão para que ele fique sublinhado através do botão "Editar questão" presente na página.
+
+D.03 - `[TODO:ADICIONAR_FONTE]`: adicione a URL da página que contém o caderno de prova e o gabarito.
