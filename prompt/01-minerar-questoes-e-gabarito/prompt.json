@@ -18,15 +18,39 @@
     "arquivos": [
       {
         "origem": "arquivo_da_prova_validado",
-        "extensao": ".json"
+        "extensao": ".json",
+        "nome": "nome_original_da_prova_com_extensao_json",
+        "entrega": "arquivo_baixavel_anexado_ao_chat",
+        "conteudo": "JSON completo contendo todas as questões e o gabarito validado"
       }
     ]
   },
   "objetivo": [
     "Construir uma base de dados estruturada de vestibulares.",
     "Permitir estatísticas por disciplina, assunto, subassunto e tópico.",
-    "Permitir análise histórica da incidência de conteúdos.",
-    "Permitir reclassificação futura sem perda de informação."
+    "Permitir análise histórica da incidência de conteúdos."
+  ],
+  "execucao": [
+    {
+      "id": "execucao_001",
+      "texto": "Execute todas as etapas de validacaoPrevia."
+    },
+    {
+      "id": "execucao_002",
+      "texto": "Execute todas as etapas de validacaoIntermediaria."
+    },
+    {
+      "id": "execucao_003",
+      "texto": "Após a aprovação do usuário, execute a extração completa da prova."
+    },
+    {
+      "id": "execucao_004",
+      "texto": "Execute todas as etapas de validacaoFinal."
+    },
+    {
+      "id": "execucao_005",
+      "texto": "Produza os arquivos especificados em 'saida'."
+    }
   ],
   "schemaProva": {
     "questoes": {
@@ -34,18 +58,19 @@
         "contexto": [],
         "comando": "string",
         "alternativas": {
-          "id_da_alternativa": "objeto conforme tiposContexto"
+          "id_da_alternativa": "um único valor de tiposContexto"
         }
       }
     },
     "gabarito": {
       "id_da_questao": "string"
-    }
+    },
+    "fonte": "[TODO:ADICIONAR_FONTE]"
   },
   "validacaoPrevia": [
     {
       "id": "validacaoPrevia_001",
-      "texto": "Antes de iniciar qualquer extração ou classificação, valide a consistência dos arquivos recebidos."
+      "texto": "Antes de iniciar qualquer extração, valide a consistência dos arquivos recebidos."
     },
     {
       "id": "validacaoPrevia_004",
@@ -53,7 +78,7 @@
     },
     {
       "id": "validacaoPrevia_005",
-      "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução de pelo menos cinco questões distribuídas entre as primeiras páginas da prova. Caso sejam encontradas divergências relevantes, interrompa o processamento e solicite esclarecimentos ao usuário."
+      "texto": "A validação do gabarito deve incluir a comparação dos identificadores disponíveis nos documentos, a verificação da compatibilidade entre a quantidade de questões da prova e a quantidade de respostas do gabarito e a resolução independente das três primeiras questões. Interrompa o processamento caso a quantidade ou os identificadores sejam incompatíveis, o gabarito não contenha resposta para alguma questão, haja resposta para uma questão inexistente ou a resolução independente indique possível erro em qualquer uma das três respostas verificadas. Na mensagem de interrupção, identifique objetivamente cada divergência encontrada."
     },
     {
       "id": "validacaoPrevia_006",
@@ -67,25 +92,63 @@
   "validacaoIntermediaria": [
     {
       "id": "validacaoIntermediaria_001",
-      "texto": "Após concluir a extração das três primeiras questões, interrompa o processamento e exiba no chat exatamente o JSON parcial que seria gravado no arquivo JSON final, contendo apenas as questões 01, 02 e 03 e seus respectivos gabaritos."
+      "texto": "Após a aprovação da validacaoPrevia, extraia integralmente as três primeiras questões, incluindo contexto, comando e alternativas, aplique a cada uma todas as regras de validacaoQuestao e, somente se não houver impedimentos, interrompa o processamento e exiba o JSON parcial que seria gravado no arquivo final, contendo essas três questões e seus respectivos gabaritos já validados."
     },
     {
       "id": "validacaoIntermediaria_002",
-      "texto": "Não continue a análise das demais questões até que o usuário aprove explicitamente a estrutura, a classificação e a organização do JSON parcial."
+      "texto": "Não continue a análise das demais questões até que o usuário aprove explicitamente a estrutura, a transcrição e a organização do JSON parcial."
     },
     {
       "id": "validacaoIntermediaria_003",
-      "texto": "O JSON exibido deve seguir exatamente o schema final de prova.json, apenas contendo um subconjunto das questões."
+      "texto": "Após a aprovação do usuário, reinicie a extração desde a questão 01 e gere o arquivo completo."
     },
     {
       "id": "validacaoIntermediaria_004",
-      "texto": "Após a aprovação do usuário, reinicie a extração desde a questão 01 e gere o arquivo completo."
+      "texto": "Quando esta validação for concluída com sucesso, exiba no chat exclusivamente o JSON parcial exigido, sem explicações, comentários, markdown ou texto adicional. Esta restrição não se aplica às mensagens de interrupção causadas por divergências ou impedimentos encontrados em qualquer validação."
+    }
+  ],
+  "processamentoIntegral": [
+    {
+      "id": "processamentoIntegral_001",
+      "texto": "A quantidade de questões, páginas, caracteres ou o tamanho estimado do JSON final nunca constitui, por si só, motivo para recusar, interromper ou declarar impossível o processamento."
+    },
+    {
+      "id": "processamentoIntegral_002",
+      "texto": "Não avalie a viabilidade do processamento apenas pela quantidade total de questões. Execute primeiro a validacaoPrevia e, se ela for aprovada, execute a validacaoIntermediaria conforme especificado."
+    },
+    {
+      "id": "processamentoIntegral_003",
+      "texto": "Após a aprovação explícita da validacaoIntermediaria, processe obrigatoriamente todas as questões da prova. Caso não seja conveniente processá-las de uma só vez, divida o trabalho internamente em lotes de tamanho adequado, sem solicitar que o usuário divida, reenvie ou reduza os arquivos."
+    },
+    {
+      "id": "processamentoIntegral_004",
+      "texto": "O uso de lotes é apenas uma estratégia interna de execução. Os lotes não devem ser apresentados como resultados finais independentes e não dispensam a consolidação de todas as questões em um único arquivo JSON."
+    },
+    {
+      "id": "processamentoIntegral_005",
+      "texto": "Durante o processamento em lotes, grave e atualize cumulativamente o arquivo JSON de saída no ambiente de arquivos disponível, preservando o trabalho já concluído e evitando depender da exibição integral do conteúdo no chat."
+    },
+    {
+      "id": "processamentoIntegral_006",
+      "texto": "Ao terminar todos os lotes, consolide as questões em ordem, acrescente o gabarito completo e a propriedade final 'fonte', execute a validacaoFinal sobre o arquivo consolidado e corrija qualquer erro encontrado antes da entrega."
+    },
+    {
+      "id": "processamentoIntegral_007",
+      "texto": "Limitações de tamanho da mensagem do chat não impedem a conclusão da tarefa, pois o JSON completo deve ser entregue como arquivo baixável. Não tente substituir a entrega do arquivo completo pela exibição parcial do JSON no chat."
+    },
+    {
+      "id": "processamentoIntegral_008",
+      "texto": "Não solicite nova confirmação entre os lotes. A única pausa obrigatória para aprovação do usuário é a definida em validacaoIntermediaria."
+    },
+    {
+      "id": "processamentoIntegral_009",
+      "texto": "Somente interrompa o processamento após a aprovação intermediária se houver arquivo ilegível, ausência de páginas ou questões, associação incerta entre prova e gabarito, divergência relevante no gabarito ou outra impossibilidade concreta baseada nos arquivos. Nunca use apenas alegações genéricas de limite de contexto, quantidade de questões ou tamanho de saída."
     }
   ],
   "regrasGerais": [
     {
       "id": "regrasGerais_001",
-      "texto": "Analise todas as questões da prova."
+      "texto": "Analise e extraia todas as questões da prova, sem exceção e independentemente da quantidade total."
     },
     {
       "id": "regrasGerais_002",
@@ -93,11 +156,7 @@
     },
     {
       "id": "regrasGerais_003",
-      "texto": "Quando uma questão depender de imagem, gráfico, mapa, charge, fotografia, tirinha, diagrama ou qualquer elemento visual, utilize o elemento visual normalmente para interpretar, classificar e resolver a questão."
-    },
-    {
-      "id": "regrasGerais_004",
-      "texto": "A resposta final deve conter exclusivamente o conteúdo do arquivo prova.json, sem explicações, comentários, markdown ou texto adicional."
+      "texto": "Quando uma questão depender de imagem, gráfico, mapa, charge, fotografia, tirinha, diagrama ou qualquer elemento visual, utilize o elemento visual normalmente para interpretar e resolver a questão."
     },
     {
       "id": "regrasGerais_005",
@@ -130,6 +189,10 @@
     {
       "id": "regrasGerais_012",
       "texto": "Normalize os indicadores ordinais para os caracteres Unicode 'º' e 'ª'. Quando o documento apresentar visualmente um indicador ordinal após um número, transcreva-o sempre como 'º' para o masculino e 'ª' para o feminino, ainda que a extração textual do PDF retorne as letras comuns 'o' ou 'a'. Exemplos: '1o parágrafo' deve resultar em '1º parágrafo'; '2a edição' deve resultar em '2ª edição'. Não aplique essa normalização quando a letra após o número não funcionar como indicador ordinal."
+    },
+    {
+      "id": "regrasGerais_013",
+      "texto": "Quando a sequência de execução definida em 'execucao' determinar inequivocamente a próxima etapa, o assistente deve executá-la imediatamente. É proibido solicitar confirmação adicional, anunciar intenção de executá-la ou aguardar nova autorização."
     }
   ],
   "regrasContexto": [
@@ -235,6 +298,10 @@
     "Todas as alternativas foram extraídas.",
     "Todos os textos-base foram incluídos.",
     "O gabarito coincide com o gabarito oficial.",
-    "O arquivo JSON é válido."
+    "O arquivo JSON é válido.",
+    "O número de questões no JSON coincide com o número de questões identificado na prova.",
+    "Nenhum lote ficou ausente da consolidação final.",
+    "O arquivo JSON completo foi efetivamente criado no ambiente de arquivos.",
+    "O arquivo JSON completo foi disponibilizado ao usuário como arquivo baixável."
   ]
 }

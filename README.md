@@ -33,6 +33,8 @@ B.03 - Envie a seguinte mensagem junto aos arquivos anexados:
 Siga as especificações contidas no arquivo `prompt.json` para processar a prova.
 ```
 
+B.04 - Abra o JSON recebido no visualizador de provas (`index.html`) e confirme manualmente que esse arquivo está de acordo como o esperado. Em caso positivo, responda com "Continue", e caso o LLM se recuse por causa de limitações no tamanho do JSON, diga para ler as regras em "processamentoIntegral" novamente.
+
 ## C - Como executar os testes
 
 C.01 - Forneça ao LLM todo o conteúdo da pasta do prompt (ex.: `prompt\01-minerar-questoes-e-gabarito`).
