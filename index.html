@@ -281,7 +281,6 @@
       <div
         v-if="isJsonEditorOpen"
         class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3"
-        @click.self="closeJsonEditor"
       >
         <section
           class="flex max-h-[95vh] w-full max-w-6xl flex-col rounded-xl bg-white p-4 shadow-2xl md:p-5"
@@ -1311,10 +1310,6 @@
 
           function handleKeyDown(event) {
             if (isJsonEditorOpen.value) {
-              if (event.key === "Escape") {
-                closeJsonEditor();
-              }
-
               return;
             }
 
