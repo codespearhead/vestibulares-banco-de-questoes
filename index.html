@@ -241,17 +241,10 @@
                     <p class="font-bold text-red-700">
                       Imagem pendente. Copie a imagem e clique no botão abaixo.
                     </p>
-                    <button
-                      type="button"
-                      class="mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                      @click.stop="pasteImage(alternative)"
-                    >
-                      Colar imagem da área de transferência
-                    </button>
                   </div>
 
                   <img
-                    v-else
+                    v-if="!isMissingImage(alternative.conteudo)"
                     class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
                     alt="Imagem da alternativa"
                     :src="buildImageSource(
@@ -259,6 +252,14 @@
                       alternative.conteudo
                     )"
                   />
+
+                  <button
+                    type="button"
+                    class="mb-3 mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                    @click.stop="pasteImage(alternative)"
+                  >
+                    Colar imagem da área de transferência
+                  </button>
                 </div>
 
                 <div v-else class="mt-2 font-bold text-red-700">
