@@ -33,6 +33,8 @@ B.03 - Envie a seguinte mensagem junto aos arquivos anexados:
 Siga as especificações contidas no arquivo `prompt.json` para processar a prova.
 ```
 
+B.04 - Caso o LLM se recuse a gerar a resposta após a `validacaoPrevia`, vide [tratamento_de_recusas_pelo_llm](./prompt/01-minerar-questoes-e-gabarito/tratamento_de_recusas_pelo_llm/).
+
 B.04 - Abra o JSON recebido no visualizador de provas (`index.html`) e confirme manualmente que esse arquivo está de acordo como o esperado. Em caso positivo, responda com "Continue", e caso o LLM se recuse por causa de limitações no tamanho do JSON, diga para ler as regras em "processamentoIntegral" novamente.
 
 ## C - Como executar os testes
