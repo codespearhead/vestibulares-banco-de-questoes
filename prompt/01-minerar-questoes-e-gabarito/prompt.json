@@ -193,6 +193,10 @@
     {
       "id": "regrasGerais_013",
       "texto": "Quando a sequência de execução definida em 'execucao' determinar inequivocamente a próxima etapa, o assistente deve executá-la imediatamente. É proibido solicitar confirmação adicional, anunciar intenção de executá-la ou aguardar nova autorização."
+    },
+    {
+      "id": "regrasGerais_014",
+      "texto": "Preserve todos os caracteres Unicode de sobrescrito (superscript) e subscrito (subscript) em qualquer parte do documento, incluindo contexto, comandos, alternativas, legendas, referências, parágrafos e demais textos. Quando a extração textual do PDF substituir esses caracteres por representações ASCII equivalentes, restaure-os de acordo com a formatação visual do documento original. Exemplos: 'H2O' → 'H₂O', 'CO2' → 'CO₂', 'SO4²-' → 'SO₄²⁻', 'm2' → 'm²', '10-3' → '10⁻³'. Não realize essa conversão quando não houver evidência de que o documento original utilizava sobrescritos ou subscritos."
     }
   ],
   "regrasContexto": [

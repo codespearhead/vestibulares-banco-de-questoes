@@ -273,6 +273,46 @@
           }
         }
       }
+    },
+    {
+      "questao": "20",
+      "gabarito": "B",
+      "motivo": "subscript e superscript são escritos corretamente em fórmulas químicas",
+      "saida_esperada": {
+        "contexto": [
+          {
+            "mimeType": "text/plain",
+            "conteudo": "O metanol (CH₃OH) pode ser obtido, em condições específicas, a partir da reação do gás metano (CH₄) com vapor de água (H₂O), de acordo equação a seguir:"
+          },
+          {
+            "mimeType": "text/plain",
+            "conteudo": "CH₄ (g) + H₂O (g) → CH₃OH (ℓ) + H₂ (g)    ΔHº = +78 kJ/mol"
+          }
+        ],
+        "comando": "Considerando que 1 caloria equivale a aproximadamente 4 J, a quantidade de calor, em calorias, envolvido na formação de 2 mol de metanol é, aproximadamente,",
+        "alternativas": {
+          "A": {
+            "mimeType": "text/plain",
+            "conteudo": "4 × 10³ cal."
+          },
+          "B": {
+            "mimeType": "text/plain",
+            "conteudo": "4 × 10⁴ cal."
+          },
+          "C": {
+            "mimeType": "text/plain",
+            "conteudo": "2 × 10³ cal."
+          },
+          "D": {
+            "mimeType": "text/plain",
+            "conteudo": "2 × 10² cal."
+          },
+          "E": {
+            "mimeType": "text/plain",
+            "conteudo": "4 × 10² cal."
+          }
+        }
+      }
     }
   ]
 }
