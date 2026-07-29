@@ -59,7 +59,7 @@ O objetivo desta conversa é validar se o [A.1] continua produzindo os mesmos re
 
 ## D - Como tratar saída do LLM
 
-Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais devem ser lidadas manualmente. Após a geração do arquivo JSON pelo LLM, pesquise pelo termo `[TODO:` nele e faça as alterações abaixo de acordo com o que você vê no respectivo arquivo PDF.
+Embora o LLM consiga fazer quase tudo, ele ainda possui limitações, as quais devem ser lidadas manualmente. Após a geração do arquivo JSON pelo LLM, pesquise pelo termo `[TODO:` nele e faça as alterações abaixo de acordo com o que você vê no respectivo arquivo PDF. Vide [conversoes_de_caracteres_frequentemente_ignoradas_pelo_llm.json](./prompt/01-minerar-questoes-e-gabarito/tratamento_de_recusas_pelo_llm/conversoes_de_caracteres_frequentemente_ignoradas_pelo_llm.json).
 
 > [!IMPORTANT]
 > As alterações nos arquivos deste projetos não são refletidas automaticamente no `index.html`, então caso este arquivo seja alterado, atualize a página do navegador. Após qualquer alteração nos arquivos JSON, como a adição de imagem a uma questão, navegue para a questão anterior ou posterior e volte para a questão atual, pois tal ação força o navegador a ler novamente o arquivo JSON local, o que permite garantir que os dados, que nesse caso é uma imagem, foi de fato persistido.

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "setas_de_reacoes_quimicas",
+    "exemplo_de_como_podem_aparecer": [
+      "->",
+      "<->"
+    ],
+    "como_deve_ser_escrito": [
+      "→",
+      "⇌"
+    ]
+  },
+  {
+    "id": "regra_geral__superscript_subscript",
+    "exemplo_de_como_podem_aparecer": [
+      "a+-0123456789",
+      "OH−",
+      "H2O",
+      "CO2",
+      "mol−1",
+      "10-1"
+    ],
+    "como_deve_ser_escrito": [
+      "a⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹",
+      "a₊₋₀₁₂₃₄₅₆₇₈₉",
+      "OH⁻",
+      "H₂O",
+      "CO₂",
+      "mol⁻¹",
+      "10⁻¹"
+    ]
+  },
+  {
+    "id": "excecao__superscript_subscript__virgulas",
+    "exemplo_de_como_podem_aparecer": [
+      "10-1,5"
+    ],
+    "como_deve_ser_escrito": [
+      "10^(-1,5)",
+      "10_(-1,5)"
+    ]
+  },
+  {
+    "id": "letra_l_em_quimica",
+    "exemplo_de_como_podem_aparecer": [
+      "(l)",
+      "Cl",
+      "Al"
+    ],
+    "como_deve_ser_escrito": [
+      "(ℓ)",
+      "Cℓ",
+      "Aℓ"
+    ]
+  }
+]
