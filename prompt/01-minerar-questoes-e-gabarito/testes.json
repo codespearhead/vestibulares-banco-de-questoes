@@ -313,6 +313,42 @@
           }
         }
       }
+    },
+    {
+      "questao": "27",
+      "gabarito": "A",
+      "motivo": "subscript e superscript são escritos corretamente em prosa",
+      "saida_esperada": {
+        "contexto": [
+          {
+            "mimeType": "text/plain",
+            "conteudo": "Leia o trecho do romance Triste fim de Policarpo Quaresma, de Lima Barreto.\n\nRicardo agarrou o cálice com delicadeza e respeito, levou-o aos lábios e foi como se todo ele bebesse o licor nacional.\n— Está bom, hein? — indagou o major.\n— Magnífico — fez Ricardo, estalando os lábios.\n— É de Angra. Agora tu vais ver que magnífico vinho do Rio Grande temos… Qual Borgonha! Qual Bordeaux! Temos no Sul muito melhores…\nE o jantar correu assim, nesse tom. Quaresma exaltando os produtos nacionais: a banha, o toucinho e o arroz; a irmã fazia pequenas objeções e Ricardo dizia: \"É, é, não há dúvida\" — rolando nas órbitas os olhos pequenos, franzindo a testa diminuta que se sumia no cabelo áspero, forçando muito a sua fisionomia miúda e dura a adquirir uma expressão sincera de delicadeza e satisfação.\nAcabado o jantar foram ver o jardim. Era uma maravilha; não tinha nem uma flor… Certamente não se podia tomar por tal míseros beijos-de-frade, palmas-de-santa-rita, quaresmas lutulentas¹, manacás melancólicos e outros belos exemplares dos nossos campos e prados. Como em tudo o mais, o major era em jardinagem essencialmente nacional. Nada de rosas, de crisântemos, de magnólias — flores exóticas; as nossas terras tinham outras mais belas, mais expressivas, mais olentes², como aquelas que ele tinha ali.\nRicardo ainda uma vez concordou e os dois entraram na sala, quando o crepúsculo vinha devagar, muito vagaroso e lento, como se fosse um longo adeus saudoso do sol ao deixar a terra, pondo nas coisas a sua poesia dolente³ e a sua deliquescência⁴.\nMal foi aceso o gás, o mestre de violão empunhou o instrumento, apertou as cravelhas, correu a escala, abaixando-se sobre ele como se o quisesse beijar. Tirou alguns acordes, para experimentar; e dirigiu-se ao discípulo, que já tinha o seu em posição:\n— Vamos ver. Tire a escala, major.\n\n(Triste fim de Policarpo Quaresma, 2010.)\n¹lutulento: lamacento, lodoso.\n²olente: cheiroso, perfumado.\n³dolente: lamentosa, queixosa.\n⁴deliquescência: propriedade que certas substâncias têm de extrair água."
+          }
+        ],
+        "comando": "Uma característica do personagem Policarpo Quaresma que o acompanha ao longo de todo o romance e que está presente nesse trecho é sua obsessão",
+        "alternativas": {
+          "A": {
+            "mimeType": "text/plain",
+            "conteudo": "pela pátria."
+          },
+          "B": {
+            "mimeType": "text/plain",
+            "conteudo": "pela flora."
+          },
+          "C": {
+            "mimeType": "text/plain",
+            "conteudo": "pela música."
+          },
+          "D": {
+            "mimeType": "text/plain",
+            "conteudo": "pela irmã."
+          },
+          "E": {
+            "mimeType": "text/plain",
+            "conteudo": "pela comida."
+          }
+        }
+      }
     }
   ]
 }

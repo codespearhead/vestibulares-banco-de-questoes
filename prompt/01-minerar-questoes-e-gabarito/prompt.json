@@ -196,7 +196,137 @@
     },
     {
       "id": "regrasGerais_014",
-      "texto": "Preserve todos os caracteres Unicode de sobrescrito (superscript) e subscrito (subscript) em qualquer parte do documento, incluindo contexto, comandos, alternativas, legendas, referências, parágrafos e demais textos. Quando a extração textual do PDF substituir esses caracteres por representações ASCII equivalentes, restaure-os de acordo com a formatação visual do documento original. Exemplos: 'H2O' → 'H₂O', 'CO2' → 'CO₂', 'SO4²-' → 'SO₄²⁻', 'm2' → 'm²', '10-3' → '10⁻³'. Não realize essa conversão quando não houver evidência de que o documento original utilizava sobrescritos ou subscritos."
+      "texto": {
+        "descricao": "Restaura caracteres Unicode de sobrescrito (superscript) e subscrito (subscript) perdidos durante a extração textual do PDF, preservando a aparência visual do documento original.",
+        "transformacoes": [
+          {
+            "categoria": "caracteres_sobrescritos",
+            "entrada": "a+-0123456789",
+            "saida": "a⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹"
+          },
+          {
+            "categoria": "caracteres_subscritos",
+            "entrada": "a+-0123456789",
+            "saida": "a₊₋₀₁₂₃₄₅₆₇₈₉"
+          },
+          {
+            "categoria": "indices_quimicos",
+            "entrada": "H2O",
+            "saida": "H₂O"
+          },
+          {
+            "categoria": "indices_quimicos",
+            "entrada": "CO2",
+            "saida": "CO₂"
+          },
+          {
+            "categoria": "indices_quimicos",
+            "entrada": "NaNO3",
+            "saida": "NaNO₃"
+          },
+          {
+            "categoria": "indices_quimicos",
+            "entrada": "Al2(SO4)3",
+            "saida": "Al₂(SO₄)₃"
+          },
+          {
+            "categoria": "cargas_ionicas",
+            "entrada": "OH-",
+            "saida": "OH⁻"
+          },
+          {
+            "categoria": "cargas_ionicas",
+            "entrada": "Ca2+",
+            "saida": "Ca²⁺"
+          },
+          {
+            "categoria": "cargas_ionicas",
+            "entrada": "SO4²-",
+            "saida": "SO₄²⁻"
+          },
+          {
+            "categoria": "estados_de_oxidacao",
+            "entrada": "Fe0",
+            "saida": "Fe⁰"
+          },
+          {
+            "categoria": "expoentes_de_unidades",
+            "entrada": "m2",
+            "saida": "m²"
+          },
+          {
+            "categoria": "expoentes_de_unidades",
+            "entrada": "cm3",
+            "saida": "cm³"
+          },
+          {
+            "categoria": "expoentes_de_unidades",
+            "entrada": "mol-1",
+            "saida": "mol⁻¹"
+          },
+          {
+            "categoria": "potencias",
+            "entrada": "10-3",
+            "saida": "10⁻³"
+          },
+          {
+            "categoria": "potencias",
+            "entrada": "x^2",
+            "saida": "x²"
+          },
+          {
+            "categoria": "notas_de_rodape",
+            "entrada": "palavra1",
+            "saida": "palavra¹"
+          },
+          {
+            "categoria": "notas_de_rodape",
+            "entrada": "1 definição",
+            "saida": "¹definição"
+          },
+          {
+            "categoria": "letra_l_tipografica_na_quimica",
+            "entrada": "(l)",
+            "saida": "(ℓ)"
+          },
+          {
+            "categoria": "letra_l_tipografica_na_quimica",
+            "entrada": "Cl",
+            "saida": "Cℓ"
+          },
+          {
+            "categoria": "letra_l_tipografica_na_quimica",
+            "entrada": "Al",
+            "saida": "Aℓ"
+          }
+        ],
+        "restricoes": [
+          "Aplicar essas conversões somente quando houver evidência de que o documento original utilizava sobrescritos, subscritos ou outros caracteres Unicode equivalentes.",
+          "O objetivo é preservar a aparência visual do documento original, e não normalizar sua notação.",
+          "Em fórmulas químicas, números que representam quantidades de átomos ou grupos devem ser convertidos para subscritos.",
+          "Em cargas iônicas e estados de oxidação, sinais e números devem ser convertidos para sobrescritos.",
+          "Em expressões matemáticas, científicas e unidades, converter para sobrescrito apenas quando representarem expoentes.",
+          "Quando a extração substituir o caractere Unicode ℓ pela letra latina l, restaurar ℓ para preservar a aparência visual do documento.",
+          "Não aplicar conversões genéricas apenas porque uma letra ou palavra é seguida de número.",
+          "Não alterar identificadores, códigos, siglas, datas, coordenadas cartesianas, numeração de questões, nomes próprios ou outros textos sem evidência visual de sobrescrito ou subscrito.",
+          "Quando houver ambiguidade, preservar exatamente o texto extraído do PDF."
+        ],
+        "casos_sem_representacao_unicode_adequada": [
+          {
+            "entrada": "10-1,5",
+            "saida": "10^(−1,5)",
+            "motivo": "A vírgula decimal não possui equivalente Unicode em sobrescrito."
+          }
+        ],
+        "exemplos_que_nao_devem_ser_convertidos": [
+          "Q1",
+          "P2",
+          "CBERS-4A",
+          "Rio+20",
+          "B(-1, 2)",
+          "www1.folha.uol.com.br"
+        ]
+      }
     }
   ],
   "regrasContexto": [
