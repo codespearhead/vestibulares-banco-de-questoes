@@ -336,42 +336,46 @@
     },
     {
       "id": "regrasContexto_002",
-      "texto": "Nunca inclua no contexto textos, imagens, comandos, alternativas ou qualquer outro elemento pertencente a questões diferentes da questão atual."
+      "texto": "Cada questão deve ser compreensível e solucionável de maneira independente, sem exigir a consulta ao contexto armazenado em outra questão. Sempre que a questão depender de um texto-base, imagem, gráfico, tabela, fórmula ou qualquer outro elemento apresentado anteriormente na prova, reproduza esse elemento integralmente no contexto da questão atual, ainda que ele apareça fisicamente apenas uma vez no documento."
     },
     {
       "id": "regrasContexto_003",
-      "texto": "O campo contexto é uma lista ordenada."
+      "texto": "Ao reproduzir elementos compartilhados, inclua apenas o conteúdo necessário à compreensão e à resolução da questão. Quando uma instrução meramente organizacional ou referencial estiver incorporada ao mesmo texto de informações substantivas, remova somente o trecho organizacional, preservando integralmente o restante do texto. Não reproduza instruções que apenas indiquem a quais questões o material se aplica, como \"para responder às questões de 03 a 06\", \"leia o texto abaixo para responder às questões seguintes\", \"considere a figura para responder às questões 10 e 11\" e formulações equivalentes. Preserve, contudo, títulos, autoria, fonte, data, créditos e quaisquer outras informações que façam parte do próprio material ou sejam necessárias para sua correta interpretação."
     },
     {
       "id": "regrasContexto_004",
-      "texto": "Preserve a ordem original dos elementos conforme aparecem na prova."
+      "texto": "O campo contexto é uma lista ordenada."
     },
     {
       "id": "regrasContexto_005",
-      "texto": "Cada elemento deve ocupar uma posição própria na lista."
+      "texto": "Preserve a ordem original dos elementos conforme aparecem na prova."
     },
     {
       "id": "regrasContexto_006",
-      "texto": "Não combine múltiplos elementos em um único item de contexto."
+      "texto": "Cada elemento deve ocupar uma posição própria na lista."
     },
     {
       "id": "regrasContexto_007",
-      "texto": "Conteúdo puramente textual deve ser armazenado como tipo texto."
+      "texto": "Não combine múltiplos elementos em um único item de contexto."
     },
     {
       "id": "regrasContexto_008",
-      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO:ADICIONAR_IMAGEM]'."
+      "texto": "Conteúdo puramente textual deve ser armazenado como tipo texto."
     },
     {
       "id": "regrasContexto_009",
-      "texto": "Quando houver texto antes e/ou depois de um elemento visual, cada trecho textual deve ser extraído como um item independente do contexto, preservando exatamente a segmentação e a posição relativa ao elemento visual."
+      "texto": "Caso haja algum elemento visual necessário para resolver a questão, adicione um item do tipo 'imagem' ao contexto. Mantenha o campo 'conteudo' exatamente com o valor '[TODO:ADICIONAR_IMAGEM]'."
     },
     {
       "id": "regrasContexto_010",
-      "texto": "Legendas, créditos, fontes, referências bibliográficas, indicações de autoria, datas de publicação e textos introdutórios associados a imagens devem permanecer no campo contexto, na posição em que aparecem no documento, e nunca ser incorporados ao comando."
+      "texto": "Quando houver texto antes e/ou depois de um elemento visual, cada trecho textual deve ser extraído como um item independente do contexto, preservando exatamente a segmentação e a posição relativa ao elemento visual."
     },
     {
       "id": "regrasContexto_011",
+      "texto": "Legendas, créditos, fontes, referências bibliográficas, indicações de autoria, datas de publicação e textos introdutórios associados a imagens devem permanecer no campo contexto, na posição em que aparecem no documento, e nunca ser incorporados ao comando."
+    },
+    {
+      "id": "regrasContexto_012",
       "texto": "Quando uma questão apresentar, antes da pergunta ou instrução principal, uma citação, um trecho reproduzido, uma frase destacada, uma fórmula, uma tabela, um gráfico, uma imagem ou qualquer outro elemento usado como referência para a resolução, transcreva esse elemento integralmente no campo contexto, preservando exatamente o texto e a ordem em que aparecem na prova. O campo comando deve conter exclusivamente a pergunta ou instrução principal dirigida ao candidato. Não reescreva, resuma, complete, introduza ou parafraseie o conteúdo ao separá-lo entre contexto e comando."
     }
   ],
