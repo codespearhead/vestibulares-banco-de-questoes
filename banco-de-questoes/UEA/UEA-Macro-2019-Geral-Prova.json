@@ -1615,7 +1615,7 @@
     },
     "49": {
       "contexto": [],
-      "comando": "Em negociação com o lojista, Clarice obteve um desconto de 10% sobre o preço original P de certo produto, obtendo o preço P1. Ela continuou a negociação e obteve mais 10% de desconto sobre P1, obtendo o preço final P2. Se P2 é igual a R$ 1.215,00, então o preço original P era igual a",
+      "comando": "Em negociação com o lojista, Clarice obteve um desconto de 10% sobre o preço original P de certo produto, obtendo o preço P₁. Ela continuou a negociação e obteve mais 10% de desconto sobre P₁, obtendo o preço final P₂. Se P₂ é igual a R$ 1.215,00, então o preço original P era igual a",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -2527,11 +2527,11 @@
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "1,2 × 10^1."
+          "conteudo": "1,2 × 10¹."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "2,0 × 10^2."
+          "conteudo": "2,0 × 10²."
         }
       }
     },

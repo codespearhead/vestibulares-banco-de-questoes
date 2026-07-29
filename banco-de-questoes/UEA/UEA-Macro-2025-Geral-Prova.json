@@ -1453,7 +1453,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "O nitrogênio é um elemento essencial para os seres vivos, pois participa da formação de proteínas e ácidos nucleicos. A maior parte do nitrogênio encontra-se na atmosfera (78%) em sua forma gasosa (N2) e só pode ser utilizada diretamente por apenas uma pequena parcela dos organismos vivos."
+          "conteudo": "O nitrogênio é um elemento essencial para os seres vivos, pois participa da formação de proteínas e ácidos nucleicos. A maior parte do nitrogênio encontra-se na atmosfera (78%) em sua forma gasosa (N₂) e só pode ser utilizada diretamente por apenas uma pequena parcela dos organismos vivos."
         }
       ],
       "comando": "No ciclo do nitrogênio que ocorre nos ecossistemas,",

@@ -381,7 +381,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Em um dos seus experimentos envolvendo reprodução de ervilhas, Mendel deixou que plantas duplo-heterozigotas da geração F1 se autofecundassem. Os resultados obtidos permitiram verificar que a hereditariedade da textura da semente não dependia da cor que ela apresentava, e vice-versa."
+          "conteudo": "Em um dos seus experimentos envolvendo reprodução de ervilhas, Mendel deixou que plantas duplo-heterozigotas da geração F₁ se autofecundassem. Os resultados obtidos permitiram verificar que a hereditariedade da textura da semente não dependia da cor que ela apresentava, e vice-versa."
         }
       ],
       "comando": "Esses dados fundamentaram a segunda lei de Mendel, que é caracterizada pela",
@@ -478,14 +478,14 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "O cloreto de alumínio (AlCl3) é um dos compostos eficazes no controle da transpiração e do odor corporal, sendo amplamente utilizado em antitranspirantes comerciais. Sua obtenção pode ser feita por meio da reação representada na equação balanceada:"
+          "conteudo": "O cloreto de alumínio (AlCℓ₃) é um dos compostos eficazes no controle da transpiração e do odor corporal, sendo amplamente utilizado em antitranspirantes comerciais. Sua obtenção pode ser feita por meio da reação representada na equação balanceada:"
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2Al (s) + 6HCl (aq) → 2AlCl3 (aq) + 3H2 (g)"
+          "conteudo": "2Al (s) + 6HCℓ (aq) → 2AlCℓ₃ (aq) + 3H₂ (g)"
         }
       ],
-      "comando": "A quantidade necessária de HCl para a obtenção de 15 mol de cloreto de alumínio é",
+      "comando": "A quantidade necessária de HCℓ para a obtenção de 15 mol de cloreto de alumínio é",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -774,11 +774,11 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Em um experimento de cinética química, o consumo de amônia (NH3) foi monitorado na reação com o oxigênio (O2). Essa reação ocorre conforme representado na equação:"
+          "conteudo": "Em um experimento de cinética química, o consumo de amônia (NH₃) foi monitorado na reação com o oxigênio (O₂). Essa reação ocorre conforme representado na equação:"
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "4NH3 (g) + 5O2 (g) → 4NO (g) + 6H2O (g)"
+          "conteudo": "4NH₃ (g) + 5O₂ (g) → 4NO (g) + 6H₂O (g)"
         },
         {
           "mimeType": "text/plain",
@@ -786,7 +786,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "Tempo | NH3 Concentração\n0 s | 0,320 mol ⋅ L⁻¹\n10 s | 0,240 mol ⋅ L⁻¹\n20 s | 0,160 mol ⋅ L⁻¹\n30 s | 0,080 mol ⋅ L⁻¹"
+          "conteudo": "Tempo | NH₃ Concentração\n0 s | 0,320 mol ⋅ L⁻¹\n10 s | 0,240 mol ⋅ L⁻¹\n20 s | 0,160 mol ⋅ L⁻¹\n30 s | 0,080 mol ⋅ L⁻¹"
         }
       ],
       "comando": "Considerando o intervalo de 0 a 30 s, a velocidade de consumo de oxigênio nesse experimento, em mol ⋅ L⁻¹ ⋅ s⁻¹, é",

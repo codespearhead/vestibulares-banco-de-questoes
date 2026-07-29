@@ -229,7 +229,7 @@
           "conteudo": "Para a formulação de sua Segunda Lei, Gregor Mendel analisou concomitantemente duas características transmitidas por meio de cruzamentos entre ervilhas Pisum sativum, condicionadas por dois pares de alelos com segregação independente."
         }
       ],
-      "comando": "O cruzamento entre duas plantas parentais com genótipos AaBb e aaBb produzirá descendência em F1 de distribuição genotípica",
+      "comando": "O cruzamento entre duas plantas parentais com genótipos AaBb e aaBb produzirá descendência em F₁ de distribuição genotípica",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -501,7 +501,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "O tricloreto de fósforo (PCl₃ ) é um composto de grande importância industrial, sendo matéria-prima para a produção de diversos compostos orgânicos. Suas moléculas são _____ e seus átomos estão unidos por ligações _____. O número total de elétrons presentes em cada molécula é _____."
+          "conteudo": "O tricloreto de fósforo (PCℓ₃) é um composto de grande importância industrial, sendo matéria-prima para a produção de diversos compostos orgânicos. Suas moléculas são _____ e seus átomos estão unidos por ligações _____. O número total de elétrons presentes em cada molécula é _____."
         }
       ],
       "comando": "As lacunas do texto são preenchidas, correta e respectivamente, por:",
@@ -540,7 +540,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2Cl₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCl₂ (s) + 2H₂O (l)"
+          "conteudo": "2Cℓ₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCℓ₂ (s) + 2H₂O (ℓ)"
         }
       ],
       "comando": "O hipoclorito de cálcio é uma substância inorgânica classificada como",
@@ -579,7 +579,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2Cl₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCl₂ (s) + 2H₂O (l)"
+          "conteudo": "2Cℓ₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCℓ₂ (s) + 2H₂O (ℓ)"
         }
       ],
       "comando": "A massa de hipoclorito de cálcio obtida pela reação completa de 1,0 mol de hidróxido de cálcio com cloro gasoso em excesso é, aproximadamente,",
@@ -618,7 +618,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2Cl₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCl₂ (s) + 2H₂O (l)"
+          "conteudo": "2Cℓ₂ (g) + 2Ca(OH)₂ (s) → Ca(ClO)₂ (s) + CaCℓ₂ (s) + 2H₂O (ℓ)"
         }
       ],
       "comando": "O número de oxidação do átomo de cloro no hipoclorito de cálcio é",
@@ -718,30 +718,30 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Certa solução aquosa de bicarbonato de sódio apresenta pH = 8, a 25 ºC. Nessa temperatura, o valor de Kw é 1 × 10^(-14)."
+          "conteudo": "Certa solução aquosa de bicarbonato de sódio apresenta pH = 8, a 25 ºC. Nessa temperatura, o valor de Kw é 1 × 10⁻¹⁴."
         }
       ],
       "comando": "Assim, a concentração de íons OH⁻ nessa solução é igual a",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10^(-6) mol/L."
+          "conteudo": "1 × 10⁻⁶ mol/L."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10^(-12) mol/L."
+          "conteudo": "1 × 10⁻¹² mol/L."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10^(-10) mol/L."
+          "conteudo": "1 × 10⁻¹⁰ mol/L."
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10^(-8) mol/L."
+          "conteudo": "1 × 10⁻⁸ mol/L."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10^(-4) mol/L."
+          "conteudo": "1 × 10⁻⁴ mol/L."
         }
       }
     },
@@ -800,7 +800,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "KCl (aq) + H₂O (l) → KOH (aq) + ¹⁄₂ H₂ (g) + ¹⁄₂ Cl₂ (g)"
+          "conteudo": "KCℓ (aq) + H₂O (ℓ) → KOH (aq) + ¹⁄₂ H₂ (g) + ¹⁄₂ Cℓ₂ (g)"
         },
         {
           "mimeType": "text/plain",
@@ -870,7 +870,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário1 brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n1 geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
+          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário¹ brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n¹geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
         }
       ],
       "comando": "O objetivo do lançamento do satélite brasileiro ao espaço é explicitado no seguinte trecho:",
@@ -901,7 +901,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário1 brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n1 geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
+          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário¹ brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n¹geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
         }
       ],
       "comando": "As informações do primeiro parágrafo estão organizadas em um único período, sem prejuízo para o sentido do texto e de acordo com a norma-padrão da língua portuguesa, em:",
@@ -932,7 +932,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário1 brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n1 geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
+          "conteudo": "Lançado ao espaço satélite brasileiro que será usado para comunicações e defesa\n\nFoi lançado ao espaço o primeiro satélite geoestacionário¹ brasileiro para defesa e comunicações estratégicas. O lançamento foi feito do Centro Espacial de Kourou, na Guiana Francesa.\n\nCom 5,8 toneladas e 5 metros de altura, o satélite brasileiro ficará posicionado a uma distância de 36 mil quilômetros da superfície da Terra, cobrindo todo o território brasileiro e o Oceano Atlântico. A capacidade de operação do satélite é de 18 anos.\n\nO projeto é uma parceria entre os ministérios da Defesa e da Ciência, Tecnologia, Inovações e Comunicações, e envolve investimentos de R$ 2,7 bilhões. O equipamento será utilizado para comunicações estratégicas do governo e para ampliar a oferta de banda larga no país, especialmente em áreas remotas.\n\n(http://agenciabrasil.ebc.com.br, 04.05.2017. Adaptado.) \n\n¹geoestacionário: relativo ao satélite que gira à mesma velocidade da rotação da Terra e acompanha a órbita do Equador."
         }
       ],
       "comando": "Assinale a alternativa cuja frase é escrita com coesão e coerência e de acordo com a norma-padrão da língua portuguesa.",
@@ -963,7 +963,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam1-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes2, para que nos ângulos da cruz deponham3 estes, sempre, uma flor, um ramo, uma recordação fugaz4 mas renovada sempre. […]\n\nA terra é o exílio5 insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas6 dos desafios; enquanto, a uma banda7, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n1 inumar: enterrar, sepultar.\n2 viandante: viajante, caminhante, passante.\n3 depor: depositar, deixar.\n4 fugaz: ligeiro, passageiro, transitório.\n5 exílio: lugar distante, onde se vive no isolamento.\n6 copla: poesia popular cantada com o acompanhamento de música improvisada.\n7 a uma banda: a um lado."
+          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam¹-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes², para que nos ângulos da cruz deponham³ estes, sempre, uma flor, um ramo, uma recordação fugaz⁴ mas renovada sempre. […]\n\nA terra é o exílio⁵ insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas⁶ dos desafios; enquanto, a uma banda⁷, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n¹inumar: enterrar, sepultar.\n²viandante: viajante, caminhante, passante.\n³depor: depositar, deixar.\n⁴fugaz: ligeiro, passageiro, transitório.\n⁵exílio: lugar distante, onde se vive no isolamento.\n⁶copla: poesia popular cantada com o acompanhamento de música improvisada.\n⁷a uma banda: a um lado."
         }
       ],
       "comando": "De acordo com o trecho apresentado, os sertanejos interpretam a morte como",
@@ -994,7 +994,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam1-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes2, para que nos ângulos da cruz deponham3 estes, sempre, uma flor, um ramo, uma recordação fugaz4 mas renovada sempre. […]\n\nA terra é o exílio5 insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas6 dos desafios; enquanto, a uma banda7, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n1 inumar: enterrar, sepultar.\n2 viandante: viajante, caminhante, passante.\n3 depor: depositar, deixar.\n4 fugaz: ligeiro, passageiro, transitório.\n5 exílio: lugar distante, onde se vive no isolamento.\n6 copla: poesia popular cantada com o acompanhamento de música improvisada.\n7 a uma banda: a um lado."
+          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam¹-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes², para que nos ângulos da cruz deponham³ estes, sempre, uma flor, um ramo, uma recordação fugaz⁴ mas renovada sempre. […]\n\nA terra é o exílio⁵ insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas⁶ dos desafios; enquanto, a uma banda⁷, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n¹inumar: enterrar, sepultar.\n²viandante: viajante, caminhante, passante.\n³depor: depositar, deixar.\n⁴fugaz: ligeiro, passageiro, transitório.\n⁵exílio: lugar distante, onde se vive no isolamento.\n⁶copla: poesia popular cantada com o acompanhamento de música improvisada.\n⁷a uma banda: a um lado."
         }
       ],
       "comando": "A expressão \"almas ingênuas e primitivas\" (4º parágrafo) representa os sertanejos em oposição aos homens",
@@ -1025,7 +1025,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam1-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes2, para que nos ângulos da cruz deponham3 estes, sempre, uma flor, um ramo, uma recordação fugaz4 mas renovada sempre. […]\n\nA terra é o exílio5 insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas6 dos desafios; enquanto, a uma banda7, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n1 inumar: enterrar, sepultar.\n2 viandante: viajante, caminhante, passante.\n3 depor: depositar, deixar.\n4 fugaz: ligeiro, passageiro, transitório.\n5 exílio: lugar distante, onde se vive no isolamento.\n6 copla: poesia popular cantada com o acompanhamento de música improvisada.\n7 a uma banda: a um lado."
+          "conteudo": "Quem vê a família sertaneja, ao cair da noite, ante o oratório tosco ou registro paupérrimo, à meia luz das candeias de azeite, orando pelas almas dos mortos queridos, ou procurando alentos à vida tormentosa, encanta-se.\n\nO culto dos mortos é impressionador. Nos lugares remotos, longe dos povoados, inumam¹-nos à beira das estradas, para que não fiquem de todo em abandono, para que os rodeiem sempre as preces dos viandantes², para que nos ângulos da cruz deponham³ estes, sempre, uma flor, um ramo, uma recordação fugaz⁴ mas renovada sempre. […]\n\nA terra é o exílio⁵ insuportável, o morto um bem-aventurado sempre.\n\nO falecimento de uma criança é um dia de festa. Ressoam as violas na cabana dos pobres pais, jubilosos entre as lágrimas; referve o samba turbulento; vibram nos ares, fortes, as coplas⁶ dos desafios; enquanto, a uma banda⁷, entre duas velas de carnaúba, coroado de flores, o anjinho exposto espelha, no último sorriso paralisado, a felicidade suprema da volta para os céus, para a felicidade eterna - que é a preocupação dominadora daquelas almas ingênuas e primitivas.\n\n(Os sertões, 2003.) \n\n¹inumar: enterrar, sepultar.\n²viandante: viajante, caminhante, passante.\n³depor: depositar, deixar.\n⁴fugaz: ligeiro, passageiro, transitório.\n⁵exílio: lugar distante, onde se vive no isolamento.\n⁶copla: poesia popular cantada com o acompanhamento de música improvisada.\n⁷a uma banda: a um lado."
         }
       ],
       "comando": "O pronome \"estes\", em destaque no segundo parágrafo, refere-se",
@@ -1056,7 +1056,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas1 supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca2 e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda3 ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas4, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n1 cousa: coisa.\n2 rabeca: instrumento de corda semelhante a um violino.\n3 cabinda: língua falada por um povo africano.\n4 prenda: habilidade."
+          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas¹ supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca² e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda³ ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas⁴, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n¹cousa: coisa.\n²rabeca: instrumento de corda semelhante a um violino.\n³cabinda: língua falada por um povo africano.\n⁴prenda: habilidade."
         }
       ],
       "comando": "Maria Benedita é caracterizada como uma moça",
@@ -1087,7 +1087,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas1 supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca2 e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda3 ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas4, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n1 cousa: coisa.\n2 rabeca: instrumento de corda semelhante a um violino.\n3 cabinda: língua falada por um povo africano.\n4 prenda: habilidade."
+          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas¹ supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca² e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda³ ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas⁴, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n¹cousa: coisa.\n²rabeca: instrumento de corda semelhante a um violino.\n³cabinda: língua falada por um povo africano.\n⁴prenda: habilidade."
         }
       ],
       "comando": "O trecho retrata uma cena comum nas casas da elite carioca no século XIX, em que se atribuía às mulheres o papel de",
@@ -1118,7 +1118,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas1 supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca2 e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda3 ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas4, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n1 cousa: coisa.\n2 rabeca: instrumento de corda semelhante a um violino.\n3 cabinda: língua falada por um povo africano.\n4 prenda: habilidade."
+          "conteudo": "Maria Benedita consentiu finalmente em aprender francês e piano. Durante quatro dias a prima teimou com ela, a todas as horas, de tal arte e maneira, que a mãe da moça resolveu apressar a volta à fazenda, para evitar que ela acabasse aceitando. A filha resistiu muito; respondia que eram cousas¹ supérfluas, que moça de roça não precisa de prendas da cidade. Uma noite, porém, estando ali Carlos Maria, pediu-lhe este que tocasse alguma cousa; Maria Benedita fez-se vermelha. Sofia acudiu com uma mentira:\n\n- Não lhe peça isso; ainda não tocou depois que veio. Diz que agora só toca para os roceiros.\n- Pois faça de conta que somos roceiros, insistiu o moço.\n\nMas passou logo a outra cousa, ao baile da baronesa do Piauí […], um baile esplêndido, oh! esplêndido! A baronesa prezava-o muito, disse ele. No dia seguinte, Maria Benedita declarou à prima que estava pronta a aprender piano e francês, rabeca² e até russo, se quisesse. A dificuldade era vencer a mãe. Esta, quando soube da resolução da filha, pôs as mãos na cabeça. Que francês? que piano? Bradou que não, ou então que deixasse de ser sua filha; podia ficar, tocar, cantar, falar cabinda³ ou a língua do diabo que os levasse a todos. Palha é que a persuadiu finalmente; disse⁻lhe que, por mais supérfluas que lhe parecessem aquelas prendas⁴, eram o mínimo dos adornos de uma educação de sala.\n\n(Quincas Borba, 1992.)\n\n¹cousa: coisa.\n²rabeca: instrumento de corda semelhante a um violino.\n³cabinda: língua falada por um povo africano.\n⁴prenda: habilidade."
         },
         {
           "mimeType": "text/plain",

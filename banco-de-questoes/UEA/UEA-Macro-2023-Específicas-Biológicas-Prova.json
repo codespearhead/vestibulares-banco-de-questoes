@@ -552,7 +552,7 @@
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "HCl"
+          "conteudo": "HCℓ"
         },
         "C": {
           "mimeType": "text/plain",
@@ -622,7 +622,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "CaO e Al₂(SO₄)₃."
+          "conteudo": "CaO e Aℓ₂(SO₄)₃."
         },
         "B": {
           "mimeType": "text/plain",
@@ -634,11 +634,11 @@
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "Al₂(SO₄)₃ e NaF."
+          "conteudo": "Aℓ₂(SO₄)₃ e NaF."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "Al₂(SO₄)₃ e NaClO."
+          "conteudo": "Aℓ₂(SO₄)₃ e NaClO."
         }
       }
     },
@@ -650,7 +650,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2H₂O₂ (aq) → 2H₂O (l) + O₂ (g)"
+          "conteudo": "2H₂O₂ (aq) → 2H₂O (ℓ) + O₂ (g)"
         },
         {
           "mimeType": "text/plain",
@@ -759,7 +759,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2H₂O (l) → 2H₂ (g) + O₂ (g)"
+          "conteudo": "2H₂O (ℓ) → 2H₂ (g) + O₂ (g)"
         },
         {
           "mimeType": "image/png",

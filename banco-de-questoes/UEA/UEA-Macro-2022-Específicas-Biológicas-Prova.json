@@ -441,7 +441,7 @@
     },
     "13": {
       "contexto": [],
-      "comando": "Para separar uma mistura composta por água e tetracloreto de carbono (CCl₄), dois líquidos incolores e imiscíveis, deve ser utilizado o método de separação denominado:",
+      "comando": "Para separar uma mistura composta por água e tetracloreto de carbono (CCℓ₄), dois líquidos incolores e imiscíveis, deve ser utilizado o método de separação denominado:",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -508,7 +508,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2KMnO₄ + 16HCl → 2KCl + 2MnCl₂ + 5Cl₂ + 8H₂O"
+          "conteudo": "2KMnO₄ + 16HCℓ → 2KCℓ + 2MnCℓ₂ + 5Cℓ₂ + 8H₂O"
         }
       ],
       "comando": "A variação do número de oxidação (Nox) do agente redutor da reação de descoloração é de",
@@ -547,7 +547,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "2KMnO₄ + 16HCl → 2KCl + 2MnCl₂ + 5Cl₂ + 8H₂O"
+          "conteudo": "2KMnO₄ + 16HCℓ → 2KCℓ + 2MnCℓ₂ + 5Cℓ₂ + 8H₂O"
         }
       ],
       "comando": "Em uma solução aquosa de ácido clorídrico (HCl), que é um ácido forte, as forças intermoleculares entre o soluto e o solvente são do tipo",

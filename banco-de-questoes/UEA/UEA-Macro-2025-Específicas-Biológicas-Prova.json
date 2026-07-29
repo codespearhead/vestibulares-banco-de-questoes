@@ -268,7 +268,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "a vitamina B12 é responsável pela digestão de proteínas, e sua deficiência causa osteoporose."
+          "conteudo": "a vitamina B₁₂ é responsável pela digestão de proteínas, e sua deficiência causa osteoporose."
         }
       }
     },
@@ -552,19 +552,19 @@
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "HCl e Cl₂"
+          "conteudo": "HCℓ e Cℓ₂"
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "Al₂(SO₄)₃ e Cl₂"
+          "conteudo": "Aℓ₂(SO₄)₃ e Cℓ₂"
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "HCl e NaCl"
+          "conteudo": "HCℓ e NaCℓ"
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "Al₂(SO₄)₃ e H₂SO₄"
+          "conteudo": "Aℓ₂(SO₄)₃ e H₂SO₄"
         }
       }
     },
@@ -607,7 +607,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CH₄ (g) + O₂ (g) → CO₂ (g) + H₂O (l)"
+          "conteudo": "CH₄ (g) + O₂ (g) → CO₂ (g) + H₂O (ℓ)"
         },
         {
           "mimeType": "text/plain",
@@ -654,7 +654,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CaCO₃ (s) + 2HCl (aq) → CaCl₂ (aq) + CO₂ (g) + H₂O (l)"
+          "conteudo": "CaCO₃ (s) + 2HCℓ (aq) → CaCℓ₂ (aq) + CO₂ (g) + H₂O (ℓ)"
         }
       ],
       "comando": "O experimento em que a massa de carbonato de cálcio reagiu completamente no menor intervalo de tempo corresponde ao número",
@@ -689,7 +689,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CH₄ (g) + H₂O (g) → CH₃OH (l) + H₂ (g)    ΔHº = +78 kJ/mol"
+          "conteudo": "CH₄ (g) + H₂O (g) → CH₃OH (ℓ) + H₂ (g)    ΔHº = +78 kJ/mol"
         }
       ],
       "comando": "Considerando que 1 caloria equivale a aproximadamente 4 J, a quantidade de calor, em calorias, envolvido na formação de 2 mol de metanol é, aproximadamente,",

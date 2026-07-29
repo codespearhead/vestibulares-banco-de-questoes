@@ -406,7 +406,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Em condições apropriadas, em um tubo de ensaio, foi adicionada uma amostra sólida pura de KCℓO3. Ao se aquecer essa amostra, ocorreu uma reação química com a formação de um sólido e de um gás."
+          "conteudo": "Em condições apropriadas, em um tubo de ensaio, foi adicionada uma amostra sólida pura de KCℓO₃. Ao se aquecer essa amostra, ocorreu uma reação química com a formação de um sólido e de um gás."
         },
         {
           "mimeType": "image/png",
@@ -445,30 +445,30 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "A pimenta vermelha é cultivada em regiões de clima tropical e o solo ideal para o seu cultivo apresenta concentração de íons H+ = 10−6 mol/L, a 25 ºC."
+          "conteudo": "A pimenta vermelha é cultivada em regiões de clima tropical e o solo ideal para o seu cultivo apresenta concentração de íons H⁺ = 10⁻⁶ mol/L, a 25 ºC."
         }
       ],
-      "comando": "Considerando a constante de Avogadro igual a 6 × 10^23 mol−1, a quantidade de moléculas de capsaicina contida em 122 g desse princípio ativo é",
+      "comando": "Considerando a constante de Avogadro igual a 6 × 10²³ mol⁻¹, a quantidade de moléculas de capsaicina contida em 122 g desse princípio ativo é",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "6,2 × 10^24"
+          "conteudo": "6,2 × 10²⁴"
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "1,5 × 10^23"
+          "conteudo": "1,5 × 10²³"
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "2,4 × 10^23"
+          "conteudo": "2,4 × 10²³"
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "1,5 × 10^24"
+          "conteudo": "1,5 × 10²⁴"
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "2,4 × 10^22"
+          "conteudo": "2,4 × 10²²"
         }
       }
     },
@@ -480,11 +480,11 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "A pimenta vermelha é cultivada em regiões de clima tropical e o solo ideal para o seu cultivo apresenta concentração de íons H+ = 10−6 mol/L, a 25 ºC."
+          "conteudo": "A pimenta vermelha é cultivada em regiões de clima tropical e o solo ideal para o seu cultivo apresenta concentração de íons H⁺ = 10⁻⁶ mol/L, a 25 ºC."
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "Considere a temperatura de 25 ºC e o produto iônico da água (Kw) = 1 × 10−14. O valor do pH do solo indicado para o plantio da pimenta vermelha a essa temperatura é de __________, sendo, portanto, o solo considerado __________ e o valor da concentração de íons OH−, em mol/L, __________ 10−7."
+          "conteudo": "Considere a temperatura de 25 ºC e o produto iônico da água (Kw) = 1 × 10⁻¹⁴. O valor do pH do solo indicado para o plantio da pimenta vermelha a essa temperatura é de __________, sendo, portanto, o solo considerado __________ e o valor da concentração de íons OH⁻, em mol/L, __________ 10⁻⁷."
         }
       ],
       "comando": "As lacunas são preenchidas, respectivamente, por:",
@@ -515,34 +515,34 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Uma síntese que pode ser empregada para a formação do metanol, (CH3OH), um álcool de ação corrosiva e efeitos tóxicos, é a reação em equilíbrio químico entre os gases monóxido de carbono (CO) e hidrogênio (H2), representada pela equação:"
+          "conteudo": "Uma síntese que pode ser empregada para a formação do metanol, (CH₃OH), um álcool de ação corrosiva e efeitos tóxicos, é a reação em equilíbrio químico entre os gases monóxido de carbono (CO) e hidrogênio (H₂), representada pela equação:"
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CO (g) + 2H2 (g) ⇌ CH3OH (g)    ΔH = −616 kJ/mol"
+          "conteudo": "CO (g) + 2H₂ (g) ⇌ CH₃OH (g)    ΔH = −616 kJ/mol"
         }
       ],
-      "comando": "Em um estudo do modelo explicativo da cinética de formação do metanol, a partir do monóxido de carbono e hidrogênio, foram empregadas certas quantidades estequiométricas dos reagentes e observou-se que a taxa de consumo do gás hidrogênio era de 4 × 10−1 mol/s. A taxa de formação do metanol nessa reação foi de",
+      "comando": "Em um estudo do modelo explicativo da cinética de formação do metanol, a partir do monóxido de carbono e hidrogênio, foram empregadas certas quantidades estequiométricas dos reagentes e observou-se que a taxa de consumo do gás hidrogênio era de 4 × 10⁻¹ mol/s. A taxa de formação do metanol nessa reação foi de",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "6 × 10−1 mol/s."
+          "conteudo": "6 × 10⁻¹ mol/s."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "2 × 10−1 mol/s."
+          "conteudo": "2 × 10⁻¹ mol/s."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "8 × 10−1 mol/s."
+          "conteudo": "8 × 10⁻¹ mol/s."
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "4 × 10−1 mol/s."
+          "conteudo": "4 × 10⁻¹ mol/s."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "1 × 10−1 mol/s."
+          "conteudo": "1 × 10⁻¹ mol/s."
         }
       }
     },
@@ -550,11 +550,11 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Uma síntese que pode ser empregada para a formação do metanol, (CH3OH), um álcool de ação corrosiva e efeitos tóxicos, é a reação em equilíbrio químico entre os gases monóxido de carbono (CO) e hidrogênio (H2), representada pela equação:"
+          "conteudo": "Uma síntese que pode ser empregada para a formação do metanol, (CH₃OH), um álcool de ação corrosiva e efeitos tóxicos, é a reação em equilíbrio químico entre os gases monóxido de carbono (CO) e hidrogênio (H₂), representada pela equação:"
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CO (g) + 2H2 (g) ⇌ CH3OH (g)    ΔH = −616 kJ/mol"
+          "conteudo": "CO (g) + 2H₂ (g) ⇌ CH₃OH (g)    ΔH = −616 kJ/mol"
         }
       ],
       "comando": "Considerando que a reação descrita no texto ocorre em sistema fechado, para aumentar o rendimento da produção nesse sistema é preciso",
@@ -585,10 +585,10 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "O bicarbonato de amônio (NH4HCO3) é utilizado na indústria alimentícia como agente de fermentação de produtos achatados, como biscoitos e bolachas."
+          "conteudo": "O bicarbonato de amônio (NH₄HCO₃) é utilizado na indústria alimentícia como agente de fermentação de produtos achatados, como biscoitos e bolachas."
         }
       ],
-      "comando": "Sobre o NH4HCO3, afirma-se que",
+      "comando": "Sobre o NH₄HCO₃, afirma-se que",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -608,7 +608,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "é um composto orgânico que ao ser aquecido forma o gás amônia (NH3)."
+          "conteudo": "é um composto orgânico que ao ser aquecido forma o gás amônia (NH₃)."
         }
       }
     },
@@ -752,7 +752,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Observe o esquema de um experimento que envolve o aquecimento de uma amostra de carbonato de cálcio (CaCO3, massa molar = 100 g/mol). A decomposição desse composto leva à formação do gás dióxido de carbono (CO2, massa molar = 44 g/mol)."
+          "conteudo": "Observe o esquema de um experimento que envolve o aquecimento de uma amostra de carbonato de cálcio (CaCO₃, massa molar = 100 g/mol). A decomposição desse composto leva à formação do gás dióxido de carbono (CO₂, massa molar = 44 g/mol)."
         },
         {
           "mimeType": "image/png",
@@ -768,7 +768,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CaCO3 (s) → CaO (s) + CO2 (g)"
+          "conteudo": "CaCO₃ (s) → CaO (s) + CO₂ (g)"
         }
       ],
       "comando": "O rendimento percentual dessa reação foi de",
@@ -814,7 +814,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "menor; flúor; C6"
+          "conteudo": "menor; flúor; C₆"
         },
         "B": {
           "mimeType": "text/plain",
@@ -822,7 +822,7 @@
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "maior; flúor; C6"
+          "conteudo": "maior; flúor; C₆"
         },
         "D": {
           "mimeType": "text/plain",
@@ -830,7 +830,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "maior; flúor; C1"
+          "conteudo": "maior; flúor; C₁"
         }
       }
     },

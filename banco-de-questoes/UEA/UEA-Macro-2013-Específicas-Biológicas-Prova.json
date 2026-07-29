@@ -360,7 +360,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "A figura mostra a eletroforese dos fragmentos de DNA, obtidos com a mesma enzima de restrição, de amostras de DNA da vítima de um crime (V), de um fio de cabelo encontrado na cena do crime e tomado como prova (P) e de sangue de três suspeitos do crime (S1, S2 e S3)."
+          "conteudo": "A figura mostra a eletroforese dos fragmentos de DNA, obtidos com a mesma enzima de restrição, de amostras de DNA da vítima de um crime (V), de um fio de cabelo encontrado na cena do crime e tomado como prova (P) e de sangue de três suspeitos do crime (S₁, S₂ e S₃)."
         },
         {
           "mimeType": "image/png",
@@ -375,15 +375,15 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "o fio de cabelo é, com certeza, do suspeito S3."
+          "conteudo": "o fio de cabelo é, com certeza, do suspeito S₃."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "o suspeito S1 é, com certeza, o autor do crime."
+          "conteudo": "o suspeito S₁ é, com certeza, o autor do crime."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "o fio de cabelo é, com certeza, do suspeito S2."
+          "conteudo": "o fio de cabelo é, com certeza, do suspeito S₂."
         },
         "D": {
           "mimeType": "text/plain",
@@ -508,7 +508,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO3⁻ (aq)"
+          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO₃⁻ (aq)"
         },
         {
           "mimeType": "text/plain",
@@ -547,7 +547,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO3⁻ (aq)"
+          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO₃⁻ (aq)"
         },
         {
           "mimeType": "text/plain",
@@ -586,7 +586,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO3⁻ (aq)"
+          "conteudo": "CO₂ (g) + H₂O (ℓ) ⇌ H⁺ (aq) + HCO₃⁻ (aq)"
         },
         {
           "mimeType": "text/plain",
@@ -632,23 +632,23 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "KCl, LiCl e NaCl."
+          "conteudo": "KCl, LiCℓ e NaCℓ."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "NaCl, KCl e LiCl."
+          "conteudo": "NaCl, KCℓ e LiCℓ."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "NaCl, LiCl e KCl."
+          "conteudo": "NaCl, LiCℓ e KCℓ."
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "KCl, NaCl e LiCl."
+          "conteudo": "KCl, NaCℓ e LiCℓ."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "LiCl, NaCl e KCl."
+          "conteudo": "LiCl, NaCℓ e KCℓ."
         }
       }
     },
@@ -664,7 +664,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "C₂H₅OH (l) + 3O₂ (g) → 2CO₂ (g) + 3H₂O (l)   ∆H° = - 1 368 kJ/mol"
+          "conteudo": "C₂H₅OH (ℓ) + 3O₂ (g) → 2CO₂ (g) + 3H₂O (ℓ)   ∆H° = - 1 368 kJ/mol"
         },
         {
           "mimeType": "text/plain",
@@ -676,7 +676,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "substâncias | ∆Hf° (kJ/mol)\nC₂H₅OH (l) | -278\nO₂ (g) | 0\nCO₂ (g) | -394\nH₂O (l) | x"
+          "conteudo": "substâncias | ∆Hf° (kJ/mol)\nC₂H₅OH (ℓ) | -278\nO₂ (g) | 0\nCO₂ (g) | -394\nH₂O (ℓ) | x"
         }
       ],
       "comando": "O valor de x, apresentado na tabela, é igual a",
@@ -851,19 +851,19 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "sp e sp2."
+          "conteudo": "sp e sp²."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "sp2 e sp."
+          "conteudo": "sp² e sp."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "sp3 e sp3."
+          "conteudo": "sp³ e sp³."
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "sp2 e sp3."
+          "conteudo": "sp² e sp³."
         },
         "E": {
           "mimeType": "text/plain",

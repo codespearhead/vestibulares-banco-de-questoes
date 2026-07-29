@@ -494,7 +494,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "Mg, Al e Ga."
+          "conteudo": "Mg, Aℓ e Ga."
         },
         "B": {
           "mimeType": "text/plain",
@@ -502,7 +502,7 @@
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "Ga, P e Cl."
+          "conteudo": "Ga, P e Cℓ."
         },
         "D": {
           "mimeType": "text/plain",
@@ -510,7 +510,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "P, Cl e Br."
+          "conteudo": "P, Cℓ e Br."
         }
       }
     },
@@ -525,19 +525,19 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "Cl e Br."
+          "conteudo": "Cℓ e Br."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "K e Cl."
+          "conteudo": "K e Cℓ."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "Al e Ga."
+          "conteudo": "Aℓ e Ga."
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "P e Cl."
+          "conteudo": "P e Cℓ."
         },
         "E": {
           "mimeType": "text/plain",
@@ -709,7 +709,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "• entalpia de combustão completa de 1 mol de metano, CH₄ (g), produzindo CO₂ (g) e H₂O (l) = - 883 kJ"
+          "conteudo": "• entalpia de combustão completa de 1 mol de metano, CH₄ (g), produzindo CO₂ (g) e H₂O (ℓ) = - 883 kJ"
         },
         {
           "mimeType": "text/plain",
@@ -754,7 +754,7 @@
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "acrescentar solução de FeCl₃ 1,0 mol/L e filtrar."
+          "conteudo": "acrescentar solução de FeCℓ₃ 1,0 mol/L e filtrar."
         },
         "C": {
           "mimeType": "text/plain",
@@ -766,7 +766,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "acrescentar solução de NaCl 1,0 mol/L e filtrar."
+          "conteudo": "acrescentar solução de NaCℓ 1,0 mol/L e filtrar."
         }
       }
     },

@@ -519,7 +519,7 @@
           "conteudo": "(John D. Lee. Química inorgânica não tão concisa, 1999. Adaptado.)"
         }
       ],
-      "comando": "Supondo rendimento de 100% e sabendo que a constante universal dos gases, R, é igual a 0,082 atm ⋅ L ⋅ mol⁻¹ ⋅ K⁻1, é correto afirmar que o volume de N₂, medido a 1,0 atm e 1 100 ºC, necessário para produzir 1,0 mol de cianamida de cálcio é, aproximadamente,",
+      "comando": "Supondo rendimento de 100% e sabendo que a constante universal dos gases, R, é igual a 0,082 atm ⋅ L ⋅ mol⁻¹ ⋅ K⁻¹, é correto afirmar que o volume de N₂, medido a 1,0 atm e 1 100 ºC, necessário para produzir 1,0 mol de cianamida de cálcio é, aproximadamente,",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -618,7 +618,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "CaNCN (s) + 5H₂O (l) → CaCO₃ (s) + 2NH₄OH (aq)"
+          "conteudo": "CaNCN (s) + 5H₂O (ℓ) → CaCO₃ (s) + 2NH₄OH (aq)"
         }
       ],
       "comando": "Nota-se, pelo exame dessa equação, que a cianamida de cálcio, além de atuar como fonte de nitrogênio, pode atuar como corretivo de pH de solos",
@@ -673,7 +673,7 @@
     },
     "20": {
       "contexto": [],
-      "comando": "Um experimento requer o uso de 120 mL de uma solução aquosa de HCl 0,5 mol/L. No laboratório há, em estoque, uma solução aquosa 6,0 mol/L desse ácido. Para preparar a solução desejada deve-se medir um volume da solução-estoque igual a",
+      "comando": "Um experimento requer o uso de 120 mL de uma solução aquosa de HCℓ 0,5 mol/L. No laboratório há, em estoque, uma solução aquosa 6,0 mol/L desse ácido. Para preparar a solução desejada deve-se medir um volume da solução-estoque igual a",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -893,7 +893,7 @@
           "conteudo": "A população amazonense terá mais um mecanismo para denunciar crime ambiental. Trata-se do aplicativo MeuAmbiente, o qual permite que a pessoa faça, por meio do celular, de forma rápida e gratuita, denúncias de crimes ambientais, como queimadas, extração ilegal de madeira e captura e venda irregular de pescado.\n\nDesenvolvida por voluntários do Instituto Amazônia Mais, uma Organização Não Governamental (ONG), a plataforma promete facilitar as denúncias de crime ambiental diretamente para a Secretaria de Estado do Meio Ambiente, o Batalhão de Incêndios Florestais do Corpo de Bombeiros Militar do Amazonas, o Ministério Público Federal e o Movimento Ficha Verde.\n\nDe acordo com o gerente de projetos do Instituto Amazônia Mais, Evaldo Silva, além de aproximar o poder público da população, a ideia é trabalhar o conceito de guarda compartilhada. \"Não são apenas os órgãos públicos responsáveis pela proteção do meio ambiente, nossa obrigação como cidadãos é de também ajudar na sua preservação\", destacou.\n\n(\"Aplicativo para denunciar crime ambiental é lançado nessa sexta-feira (15), em Manaus\". www.acritica.com, 16.04.2016. Adaptado.)"
         }
       ],
-      "comando": "Em \"Não são **apenas** os órgãos públicos responsáveis pela proteção do meio ambiente\" (3o parágrafo), o termo destacado expressa sentido de",
+      "comando": "Em \"Não são **apenas** os órgãos públicos responsáveis pela proteção do meio ambiente\" (3º parágrafo), o termo destacado expressa sentido de",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -999,7 +999,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos1 no mato, com o negro Deodato sem gosto para o eito2, para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n1 partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n2 eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
+          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos¹ no mato, com o negro Deodato sem gosto para o eito², para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n¹partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n²eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
         }
       ],
       "comando": "No contexto de Fogo morto, o Santa Fé representa os engenhos que",
@@ -1030,7 +1030,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos1 no mato, com o negro Deodato sem gosto para o eito2, para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n1 partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n2 eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
+          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos¹ no mato, com o negro Deodato sem gosto para o eito², para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n¹partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n²eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
         }
       ],
       "comando": "Uma tendência comum à prosa da chamada Geração de 1930, à qual Fogo morto se filia, é:",
@@ -1061,7 +1061,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos1 no mato, com o negro Deodato sem gosto para o eito2, para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n1 partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n2 eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
+          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos¹ no mato, com o negro Deodato sem gosto para o eito², para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n¹partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n²eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
         }
       ],
       "comando": "\"Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos.\" A relação de sentido estabelecida entre as orações coordenadas desse período é de:",
@@ -1092,7 +1092,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos1 no mato, com o negro Deodato sem gosto para o eito2, para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n1 partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n2 eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
+          "conteudo": "Chegou a abolição e os negros do Santa Fé se foram para os outros engenhos. Ficara somente com seu Lula o boleeiro Macário, que tinha paixão pelo ofício. Até as negras da cozinha ganharam o mundo. E o Santa Fé ficou com os partidos¹ no mato, com o negro Deodato sem gosto para o eito², para a moagem que se aproximava. Só a muito custo apareceram trabalhadores para os serviços do campo. Onde encontrar mestre de açúcar, caldeireiros, purgador?\n\n(Fogo morto, 2012.)\n\n¹partido: grande extensão de terreno plantado de cana-de⁻açúcar.\n²eito: limpeza ou roçado de uma plantação, com o uso de enxadas."
         }
       ],
       "comando": "Um termo cujo sufixo expressa ideia de agente é:",

@@ -734,7 +734,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "Zn²⁺ + 2e⁻ → Znº    Eº = -0,76 V\nFe²⁺ + 2e⁻ → Feº    Eº = -0,44 V\nH₂O + (1/2)O₂ + 2e⁻ → 2OH⁻    Eº = +0,40 V"
+          "conteudo": "Zn²⁺ + 2e⁻ → Zn⁰    E° = -0,76 V\nFe²⁺ + 2e⁻ → Fe⁰    E° = -0,44 V\nH₂O + (1/2)O₂ + 2e⁻ → 2OH⁻    E° = +0,40 V"
         }
       ],
       "comando": "Essa técnica, conhecida como proteção catódica, é eficiente porque",

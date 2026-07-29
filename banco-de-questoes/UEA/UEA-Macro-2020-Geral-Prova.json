@@ -2210,7 +2210,7 @@
     },
     "63": {
       "contexto": [],
-      "comando": "Um faquir de 80 kg encontra-se deitado em uma cama de pregos. Sabendo-se que a área da ponta de um prego é aproximadamente 8 × 10–7 m², que a pele humana é capaz de aguentar uma pressão de 4 × 106 Pa sem se romper, que o peso do faquir está igualmente distribuído por seu corpo e considerando g = 10 m/s², o número mínimo de pregos que devem ficar em contato com seu corpo, sem que o faquir se machuque, é",
+      "comando": "Um faquir de 80 kg encontra-se deitado em uma cama de pregos. Sabendo-se que a área da ponta de um prego é aproximadamente 8 × 10⁻⁷ m², que a pele humana é capaz de aguentar uma pressão de 4 × 10⁶ Pa sem se romper, que o peso do faquir está igualmente distribuído por seu corpo e considerando g = 10 m/s², o número mínimo de pregos que devem ficar em contato com seu corpo, sem que o faquir se machuque, é",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -2306,19 +2306,19 @@
     },
     "66": {
       "contexto": [],
-      "comando": "Uma pessoa coloca quatro líquidos não miscíveis, de densidades ρ1 = 1,00 g/cm3, ρ2 = 1,30 g/cm3, ρ3 = 1,70 g/cm3 e ρ4 = 2,00 g/cm3, em um tubo de vidro, mantido verticalmente em repouso. Em seguida, abandona uma pequena esfera de raio 2,0 cm e massa 72 g sobre a superfície líquida. Considerando π = 3, essa esfera irá permanecer, após atingir o equilíbrio,",
+      "comando": "Uma pessoa coloca quatro líquidos não miscíveis, de densidades ρ₁ = 1,00 g/cm³, ρ₂ = 1,30 g/cm³, ρ₃ = 1,70 g/cm³ e ρ₄ = 2,00 g/cm³, em um tubo de vidro, mantido verticalmente em repouso. Em seguida, abandona uma pequena esfera de raio 2,0 cm e massa 72 g sobre a superfície líquida. Considerando π = 3, essa esfera irá permanecer, após atingir o equilíbrio,",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "na interface entre os líquidos de densidades ρ1 e ρ2."
+          "conteudo": "na interface entre os líquidos de densidades ρ₁ e ρ₂."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "na interface entre os líquidos de densidades ρ3 e ρ4."
+          "conteudo": "na interface entre os líquidos de densidades ρ₃ e ρ₄."
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "na interface entre os líquidos de densidades ρ2 e ρ3."
+          "conteudo": "na interface entre os líquidos de densidades ρ₂ e ρ₃."
         },
         "D": {
           "mimeType": "text/plain",
@@ -2326,7 +2326,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "na superfície do líquido de densidade ρ1."
+          "conteudo": "na superfície do líquido de densidade ρ₁."
         }
       }
     },
@@ -2403,7 +2403,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Um aluno dispõe de dois resistores, R1 = 10 Ω e R2 = 20 Ω, e de uma bateria ideal com ddp V entre seus terminais, conforme ilustra a figura."
+          "conteudo": "Um aluno dispõe de dois resistores, R₁ = 10 Ω e R₂ = 20 Ω, e de uma bateria ideal com ddp V entre seus terminais, conforme ilustra a figura."
         },
         {
           "mimeType": "image/png",
@@ -2535,7 +2535,7 @@
           "conteudo": "Essas gaiolas são, essencialmente, uma região do espaço circundada por um material condutor. Um objeto ou uma pessoa, se estiverem no interior da gaiola durante uma descarga elétrica externa, não sentirão nenhum efeito elétrico, nem sofrerão danos."
         }
       ],
-      "comando": "Em capacitores, pode-se observar um fenômeno chamado ruptura dielétrica, que ocorre quando a diferença de potencial entre as placas do capacitor atinge um valor alto a ponto de fazer com que o meio entre as placas se torne condutor, gerando-se, assim, uma descarga em arco. Trata-se do mesmo fenômeno que ocorre quando surge um raio entre duas nuvens eletricamente carregadas, ou entre a nuvem e a Terra. Considerando que a menor distância entre a bobina e a gaiola da imagem seja 3 m e que o valor da ruptura dielétrica do ar no local seja 3 × 106 V/m, a ddp mínima entre a gaiola e a bobina para que seja possível ocorrer uma descarga elétrica como a da imagem é de",
+      "comando": "Em capacitores, pode-se observar um fenômeno chamado ruptura dielétrica, que ocorre quando a diferença de potencial entre as placas do capacitor atinge um valor alto a ponto de fazer com que o meio entre as placas se torne condutor, gerando-se, assim, uma descarga em arco. Trata-se do mesmo fenômeno que ocorre quando surge um raio entre duas nuvens eletricamente carregadas, ou entre a nuvem e a Terra. Considerando que a menor distância entre a bobina e a gaiola da imagem seja 3 m e que o valor da ruptura dielétrica do ar no local seja 3 × 10⁶ V/m, a ddp mínima entre a gaiola e a bobina para que seja possível ocorrer uma descarga elétrica como a da imagem é de",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -2574,23 +2574,23 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "HNO₃ (aq) + Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (l)"
+          "conteudo": "HNO₃ (aq) + Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (ℓ)"
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "HNO₃ (aq) + 3Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (l)"
+          "conteudo": "HNO₃ (aq) + 3Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (ℓ)"
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "3HNO₃ (aq) + Al(OH)₃ (s) 3Al(NO₃)₃ (aq) + H₂O (l)"
+          "conteudo": "3HNO₃ (aq) + Al(OH)₃ (s) 3Al(NO₃)₃ (aq) + H₂O (ℓ)"
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "3HNO₃ (aq) + Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (l)"
+          "conteudo": "3HNO₃ (aq) + Al(OH)₃ (s) Al(NO₃)₃ (aq) + 3H₂O (ℓ)"
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "HNO₃ (aq) + 3Al(OH)₃ (s) 3Al(NO₃)₃ (aq) + H₂O (l)"
+          "conteudo": "HNO₃ (aq) + 3Al(OH)₃ (s) 3Al(NO₃)₃ (aq) + H₂O (ℓ)"
         }
       }
     },
@@ -2746,7 +2746,7 @@
         },
         {
           "mimeType": "text/plain",
-          "conteudo": "Zn (s) + 2HCl (aq) → ZnCl₂ (aq) + H₂ (g)"
+          "conteudo": "Zn (s) + 2HCℓ (aq) → ZnCℓ₂ (aq) + H₂ (g)"
         },
         {
           "mimeType": "text/plain",
@@ -2898,7 +2898,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "O suco de maracujá concentrado, cuja concentração de íons H+ é igual a 0,001 mol/L, é consumido e apreciado em todo o território brasileiro, não só pelo seu sabor, mas também por ser fonte natural de carboidratos, vitaminas e outros componentes importantes."
+          "conteudo": "O suco de maracujá concentrado, cuja concentração de íons H⁺ é igual a 0,001 mol/L, é consumido e apreciado em todo o território brasileiro, não só pelo seu sabor, mas também por ser fonte natural de carboidratos, vitaminas e outros componentes importantes."
         }
       ],
       "comando": "O valor do pH desse suco é",
