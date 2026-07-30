@@ -605,7 +605,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "A minha liberdade exterior (jurídica) deve antes explicar- -se assim: é a faculdade de não obedecer a quaisquer leis externas senão enquanto lhes pude dar o meu consentimento."
+          "conteudo": "A minha liberdade exterior (jurídica) deve antes explicar-se assim: é a faculdade de não obedecer a quaisquer leis externas senão enquanto lhes pude dar o meu consentimento."
         },
         {
           "mimeType": "text/plain",
@@ -1091,7 +1091,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "a paridade monetária entre as moedas dos países- -membros."
+          "conteudo": "a paridade monetária entre as moedas dos países-membros."
         },
         "B": {
           "mimeType": "text/plain",
@@ -1107,7 +1107,7 @@
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "a unificação das balanças comerciais entre os países- -membros."
+          "conteudo": "a unificação das balanças comerciais entre os países-membros."
         }
       }
     },
