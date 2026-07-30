@@ -327,6 +327,10 @@
           "www1.folha.uol.com.br"
         ]
       }
+    },
+    {
+      "id": "regrasGerais_015",
+      "texto": "Quebras de linha são permitidas exclusivamente no campo 'contexto'. Nos demais campos do JSON, toda quebra de linha, retorno de carro, tabulação ou sequência de espaços em branco deve ser substituída por um único espaço, preservando integralmente o texto, a pontuação e a ordem das palavras."
     }
   ],
   "regrasContexto": [
