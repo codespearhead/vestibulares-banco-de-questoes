@@ -1,67 +1,78 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Visualizador de prova.json</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  </head>
-  <body class="m-0 bg-gray-100 p-3.5 font-sans text-gray-800 md:p-6">
-    <main id="app" class="mx-auto max-w-[980px]">
-      <h1 class="mb-4 text-[28px] font-bold leading-tight">
-        Visualizador de prova.json
-      </h1>
 
-      <section
-        class="mb-4 grid gap-3 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm md:grid-cols-[1fr_180px_180px_180px] md:items-end"
-      >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banco de questões</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
+</head>
+
+<body class="m-0 bg-gray-100 p-3.5 font-sans text-gray-800 md:p-6">
+  <main id="app" class="mx-auto max-w-[1180px]">
+    <section v-if="!appMode" class="mx-auto mt-12 max-w-3xl">
+      <h1 class="mb-3 text-center text-3xl font-bold">Banco de questões</h1>
+      <p class="mb-8 text-center text-gray-600">
+        Escolha como deseja abrir o banco de questões.
+      </p>
+
+      <div class="grid items-stretch gap-4 md:grid-cols-2">
+        <button type="button" class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm transition hover:border-blue-400 hover:bg-blue-50" @click="openEditMode">
+          <h2 class="mb-2 text-xl font-bold">Modo de Edição</h2>
+
+          <p class="text-gray-600">
+            Abra o arquivo JSON de uma prova específica para revisar questões e editar seus dados.
+          </p>
+        </button>
+
+        <button type="button" class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm transition hover:border-emerald-400 hover:bg-emerald-50" @click="openStatisticsMode">
+          <h2 class="mb-2 text-xl font-bold">Modo de Visualização</h2>
+
+          <p class="text-gray-600">
+            Abra a pasta do banco de questões que contém a pasta com o JSON das provas e o arquivo JSON do índice temático das questões nelas presentes.
+          </p>
+        </button>
+      </div>
+    </section>
+
+    <template v-else>
+      <header class="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <label class="mb-1.5 block text-sm font-bold" for="fileInput"
-            >Arquivo prova.json</label
-          >
-          <button
-            id="fileInput"
-            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-left text-[15px]"
-            type="button"
-            @click="handleFileChange"
-          >
+          <h1 class="text-[28px] font-bold leading-tight">
+            {{ appMode === "edit" ? "Editor de prova" : "Estatísticas do banco" }}
+          </h1>
+          <p class="mt-1 text-sm text-gray-600">
+            {{ isReadOnly ? "Modo somente leitura" : "Modo de leitura e escrita" }}
+          </p>
+        </div>
+
+        <button type="button" class="rounded-lg border border-gray-300 bg-white px-4 py-2 font-bold hover:bg-gray-50" @click="returnToHome">
+          Trocar modo
+        </button>
+      </header>
+
+      <section v-if="appMode === 'edit'" class="mb-4 grid gap-3 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm md:grid-cols-[1fr_180px_180px_180px] md:items-end">
+        <div>
+          <label class="mb-1.5 block text-sm font-bold" for="fileInput">Arquivo prova.json</label>
+          <button id="fileInput" class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-left text-[15px]" type="button" @click="handleFileChange">
             Selecionar prova.json
           </button>
         </div>
         <div>
-          <label class="mb-1.5 block text-sm font-bold" for="jsonEditorButton"
-            >Editor</label
-          >
-          <button
-            id="jsonEditorButton"
-            class="w-full box-border rounded-lg bg-gray-800 p-2.5 text-[15px] font-bold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300"
-            type="button"
-            :disabled="!currentQuestion"
-            @click="openJsonEditor"
-          >
+          <label class="mb-1.5 block text-sm font-bold" for="jsonEditorButton">Editor</label>
+          <button id="jsonEditorButton" class="w-full box-border rounded-lg bg-gray-800 p-2.5 text-[15px] font-bold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300" type="button" :disabled="!currentQuestion" @click="openJsonEditor">
             Editar questão
           </button>
         </div>
         <div>
-          <label class="mb-1.5 block text-sm font-bold" for="questionSelect"
-            >Questão</label
-          >
-          <select
-            id="questionSelect"
-            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
-            v-model.number="selectedQuestionIndex"
-            :disabled="!questions.length"
-            @change="handleQuestionChange"
-          >
+          <label class="mb-1.5 block text-sm font-bold" for="questionSelect">Questão</label>
+          <select id="questionSelect" class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]" v-model.number="selectedQuestionIndex" :disabled="!questions.length" @change="handleQuestionChange">
             <option v-if="!questions.length" disabled value="0">
               {{ selectPlaceholder }}
             </option>
-            <option
-              v-for="(question, index) in questions"
-              :key="question.numero || index"
-              :value="index"
-            >
+            <option v-for="(question, index) in questions" :key="question.numero || index" :value="index">
               Questão {{ question.numero }}
             </option>
           </select>
@@ -70,13 +81,7 @@
           <label class="mb-1.5 block text-sm font-bold" for="examSelect">
             Prova
           </label>
-          <select
-            id="examSelect"
-            class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]"
-            v-model="selectedExamKey"
-            :disabled="!examKeys.length"
-            @change="selectedQuestionIndex = 0; resetAnswerState()"
-          >
+          <select id="examSelect" class="w-full box-border rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]" v-model="selectedExamKey" :disabled="!examKeys.length" @change="selectedQuestionIndex = 0; resetAnswerState()">
             <option v-for="examKey in examKeys" :key="examKey" :value="examKey">
               {{ examKey }}
             </option>
@@ -84,94 +89,303 @@
         </div>
       </section>
 
-      <section
-        class="mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm"
-      >
+      <section v-if="appMode === 'statistics'" class="mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <label class="mb-1.5 block text-sm font-bold">Pasta do banco de questões</label>
+            <button type="button" class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-bold hover:bg-gray-50" @click="handleDirectoryChange">
+              Selecionar pasta
+            </button>
+          </div>
+
+          <div v-if="statisticsDirectoryName" class="text-sm text-gray-600">
+            Pasta: <strong>{{ statisticsDirectoryName }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section v-if="appMode === 'statistics' && thematicIndex && unindexedExamNames.length" class="mb-4 rounded-xl border border-red-300 bg-red-50 p-4 text-red-900 shadow-sm" role="alert">
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 text-xl" aria-hidden="true">⚠</span>
+          <div class="min-w-0">
+            <h2 class="font-bold">
+              {{ unindexedExamNames.length }}
+              arquivo(s) de prova sem questões no índice
+            </h2>
+            <p class="mt-1 text-sm leading-normal">
+              Este aviso desaparecerá automaticamente quando cada arquivo abaixo
+              tiver ao menos uma questão presente em
+              <code>indice_tematico_questoes.json</code>.
+            </p>
+
+            <ul class="mt-3 grid gap-1 text-sm sm:grid-cols-2">
+              <li v-for="examName in unindexedExamNames" :key="examName" class="break-words rounded-md border border-red-200 bg-white/70 px-2 py-1.5 font-mono">
+                {{ examName }}.json
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section v-if="appMode === 'statistics' && thematicIndex" class="mb-4 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        <button type="button" class="flex w-full items-center justify-between gap-3 p-4 text-left hover:bg-gray-50" @click="statisticsFiltersCollapsed = !statisticsFiltersCollapsed">
+          <span>
+            <span class="block text-lg font-bold">Filtros e resultado</span>
+            <span class="block text-sm text-gray-600">
+              {{ selectedFileCount }} arquivo(s) · {{ filteredQuestionIds.length }} questão(ões)
+            </span>
+          </span>
+          <span class="text-xl text-gray-500">
+            {{ statisticsFiltersCollapsed ? "▸" : "▾" }}
+          </span>
+        </button>
+
+        <div v-show="!statisticsFiltersCollapsed" class="grid gap-4 border-t border-gray-200 p-4 lg:grid-cols-[380px_1fr]">
+          <aside class="rounded-xl border border-gray-200 bg-white p-4">
+            <section class="mb-5">
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h2 class="text-lg font-bold">Séries de provas</h2>
+                <button type="button" class="text-sm font-bold text-blue-700 hover:underline" @click="toggleAllPatterns">
+                  {{ allPatternsSelected ? "Desmarcar todas" : "Marcar todas" }}
+                </button>
+              </div>
+
+              <div class="grid gap-3">
+                <section v-for="folder in examFolderEntries" :key="folder.name" class="rounded-xl border border-gray-300 bg-gray-50 p-3">
+                  <div class="flex items-start justify-between gap-3">
+                    <label class="flex min-w-0 flex-1 items-start gap-2">
+                      <input type="checkbox" class="mt-1 h-4 w-4" :checked="isFolderFullySelected(folder.name)" :indeterminate.prop="isFolderPartiallySelected(folder.name)" @change="toggleFolderSelection(folder.name, $event.target.checked)" />
+                      <span class="min-w-0">
+                        <span class="block font-bold">{{ folder.name }}</span>
+                        <span class="block text-xs text-gray-500">
+                          {{ selectedFileCountForFolder(folder.name) }}/{{ folder.examNames.length }}
+                          arquivo(s) selecionado(s)
+                        </span>
+                      </span>
+                    </label>
+
+                    <button type="button" class="shrink-0 rounded px-2 py-1 text-sm font-bold text-blue-700 hover:bg-blue-50" @click="toggleFolderExpanded(folder.name)">
+                      {{ expandedExamFolders.includes(folder.name) ? "Ocultar" : "Séries" }}
+                    </button>
+                  </div>
+
+                  <div v-if="expandedExamFolders.includes(folder.name)" class="mt-3 grid gap-2 border-t border-gray-300 pt-3">
+                    <section v-for="[pattern, data] in folder.patterns" :key="`${folder.name}:${pattern}`" class="rounded-lg border border-gray-200 bg-white p-3">
+                      <div class="flex items-start justify-between gap-3">
+                        <label class="flex min-w-0 flex-1 items-start gap-2">
+                          <input type="checkbox" class="mt-1 h-4 w-4" :checked="isPatternFullySelected(pattern, folder.name)" :indeterminate.prop="isPatternPartiallySelected(pattern, folder.name)" @change="togglePatternSelection(pattern, $event.target.checked, folder.name)" />
+                          <span class="min-w-0">
+                            <span class="block font-bold">{{ pattern }}</span>
+                            <span class="block text-xs text-gray-500">
+                              {{ selectedFileCountForPattern(pattern, folder.name) }}/{{ data.examNames.length }}
+                              arquivo(s) selecionado(s)
+                            </span>
+                          </span>
+                        </label>
+
+                        <button type="button" class="shrink-0 rounded px-2 py-1 text-sm font-bold text-blue-700 hover:bg-blue-50" @click="togglePatternExpanded(folder.name, pattern)">
+                          {{
+                          expandedExamPatterns.includes(`${folder.name}:${pattern}`)
+                          ? "Ocultar"
+                          : "Arquivos"
+                          }}
+                        </button>
+                      </div>
+
+                      <div v-if="expandedExamPatterns.includes(`${folder.name}:${pattern}`)" class="mt-3 grid gap-2 border-t border-gray-200 pt-3">
+                        <label v-for="examName in data.examNames" :key="examName" class="flex items-start gap-2 rounded-md px-2 py-1.5 hover:bg-gray-50">
+                          <input type="checkbox" class="mt-1 h-4 w-4" :value="examName" v-model="selectedExamFiles" />
+                          <span class="block break-words text-sm font-medium">
+                            {{ examName }}
+                          </span>
+                        </label>
+                      </div>
+                    </section>
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <section>
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h2 class="text-lg font-bold">Conteúdos</h2>
+                <button v-if="selectedContentPath.length" type="button" class="text-sm font-bold text-blue-700 hover:underline" @click="clearContentSelection">
+                  Limpar
+                </button>
+              </div>
+
+              <p class="mb-3 text-sm text-gray-600">
+                Clique em qualquer nível para incluir todas as questões dos seus descendentes.
+              </p>
+
+              <div class="max-h-[60vh] overflow-auto pr-1">
+                <content-tree-node v-for="node in contentTree" :key="node.path.join('>')" :node="node" :selected-path="selectedContentPath" @select="selectContentPath"></content-tree-node>
+              </div>
+            </section>
+          </aside>
+
+          <section class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+            <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <h2 class="text-lg font-bold">Resultado</h2>
+                <p class="text-sm text-gray-600">
+                  {{
+                  selectedContentPath.length
+                  ? formatPath(selectedContentPath)
+                  : "Selecione um conteúdo"
+                  }}
+                </p>
+              </div>
+
+              <button type="button" class="rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300" :disabled="!selectedContentPath.length || !filteredQuestionIds.length || isLoadingStatisticsQuestions" @click="loadSelectedStatisticsQuestions">
+                {{
+                isLoadingStatisticsQuestions
+                ? "Carregando..."
+                : `Abrir ${filteredQuestionIds.length} questão(ões)`
+                }}
+              </button>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="rounded-lg bg-gray-50 p-3">
+                <div class="text-xs font-bold uppercase text-gray-500">Questões</div>
+                <div class="mt-1 text-2xl font-bold">{{ filteredQuestionIds.length }}</div>
+              </div>
+              <div class="rounded-lg bg-gray-50 p-3">
+                <div class="text-xs font-bold uppercase text-gray-500">Séries</div>
+                <div class="mt-1 text-2xl font-bold">{{ selectedPatternCount }}</div>
+              </div>
+              <div class="rounded-lg bg-gray-50 p-3">
+                <div class="text-xs font-bold uppercase text-gray-500">Arquivos</div>
+                <div class="mt-1 text-2xl font-bold">{{ selectedFileCount }}</div>
+              </div>
+            </div>
+
+            <section class="mt-5 border-t border-gray-200 pt-5">
+              <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h3 class="text-lg font-bold">Gráficos</h3>
+                  <p class="text-sm text-gray-600">
+                    Os gráficos usam os filhos imediatos do conteúdo selecionado.
+                    Uma mesma questão pode aparecer em mais de um subconteúdo.
+                  </p>
+                </div>
+
+                <label class="block min-w-[210px] text-sm font-bold">
+                  Métrica
+                  <select v-model="chartMetric" class="mt-1 block w-full rounded-lg border border-gray-300 bg-white p-2.5 font-normal">
+                    <option value="percentage">Percentual por ano</option>
+                    <option value="questions">Número de questões</option>
+                    <option value="exams">Número de provas</option>
+                  </select>
+                </label>
+              </div>
+
+              <p v-if="!selectedContentPath.length" class="rounded-lg bg-gray-50 p-4 text-gray-500">
+                Selecione um conteúdo para gerar os gráficos.
+              </p>
+
+              <div v-else class="grid gap-4">
+                <article class="rounded-xl border border-gray-200 p-3">
+                  <h4 class="font-bold">Incidência de conteúdo por ano</h4>
+                  <p class="mb-2 text-sm text-gray-500">
+                    Compare a recorrência dos subconteúdos ao longo dos anos.
+                  </p>
+                  <div ref="contentHeatmapElement" class="h-[420px] w-full" aria-label="Mapa de calor da incidência de conteúdo por ano"></div>
+                </article>
+
+                <article class="rounded-xl border border-gray-200 p-3">
+                  <h4 class="font-bold">Conteúdos mais frequentes</h4>
+                  <p class="mb-2 text-sm text-gray-500">
+                    Ranking no conjunto de provas atualmente selecionado.
+                  </p>
+                  <div ref="contentRankingElement" class="w-full" :style="{ height: `${rankingChartHeight}px` }" aria-label="Gráfico dos conteúdos mais frequentes"></div>
+                </article>
+              </div>
+            </section>
+          </section>
+        </div>
+      </section>
+
+      <section ref="questionViewerSection" class="mb-4 rounded-xl border border-gray-200 bg-white p-[18px] shadow-sm">
         <p v-if="errorMessage" class="font-bold leading-normal text-red-700">
           {{ errorMessage }}
         </p>
 
-        <p
-          v-if="saveMessage"
-          class="mb-3 font-bold leading-normal text-green-700"
-        >
+        <p v-if="saveMessage" class="mb-3 font-bold leading-normal text-green-700">
           {{ saveMessage }}
         </p>
 
         <p v-if="!currentQuestion" class="leading-normal text-gray-500">
-          Carregue um arquivo <strong>prova.json</strong> para visualizar as
-          questões.
+          {{
+          isReadOnly
+          ? "Selecione uma pasta, escolha um conteúdo e abra as questões encontradas."
+          : "Carregue um arquivo prova.json para visualizar as questões."
+          }}
         </p>
 
         <template v-else>
-          <div>
-            <h2 class="mb-3 text-[22px] font-bold leading-tight">
-              Questão {{ currentQuestion.numero }}
-            </h2>
+          <div class="mb-3 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 class="break-words text-[22px] font-bold leading-tight">
+                {{
+                isReadOnly
+                ? `${currentQuestion.exame}:${currentQuestion.numero}`
+                : `Questão ${currentQuestion.numero}`
+                }}
+              </h2>
+            </div>
+
+            <div v-if="isReadOnly && questions.length" class="flex flex-wrap items-end gap-2">
+              <div class="min-w-[260px]">
+                <label class="mb-1.5 block text-sm font-bold" for="statisticsQuestionSelect">
+                  Questão
+                </label>
+                <select id="statisticsQuestionSelect" class="w-full rounded-lg border border-gray-300 bg-white p-2.5 text-[15px]" v-model.number="selectedQuestionIndex" @change="handleQuestionChange">
+                  <option v-for="(question, index) in questions" :key="`${question.exame || 'resultado'}:${question.numero}:${index}`" :value="index">
+                    {{ index + 1 }} de {{ questions.length }} — {{ question.exame }}:{{ question.numero }}
+                  </option>
+                </select>
+              </div>
+
+              <button type="button" class="rounded-lg bg-gray-800 px-4 py-2.5 font-bold text-white hover:bg-gray-900" @click="downloadLoadedQuestions">
+                Baixar questões
+              </button>
+            </div>
           </div>
 
-          <div
-            v-if="loadedJson?.fonte === '[TODO:ADICIONAR_FONTE]'"
-            class="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-amber-900"
-          >
+          <div v-if="!isReadOnly && loadedJson?.fonte === '[TODO:ADICIONAR_FONTE]'" class="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-amber-900">
             <strong>Atenção:</strong> A propriedade <code>fonte</code> ainda
             está como <code>[TODO:ADICIONAR_FONTE]</code>. Preencha esse campo
             no editor de JSON.
           </div>
 
           <section>
-            <h3
-              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
-            >
+            <h3 class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight">
               Contexto
             </h3>
 
-            <p
-              v-if="!currentQuestion.contexto || !currentQuestion.contexto.length"
-              class="leading-normal text-gray-500"
-            >
+            <p v-if="!currentQuestion.contexto || !currentQuestion.contexto.length" class="leading-normal text-gray-500">
               Esta questão não possui contexto.
             </p>
 
-            <div
-              v-for="(item, index) in currentQuestion.contexto"
-              :key="index"
-              class="mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3"
-            >
+            <div v-for="(item, index) in currentQuestion.contexto" :key="index" class="mb-2.5 rounded-[10px] border border-gray-200 bg-neutral-50 p-3">
               <div class="mb-2 text-xs font-bold uppercase text-gray-500">
                 Contexto {{ index + 1 }} · {{ item.mimeType }}
               </div>
 
-              <div
-                v-if="item && item.mimeType === 'text/plain'"
-                class="whitespace-pre-wrap leading-normal"
-                v-html="renderRichText(item.conteudo)"
-              ></div>
+              <div v-if="item && item.mimeType === 'text/plain'" class="whitespace-pre-wrap leading-normal" v-html="renderRichText(item.conteudo)"></div>
 
-              <div
-                v-else-if="item && item.mimeType && item.mimeType.startsWith('image/')"
-              >
-                <div
-                  v-if="isMissingImage(item.conteudo)"
-                  class="rounded-lg border border-red-200 bg-red-50 p-3"
-                >
+              <div v-else-if="item && item.mimeType && item.mimeType.startsWith('image/')">
+                <div v-if="isMissingImage(item.conteudo)" class="rounded-lg border border-red-200 bg-red-50 p-3">
                   <p class="font-bold text-red-700">
                     Imagem pendente. Copie a imagem e clique no botão abaixo.
                   </p>
                 </div>
 
-                <img
-                  v-if="!isMissingImage(item.conteudo)"
-                  class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
-                  :src="buildImageSource(item.mimeType, item.conteudo || '')"
-                  alt="Imagem do contexto"
-                />
+                <img v-if="!isMissingImage(item.conteudo)" class="h-auto max-w-full rounded-lg border border-gray-200 bg-white" :src="buildImageSource(item.mimeType, item.conteudo || '')" alt="Imagem do contexto" />
 
-                <button
-                  type="button"
-                  class="mt-3 mb-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                  @click="pasteImage(item)"
-                >
+                <button v-if="!isReadOnly" type="button" class="mt-3 mb-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700" @click="pasteImage(item)">
                   Colar imagem da área de transferência
                 </button>
               </div>
@@ -183,81 +397,41 @@
           </section>
 
           <section>
-            <h3
-              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
-            >
+            <h3 class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight">
               Comando
             </h3>
-            <div
-              class="whitespace-pre-wrap leading-normal"
-              v-html="renderRichText(currentQuestion.comando)"
-            ></div>
+            <div class="whitespace-pre-wrap leading-normal" v-html="renderRichText(currentQuestion.comando)"></div>
           </section>
 
           <section>
-            <h3
-              class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight"
-            >
+            <h3 class="mb-2.5 mt-[22px] border-b border-gray-200 pb-1.5 text-[17px] font-bold leading-tight">
               Alternativas
             </h3>
 
             <label class="mb-3 flex select-none items-center gap-2 text-sm">
-              <input
-                class="h-4 w-4"
-                type="checkbox"
-                v-model="forceShowAnswer"
-              />
+              <input class="h-4 w-4" type="checkbox" v-model="forceShowAnswer" />
               Mostrar gabarito
             </label>
 
             <div v-if="alternativeEntries.length" class="grid gap-2">
-              <div
-                v-for="[letter, alternative] in alternativeEntries"
-                :key="letter"
-                role="button"
-                tabindex="0"
-                class="w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50"
-                :class="alternativeClass(letter)"
-                @click="selectedAlternative = letter"
-                @keydown.enter="selectedAlternative = letter"
-                @keydown.space.prevent="selectedAlternative = letter"
-              >
+              <div v-for="[letter, alternative] in alternativeEntries" :key="letter" role="button" tabindex="0" class="w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-2.5 text-left font-[inherit] leading-snug text-[inherit] hover:bg-gray-50" :class="alternativeClass(letter)" @click="selectedAlternative = letter" @keydown.enter="selectedAlternative = letter" @keydown.space.prevent="selectedAlternative = letter">
                 <span class="font-bold">({{ letter }}) </span>
 
-                <span
-                  v-if="alternative.mimeType === 'text/plain'"
-                  v-html="renderRichText(alternative.conteudo)"
-                ></span>
+                <span v-if="alternative.mimeType === 'text/plain'" v-html="renderRichText(alternative.conteudo)"></span>
 
-                <div
-                  v-else-if="alternative.mimeType.startsWith('image/')"
-                  class="mt-2"
-                >
-                  <div
-                    v-if="isMissingImage(alternative.conteudo)"
-                    class="rounded-lg border border-red-200 bg-red-50 p-3"
-                    @click.stop
-                  >
+                <div v-else-if="alternative.mimeType.startsWith('image/')" class="mt-2">
+                  <div v-if="isMissingImage(alternative.conteudo)" class="rounded-lg border border-red-200 bg-red-50 p-3" @click.stop>
                     <p class="font-bold text-red-700">
                       Imagem pendente. Copie a imagem e clique no botão abaixo.
                     </p>
                   </div>
 
-                  <img
-                    v-if="!isMissingImage(alternative.conteudo)"
-                    class="h-auto max-w-full rounded-lg border border-gray-200 bg-white"
-                    alt="Imagem da alternativa"
-                    :src="buildImageSource(
+                  <img v-if="!isMissingImage(alternative.conteudo)" class="h-auto max-w-full rounded-lg border border-gray-200 bg-white" alt="Imagem da alternativa" :src="buildImageSource(
                       alternative.mimeType,
                       alternative.conteudo
-                    )"
-                  />
+                    )" />
 
-                  <button
-                    type="button"
-                    class="mb-3 mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                    @click.stop="pasteImage(alternative)"
-                  >
+                  <button v-if="!isReadOnly" type="button" class="mb-3 mt-3 rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700" @click.stop="pasteImage(alternative)">
                     Colar imagem da área de transferência
                   </button>
                 </div>
@@ -279,16 +453,8 @@
         </template>
       </section>
 
-      <div
-        v-if="isJsonEditorOpen"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3"
-      >
-        <section
-          class="flex max-h-[95vh] w-full max-w-6xl flex-col rounded-xl bg-white p-4 shadow-2xl md:p-5"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="jsonEditorTitle"
-        >
+      <div v-if="!isReadOnly && isJsonEditorOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3">
+        <section class="flex max-h-[95vh] w-full max-w-6xl flex-col rounded-xl bg-white p-4 shadow-2xl md:p-5" role="dialog" aria-modal="true" aria-labelledby="jsonEditorTitle">
           <div class="mb-3 flex items-start justify-between gap-4">
             <div>
               <h2 id="jsonEditorTitle" class="text-xl font-bold">
@@ -299,22 +465,12 @@
                 o campo gabarito será salvo no gabarito central.
               </p>
             </div>
-            <button
-              type="button"
-              class="rounded-lg border border-gray-300 px-3 py-1.5 font-bold hover:bg-gray-100"
-              @click="closeJsonEditor"
-            >
+            <button type="button" class="rounded-lg border border-gray-300 px-3 py-1.5 font-bold hover:bg-gray-100" @click="closeJsonEditor">
               Fechar
             </button>
           </div>
 
-          <textarea
-            v-model="jsonEditorText"
-            class="min-h-[55vh] w-full flex-1 resize-none rounded-lg border border-gray-300 p-3 font-mono text-sm leading-5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-            aria-label="JSON da questão selecionada"
-            spellcheck="false"
-            @input="validateJsonEditor"
-          ></textarea>
+          <textarea v-model="jsonEditorText" class="min-h-[55vh] w-full flex-1 resize-none rounded-lg border border-gray-300 p-3 font-mono text-sm leading-5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" aria-label="JSON da questão selecionada" spellcheck="false" @input="validateJsonEditor"></textarea>
 
           <div class="mt-3 min-h-6">
             <p v-if="jsonEditorError" class="font-bold text-red-700">
@@ -324,902 +480,2231 @@
           </div>
 
           <div class="mt-3 flex flex-wrap justify-end gap-2">
-            <button
-              type="button"
-              class="rounded-lg border border-gray-300 px-4 py-2 font-bold hover:bg-gray-100"
-              @click="formatJsonEditor"
-            >
+            <button type="button" class="rounded-lg border border-gray-300 px-4 py-2 font-bold hover:bg-gray-100" @click="formatJsonEditor">
               Formatar JSON
             </button>
-            <button
-              type="button"
-              class="rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
-              :disabled="Boolean(jsonEditorError) || isSavingJson"
-              @click="saveJsonEditor"
-            >
+            <button type="button" class="rounded-lg bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300" :disabled="Boolean(jsonEditorError) || isSavingJson" @click="saveJsonEditor">
               {{ isSavingJson ? "Salvando..." : "Validar e salvar" }}
             </button>
           </div>
         </section>
       </div>
-    </main>
+    </template>
+  </main>
 
-    <script>
-      const { computed, createApp, onBeforeUnmount, onMounted, ref, watch } =
-        Vue;
+  <script>
+    const {
+      computed,
+      createApp,
+      defineComponent,
+      h,
+      onBeforeUnmount,
+      onMounted,
+      ref,
+      watch,
+    } = Vue;
 
-      createApp({
-        setup() {
-          const examKeys = ref([]);
-          const selectedExamKey = ref("");
-          const questionsByExam = ref({});
-          const questions = computed(() => {
-            const examQuestions =
-              questionsByExam.value[selectedExamKey.value] || [];
+    const ContentTreeNode = defineComponent({
+      name: "ContentTreeNode",
+      props: {
+        node: { type: Object, required: true },
+        selectedPath: { type: Array, required: true },
+      },
+      emits: ["select"],
+      setup(props, { emit }) {
+        const expanded = ref(false);
 
-            return [...examQuestions].sort(compareQuestions);
-          });
-          const answerKey = ref({});
-          const selectedQuestionIndex = ref(0);
-          const selectedAlternative = ref(null);
-          const forceShowAnswer = ref(false);
-          const errorMessage = ref("");
-          const selectPlaceholder = ref("Carregue um arquivo");
-          const currentFileHandle = ref(null);
-          const loadedJson = ref(null);
-          const questionKeyOrder = ref([]);
-          const answerKeyOrder = ref([]);
-          const saveMessage = ref("");
-          const isJsonEditorOpen = ref(false);
-          const jsonEditorText = ref("");
-          const jsonEditorError = ref("");
-          const isSavingJson = ref(false);
-          const hiddenContentValues = new Map();
+        const isSelected = computed(
+          () =>
+            JSON.stringify(props.node.path) ===
+            JSON.stringify(props.selectedPath),
+        );
 
-          const currentQuestion = computed(() => {
-            return questions.value[selectedQuestionIndex.value] || null;
-          });
-
-          const normalizedAnswer = computed(() => {
-            const numero = currentQuestion.value.numero;
-
-            return String(answerKey.value[numero]).toUpperCase();
-          });
-
-          const shouldShowAnswer = computed(() => {
-            return forceShowAnswer.value || Boolean(selectedAlternative.value);
-          });
-
-          const alternativeEntries = computed(() => {
-            const alternatives = currentQuestion.value?.alternativas;
-
-            if (!alternatives || typeof alternatives !== "object") {
-              return [];
-            }
-
-            return Object.entries(alternatives);
-          });
-
-          const answerStatus = computed(() => {
-            if (!shouldShowAnswer.value) {
-              return "";
-            }
-
-            if (!selectedAlternative.value) {
-              return "Gabarito: " + normalizedAnswer.value;
-            }
-
-            if (selectedAlternative.value === normalizedAnswer.value) {
-              return "Correto. Gabarito: " + normalizedAnswer.value;
-            }
-
-            return (
-              "Resposta selecionada: " +
-              selectedAlternative.value +
-              ". Gabarito: " +
-              normalizedAnswer.value
-            );
-          });
-
-          function openDatabase() {
-            return new Promise((resolve, reject) => {
-              const request = indexedDB.open("prova-viewer", 1);
-
-              request.onupgradeneeded = () => {
-                request.result.createObjectStore("settings");
-              };
-
-              request.onsuccess = () => {
-                resolve(request.result);
-              };
-
-              request.onerror = () => {
-                reject(request.error);
-              };
-            });
-          }
-
-          async function saveFileHandle(fileHandle) {
-            const database = await openDatabase();
-            const transaction = database.transaction("settings", "readwrite");
-            transaction
-              .objectStore("settings")
-              .put(fileHandle, "jsonFileHandle");
-          }
-
-          async function getSavedFileHandle() {
-            const database = await openDatabase();
-
-            return new Promise((resolve, reject) => {
-              const transaction = database.transaction("settings", "readonly");
-              const request = transaction
-                .objectStore("settings")
-                .get("jsonFileHandle");
-
-              request.onsuccess = () => {
-                resolve(request.result || null);
-              };
-
-              request.onerror = () => {
-                reject(request.error);
-              };
-            });
-          }
-
-          async function reloadCurrentFile() {
-            if (!currentFileHandle.value) {
-              return;
-            }
-
-            const file = await currentFileHandle.value.getFile();
-
-            await loadJsonFile(file);
-          }
-
-          async function loadSavedFileHandle() {
-            const fileHandle = await getSavedFileHandle();
-
-            if (!fileHandle) {
-              return;
-            }
-
-            currentFileHandle.value = fileHandle;
-
-            const permission = await fileHandle.queryPermission({
-              mode: "read",
-            });
-
-            if (permission !== "granted") {
-              selectPlaceholder.value =
-                "Clique em Selecionar prova.json para escolher o arquivo novamente";
-              return;
-            }
-
-            await reloadCurrentFile();
-          }
-
-          async function loadJsonFile(file) {
-            const text = await file.text();
-            const json = JSON.parse(text);
-            loadedJson.value = json;
-            questionKeyOrder.value = extractObjectKeyOrder(text, "questoes");
-            answerKeyOrder.value = extractObjectKeyOrder(text, "gabarito");
-
-            const extractedExams = extractExams(json);
-            const firstExamKey = Object.keys(extractedExams)[0] || "";
-            const extractedAnswerKey = extractAnswerKey(json);
-
-            examKeys.value = Object.keys(extractedExams);
-            questionsByExam.value = extractedExams;
-
-            if (!examKeys.value.length) {
-              throw new Error(
-                "Nenhuma questão encontrada. Formatos aceitos: objeto questoes na raiz ou arquivos de testes com provas na raiz.",
-              );
-            }
-
-            const savedExam = localStorage.getItem("exam");
-            const savedQuestion = localStorage.getItem("question");
-
-            if (savedExam && extractedExams[savedExam]) {
-              selectedExamKey.value = savedExam;
-            } else {
-              selectedExamKey.value = firstExamKey;
-            }
-
-            const selectedQuestions =
-              extractedExams[selectedExamKey.value] || [];
-
-            const restoredQuestionIndex = Number(savedQuestion);
-
-            if (
-              Number.isInteger(restoredQuestionIndex) &&
-              restoredQuestionIndex >= 0 &&
-              restoredQuestionIndex < selectedQuestions.length
-            ) {
-              selectedQuestionIndex.value = restoredQuestionIndex;
-            } else {
-              selectedQuestionIndex.value = 0;
-            }
-
-            answerKey.value = extractedAnswerKey;
-            selectedAlternative.value = null;
-            forceShowAnswer.value = false;
-            errorMessage.value = "";
-            saveMessage.value = "";
-            selectPlaceholder.value = "Carregue um arquivo";
-          }
-
-          async function handleFileChange() {
-            try {
-              const [fileHandle] = await window.showOpenFilePicker({
-                types: [
+        return () =>
+          h("div", { class: "mb-1" }, [
+            h(
+              "div",
+              {
+                class: [
+                  "flex items-center gap-1 rounded-lg px-2 py-1.5",
+                  isSelected.value
+                    ? "bg-blue-100 text-blue-900"
+                    : "hover:bg-gray-100",
+                ],
+                style: {
+                  paddingLeft: `${Math.max(0, props.node.depth) * 14 + 8}px`,
+                },
+              },
+              [
+                props.node.children.length
+                  ? h(
+                    "button",
+                    {
+                      type: "button",
+                      class: "w-5 shrink-0 text-center text-gray-500",
+                      onClick: (event) => {
+                        event.stopPropagation();
+                        expanded.value = !expanded.value;
+                      },
+                    },
+                    expanded.value ? "▾" : "▸",
+                  )
+                  : h("span", { class: "w-5 shrink-0" }),
+                h(
+                  "button",
                   {
-                    description: "JSON",
-                    accept: {
-                      "application/json": [".json"],
+                    type: "button",
+                    class:
+                      "flex min-w-0 flex-1 items-center justify-between gap-2 text-left",
+                    onClick: () => emit("select", props.node.path),
+                  },
+                  [
+                    h("span", { class: "truncate" }, formatTreeLabel(props.node.label)),
+                    h(
+                      "span",
+                      {
+                        class:
+                          "shrink-0 rounded-full bg-gray-200 px-2 py-0.5 text-xs font-bold text-gray-700",
+                      },
+                      String(props.node.count),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            expanded.value
+              ? props.node.children.map((child) =>
+                h(ContentTreeNode, {
+                  key: child.path.join(">"),
+                  node: child,
+                  selectedPath: props.selectedPath,
+                  onSelect: (path) => emit("select", path),
+                }),
+              )
+              : null,
+          ]);
+      },
+    });
+
+    function formatTreeLabel(value) {
+      return String(value)
+        .replace(/_/g, " ")
+        .replace(/\b\p{L}/gu, (letter) => letter.toUpperCase());
+    }
+
+    createApp({
+      components: { ContentTreeNode },
+      setup() {
+        const appMode = ref(null);
+        const isReadOnly = computed(() => appMode.value === "statistics");
+
+        const statisticsDirectoryHandle = ref(null);
+        const statisticsDirectoryName = ref("");
+        const thematicIndex = ref(null);
+        const examFileMap = ref(new Map());
+        const examPatternMap = ref(new Map());
+        const selectedExamPatterns = ref([]);
+        const selectedExamFiles = ref([]);
+        const expandedExamPatterns = ref([]);
+        const expandedExamFolders = ref([]);
+        const statisticsFiltersCollapsed = ref(false);
+        const selectedContentPath = ref([]);
+        const questionViewerSection = ref(null);
+        const contentHeatmapElement = ref(null);
+        const contentRankingElement = ref(null);
+        const chartMetric = ref("percentage");
+        let contentHeatmapChart = null;
+        let contentRankingChart = null;
+        const isLoadingStatisticsQuestions = ref(false);
+        const examJsonCache = new Map();
+
+        const examKeys = ref([]);
+        const selectedExamKey = ref("");
+        const questionsByExam = ref({});
+        const questions = computed(() => {
+          const examQuestions =
+            questionsByExam.value[selectedExamKey.value] || [];
+
+          return [...examQuestions].sort(compareQuestions);
+        });
+        const answerKey = ref({});
+        const selectedQuestionIndex = ref(0);
+        const selectedAlternative = ref(null);
+        const forceShowAnswer = ref(false);
+        const errorMessage = ref("");
+        const selectPlaceholder = ref("Carregue um arquivo");
+        const currentFileHandle = ref(null);
+        const loadedJson = ref(null);
+        const questionKeyOrder = ref([]);
+        const answerKeyOrder = ref([]);
+        const saveMessage = ref("");
+        const isJsonEditorOpen = ref(false);
+        const jsonEditorText = ref("");
+        const jsonEditorError = ref("");
+        const isSavingJson = ref(false);
+        const hiddenContentValues = new Map();
+
+        const currentQuestion = computed(() => {
+          return questions.value[selectedQuestionIndex.value] || null;
+        });
+
+        const normalizedAnswer = computed(() => {
+          const question = currentQuestion.value;
+
+          if (!question) {
+            return "";
+          }
+
+          const answer = question.gabarito ?? answerKey.value[question.numero];
+
+          return answer == null ? "" : String(answer).toUpperCase();
+        });
+
+        const shouldShowAnswer = computed(() => {
+          return forceShowAnswer.value || Boolean(selectedAlternative.value);
+        });
+
+        const alternativeEntries = computed(() => {
+          const alternatives = currentQuestion.value?.alternativas;
+
+          if (!alternatives || typeof alternatives !== "object") {
+            return [];
+          }
+
+          return Object.entries(alternatives);
+        });
+
+        const answerStatus = computed(() => {
+          if (!shouldShowAnswer.value) {
+            return "";
+          }
+
+          if (!selectedAlternative.value) {
+            return "Gabarito: " + normalizedAnswer.value;
+          }
+
+          if (selectedAlternative.value === normalizedAnswer.value) {
+            return "Correto. Gabarito: " + normalizedAnswer.value;
+          }
+
+          return (
+            "Resposta selecionada: " +
+            selectedAlternative.value +
+            ". Gabarito: " +
+            normalizedAnswer.value
+          );
+        });
+
+        function setQuestions(
+          exams,
+          answers = {},
+          {
+            preferredExam = "",
+            preferredQuestionIndex = 0,
+            restoreStoredSelection = false,
+          } = {},
+        ) {
+          const keys = Object.keys(exams);
+
+          if (!keys.length) {
+            throw new Error("Nenhuma questão foi encontrada.");
+          }
+
+          examKeys.value = keys;
+          questionsByExam.value = exams;
+          answerKey.value = answers;
+
+          if (preferredExam && exams[preferredExam]) {
+            selectedExamKey.value = preferredExam;
+          } else if (
+            restoreStoredSelection &&
+            localStorage.getItem("exam") &&
+            exams[localStorage.getItem("exam")]
+          ) {
+            selectedExamKey.value = localStorage.getItem("exam");
+          } else {
+            selectedExamKey.value = keys[0];
+          }
+
+          const currentQuestions =
+            questionsByExam.value[selectedExamKey.value] || [];
+          const storedIndex = Number(localStorage.getItem("question"));
+          const requestedIndex = restoreStoredSelection
+            ? storedIndex
+            : preferredQuestionIndex;
+
+          selectedQuestionIndex.value =
+            Number.isInteger(requestedIndex) &&
+              requestedIndex >= 0 &&
+              requestedIndex < currentQuestions.length
+              ? requestedIndex
+              : 0;
+
+          resetAnswerState();
+        }
+
+        const examPatternEntries = computed(() =>
+          [...examPatternMap.value.entries()].sort(([a], [b]) =>
+            a.localeCompare(b, "pt-BR"),
+          ),
+        );
+
+        const examFolderEntries = computed(() => {
+          const folders = new Map();
+
+          for (const [examName, fileEntry] of examFileMap.value.entries()) {
+            const pathParts = String(fileEntry.path || "").split("/");
+            const folderName =
+              pathParts.length > 1 ? pathParts[0] : "(raiz)";
+
+            if (!folders.has(folderName)) {
+              folders.set(folderName, {
+                name: folderName,
+                examNames: [],
+                patterns: new Map(),
+              });
+            }
+
+            const folder = folders.get(folderName);
+            const pattern = getExamPattern(`${examName}.json`);
+
+            folder.examNames.push(examName);
+
+            if (!folder.patterns.has(pattern)) {
+              folder.patterns.set(pattern, {
+                examNames: [],
+                years: [],
+              });
+            }
+
+            const group = folder.patterns.get(pattern);
+            group.examNames.push(examName);
+
+            const year = extractYear(`${examName}.json`);
+
+            if (year && !group.years.includes(year)) {
+              group.years.push(year);
+            }
+          }
+
+          return [...folders.values()]
+            .map((folder) => ({
+              ...folder,
+              examNames: folder.examNames.sort((a, b) =>
+                a.localeCompare(b, "pt-BR"),
+              ),
+              patterns: [...folder.patterns.entries()]
+                .map(([pattern, data]) => [
+                  pattern,
+                  {
+                    examNames: data.examNames.sort((a, b) =>
+                      a.localeCompare(b, "pt-BR"),
+                    ),
+                    years: data.years.sort(),
+                  },
+                ])
+                .sort(([a], [b]) => a.localeCompare(b, "pt-BR")),
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+        });
+
+        const allPatternsSelected = computed(
+          () =>
+            examFileMap.value.size > 0 &&
+            selectedExamFiles.value.length === examFileMap.value.size,
+        );
+
+        function getExamNamesForPattern(pattern, folderName = null) {
+          if (folderName) {
+            const folder = examFolderEntries.value.find(
+              (item) => item.name === folderName,
+            );
+            const patternEntry = folder?.patterns.find(
+              ([entryPattern]) => entryPattern === pattern,
+            );
+
+            return patternEntry?.[1].examNames || [];
+          }
+
+          return examPatternMap.value.get(pattern)?.examNames || [];
+        }
+
+        function selectedFileCountForPattern(pattern, folderName = null) {
+          return getExamNamesForPattern(pattern, folderName).filter(
+            (examName) => selectedExamFiles.value.includes(examName),
+          ).length;
+        }
+
+        function isPatternFullySelected(pattern, folderName = null) {
+          const names = getExamNamesForPattern(pattern, folderName);
+
+          return (
+            names.length > 0 &&
+            names.every((examName) =>
+              selectedExamFiles.value.includes(examName),
+            )
+          );
+        }
+
+        function isPatternPartiallySelected(pattern, folderName = null) {
+          const selectedCount = selectedFileCountForPattern(
+            pattern,
+            folderName,
+          );
+          const total = getExamNamesForPattern(pattern, folderName).length;
+
+          return selectedCount > 0 && selectedCount < total;
+        }
+
+        function togglePatternSelection(
+          pattern,
+          shouldSelect,
+          folderName = null,
+        ) {
+          const names = getExamNamesForPattern(pattern, folderName);
+          const selection = new Set(selectedExamFiles.value);
+
+          for (const examName of names) {
+            if (shouldSelect) {
+              selection.add(examName);
+            } else {
+              selection.delete(examName);
+            }
+          }
+
+          selectedExamFiles.value = [...selection].sort((a, b) =>
+            a.localeCompare(b, "pt-BR"),
+          );
+        }
+
+        function togglePatternExpanded(folderName, pattern) {
+          const key = `${folderName}:${pattern}`;
+
+          expandedExamPatterns.value = expandedExamPatterns.value.includes(key)
+            ? expandedExamPatterns.value.filter((item) => item !== key)
+            : [...expandedExamPatterns.value, key];
+        }
+
+        function getExamNamesForFolder(folderName) {
+          return (
+            examFolderEntries.value.find((folder) => folder.name === folderName)
+              ?.examNames || []
+          );
+        }
+
+        function selectedFileCountForFolder(folderName) {
+          return getExamNamesForFolder(folderName).filter((examName) =>
+            selectedExamFiles.value.includes(examName),
+          ).length;
+        }
+
+        function isFolderFullySelected(folderName) {
+          const names = getExamNamesForFolder(folderName);
+
+          return (
+            names.length > 0 &&
+            names.every((examName) =>
+              selectedExamFiles.value.includes(examName),
+            )
+          );
+        }
+
+        function isFolderPartiallySelected(folderName) {
+          const selectedCount = selectedFileCountForFolder(folderName);
+          const total = getExamNamesForFolder(folderName).length;
+
+          return selectedCount > 0 && selectedCount < total;
+        }
+
+        function toggleFolderSelection(folderName, shouldSelect) {
+          const names = getExamNamesForFolder(folderName);
+          const selection = new Set(selectedExamFiles.value);
+
+          for (const examName of names) {
+            if (shouldSelect) {
+              selection.add(examName);
+            } else {
+              selection.delete(examName);
+            }
+          }
+
+          selectedExamFiles.value = [...selection].sort((a, b) =>
+            a.localeCompare(b, "pt-BR"),
+          );
+        }
+
+        function toggleFolderExpanded(folderName) {
+          expandedExamFolders.value = expandedExamFolders.value.includes(
+            folderName,
+          )
+            ? expandedExamFolders.value.filter((item) => item !== folderName)
+            : [...expandedExamFolders.value, folderName];
+        }
+
+        const selectedExamNames = computed(
+          () => new Set(selectedExamFiles.value),
+        );
+
+        const selectedPatternCount = computed(
+          () =>
+            examPatternEntries.value.filter(([pattern]) =>
+              selectedFileCountForPattern(pattern) > 0,
+            ).length,
+        );
+
+        const indexedExamNames = computed(() => {
+          const names = new Set();
+          const index = thematicIndex.value;
+
+          if (!index || typeof index !== "object") {
+            return names;
+          }
+
+          if (
+            index.questoes &&
+            typeof index.questoes === "object" &&
+            !Array.isArray(index.questoes)
+          ) {
+            for (const questionId of Object.keys(index.questoes)) {
+              try {
+                names.add(parseQuestionId(questionId).examName);
+              } catch {
+                // Identificadores inválidos são ignorados aqui e continuam
+                // sujeitos às demais validações do índice.
+              }
+            }
+          }
+
+          if (index.conteudos && typeof index.conteudos === "object") {
+            for (const questionId of collectQuestionIds(index.conteudos)) {
+              try {
+                names.add(parseQuestionId(questionId).examName);
+              } catch {
+                // Mantém a verificação focada apenas em provas sem cobertura.
+              }
+            }
+          }
+
+          return names;
+        });
+
+        const unindexedExamNames = computed(() =>
+          [...examFileMap.value.keys()]
+            .filter((examName) => !indexedExamNames.value.has(examName))
+            .sort((a, b) => a.localeCompare(b, "pt-BR")),
+        );
+
+        const selectedFileCount = computed(() => {
+          let count = 0;
+
+          for (const examName of selectedExamNames.value) {
+            if (examFileMap.value.has(examName)) {
+              count += 1;
+            }
+          }
+
+          return count;
+        });
+
+        const filteredQuestionIds = computed(() => {
+          if (!selectedContentPath.value.length || !thematicIndex.value) {
+            return [];
+          }
+
+          const node = getValueAtPath(
+            thematicIndex.value.conteudos,
+            selectedContentPath.value,
+          );
+
+          return [...collectQuestionIds(node)]
+            .filter((questionId) => {
+              const { examName } = parseQuestionId(questionId);
+
+              return selectedExamNames.value.has(examName);
+            })
+            .sort(compareQuestionIds);
+        });
+
+        const selectedChartCategories = computed(() => {
+          if (!selectedContentPath.value.length || !thematicIndex.value) {
+            return [];
+          }
+
+          const selectedNode = getValueAtPath(
+            thematicIndex.value.conteudos,
+            selectedContentPath.value,
+          );
+
+          if (
+            selectedNode &&
+            typeof selectedNode === "object" &&
+            !Array.isArray(selectedNode)
+          ) {
+            return Object.entries(selectedNode)
+              .map(([label, value]) => ({
+                label,
+                displayLabel: formatTreeLabel(label),
+                questionIds: [...collectQuestionIds(value)],
+              }))
+              .filter((category) => category.questionIds.length)
+              .sort((a, b) =>
+                a.displayLabel.localeCompare(b.displayLabel, "pt-BR"),
+              );
+          }
+
+          return [
+            {
+              label:
+                selectedContentPath.value[
+                selectedContentPath.value.length - 1
+                ],
+              displayLabel: formatTreeLabel(
+                selectedContentPath.value[
+                selectedContentPath.value.length - 1
+                ],
+              ),
+              questionIds: [...collectQuestionIds(selectedNode)],
+            },
+          ];
+        });
+
+        const selectedYears = computed(() => {
+          const years = new Set();
+
+          for (const examName of selectedExamNames.value) {
+            const year = extractYear(`${examName}.json`);
+
+            if (year) {
+              years.add(year);
+            }
+          }
+
+          return [...years].sort();
+        });
+
+        const selectedQuestionIdsByYear = computed(() => {
+          const result = new Map();
+
+          if (!thematicIndex.value?.conteudos) {
+            return result;
+          }
+
+          for (const questionId of collectQuestionIds(
+            thematicIndex.value.conteudos,
+          )) {
+            const { examName } = parseQuestionId(questionId);
+
+            if (!selectedExamNames.value.has(examName)) {
+              continue;
+            }
+
+            const year = extractYear(`${examName}.json`);
+
+            if (!year) {
+              continue;
+            }
+
+            if (!result.has(year)) {
+              result.set(year, new Set());
+            }
+
+            result.get(year).add(questionId);
+          }
+
+          return result;
+        });
+
+        const chartMatrix = computed(() => {
+          return selectedChartCategories.value.map((category) => {
+            const selectedIds = category.questionIds.filter((questionId) => {
+              const { examName } = parseQuestionId(questionId);
+
+              return selectedExamNames.value.has(examName);
+            });
+
+            const byYear = Object.fromEntries(
+              selectedYears.value.map((year) => {
+                const idsInYear = new Set(
+                  selectedIds.filter((questionId) => {
+                    const { examName } = parseQuestionId(questionId);
+
+                    return extractYear(`${examName}.json`) === year;
+                  }),
+                );
+                const examCount = new Set(
+                  [...idsInYear].map(
+                    (questionId) => parseQuestionId(questionId).examName,
+                  ),
+                ).size;
+                const totalForYear =
+                  selectedQuestionIdsByYear.value.get(year)?.size || 0;
+                const percentage = totalForYear
+                  ? (idsInYear.size / totalForYear) * 100
+                  : 0;
+
+                return [
+                  year,
+                  {
+                    questions: idsInYear.size,
+                    exams: examCount,
+                    percentage,
+                  },
+                ];
+              }),
+            );
+
+            const allIds = new Set(selectedIds);
+            const allExams = new Set(
+              [...allIds].map(
+                (questionId) => parseQuestionId(questionId).examName,
+              ),
+            );
+
+            return {
+              ...category,
+              byYear,
+              totals: {
+                questions: allIds.size,
+                exams: allExams.size,
+                percentage:
+                  filteredQuestionIds.value.length > 0
+                    ? (allIds.size / filteredQuestionIds.value.length) * 100
+                    : 0,
+              },
+            };
+          });
+        });
+
+        const rankingChartHeight = computed(() =>
+          Math.max(320, chartMatrix.value.length * 42 + 110),
+        );
+
+        function getMetricValue(values) {
+          return Number(values?.[chartMetric.value] || 0);
+        }
+
+        function getMetricLabel() {
+          return {
+            percentage: "Percentual",
+            questions: "Questões",
+            exams: "Provas",
+          }[chartMetric.value];
+        }
+
+        function getMetricSuffix() {
+          return chartMetric.value === "percentage" ? "%" : "";
+        }
+
+        function renderStatisticsCharts() {
+          if (
+            !window.echarts ||
+            !selectedContentPath.value.length ||
+            statisticsFiltersCollapsed.value
+          ) {
+            return;
+          }
+
+          requestAnimationFrame(() => {
+            renderContentHeatmap();
+            renderContentRanking();
+          });
+        }
+
+        function renderContentHeatmap() {
+          const element = contentHeatmapElement.value;
+
+          if (!element) {
+            return;
+          }
+
+          if (!contentHeatmapChart) {
+            contentHeatmapChart = echarts.init(element);
+          }
+
+          const years = selectedYears.value;
+          const categories = chartMatrix.value;
+          const values = [];
+
+          categories.forEach((category, categoryIndex) => {
+            years.forEach((year, yearIndex) => {
+              values.push([
+                yearIndex,
+                categoryIndex,
+                getMetricValue(category.byYear[year]),
+                category.byYear[year].questions,
+                category.byYear[year].exams,
+                category.byYear[year].percentage,
+              ]);
+            });
+          });
+
+          const maximum = Math.max(
+            1,
+            ...values.map((item) => Number(item[2]) || 0),
+          );
+
+          contentHeatmapChart.setOption(
+            {
+              animationDuration: 350,
+              tooltip: {
+                position: "top",
+                formatter(params) {
+                  const item = params.data;
+                  const category = categories[item[1]];
+                  const year = years[item[0]];
+
+                  return [
+                    `<strong>${category.displayLabel} — ${year}</strong>`,
+                    `${item[3]} questão(ões)`,
+                    `${item[4]} prova(s)`,
+                    `${item[5].toFixed(2).replace(".", ",")}% das questões indexadas no ano`,
+                  ].join("<br>");
+                },
+              },
+              grid: {
+                left: 150,
+                right: 35,
+                top: 20,
+                bottom: 75,
+              },
+              xAxis: {
+                type: "category",
+                data: years,
+                name: "Ano",
+                nameLocation: "middle",
+                nameGap: 35,
+                splitArea: { show: true },
+              },
+              yAxis: {
+                type: "category",
+                data: categories.map((category) => category.displayLabel),
+                axisLabel: {
+                  width: 135,
+                  overflow: "truncate",
+                },
+                splitArea: { show: true },
+              },
+              visualMap: {
+                min: 0,
+                max: maximum,
+                calculable: true,
+                orient: "horizontal",
+                left: "center",
+                bottom: 5,
+                formatter(value) {
+                  const rounded =
+                    chartMetric.value === "percentage"
+                      ? Number(value).toFixed(1)
+                      : Math.round(value);
+
+                  return `${rounded}${getMetricSuffix()}`;
+                },
+              },
+              series: [
+                {
+                  name: getMetricLabel(),
+                  type: "heatmap",
+                  data: values,
+                  label: {
+                    show: true,
+                    formatter(params) {
+                      const value = Number(params.data[2]);
+
+                      if (!value) {
+                        return "";
+                      }
+
+                      return chartMetric.value === "percentage"
+                        ? `${value.toFixed(1)}%`
+                        : String(Math.round(value));
                     },
                   },
-                ],
-                multiple: false,
-              });
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowColor: "rgba(0, 0, 0, 0.3)",
+                    },
+                  },
+                },
+              ],
+            },
+            true,
+          );
+        }
 
-              currentFileHandle.value = fileHandle;
+        function renderContentRanking() {
+          const element = contentRankingElement.value;
 
-              await saveFileHandle(fileHandle);
-              await reloadCurrentFile();
-            } catch (error) {
-              if (error.name === "AbortError") {
-                return;
-              }
-
-              resetViewer();
-              errorMessage.value = error.message;
-            }
+          if (!element) {
+            return;
           }
 
-          function extractAnswerKey(json) {
-            if (json?.gabarito && typeof json.gabarito === "object") {
-              return json.gabarito;
-            }
-
-            return Object.values(json)
-              .filter(Array.isArray)
-              .flat()
-              .reduce((answerKey, question) => {
-                if (question.questao && question.gabarito) {
-                  answerKey[question.questao] = question.gabarito;
-                }
-
-                return answerKey;
-              }, {});
+          if (!contentRankingChart) {
+            contentRankingChart = echarts.init(element);
           }
 
-          function compareQuestions(a, b) {
-            const aNumber = Number.parseInt(
-              String(a.numero || "").replace(/\D/g, ""),
-              10,
-            );
-            const bNumber = Number.parseInt(
-              String(b.numero || "").replace(/\D/g, ""),
-              10,
-            );
-
-            return aNumber - bNumber;
-          }
-
-          function extractExams(json) {
-            if (!json || typeof json !== "object") {
-              return {};
-            }
-
-            if (
-              json.questoes &&
-              typeof json.questoes === "object" &&
-              !Array.isArray(json.questoes)
-            ) {
-              return {
-                Prova: Object.entries(json.questoes).map(
-                  ([numero, question]) => ({
-                    ...question,
-                    numero,
-                  }),
-                ),
-              };
-            }
-
-            return Object.entries(json)
-              .filter(([, value]) => Array.isArray(value))
-              .reduce((exams, [examName, examQuestions]) => {
-                exams[examName] = examQuestions.map((question) =>
-                  normalizeQuestion(question, examName),
-                );
-
-                return exams;
-              }, {});
-          }
-
-          function normalizeQuestion(question, examName) {
-            return {
-              exame: examName,
-              numero: question.questao,
-              contexto: question.saida_esperada.contexto,
-              comando: question.saida_esperada.comando,
-              alternativas: question.saida_esperada.alternativas,
-              gabarito: question.gabarito,
-              motivo: question.motivo,
-            };
-          }
-
-          function isMissingImage(content) {
-            return content === "[TODO:ADICIONAR_IMAGEM]";
-          }
-
-          async function readClipboardImage() {
-            if (!navigator.clipboard?.read) {
-              throw new Error(
-                "Este navegador não permite ler imagens da área de transferência.",
-              );
-            }
-
-            const clipboardItems = await navigator.clipboard.read();
-
-            for (const clipboardItem of clipboardItems) {
-              const imageType = clipboardItem.types.find((type) =>
-                type.startsWith("image/"),
-              );
-
-              if (imageType) {
-                return clipboardItem.getType(imageType);
-              }
-            }
-
-            throw new Error(
-              "Nenhuma imagem foi encontrada na área de transferência.",
-            );
-          }
-
-          function blobToDataUrl(blob) {
-            return new Promise((resolve, reject) => {
-              const reader = new FileReader();
-
-              reader.onload = () => resolve(reader.result);
-              reader.onerror = () =>
-                reject(
-                  reader.error || new Error("Não foi possível ler a imagem."),
-                );
-
-              reader.readAsDataURL(blob);
-            });
-          }
-
-          async function ensureWritePermission(fileHandle) {
-            const options = { mode: "readwrite" };
-
-            if ((await fileHandle.queryPermission(options)) === "granted") {
-              return true;
-            }
-
-            return (await fileHandle.requestPermission(options)) === "granted";
-          }
-
-          function extractObjectKeyOrder(text, propertyName) {
-            const escapedPropertyName = propertyName.replace(
-              /[.*+?^${}()|[\]\\]/g,
-              "\\$&",
-            );
-            const propertyMatch = new RegExp(
-              `"${escapedPropertyName}"\\s*:\\s*\\{`,
-            ).exec(text);
-
-            if (!propertyMatch) {
-              return [];
-            }
-
-            const objectStart = text.indexOf("{", propertyMatch.index);
-            const keys = [];
-            let depth = 1;
-            let index = objectStart + 1;
-
-            while (index < text.length && depth > 0) {
-              const character = text[index];
-
-              if (character === '"') {
-                const stringStart = index;
-                index += 1;
-
-                while (index < text.length) {
-                  if (text[index] === "\\") {
-                    index += 2;
-                    continue;
-                  }
-
-                  if (text[index] === '"') {
-                    break;
-                  }
-
-                  index += 1;
-                }
-
-                const stringEnd = index;
-
-                if (depth === 1) {
-                  let nextIndex = stringEnd + 1;
-
-                  while (/\s/.test(text[nextIndex] || "")) {
-                    nextIndex += 1;
-                  }
-
-                  if (text[nextIndex] === ":") {
-                    try {
-                      keys.push(
-                        JSON.parse(text.slice(stringStart, stringEnd + 1)),
-                      );
-                    } catch {
-                      return [];
-                    }
-                  }
-                }
-              } else if (character === "{") {
-                depth += 1;
-              } else if (character === "}") {
-                depth -= 1;
-              }
-
-              index += 1;
-            }
-
-            return keys;
-          }
-
-          function stringifyJsonPreservingQuestionOrder(value) {
-            const indentation = "  ";
-
-            function serialize(currentValue, depth, path) {
-              if (
-                currentValue === null ||
-                typeof currentValue === "number" ||
-                typeof currentValue === "boolean" ||
-                typeof currentValue === "string"
-              ) {
-                return JSON.stringify(currentValue);
-              }
-
-              if (Array.isArray(currentValue)) {
-                if (!currentValue.length) {
-                  return "[]";
-                }
-
-                const items = currentValue.map(
-                  (item, index) =>
-                    indentation.repeat(depth + 1) +
-                    serialize(item, depth + 1, [...path, index]),
-                );
-
-                return `[\n${items.join(",\n")}\n${indentation.repeat(depth)}]`;
-              }
-
-              if (typeof currentValue === "object") {
-                let keys = Object.keys(currentValue);
-
-                if (path.length === 1) {
-                  const preservedOrder =
-                    path[0] === "questoes"
-                      ? questionKeyOrder.value
-                      : path[0] === "gabarito"
-                        ? answerKeyOrder.value
-                        : null;
-
-                  if (preservedOrder) {
-                    const existingKeys = new Set(keys);
-                    const preservedKeys = preservedOrder.filter((key) =>
-                      existingKeys.has(key),
-                    );
-                    const newKeys = keys.filter(
-                      (key) => !preservedOrder.includes(key),
-                    );
-
-                    keys = [...preservedKeys, ...newKeys];
-                  }
-                }
-
-                if (!keys.length) {
-                  return "{}";
-                }
-
-                const properties = keys.map(
-                  (key) =>
-                    indentation.repeat(depth + 1) +
-                    `${JSON.stringify(key)}: ${serialize(
-                      currentValue[key],
-                      depth + 1,
-                      [...path, key],
-                    )}`,
-                );
-
-                return `{\n${properties.join(",\n")}\n${indentation.repeat(depth)}}`;
-              }
-
-              return undefined;
-            }
-
-            return serialize(value, 0, []);
-          }
-
-          async function saveCurrentJson(json = loadedJson.value) {
-            if (!currentFileHandle.value || !json) {
-              throw new Error("Nenhum arquivo JSON está aberto.");
-            }
-
-            const hasPermission = await ensureWritePermission(
-              currentFileHandle.value,
-            );
-
-            if (!hasPermission) {
-              throw new Error(
-                "A permissão para modificar o arquivo JSON não foi concedida.",
-              );
-            }
-
-            const writable = await currentFileHandle.value.createWritable();
-
-            try {
-              await writable.write(
-                stringifyJsonPreservingQuestionOrder(json) + "\n",
-              );
-              await writable.close();
-            } catch (error) {
-              await writable.abort();
-              throw error;
-            }
-          }
-
-          function getJsonErrorMessage(error, text) {
-            if (!(error instanceof SyntaxError)) {
-              return error instanceof Error ? error.message : String(error);
-            }
-
-            const positionMatch = error.message.match(/position\s+(\d+)/i);
-
-            if (!positionMatch) {
-              return error.message;
-            }
-
-            const position = Number(positionMatch[1]);
-            const beforeError = text.slice(0, position);
-            const line = beforeError.split("\n").length;
-            const lastLineBreak = beforeError.lastIndexOf("\n");
-            const column = position - lastLineBreak;
-
-            return `${error.message} (linha ${line}, coluna ${column})`;
-          }
-
-          function getJsonEditorText() {
-            return jsonEditorText.value;
-          }
-
-          function parseJsonEditor() {
-            const text = getJsonEditorText();
-
-            try {
-              const parsedJson = JSON.parse(text);
-              jsonEditorError.value = "";
-              return parsedJson;
-            } catch (error) {
-              jsonEditorError.value = getJsonErrorMessage(error, text);
-              return null;
-            }
-          }
-
-          function validateJsonEditor() {
-            parseJsonEditor();
-          }
-
-          function pathKey(path) {
-            return JSON.stringify(path);
-          }
-
-          function maskContentValues(value, path = []) {
-            if (Array.isArray(value)) {
-              return value.map((item, index) =>
-                maskContentValues(item, [...path, index]),
-              );
-            }
-
-            if (value && typeof value === "object") {
-              return Object.fromEntries(
-                Object.entries(value).map(([key, childValue]) => {
-                  const childPath = [...path, key];
-
-                  if (
-                    key === "conteudo" &&
-                    typeof childValue === "string" &&
-                    childValue.startsWith("data:")
-                  ) {
-                    hiddenContentValues.set(pathKey(childPath), childValue);
-                    return [key, "..."];
-                  }
-
-                  return [key, maskContentValues(childValue, childPath)];
-                }),
-              );
-            }
-
-            return value;
-          }
-
-          function restoreMaskedContentValues(value, path = []) {
-            if (Array.isArray(value)) {
-              return value.map((item, index) =>
-                restoreMaskedContentValues(item, [...path, index]),
-              );
-            }
-
-            if (value && typeof value === "object") {
-              return Object.fromEntries(
-                Object.entries(value).map(([key, childValue]) => {
-                  const childPath = [...path, key];
-                  const hiddenKey = pathKey(childPath);
-
-                  if (
-                    key === "conteudo" &&
-                    childValue === "..." &&
-                    hiddenContentValues.has(hiddenKey)
-                  ) {
-                    return [key, hiddenContentValues.get(hiddenKey)];
+          const rows = [...chartMatrix.value]
+            .map((category) => ({
+              label: category.displayLabel,
+              value: getMetricValue(category.totals),
+              questions: category.totals.questions,
+              exams: category.totals.exams,
+              percentage: category.totals.percentage,
+            }))
+            .sort((a, b) => b.value - a.value);
+
+          contentRankingChart.setOption(
+            {
+              animationDuration: 350,
+              tooltip: {
+                trigger: "axis",
+                axisPointer: { type: "shadow" },
+                formatter(params) {
+                  const row = params[0]?.data;
+
+                  if (!row) {
+                    return "";
                   }
 
                   return [
-                    key,
-                    restoreMaskedContentValues(childValue, childPath),
-                  ];
+                    `<strong>${row.label}</strong>`,
+                    `${row.questions} questão(ões)`,
+                    `${row.exams} prova(s)`,
+                    `${row.percentage.toFixed(2).replace(".", ",")}% do conteúdo selecionado`,
+                  ].join("<br>");
+                },
+              },
+              grid: {
+                left: 165,
+                right: 45,
+                top: 15,
+                bottom: 35,
+              },
+              xAxis: {
+                type: "value",
+                name: getMetricLabel(),
+                nameLocation: "middle",
+                nameGap: 27,
+                axisLabel: {
+                  formatter(value) {
+                    return `${value}${getMetricSuffix()}`;
+                  },
+                },
+              },
+              yAxis: {
+                type: "category",
+                inverse: true,
+                data: rows.map((row) => row.label),
+                axisLabel: {
+                  width: 150,
+                  overflow: "truncate",
+                },
+              },
+              series: [
+                {
+                  type: "bar",
+                  data: rows,
+                  encode: { x: "value", y: "label" },
+                  label: {
+                    show: true,
+                    position: "right",
+                    formatter(params) {
+                      const value = Number(params.data.value);
+
+                      return chartMetric.value === "percentage"
+                        ? `${value.toFixed(1)}%`
+                        : String(Math.round(value));
+                    },
+                  },
+                  itemStyle: {
+                    borderRadius: [0, 5, 5, 0],
+                  },
+                },
+              ],
+            },
+            true,
+          );
+
+          contentRankingChart.resize();
+        }
+
+        function resizeStatisticsCharts() {
+          contentHeatmapChart?.resize();
+          contentRankingChart?.resize();
+        }
+
+        function disposeStatisticsCharts() {
+          contentHeatmapChart?.dispose();
+          contentRankingChart?.dispose();
+          contentHeatmapChart = null;
+          contentRankingChart = null;
+        }
+
+        const contentTree = computed(() => {
+          const contents = thematicIndex.value?.conteudos;
+
+          if (!contents || typeof contents !== "object") {
+            return [];
+          }
+
+          return Object.entries(contents)
+            .sort(([a], [b]) => a.localeCompare(b, "pt-BR"))
+            .map(([label, value]) =>
+              buildContentTreeNode(label, value, [label], 0),
+            );
+        });
+
+        function buildContentTreeNode(label, value, path, depth) {
+          const count = [...collectQuestionIds(value)].filter((questionId) => {
+            const { examName } = parseQuestionId(questionId);
+
+            return selectedExamNames.value.has(examName);
+          }).length;
+
+          const children =
+            value && typeof value === "object" && !Array.isArray(value)
+              ? Object.entries(value)
+                .sort(([a], [b]) => a.localeCompare(b, "pt-BR"))
+                .map(([childLabel, childValue]) =>
+                  buildContentTreeNode(
+                    childLabel,
+                    childValue,
+                    [...path, childLabel],
+                    depth + 1,
+                  ),
+                )
+              : [];
+
+          return { label, path, depth, count, children };
+        }
+
+        function collectQuestionIds(value, result = new Set()) {
+          if (Array.isArray(value)) {
+            for (const item of value) {
+              if (typeof item === "string") {
+                result.add(item);
+              }
+            }
+
+            return result;
+          }
+
+          if (value && typeof value === "object") {
+            for (const child of Object.values(value)) {
+              collectQuestionIds(child, result);
+            }
+          }
+
+          return result;
+        }
+
+        function getValueAtPath(object, path) {
+          return path.reduce((current, key) => current?.[key], object);
+        }
+
+        function parseQuestionId(questionId) {
+          const separatorIndex = questionId.lastIndexOf(":");
+
+          if (separatorIndex < 1) {
+            throw new Error(
+              `Identificador de questão inválido: ${questionId}`,
+            );
+          }
+
+          return {
+            examName: questionId.slice(0, separatorIndex),
+            questionNumber: questionId.slice(separatorIndex + 1),
+          };
+        }
+
+        function compareQuestionIds(a, b) {
+          const first = parseQuestionId(a);
+          const second = parseQuestionId(b);
+          const examComparison = first.examName.localeCompare(
+            second.examName,
+            "pt-BR",
+          );
+
+          if (examComparison !== 0) {
+            return examComparison;
+          }
+
+          return compareQuestionNumbers(
+            first.questionNumber,
+            second.questionNumber,
+          );
+        }
+
+        function compareQuestionNumbers(a, b) {
+          const first = Number.parseInt(String(a).replace(/\D/g, ""), 10);
+          const second = Number.parseInt(String(b).replace(/\D/g, ""), 10);
+
+          if (Number.isNaN(first) || Number.isNaN(second)) {
+            return String(a).localeCompare(String(b), "pt-BR");
+          }
+
+          return first - second;
+        }
+
+        function getExamPattern(fileName) {
+          return fileName
+            .replace(/\.json$/i, "")
+            .replace(/-Prova$/i, "")
+            .replace(/-(?:19|20)\d{2}(?=-|$)/, "-XXXX");
+        }
+
+        function extractYear(fileName) {
+          const match = fileName.match(/-(?:19|20)\d{2}(?=-|$)/);
+
+          return match ? match[0].slice(1) : null;
+        }
+
+        async function scanDirectoryRecursively(
+          directoryHandle,
+          fileMap,
+          patternMap,
+          relativePath = "",
+        ) {
+          for await (const [name, handle] of directoryHandle.entries()) {
+            const currentPath = relativePath
+              ? `${relativePath}/${name}`
+              : name;
+
+            if (handle.kind === "directory") {
+              await scanDirectoryRecursively(
+                handle,
+                fileMap,
+                patternMap,
+                currentPath,
+              );
+              continue;
+            }
+
+            if (!name.toLowerCase().endsWith(".json")) {
+              continue;
+            }
+
+            const examName = name.replace(/\.json$/i, "");
+
+            if (examName === "indice_tematico_questoes") {
+              continue;
+            }
+
+            if (fileMap.has(examName)) {
+              throw new Error(
+                `Há mais de um arquivo chamado ${name} em subpastas diferentes.`,
+              );
+            }
+
+            fileMap.set(examName, {
+              handle,
+              path: currentPath,
+            });
+
+            const pattern = getExamPattern(name);
+            const year = extractYear(name);
+
+            if (!patternMap.has(pattern)) {
+              patternMap.set(pattern, {
+                examNames: [],
+                years: [],
+              });
+            }
+
+            const group = patternMap.get(pattern);
+            group.examNames.push(examName);
+
+            if (year && !group.years.includes(year)) {
+              group.years.push(year);
+            }
+          }
+        }
+
+        async function scanQuestionBankDirectory(directoryHandle) {
+          const indexHandle = await directoryHandle.getFileHandle(
+            "indice_tematico_questoes.json",
+          );
+          const fileMap = new Map();
+          const patternMap = new Map();
+
+          await scanDirectoryRecursively(
+            directoryHandle,
+            fileMap,
+            patternMap,
+          );
+
+          for (const group of patternMap.values()) {
+            group.examNames.sort((a, b) =>
+              a.localeCompare(b, "pt-BR"),
+            );
+            group.years.sort();
+          }
+
+          return { indexHandle, fileMap, patternMap };
+        }
+
+        async function readJsonFromHandle(fileHandle) {
+          const file = await fileHandle.getFile();
+
+          return JSON.parse(await file.text());
+        }
+
+        async function handleDirectoryChange() {
+          try {
+            const directoryHandle = await window.showDirectoryPicker({
+              mode: "read",
+            });
+            const { indexHandle, fileMap, patternMap } =
+              await scanQuestionBankDirectory(directoryHandle);
+
+            statisticsDirectoryHandle.value = directoryHandle;
+            statisticsDirectoryName.value = directoryHandle.name;
+            thematicIndex.value = await readJsonFromHandle(indexHandle);
+            examFileMap.value = fileMap;
+            examPatternMap.value = patternMap;
+            selectedExamPatterns.value = [...patternMap.keys()].sort(
+              (a, b) => a.localeCompare(b, "pt-BR"),
+            );
+            selectedExamFiles.value = [...fileMap.keys()].sort((a, b) =>
+              a.localeCompare(b, "pt-BR"),
+            );
+            expandedExamPatterns.value = [];
+            expandedExamFolders.value = [];
+            statisticsFiltersCollapsed.value = false;
+            selectedContentPath.value = [];
+            examJsonCache.clear();
+            clearLoadedQuestions();
+            errorMessage.value = "";
+            saveMessage.value = "";
+          } catch (error) {
+            if (error.name === "AbortError") {
+              return;
+            }
+
+            errorMessage.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível abrir a pasta.";
+          }
+        }
+
+        async function loadExamJson(examName) {
+          if (examJsonCache.has(examName)) {
+            return examJsonCache.get(examName);
+          }
+
+          const fileEntry = examFileMap.value.get(examName);
+
+          if (!fileEntry) {
+            throw new Error(
+              `O arquivo ${examName}.json não foi encontrado na pasta selecionada.`,
+            );
+          }
+
+          const json = await readJsonFromHandle(fileEntry.handle);
+
+          examJsonCache.set(examName, json);
+
+          return json;
+        }
+
+        async function loadQuestionById(questionId) {
+          const { examName, questionNumber } =
+            parseQuestionId(questionId);
+          const json = await loadExamJson(examName);
+
+          if (
+            json.questoes &&
+            typeof json.questoes === "object" &&
+            !Array.isArray(json.questoes)
+          ) {
+            const question = json.questoes[questionNumber];
+
+            if (!question) {
+              throw new Error(
+                `A questão ${questionNumber} não foi encontrada em ${examName}.json.`,
+              );
+            }
+
+            return {
+              ...question,
+              exame: examName,
+              numero: questionNumber,
+              gabarito: json.gabarito?.[questionNumber] ?? "",
+            };
+          }
+
+          for (const [collectionName, collection] of Object.entries(json)) {
+            if (!Array.isArray(collection)) {
+              continue;
+            }
+
+            const question = collection.find(
+              (item) =>
+                String(item.questao ?? "") ===
+                String(questionNumber),
+            );
+
+            if (question) {
+              return {
+                ...normalizeQuestion(question, collectionName),
+                exame: examName,
+              };
+            }
+          }
+
+          throw new Error(
+            `A questão ${questionNumber} não foi localizada em ${examName}.json.`,
+          );
+        }
+
+        async function loadSelectedStatisticsQuestions() {
+          try {
+            isLoadingStatisticsQuestions.value = true;
+            errorMessage.value = "";
+            const loadedQuestions = [];
+
+            for (const questionId of filteredQuestionIds.value) {
+              loadedQuestions.push(await loadQuestionById(questionId));
+            }
+
+            setQuestions(
+              {
+                Resultado: loadedQuestions,
+              },
+              {},
+              {
+                preferredExam: "Resultado",
+              },
+            );
+
+            document.activeElement?.blur();
+            statisticsFiltersCollapsed.value = true;
+
+            requestAnimationFrame(() => {
+              questionViewerSection.value?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            });
+          } catch (error) {
+            errorMessage.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível carregar as questões.";
+          } finally {
+            isLoadingStatisticsQuestions.value = false;
+          }
+        }
+
+        function sanitizeFileName(value) {
+          return String(value)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-zA-Z0-9_-]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .toLowerCase();
+        }
+
+        function buildLoadedQuestionsDownload() {
+          const downloadedQuestions = {};
+
+          for (const question of questions.value) {
+            const questionId = `${question.exame}:${question.numero}`;
+
+            downloadedQuestions[questionId] = {
+              exame: question.exame,
+              numero: question.numero,
+              contexto: question.contexto || [],
+              comando: question.comando || "",
+              alternativas: question.alternativas || {},
+              gabarito: question.gabarito ?? "",
+            };
+
+            if (question.motivo !== undefined) {
+              downloadedQuestions[questionId].motivo = question.motivo;
+            }
+          }
+
+          return {
+            filtro: {
+              conteudo: selectedContentPath.value.length
+                ? formatPath(selectedContentPath.value)
+                : null,
+              caminho_conteudo: [...selectedContentPath.value],
+              arquivos_selecionados: [...selectedExamFiles.value],
+              quantidade: questions.value.length,
+            },
+            questoes: downloadedQuestions,
+          };
+        }
+
+        function downloadLoadedQuestions() {
+          if (!questions.value.length) {
+            return;
+          }
+
+          const contentName = selectedContentPath.value.length
+            ? sanitizeFileName(
+              selectedContentPath.value[selectedContentPath.value.length - 1],
+            )
+            : "questoes-selecionadas";
+          const fileName = `${contentName || "questoes-selecionadas"}-${questions.value.length}-questoes.json`;
+          const json = JSON.stringify(buildLoadedQuestionsDownload(), null, 2);
+          const blob = new Blob([json + "\n"], {
+            type: "application/json;charset=utf-8",
+          });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+
+          link.href = url;
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+        }
+
+        function toggleAllPatterns() {
+          selectedExamFiles.value = allPatternsSelected.value
+            ? []
+            : [...examFileMap.value.keys()].sort((a, b) =>
+              a.localeCompare(b, "pt-BR"),
+            );
+        }
+
+        function selectContentPath(path) {
+          selectedContentPath.value = [...path];
+          clearLoadedQuestions();
+        }
+
+        function clearContentSelection() {
+          selectedContentPath.value = [];
+          clearLoadedQuestions();
+        }
+
+        function clearLoadedQuestions() {
+          examKeys.value = [];
+          selectedExamKey.value = "";
+          questionsByExam.value = {};
+          answerKey.value = {};
+          selectedQuestionIndex.value = 0;
+          resetAnswerState();
+        }
+
+        function formatPath(path) {
+          return path.map(formatTreeLabel).join(" › ");
+        }
+
+        function openEditMode() {
+          appMode.value = "edit";
+          errorMessage.value = "";
+          saveMessage.value = "";
+        }
+
+        function openStatisticsMode() {
+          appMode.value = "statistics";
+          errorMessage.value = "";
+          saveMessage.value = "";
+          clearLoadedQuestions();
+        }
+
+        function returnToHome() {
+          appMode.value = null;
+          isJsonEditorOpen.value = false;
+          currentFileHandle.value = null;
+          loadedJson.value = null;
+          statisticsDirectoryHandle.value = null;
+          statisticsDirectoryName.value = "";
+          thematicIndex.value = null;
+          examFileMap.value = new Map();
+          examPatternMap.value = new Map();
+          selectedExamPatterns.value = [];
+          selectedExamFiles.value = [];
+          expandedExamPatterns.value = [];
+          expandedExamFolders.value = [];
+          statisticsFiltersCollapsed.value = false;
+          selectedContentPath.value = [];
+          examJsonCache.clear();
+          disposeStatisticsCharts();
+          clearLoadedQuestions();
+          errorMessage.value = "";
+          saveMessage.value = "";
+        }
+
+        function openDatabase() {
+          return new Promise((resolve, reject) => {
+            const request = indexedDB.open("prova-viewer", 1);
+
+            request.onupgradeneeded = () => {
+              request.result.createObjectStore("settings");
+            };
+
+            request.onsuccess = () => {
+              resolve(request.result);
+            };
+
+            request.onerror = () => {
+              reject(request.error);
+            };
+          });
+        }
+
+        async function saveFileHandle(fileHandle) {
+          const database = await openDatabase();
+          const transaction = database.transaction("settings", "readwrite");
+          transaction
+            .objectStore("settings")
+            .put(fileHandle, "jsonFileHandle");
+        }
+
+        async function getSavedFileHandle() {
+          const database = await openDatabase();
+
+          return new Promise((resolve, reject) => {
+            const transaction = database.transaction("settings", "readonly");
+            const request = transaction
+              .objectStore("settings")
+              .get("jsonFileHandle");
+
+            request.onsuccess = () => {
+              resolve(request.result || null);
+            };
+
+            request.onerror = () => {
+              reject(request.error);
+            };
+          });
+        }
+
+        async function reloadCurrentFile() {
+          if (!currentFileHandle.value) {
+            return;
+          }
+
+          const file = await currentFileHandle.value.getFile();
+
+          await loadJsonFile(file);
+        }
+
+        async function loadSavedFileHandle() {
+          const fileHandle = await getSavedFileHandle();
+
+          if (!fileHandle) {
+            return;
+          }
+
+          currentFileHandle.value = fileHandle;
+
+          const permission = await fileHandle.queryPermission({
+            mode: "read",
+          });
+
+          if (permission !== "granted") {
+            selectPlaceholder.value =
+              "Clique em Selecionar prova.json para escolher o arquivo novamente";
+            return;
+          }
+
+          await reloadCurrentFile();
+        }
+
+        async function loadJsonFile(file) {
+          const text = await file.text();
+          const json = JSON.parse(text);
+          loadedJson.value = json;
+          questionKeyOrder.value = extractObjectKeyOrder(text, "questoes");
+          answerKeyOrder.value = extractObjectKeyOrder(text, "gabarito");
+
+          const extractedExams = extractExams(json);
+          const extractedAnswerKey = extractAnswerKey(json);
+
+          setQuestions(extractedExams, extractedAnswerKey, {
+            restoreStoredSelection: true,
+          });
+          errorMessage.value = "";
+          saveMessage.value = "";
+          selectPlaceholder.value = "Carregue um arquivo";
+        }
+
+        async function handleFileChange() {
+          try {
+            const [fileHandle] = await window.showOpenFilePicker({
+              types: [
+                {
+                  description: "JSON",
+                  accept: {
+                    "application/json": [".json"],
+                  },
+                },
+              ],
+              multiple: false,
+            });
+
+            currentFileHandle.value = fileHandle;
+
+            await saveFileHandle(fileHandle);
+            await reloadCurrentFile();
+          } catch (error) {
+            if (error.name === "AbortError") {
+              return;
+            }
+
+            resetViewer();
+            errorMessage.value = error.message;
+          }
+        }
+
+        function extractAnswerKey(json) {
+          if (json?.gabarito && typeof json.gabarito === "object") {
+            return json.gabarito;
+          }
+
+          return Object.values(json)
+            .filter(Array.isArray)
+            .flat()
+            .reduce((answerKey, question) => {
+              if (question.questao && question.gabarito) {
+                answerKey[question.questao] = question.gabarito;
+              }
+
+              return answerKey;
+            }, {});
+        }
+
+        function compareQuestions(a, b) {
+          const aNumber = Number.parseInt(
+            String(a.numero || "").replace(/\D/g, ""),
+            10,
+          );
+          const bNumber = Number.parseInt(
+            String(b.numero || "").replace(/\D/g, ""),
+            10,
+          );
+
+          return aNumber - bNumber;
+        }
+
+        function extractExams(json) {
+          if (!json || typeof json !== "object") {
+            return {};
+          }
+
+          if (
+            json.questoes &&
+            typeof json.questoes === "object" &&
+            !Array.isArray(json.questoes)
+          ) {
+            return {
+              Prova: Object.entries(json.questoes).map(
+                ([numero, question]) => ({
+                  ...question,
+                  numero,
                 }),
+              ),
+            };
+          }
+
+          return Object.entries(json)
+            .filter(([, value]) => Array.isArray(value))
+            .reduce((exams, [examName, examQuestions]) => {
+              exams[examName] = examQuestions.map((question) =>
+                normalizeQuestion(question, examName),
               );
-            }
 
-            return value;
+              return exams;
+            }, {});
+        }
+
+        function normalizeQuestion(question, examName) {
+          return {
+            exame: examName,
+            numero: question.questao,
+            contexto: question.saida_esperada.contexto,
+            comando: question.saida_esperada.comando,
+            alternativas: question.saida_esperada.alternativas,
+            gabarito: question.gabarito,
+            motivo: question.motivo,
+          };
+        }
+
+        function isMissingImage(content) {
+          return content === "[TODO:ADICIONAR_IMAGEM]";
+        }
+
+        async function readClipboardImage() {
+          if (!navigator.clipboard?.read) {
+            throw new Error(
+              "Este navegador não permite ler imagens da área de transferência.",
+            );
           }
 
-          function initializeQuestionJsonEditor(value) {
-            hiddenContentValues.clear();
-            const maskedValue = maskContentValues(value);
-            jsonEditorText.value = JSON.stringify(maskedValue, null, 2);
-            jsonEditorError.value = "";
+          const clipboardItems = await navigator.clipboard.read();
+
+          for (const clipboardItem of clipboardItems) {
+            const imageType = clipboardItem.types.find((type) =>
+              type.startsWith("image/"),
+            );
+
+            if (imageType) {
+              return clipboardItem.getType(imageType);
+            }
           }
 
-          function findCurrentQuestionSource() {
-            const json = loadedJson.value;
-            const questionNumber = String(currentQuestion.value?.numero ?? "");
+          throw new Error(
+            "Nenhuma imagem foi encontrada na área de transferência.",
+          );
+        }
 
-            if (!json || !questionNumber) {
-              return null;
+        function blobToDataUrl(blob) {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () =>
+              reject(
+                reader.error || new Error("Não foi possível ler a imagem."),
+              );
+
+            reader.readAsDataURL(blob);
+          });
+        }
+
+        async function ensureWritePermission(fileHandle) {
+          const options = { mode: "readwrite" };
+
+          if ((await fileHandle.queryPermission(options)) === "granted") {
+            return true;
+          }
+
+          return (await fileHandle.requestPermission(options)) === "granted";
+        }
+
+        function extractObjectKeyOrder(text, propertyName) {
+          const escapedPropertyName = propertyName.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&",
+          );
+          const propertyMatch = new RegExp(
+            `"${escapedPropertyName}"\\s*:\\s*\\{`,
+          ).exec(text);
+
+          if (!propertyMatch) {
+            return [];
+          }
+
+          const objectStart = text.indexOf("{", propertyMatch.index);
+          const keys = [];
+          let depth = 1;
+          let index = objectStart + 1;
+
+          while (index < text.length && depth > 0) {
+            const character = text[index];
+
+            if (character === '"') {
+              const stringStart = index;
+              index += 1;
+
+              while (index < text.length) {
+                if (text[index] === "\\") {
+                  index += 2;
+                  continue;
+                }
+
+                if (text[index] === '"') {
+                  break;
+                }
+
+                index += 1;
+              }
+
+              const stringEnd = index;
+
+              if (depth === 1) {
+                let nextIndex = stringEnd + 1;
+
+                while (/\s/.test(text[nextIndex] || "")) {
+                  nextIndex += 1;
+                }
+
+                if (text[nextIndex] === ":") {
+                  try {
+                    keys.push(
+                      JSON.parse(text.slice(stringStart, stringEnd + 1)),
+                    );
+                  } catch {
+                    return [];
+                  }
+                }
+              }
+            } else if (character === "{") {
+              depth += 1;
+            } else if (character === "}") {
+              depth -= 1;
             }
 
+            index += 1;
+          }
+
+          return keys;
+        }
+
+        function stringifyJsonPreservingQuestionOrder(value) {
+          const indentation = "  ";
+
+          function serialize(currentValue, depth, path) {
             if (
-              json.questoes &&
-              typeof json.questoes === "object" &&
-              !Array.isArray(json.questoes)
+              currentValue === null ||
+              typeof currentValue === "number" ||
+              typeof currentValue === "boolean" ||
+              typeof currentValue === "string"
             ) {
-              const entry = Object.entries(json.questoes).find(
-                ([key, question]) =>
-                  String(question.numero ?? question.questao ?? key) ===
-                  questionNumber,
-              );
-
-              if (entry) {
-                const [key, question] = entry;
-
-                return {
-                  schema: "exam",
-                  question,
-                  setQuestion(updatedQuestion) {
-                    json.questoes[key] = updatedQuestion;
-                  },
-                };
-              }
+              return JSON.stringify(currentValue);
             }
 
-            const examQuestions = json[selectedExamKey.value];
+            if (Array.isArray(currentValue)) {
+              if (!currentValue.length) {
+                return "[]";
+              }
 
-            if (Array.isArray(examQuestions)) {
-              const index = examQuestions.findIndex(
-                (question) => String(question.questao ?? "") === questionNumber,
+              const items = currentValue.map(
+                (item, index) =>
+                  indentation.repeat(depth + 1) +
+                  serialize(item, depth + 1, [...path, index]),
               );
 
-              if (index >= 0) {
-                return {
-                  schema: "test",
-                  question: examQuestions[index],
-                  setQuestion(updatedQuestion) {
-                    examQuestions[index] = updatedQuestion;
-                  },
-                };
-              }
+              return `[\n${items.join(",\n")}\n${indentation.repeat(depth)}]`;
             }
 
+            if (typeof currentValue === "object") {
+              let keys = Object.keys(currentValue);
+
+              if (path.length === 1) {
+                const preservedOrder =
+                  path[0] === "questoes"
+                    ? questionKeyOrder.value
+                    : path[0] === "gabarito"
+                      ? answerKeyOrder.value
+                      : null;
+
+                if (preservedOrder) {
+                  const existingKeys = new Set(keys);
+                  const preservedKeys = preservedOrder.filter((key) =>
+                    existingKeys.has(key),
+                  );
+                  const newKeys = keys.filter(
+                    (key) => !preservedOrder.includes(key),
+                  );
+
+                  keys = [...preservedKeys, ...newKeys];
+                }
+              }
+
+              if (!keys.length) {
+                return "{}";
+              }
+
+              const properties = keys.map(
+                (key) =>
+                  indentation.repeat(depth + 1) +
+                  `${JSON.stringify(key)}: ${serialize(
+                    currentValue[key],
+                    depth + 1,
+                    [...path, key],
+                  )}`,
+              );
+
+              return `{\n${properties.join(",\n")}\n${indentation.repeat(depth)}}`;
+            }
+
+            return undefined;
+          }
+
+          return serialize(value, 0, []);
+        }
+
+        async function saveCurrentJson(json = loadedJson.value) {
+          if (!currentFileHandle.value || !json) {
+            throw new Error("Nenhum arquivo JSON está aberto.");
+          }
+
+          const hasPermission = await ensureWritePermission(
+            currentFileHandle.value,
+          );
+
+          if (!hasPermission) {
+            throw new Error(
+              "A permissão para modificar o arquivo JSON não foi concedida.",
+            );
+          }
+
+          const writable = await currentFileHandle.value.createWritable();
+
+          try {
+            await writable.write(
+              stringifyJsonPreservingQuestionOrder(json) + "\n",
+            );
+            await writable.close();
+          } catch (error) {
+            await writable.abort();
+            throw error;
+          }
+        }
+
+        function getJsonErrorMessage(error, text) {
+          if (!(error instanceof SyntaxError)) {
+            return error instanceof Error ? error.message : String(error);
+          }
+
+          const positionMatch = error.message.match(/position\s+(\d+)/i);
+
+          if (!positionMatch) {
+            return error.message;
+          }
+
+          const position = Number(positionMatch[1]);
+          const beforeError = text.slice(0, position);
+          const line = beforeError.split("\n").length;
+          const lastLineBreak = beforeError.lastIndexOf("\n");
+          const column = position - lastLineBreak;
+
+          return `${error.message} (linha ${line}, coluna ${column})`;
+        }
+
+        function getJsonEditorText() {
+          return jsonEditorText.value;
+        }
+
+        function parseJsonEditor() {
+          const text = getJsonEditorText();
+
+          try {
+            const parsedJson = JSON.parse(text);
+            jsonEditorError.value = "";
+            return parsedJson;
+          } catch (error) {
+            jsonEditorError.value = getJsonErrorMessage(error, text);
+            return null;
+          }
+        }
+
+        function validateJsonEditor() {
+          parseJsonEditor();
+        }
+
+        function pathKey(path) {
+          return JSON.stringify(path);
+        }
+
+        function maskContentValues(value, path = []) {
+          if (Array.isArray(value)) {
+            return value.map((item, index) =>
+              maskContentValues(item, [...path, index]),
+            );
+          }
+
+          if (value && typeof value === "object") {
+            return Object.fromEntries(
+              Object.entries(value).map(([key, childValue]) => {
+                const childPath = [...path, key];
+
+                if (
+                  key === "conteudo" &&
+                  typeof childValue === "string" &&
+                  childValue.startsWith("data:")
+                ) {
+                  hiddenContentValues.set(pathKey(childPath), childValue);
+                  return [key, "..."];
+                }
+
+                return [key, maskContentValues(childValue, childPath)];
+              }),
+            );
+          }
+
+          return value;
+        }
+
+        function restoreMaskedContentValues(value, path = []) {
+          if (Array.isArray(value)) {
+            return value.map((item, index) =>
+              restoreMaskedContentValues(item, [...path, index]),
+            );
+          }
+
+          if (value && typeof value === "object") {
+            return Object.fromEntries(
+              Object.entries(value).map(([key, childValue]) => {
+                const childPath = [...path, key];
+                const hiddenKey = pathKey(childPath);
+
+                if (
+                  key === "conteudo" &&
+                  childValue === "..." &&
+                  hiddenContentValues.has(hiddenKey)
+                ) {
+                  return [key, hiddenContentValues.get(hiddenKey)];
+                }
+
+                return [
+                  key,
+                  restoreMaskedContentValues(childValue, childPath),
+                ];
+              }),
+            );
+          }
+
+          return value;
+        }
+
+        function initializeQuestionJsonEditor(value) {
+          hiddenContentValues.clear();
+          const maskedValue = maskContentValues(value);
+          jsonEditorText.value = JSON.stringify(maskedValue, null, 2);
+          jsonEditorError.value = "";
+        }
+
+        function findCurrentQuestionSource() {
+          const json = loadedJson.value;
+          const questionNumber = String(currentQuestion.value?.numero ?? "");
+
+          if (!json || !questionNumber) {
             return null;
           }
 
-          function getExamAnswerKey() {
-            const json = loadedJson.value;
+          if (
+            json.questoes &&
+            typeof json.questoes === "object" &&
+            !Array.isArray(json.questoes)
+          ) {
+            const entry = Object.entries(json.questoes).find(
+              ([key, question]) =>
+                String(question.numero ?? question.questao ?? key) ===
+                questionNumber,
+            );
 
-            if (json?.gabarito && typeof json.gabarito === "object") {
-              return json.gabarito;
+            if (entry) {
+              const [key, question] = entry;
+
+              return {
+                schema: "exam",
+                question,
+                setQuestion(updatedQuestion) {
+                  json.questoes[key] = updatedQuestion;
+                },
+              };
             }
-
-            return null;
           }
 
-          function buildQuestionEditorValue(source) {
-            const editorValue = JSON.parse(JSON.stringify(source.question));
+          const examQuestions = json[selectedExamKey.value];
+
+          if (Array.isArray(examQuestions)) {
+            const index = examQuestions.findIndex(
+              (question) => String(question.questao ?? "") === questionNumber,
+            );
+
+            if (index >= 0) {
+              return {
+                schema: "test",
+                question: examQuestions[index],
+                setQuestion(updatedQuestion) {
+                  examQuestions[index] = updatedQuestion;
+                },
+              };
+            }
+          }
+
+          return null;
+        }
+
+        function getExamAnswerKey() {
+          const json = loadedJson.value;
+
+          if (json?.gabarito && typeof json.gabarito === "object") {
+            return json.gabarito;
+          }
+
+          return null;
+        }
+
+        function buildQuestionEditorValue(source) {
+          const editorValue = JSON.parse(JSON.stringify(source.question));
+
+          if (source.schema === "exam") {
+            const questionNumber = String(currentQuestion.value.numero);
+            const examAnswerKey = getExamAnswerKey();
+
+            editorValue.fonte = loadedJson.value?.fonte ?? "";
+
+            if (examAnswerKey && questionNumber in examAnswerKey) {
+              editorValue.gabarito = examAnswerKey[questionNumber];
+            }
+          }
+
+          return editorValue;
+        }
+
+        function openJsonEditor() {
+          if (isReadOnly.value) {
+            return;
+          }
+
+          const source = findCurrentQuestionSource();
+
+          if (!source) {
+            errorMessage.value =
+              "Não foi possível localizar a questão selecionada no JSON original.";
+            return;
+          }
+
+          const editorValue = buildQuestionEditorValue(source);
+          jsonEditorError.value = "";
+          isJsonEditorOpen.value = true;
+
+          requestAnimationFrame(() => {
+            initializeQuestionJsonEditor(editorValue);
+          });
+        }
+
+        function closeJsonEditor() {
+          if (isSavingJson.value) {
+            return;
+          }
+
+          isJsonEditorOpen.value = false;
+          jsonEditorError.value = "";
+          hiddenContentValues.clear();
+        }
+
+        function formatJsonEditor() {
+          const parsedJson = parseJsonEditor();
+
+          if (parsedJson) {
+            jsonEditorText.value = JSON.stringify(parsedJson, null, 2);
+          }
+        }
+
+        async function saveJsonEditor() {
+          const parsedQuestion = parseJsonEditor();
+
+          if (!parsedQuestion || isSavingJson.value) {
+            return;
+          }
+
+          if (
+            Array.isArray(parsedQuestion) ||
+            typeof parsedQuestion !== "object"
+          ) {
+            jsonEditorError.value = "A questão deve ser um objeto JSON.";
+            return;
+          }
+
+          const source = findCurrentQuestionSource();
+
+          if (!source) {
+            jsonEditorError.value =
+              "Não foi possível localizar a questão selecionada no JSON original.";
+            return;
+          }
+
+          try {
+            isSavingJson.value = true;
+            errorMessage.value = "";
+            saveMessage.value = "";
+
+            const restoredQuestion =
+              restoreMaskedContentValues(parsedQuestion);
+            const updatedQuestion = JSON.parse(
+              JSON.stringify(restoredQuestion),
+            );
 
             if (source.schema === "exam") {
               const questionNumber = String(currentQuestion.value.numero);
               const examAnswerKey = getExamAnswerKey();
 
-              editorValue.fonte = loadedJson.value?.fonte ?? "";
+              if (
+                Object.prototype.hasOwnProperty.call(updatedQuestion, "fonte")
+              ) {
+                loadedJson.value.fonte = updatedQuestion.fonte;
+                delete updatedQuestion.fonte;
+              }
 
-              if (examAnswerKey && questionNumber in examAnswerKey) {
-                editorValue.gabarito = examAnswerKey[questionNumber];
+              if (
+                Object.prototype.hasOwnProperty.call(
+                  updatedQuestion,
+                  "gabarito",
+                )
+              ) {
+                if (!examAnswerKey) {
+                  throw new Error(
+                    "O arquivo da prova não possui um objeto gabarito que possa ser atualizado.",
+                  );
+                }
+
+                examAnswerKey[questionNumber] = updatedQuestion.gabarito;
+                delete updatedQuestion.gabarito;
               }
             }
 
-            return editorValue;
-          }
-
-          function openJsonEditor() {
-            const source = findCurrentQuestionSource();
-
-            if (!source) {
-              errorMessage.value =
-                "Não foi possível localizar a questão selecionada no JSON original.";
-              return;
-            }
-
-            const editorValue = buildQuestionEditorValue(source);
-            jsonEditorError.value = "";
-            isJsonEditorOpen.value = true;
-
-            requestAnimationFrame(() => {
-              initializeQuestionJsonEditor(editorValue);
-            });
-          }
-
-          function closeJsonEditor() {
-            if (isSavingJson.value) {
-              return;
-            }
+            source.setQuestion(updatedQuestion);
+            await saveCurrentJson(loadedJson.value);
+            await reloadCurrentFile();
 
             isJsonEditorOpen.value = false;
-            jsonEditorError.value = "";
-            hiddenContentValues.clear();
+            saveMessage.value =
+              "Questão validada e arquivo JSON atualizado com sucesso.";
+          } catch (error) {
+            jsonEditorError.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível salvar a questão.";
+          } finally {
+            isSavingJson.value = false;
+          }
+        }
+
+        async function pasteImage(target) {
+          if (isReadOnly.value) {
+            return;
           }
 
-          function formatJsonEditor() {
-            const parsedJson = parseJsonEditor();
+          try {
+            saveMessage.value = "";
+            errorMessage.value = "";
 
-            if (parsedJson) {
-              jsonEditorText.value = JSON.stringify(parsedJson, null, 2);
-            }
+            const imageBlob = await readClipboardImage();
+            const dataUrl = await blobToDataUrl(imageBlob);
+
+            target.mimeType = imageBlob.type || "image/png";
+            target.conteudo = dataUrl;
+
+            await saveCurrentJson();
+
+            saveMessage.value =
+              "Imagem adicionada e arquivo JSON atualizado com sucesso.";
+          } catch (error) {
+            errorMessage.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível adicionar a imagem.";
           }
+        }
 
-          async function saveJsonEditor() {
-            const parsedQuestion = parseJsonEditor();
+        function alternativeClass(letter) {
+          return {
+            "border-blue-300 bg-blue-50":
+              selectedAlternative.value === letter,
+            "border-green-300 bg-green-50":
+              shouldShowAnswer.value && normalizedAnswer.value === letter,
+            "border-red-300 bg-red-50":
+              selectedAlternative.value === letter &&
+              selectedAlternative.value !== normalizedAnswer.value,
+          };
+        }
 
-            if (!parsedQuestion || isSavingJson.value) {
-              return;
-            }
-
-            if (
-              Array.isArray(parsedQuestion) ||
-              typeof parsedQuestion !== "object"
-            ) {
-              jsonEditorError.value = "A questão deve ser um objeto JSON.";
-              return;
-            }
-
-            const source = findCurrentQuestionSource();
-
-            if (!source) {
-              jsonEditorError.value =
-                "Não foi possível localizar a questão selecionada no JSON original.";
-              return;
-            }
-
-            try {
-              isSavingJson.value = true;
-              errorMessage.value = "";
-              saveMessage.value = "";
-
-              const restoredQuestion =
-                restoreMaskedContentValues(parsedQuestion);
-              const updatedQuestion = JSON.parse(
-                JSON.stringify(restoredQuestion),
-              );
-
-              if (source.schema === "exam") {
-                const questionNumber = String(currentQuestion.value.numero);
-                const examAnswerKey = getExamAnswerKey();
-
-                if (
-                  Object.prototype.hasOwnProperty.call(updatedQuestion, "fonte")
-                ) {
-                  loadedJson.value.fonte = updatedQuestion.fonte;
-                  delete updatedQuestion.fonte;
-                }
-
-                if (
-                  Object.prototype.hasOwnProperty.call(
-                    updatedQuestion,
-                    "gabarito",
-                  )
-                ) {
-                  if (!examAnswerKey) {
-                    throw new Error(
-                      "O arquivo da prova não possui um objeto gabarito que possa ser atualizado.",
-                    );
-                  }
-
-                  examAnswerKey[questionNumber] = updatedQuestion.gabarito;
-                  delete updatedQuestion.gabarito;
-                }
-              }
-
-              source.setQuestion(updatedQuestion);
-              await saveCurrentJson(loadedJson.value);
-              await reloadCurrentFile();
-
-              isJsonEditorOpen.value = false;
-              saveMessage.value =
-                "Questão validada e arquivo JSON atualizado com sucesso.";
-            } catch (error) {
-              jsonEditorError.value =
-                error instanceof Error
-                  ? error.message
-                  : "Não foi possível salvar a questão.";
-            } finally {
-              isSavingJson.value = false;
-            }
-          }
-
-          async function pasteImage(target) {
-            try {
-              saveMessage.value = "";
-              errorMessage.value = "";
-
-              const imageBlob = await readClipboardImage();
-              const dataUrl = await blobToDataUrl(imageBlob);
-
-              target.mimeType = imageBlob.type || "image/png";
-              target.conteudo = dataUrl;
-
-              await saveCurrentJson();
-
-              saveMessage.value =
-                "Imagem adicionada e arquivo JSON atualizado com sucesso.";
-            } catch (error) {
-              errorMessage.value =
-                error instanceof Error
-                  ? error.message
-                  : "Não foi possível adicionar a imagem.";
-            }
-          }
-
-          function alternativeClass(letter) {
-            return {
-              "border-blue-300 bg-blue-50":
-                selectedAlternative.value === letter,
-              "border-green-300 bg-green-50":
-                shouldShowAnswer.value && normalizedAnswer.value === letter,
-              "border-red-300 bg-red-50":
-                selectedAlternative.value === letter &&
-                selectedAlternative.value !== normalizedAnswer.value,
-            };
-          }
-
-          function buildImageSource(mimeType, content) {
-            if (content.includes("[TODO:")) {
-              const svg = `
+        function buildImageSource(mimeType, content) {
+          if (content.includes("[TODO:")) {
+            const svg = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="40">
                   <text x="0" y="28"
                         fill="red"
@@ -1231,172 +2716,243 @@
                 </svg>
               `;
 
-              return (
-                "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg)
-              );
-            }
-
-            if (content.startsWith("data:")) {
-              return content;
-            }
-
-            return "data:" + mimeType + ";base64," + content;
+            return (
+              "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg)
+            );
           }
 
-          function renderRichText(text) {
-            const escaped = String(text)
-              .replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;");
-
-            return escaped.replace(/\*\*(.*?)\*\*/g, "<u>$1</u>");
+          if (content.startsWith("data:")) {
+            return content;
           }
 
-          function resetAnswerState() {
-            selectedAlternative.value = null;
-            forceShowAnswer.value = false;
+          return "data:" + mimeType + ";base64," + content;
+        }
+
+        function renderRichText(text) {
+          const escaped = String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+          return escaped.replace(/\*\*(.*?)\*\*/g, "<u>$1</u>");
+        }
+
+        function resetAnswerState() {
+          selectedAlternative.value = null;
+          forceShowAnswer.value = false;
+        }
+
+        function resetViewer() {
+          examKeys.value = [];
+          selectedExamKey.value = "";
+          questionsByExam.value = {};
+          answerKey.value = {};
+          selectedQuestionIndex.value = 0;
+          selectedAlternative.value = null;
+          forceShowAnswer.value = false;
+          errorMessage.value = "";
+          saveMessage.value = "";
+          selectPlaceholder.value = "Carregue um arquivo";
+        }
+
+        async function refreshCurrentJson() {
+          if (isReadOnly.value || !currentFileHandle.value) {
+            return;
           }
 
-          function resetViewer() {
-            questions.value = [];
-            answerKey.value = {};
-            selectedQuestionIndex.value = 0;
-            selectedAlternative.value = null;
-            forceShowAnswer.value = false;
-            errorMessage.value = "";
-            saveMessage.value = "";
-            selectPlaceholder.value = "Carregue um arquivo";
+          localStorage.setItem("exam", selectedExamKey.value);
+          localStorage.setItem("question", selectedQuestionIndex.value);
+
+          try {
+            await reloadCurrentFile();
+          } catch (error) {
+            errorMessage.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível atualizar o arquivo JSON.";
           }
+        }
 
-          async function refreshCurrentJson() {
-            if (!currentFileHandle.value) {
-              return;
-            }
+        async function handleQuestionChange() {
+          resetAnswerState();
+          await refreshCurrentJson();
+        }
 
-            localStorage.setItem("exam", selectedExamKey.value);
-            localStorage.setItem("question", selectedQuestionIndex.value);
-
-            try {
-              await reloadCurrentFile();
-            } catch (error) {
-              errorMessage.value =
-                error instanceof Error
-                  ? error.message
-                  : "Não foi possível atualizar o arquivo JSON.";
-            }
-          }
-
-          async function handleQuestionChange() {
+        async function goToNextQuestion() {
+          if (selectedQuestionIndex.value < questions.value.length - 1) {
+            selectedQuestionIndex.value += 1;
             resetAnswerState();
-            await refreshCurrentJson();
           }
 
-          async function goToNextQuestion() {
-            if (selectedQuestionIndex.value < questions.value.length - 1) {
-              selectedQuestionIndex.value += 1;
-              resetAnswerState();
-            }
+          await refreshCurrentJson();
+        }
 
-            await refreshCurrentJson();
+        async function goToPreviousQuestion() {
+          if (selectedQuestionIndex.value > 0) {
+            selectedQuestionIndex.value -= 1;
+            resetAnswerState();
           }
 
-          async function goToPreviousQuestion() {
-            if (selectedQuestionIndex.value > 0) {
-              selectedQuestionIndex.value -= 1;
-              resetAnswerState();
-            }
+          await refreshCurrentJson();
+        }
 
-            await refreshCurrentJson();
+        function handleKeyDown(event) {
+          if (isJsonEditorOpen.value) {
+            return;
           }
 
-          function handleKeyDown(event) {
-            if (isJsonEditorOpen.value) {
-              return;
-            }
-
-            if (!questions.value.length) {
-              return;
-            }
-
-            const target = event.target;
-
-            if (
-              target instanceof HTMLInputElement ||
-              target instanceof HTMLSelectElement ||
-              target instanceof HTMLTextAreaElement ||
-              target instanceof HTMLButtonElement
-            ) {
-              return;
-            }
-
-            if (event.key === "ArrowRight") {
-              goToNextQuestion();
-            }
-
-            if (event.key === "ArrowLeft") {
-              goToPreviousQuestion();
-            }
+          if (!questions.value.length) {
+            return;
           }
 
-          watch(
-            [selectedExamKey, selectedQuestionIndex],
-            ([exam, question]) => {
-              localStorage.setItem("exam", exam);
-              localStorage.setItem("question", question);
-            },
-          );
+          const target = event.target;
 
-          onMounted(async () => {
-            try {
-              await loadSavedFileHandle();
-            } catch (error) {
-              errorMessage.value =
-                "Não foi possível reabrir o JSON automaticamente. Clique em Selecionar prova.json para autorizar novamente.";
+          if (
+            target instanceof HTMLInputElement ||
+            target instanceof HTMLSelectElement ||
+            target instanceof HTMLTextAreaElement ||
+            target instanceof HTMLButtonElement
+          ) {
+            return;
+          }
+
+          if (event.key === "ArrowRight") {
+            goToNextQuestion();
+          }
+
+          if (event.key === "ArrowLeft") {
+            goToPreviousQuestion();
+          }
+        }
+
+        watch(
+          [
+            selectedContentPath,
+            selectedExamFiles,
+            chartMetric,
+            statisticsFiltersCollapsed,
+          ],
+          () => {
+            renderStatisticsCharts();
+          },
+          { deep: true, flush: "post" },
+        );
+
+        watch(
+          selectedExamFiles,
+          () => {
+            selectedExamPatterns.value = examPatternEntries.value
+              .filter(([pattern]) => isPatternFullySelected(pattern))
+              .map(([pattern]) => pattern);
+
+            if (isReadOnly.value) {
+              clearLoadedQuestions();
             }
+          },
+          { deep: true },
+        );
 
-            window.addEventListener("keydown", handleKeyDown);
-          });
+        watch(
+          [selectedExamKey, selectedQuestionIndex],
+          ([exam, question]) => {
+            localStorage.setItem("exam", exam);
+            localStorage.setItem("question", question);
+          },
+        );
 
-          onBeforeUnmount(() => {
-            window.removeEventListener("keydown", handleKeyDown);
-          });
+        onMounted(() => {
+          window.addEventListener("keydown", handleKeyDown);
+          window.addEventListener("resize", resizeStatisticsCharts);
+        });
 
-          return {
-            examKeys,
-            selectedExamKey,
-            questionsByExam,
-            questions,
-            answerKey,
-            selectedQuestionIndex,
-            selectedAlternative,
-            forceShowAnswer,
-            errorMessage,
-            selectPlaceholder,
-            currentQuestion,
-            alternativeEntries,
-            answerStatus,
-            handleFileChange,
-            alternativeClass,
-            buildImageSource,
-            renderRichText,
-            resetAnswerState,
-            handleQuestionChange,
-            isMissingImage,
-            pasteImage,
-            saveMessage,
-            loadedJson,
-            isJsonEditorOpen,
-            jsonEditorText,
-            jsonEditorError,
-            isSavingJson,
-            openJsonEditor,
-            closeJsonEditor,
-            validateJsonEditor,
-            formatJsonEditor,
-            saveJsonEditor,
-          };
-        },
-      }).mount("#app");
-    </script>
-  </body>
+        onBeforeUnmount(() => {
+          window.removeEventListener("keydown", handleKeyDown);
+          window.removeEventListener("resize", resizeStatisticsCharts);
+          disposeStatisticsCharts();
+        });
+
+        return {
+          appMode,
+          isReadOnly,
+          openEditMode,
+          openStatisticsMode,
+          returnToHome,
+          thematicIndex,
+          statisticsDirectoryName,
+          examPatternEntries,
+          examFolderEntries,
+          examFileMap,
+          selectedExamPatterns,
+          selectedExamFiles,
+          expandedExamPatterns,
+          expandedExamFolders,
+          statisticsFiltersCollapsed,
+          selectedPatternCount,
+          selectedContentPath,
+          questionViewerSection,
+          contentHeatmapElement,
+          contentRankingElement,
+          chartMetric,
+          rankingChartHeight,
+          contentTree,
+          filteredQuestionIds,
+          selectedFileCount,
+          unindexedExamNames,
+          allPatternsSelected,
+          isLoadingStatisticsQuestions,
+          handleDirectoryChange,
+          toggleAllPatterns,
+          selectedFileCountForPattern,
+          isPatternFullySelected,
+          isPatternPartiallySelected,
+          togglePatternSelection,
+          togglePatternExpanded,
+          selectedFileCountForFolder,
+          isFolderFullySelected,
+          isFolderPartiallySelected,
+          toggleFolderSelection,
+          toggleFolderExpanded,
+          downloadLoadedQuestions,
+          selectContentPath,
+          clearContentSelection,
+          loadSelectedStatisticsQuestions,
+          formatPath,
+          examKeys,
+          selectedExamKey,
+          questionsByExam,
+          questions,
+          answerKey,
+          selectedQuestionIndex,
+          selectedAlternative,
+          forceShowAnswer,
+          errorMessage,
+          selectPlaceholder,
+          currentQuestion,
+          alternativeEntries,
+          answerStatus,
+          handleFileChange,
+          alternativeClass,
+          buildImageSource,
+          renderRichText,
+          resetAnswerState,
+          handleQuestionChange,
+          isMissingImage,
+          pasteImage,
+          saveMessage,
+          loadedJson,
+          isJsonEditorOpen,
+          jsonEditorText,
+          jsonEditorError,
+          isSavingJson,
+          openJsonEditor,
+          closeJsonEditor,
+          validateJsonEditor,
+          formatJsonEditor,
+          saveJsonEditor,
+        };
+      },
+    }).mount("#app");
+  </script>
+</body>
+
 </html>

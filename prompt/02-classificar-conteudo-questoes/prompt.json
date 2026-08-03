@@ -1,0 +1,383 @@
+{
+  "id": "gerar_indice_tematico_banco_questoes",
+  "entrada": {
+    "arquivos": [
+      {
+        "tipo": "json",
+        "obrigatorio": true,
+        "quantidade": "um_ou_mais",
+        "descricao": "Arquivos JSON de provas previamente extraídas, todos compatíveis com schemaEntrada"
+      },
+      {
+        "tipo": "json",
+        "obrigatorio": false,
+        "quantidade": "zero_ou_um",
+        "nome_esperado": "indice_tematico_questoes.json",
+        "descricao": "Índice temático existente a ser incrementado"
+      }
+    ]
+  },
+  "saida": {
+    "arquivo": {
+      "extensao": ".json",
+      "nome": "indice_tematico_questoes.json",
+      "entrega": "arquivo_baixavel_anexado_ao_chat",
+      "conteudo": "JSON consolidado contendo o cadastro das questões e sua indexação temática multirrótulo",
+      "quantidade": "exatamente_um"
+    }
+  },
+  "objetivo": [
+    "Construir um índice temático consolidado para um banco de questões de vestibulares brasileiros.",
+    "Permitir que uma mesma questão seja associada a múltiplos conteúdos.",
+    "Permitir estatísticas por disciplina, área, unidade temática, assunto, subassunto e tópico.",
+    "Permitir consultas tanto da questão para os conteúdos quanto dos conteúdos para as questões.",
+    "Restringir a taxonomia a conteúdos pertinentes ao ensino médio brasileiro e aos vestibulares de ingresso no ensino superior."
+  ],
+  "execucao": [
+    {
+      "id": "execucao_001",
+      "texto": "Execute todas as etapas de validacaoPrevia."
+    },
+    {
+      "id": "execucao_002",
+      "texto": "Consolide todas as classificações no único indice_tematico_questoes.json, preservando e incrementando o índice existente quando fornecido."
+    },
+    {
+      "id": "execucao_003",
+      "texto": "Execute todas as etapas de validacaoFinal."
+    },
+    {
+      "id": "execucao_004",
+      "texto": "Produza exatamente o único arquivo especificado em saida."
+    }
+  ],
+  "schemaEntrada": {
+    "questoes": {
+      "id_da_questao": {
+        "contexto": [
+          {
+            "mimeType": "text/plain_ou_image/png",
+            "conteudo": "string"
+          }
+        ],
+        "comando": "string",
+        "alternativas": {
+          "id_da_alternativa": {
+            "mimeType": "text/plain_ou_image/png",
+            "conteudo": "string"
+          }
+        }
+      }
+    },
+    "gabarito": {
+      "id_da_questao": "string"
+    },
+    "fonte": "string"
+  },
+  "schemaSaida": {
+    "schema_version": "1.0",
+    "questoes": {
+      "id_global_da_questao": {
+        "gabarito": "string",
+        "classificacoes": [
+          {
+            "caminho": [
+              "disciplina",
+              "area",
+              "unidade_tematica",
+              "assunto",
+              "subassunto_ou_topico"
+            ],
+            "relevancia": "principal_ou_secundaria"
+          }
+        ]
+      }
+    },
+    "conteudos": {
+      "disciplina": {
+        "area": {
+          "unidade_tematica": {
+            "assunto": {
+              "subassunto_ou_topico": [
+                "id_global_da_questao"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "identificacao": [
+    {
+      "id": "identificacao_001",
+      "texto": "Considere como nome do arquivo o nome original sem a extensão .json."
+    },
+    {
+      "id": "identificacao_002",
+      "texto": "Se o nome original do arquivo contiver, entre a palavra `Prova` e a extensão `.json`, um sufixo adicional composto por um número e, opcionalmente, caracteres separadores ou delimitadores, como `(1)`, `_1`, `-1` ou ` 1`, remova integralmente esse sufixo antes de determinar o nome do arquivo e criar o identificador global da questão."
+    },
+    {
+      "id": "identificacao_003",
+      "texto": "Crie o identificador global de cada questão no formato nome_do_arquivo:numero_da_questao."
+    },
+    {
+      "id": "identificacao_004",
+      "texto": "Preserve exatamente a representação do número da questão presente no arquivo, inclusive zeros à esquerda."
+    },
+    {
+      "id": "identificacao_005",
+      "texto": "Uma questão deve aparecer uma única vez em questoes, ainda que possua várias classificações."
+    },
+    {
+      "id": "identificacao_006",
+      "texto": "A mesma questão pode e deve ser referenciada em múltiplos caminhos dentro de conteudos quando efetivamente cobrar mais de um conteúdo."
+    }
+  ],
+  "validacaoPrevia": [
+    {
+      "id": "validacaoPrevia_001",
+      "texto": "Antes de classificar qualquer questão, valide se todos os arquivos recebidos são JSON válidos."
+    },
+    {
+      "id": "validacaoPrevia_002",
+      "texto": "Verifique se todos os arquivos são compatíveis com schemaEntrada."
+    },
+    {
+      "id": "validacaoPrevia_003",
+      "texto": "Verifique se todo identificador presente em questoes possui uma entrada correspondente em gabarito."
+    },
+    {
+      "id": "validacaoPrevia_004",
+      "texto": "Verifique se gabarito não contém identificadores ausentes em questoes."
+    },
+    {
+      "id": "validacaoPrevia_005",
+      "texto": "Interrompa o processamento e identifique objetivamente cada divergência caso algum arquivo seja inválido, incompatível, incompleto ou apresente conflito entre questoes e gabarito."
+    },
+    {
+      "id": "validacaoPrevia_006",
+      "texto": "Não altere, complete, corrija ou reextraia o conteúdo das questões. Os arquivos de entrada são a fonte exclusiva para a classificação."
+    },
+    {
+      "id": "validacaoPrevia_007",
+      "texto": "Se um indice_tematico_questoes.json for fornecido, valide se ele é JSON válido e compatível com schemaSaida antes de processar as novas provas."
+    },
+    {
+      "id": "validacaoPrevia_008",
+      "texto": "Se um índice existente for fornecido, verifique a integridade bidirecional entre questoes e conteudos antes de incrementá-lo."
+    },
+    {
+      "id": "validacaoPrevia_009",
+      "texto": "Interrompa o processamento se houver mais de um arquivo candidato a indice_tematico_questoes.json."
+    }
+  ],
+  "regrasTaxonomia": [
+    {
+      "id": "regrasTaxonomia_001",
+      "texto": "Utilize somente conteúdos pertinentes ao currículo do ensino médio brasileiro e aos vestibulares brasileiros de ingresso no ensino superior."
+    },
+    {
+      "id": "regrasTaxonomia_002",
+      "texto": "Não utilize categorias próprias do ensino superior quando houver uma categoria equivalente adequada ao ensino médio."
+    },
+    {
+      "id": "regrasTaxonomia_003",
+      "texto": "Cada caminho deve começar por uma disciplina escolar, como biologia, química, física, matemática, história, geografia, filosofia, sociologia, língua_portuguesa, literatura, língua_inglesa, artes ou disciplina equivalente efetivamente cobrada."
+    },
+    {
+      "id": "regrasTaxonomia_004",
+      "texto": "Os níveis intermediários devem representar, nesta ordem preferencial, área, unidade temática, assunto e subassunto ou tópico."
+    },
+    {
+      "id": "regrasTaxonomia_005",
+      "texto": "Não force todos os caminhos a possuir a mesma profundidade. Use apenas os níveis necessários para identificar o conteúdo com precisão suficiente."
+    },
+    {
+      "id": "regrasTaxonomia_006",
+      "texto": "Evite categorias excessivamente amplas, como biologia > citologia, quando a questão permitir identificar com segurança um tópico mais específico."
+    },
+    {
+      "id": "regrasTaxonomia_007",
+      "texto": "Evite categorias excessivamente estreitas, criadas apenas para uma formulação particular de uma única questão."
+    },
+    {
+      "id": "regrasTaxonomia_008",
+      "texto": "Reutilize exatamente os mesmos nomes e caminhos para conteúdos semanticamente equivalentes em questões diferentes."
+    },
+    {
+      "id": "regrasTaxonomia_009",
+      "texto": "Antes de criar um novo caminho, verifique se um caminho já utilizado representa adequadamente o mesmo conteúdo."
+    },
+    {
+      "id": "regrasTaxonomia_010",
+      "texto": "Use nomes em português do Brasil, no singular, em letras minúsculas e snake_case."
+    },
+    {
+      "id": "regrasTaxonomia_011",
+      "texto": "Evite siglas quando houver uma denominação escolar clara e amplamente utilizada, salvo quando a sigla constituir o nome mais comum do conteúdo."
+    },
+    {
+      "id": "regrasTaxonomia_012",
+      "texto": "Não crie categorias baseadas em instituição, ano, banca, estilo da questão, dificuldade, formato do enunciado ou alternativa correta."
+    }
+  ],
+  "classificacaoQuestao": [
+    {
+      "id": "classificacaoQuestao_001",
+      "texto": "Analise conjuntamente contexto, comando, alternativas e gabarito para determinar quais conhecimentos são necessários para resolver a questão."
+    },
+    {
+      "id": "classificacaoQuestao_002",
+      "texto": "Classifique a questão pelos conteúdos efetivamente cobrados, não por todos os temas apenas mencionados no enunciado."
+    },
+    {
+      "id": "classificacaoQuestao_003",
+      "texto": "Uma questão pode receber qualquer quantidade de classificações necessárias, desde que cada classificação seja justificável pelo processo de resolução."
+    },
+    {
+      "id": "classificacaoQuestao_004",
+      "texto": "Atribua relevancia principal ao conteúdo central cuja compreensão é indispensável para chegar à resposta correta."
+    },
+    {
+      "id": "classificacaoQuestao_005",
+      "texto": "Atribua relevancia secundaria a outro conteúdo também necessário para resolver a questão, mas que não constitui o foco predominante."
+    },
+    {
+      "id": "classificacaoQuestao_006",
+      "texto": "Não registre conteúdos meramente contextuais, decorativos, exemplificativos ou citados sem necessidade de domínio para resolver a questão."
+    },
+    {
+      "id": "classificacaoQuestao_007",
+      "texto": "Não atribua relevancia secundaria apenas porque um termo aparece em uma alternativa incorreta."
+    },
+    {
+      "id": "classificacaoQuestao_008",
+      "texto": "Quando a resolução exigir integração real entre disciplinas, crie caminhos independentes para cada disciplina envolvida."
+    },
+    {
+      "id": "classificacaoQuestao_009",
+      "texto": "Quando a questão puder ser resolvida por mais de uma estratégia, classifique pelos conhecimentos que o enunciado e as alternativas efetivamente mobilizam, evitando incluir estratégias apenas possíveis, mas não exigidas."
+    },
+    {
+      "id": "classificacaoQuestao_012",
+      "texto": "Não invente informações ausentes do arquivo. Quando não houver elementos suficientes para classificar uma questão com segurança, registre o problema na validação e não crie uma classificação especulativa."
+    }
+  ],
+  "regrasIndice": [
+    {
+      "id": "regrasIndice_001",
+      "texto": "Para cada objeto de classificacao em questoes, inclua o identificador global da questão no caminho correspondente em conteudos."
+    },
+    {
+      "id": "regrasIndice_002",
+      "texto": "Não inclua identificadores duplicados na mesma lista de conteudos."
+    },
+    {
+      "id": "regrasIndice_003",
+      "texto": "Ordene os identificadores de cada lista primeiramente pelo nome do arquivo e depois numericamente pelo número da questão."
+    },
+    {
+      "id": "regrasIndice_004",
+      "texto": "Ordene as chaves temáticas de forma alfabética em todos os níveis de conteudos."
+    },
+    {
+      "id": "regrasIndice_005",
+      "texto": "Ordene as classificacoes de cada questão colocando primeiro as de relevancia principal e depois as de relevancia secundaria; dentro do mesmo nível, ordene alfabeticamente pelo caminho completo."
+    },
+    {
+      "id": "regrasIndice_006",
+      "texto": "Garanta correspondência bidirecional perfeita: toda classificação em questoes deve existir em conteudos, e toda referência em conteudos deve corresponder a uma classificação em questoes."
+    }
+  ],
+  "processamentoIntegral": [
+    {
+      "id": "processamentoIntegral_001",
+      "texto": "Após a conclusão da validacaoPrevia, processe obrigatoriamente todas as questões de todos os arquivos recebidos."
+    },
+    {
+      "id": "processamentoIntegral_002",
+      "texto": "Caso necessário, divida o trabalho internamente em lotes, sem solicitar que o usuário divida, reenvie ou reduza os arquivos."
+    },
+    {
+      "id": "processamentoIntegral_003",
+      "texto": "O uso de lotes é apenas uma estratégia interna. Todos os resultados devem ser consolidados em um único arquivo JSON."
+    },
+    {
+      "id": "processamentoIntegral_004",
+      "texto": "Durante o processamento, preserve cumulativamente as classificações já concluídas no arquivo de saída."
+    },
+    {
+      "id": "processamentoIntegral_005",
+      "texto": "Revise periodicamente a taxonomia já criada para evitar sinônimos, caminhos redundantes, níveis inconsistentes ou granularidade desigual."
+    },
+    {
+      "id": "processamentoIntegral_006",
+      "texto": "Não solicite qualquer confirmação adicional ao usuário durante o processamento. Após a aprovação da validacaoPrevia, execute automaticamente todas as etapas restantes até produzir o arquivo final, interrompendo apenas nas hipóteses de erro ou impossibilidade previstas neste prompt."
+    },
+    {
+      "id": "processamentoIntegral_007",
+      "texto": "Limitações de tamanho da mensagem não justificam a entrega parcial, pois o resultado final deve ser disponibilizado como arquivo baixável."
+    }
+  ],
+  "validacaoFinal": [
+    "Todos os arquivos de entrada foram processados.",
+    "Todas as questões presentes nos arquivos foram cadastradas em questoes.",
+    "Nenhuma questão foi cadastrada mais de uma vez.",
+    "Toda questão possui pelo menos uma classificação segura.",
+    "Toda questão possui no máximo as classificações efetivamente justificáveis.",
+    "Todos os caminhos pertencem ao escopo do ensino médio e dos vestibulares brasileiros.",
+    "Não há categorias sinônimas, redundantes ou com grafia inconsistente.",
+    "Não há identificadores duplicados nas listas de conteudos.",
+    "Toda classificação de questoes possui referência correspondente em conteudos.",
+    "Toda referência de conteudos possui classificação correspondente em questoes.",
+    "Os identificadores globais seguem o formato nome_do_arquivo:numero_da_questao.",
+    "O arquivo JSON é válido.",
+    "O arquivo JSON consolidado foi criado no ambiente de arquivos.",
+    "O arquivo JSON consolidado foi disponibilizado ao usuário como arquivo baixável.",
+    "Exatamente um arquivo de saída foi produzido.",
+    "Quando um índice existente foi fornecido, todo o seu conteúdo anterior foi preservado, salvo alterações explicitamente autorizadas.",
+    "O arquivo entregue contém o índice completo atualizado, e não apenas as novas entradas."
+  ],
+  "regrasAtualizacao": [
+    {
+      "id": "regrasAtualizacao_001",
+      "texto": "Produza exatamente um único arquivo de saída chamado indice_tematico_questoes.json. Não gere arquivos separados por prova, disciplina, lote, assunto ou qualquer outro critério."
+    },
+    {
+      "id": "regrasAtualizacao_002",
+      "texto": "Se nenhum indice_tematico_questoes.json for fornecido, crie um novo arquivo conforme schemaSaida."
+    },
+    {
+      "id": "regrasAtualizacao_003",
+      "texto": "Se um indice_tematico_questoes.json for fornecido, carregue integralmente seu conteúdo e trate-o como a fonte de verdade da taxonomia."
+    },
+    {
+      "id": "regrasAtualizacao_004",
+      "texto": "Quando houver um índice existente, preserve todas as questões, classificações, categorias, caminhos, identificadores e valores já armazenados, salvo autorização explícita do usuário para modificá-los."
+    },
+    {
+      "id": "regrasAtualizacao_005",
+      "texto": "Reutilize obrigatoriamente categorias e caminhos existentes quando forem semanticamente equivalentes ao conteúdo classificado. Crie uma nova categoria somente quando nenhum caminho existente representar adequadamente o conteúdo e a nova categoria puder ser reutilizada por futuras questões."
+    },
+    {
+      "id": "regrasAtualizacao_006",
+      "texto": "Não remova, renomeie, mova, reorganize, una ou divida categorias existentes sem autorização explícita do usuário."
+    },
+    {
+      "id": "regrasAtualizacao_007",
+      "texto": "Na presença de conflito entre uma preferência de classificação do assistente e a taxonomia existente, a taxonomia existente deve prevalecer, desde que seja compatível com o conteúdo e com o escopo definido neste prompt."
+    },
+    {
+      "id": "regrasAtualizacao_008",
+      "texto": "Acrescente ao índice apenas as novas questões e as novas referências temáticas necessárias. Não duplique questões ou referências já existentes."
+    },
+    {
+      "id": "regrasAtualizacao_009",
+      "texto": "Se uma questão de entrada já existir no índice pelo mesmo identificador global, compare seus dados e classificações. Preserve a entrada existente quando não houver divergência. Em caso de divergência, interrompa o processamento antes de alterar o índice existente e descreva objetivamente o conflito, sem sobrescrever silenciosamente."
+    },
+    {
+      "id": "regrasAtualizacao_010",
+      "texto": "O arquivo entregue deve ser o índice completo atualizado, incluindo todo o conteúdo anterior preservado e todas as novas questões incorporadas. Nunca entregue apenas um fragmento, delta, patch ou arquivo contendo somente as novas entradas."
+    }
+  ]
+}
