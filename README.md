@@ -15,6 +15,9 @@ Banco de questões de código aberto de vestibulares do ensino médio
 # A.0 - Como visualizar as questões do banco de questões
 
 > [!IMPORTANT]
+> Caso você não tenha o Git instalado em sua máquina, baixe o projeto [conforme indicado aqui](https://docs.github.com/pt/repositories/working-with-files/using-files/downloading-source-code-archives#downloading-source-code-archives-from-the-repository-view).
+
+> [!IMPORTANT]
 > O [./index.html](./index.html) também consegue abrir o arquivo `testes.json` referente aos prompts.
 
 A.1 - Abra o arquivo [./index.html](./index.html) no seu navegador web.
