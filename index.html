@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 </head>
 
 <body class="m-0 bg-gray-100 p-3.5 font-sans text-gray-800 md:p-6">
@@ -237,13 +238,23 @@
                 </p>
               </div>
 
-              <button type="button" class="rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300" :disabled="!selectedContentPath.length || !filteredQuestionIds.length || isLoadingStatisticsQuestions" @click="loadSelectedStatisticsQuestions">
-                {{
-                isLoadingStatisticsQuestions
-                ? "Carregando..."
-                : `Abrir ${filteredQuestionIds.length} questão(ões)`
-                }}
-              </button>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" class="rounded-lg bg-gray-800 px-4 py-2 font-bold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300" :disabled="!selectedFileCount || isDownloadingQuestionsByContent" @click="downloadSelectedQuestionsByContent">
+                  {{
+                  isDownloadingQuestionsByContent
+                  ? "Gerando ZIP..."
+                  : "Baixar questões de todas as séries selecionadas separadas por assunto"
+                  }}
+                </button>
+
+                <button type="button" class="rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300" :disabled="!selectedContentPath.length || !filteredQuestionIds.length || isLoadingStatisticsQuestions" @click="loadSelectedStatisticsQuestions">
+                  {{
+                  isLoadingStatisticsQuestions
+                  ? "Carregando..."
+                  : `Abrir ${filteredQuestionIds.length} questão(ões)`
+                  }}
+                </button>
+              </div>
             </div>
 
             <div class="grid gap-3 sm:grid-cols-3">
@@ -616,6 +627,7 @@
         let contentHeatmapChart = null;
         let contentRankingChart = null;
         const isLoadingStatisticsQuestions = ref(false);
+        const isDownloadingQuestionsByContent = ref(false);
         const examJsonCache = new Map();
 
         const examKeys = ref([]);
@@ -1865,6 +1877,163 @@
           URL.revokeObjectURL(url);
         }
 
+        function sanitizeZipPathSegment(value) {
+          const sanitized = String(value)
+            .replace(/[\\/:*?"<>|]/g, "-")
+            .replace(/\s+/g, " ")
+            .trim()
+            .replace(/[. ]+$/g, "");
+
+          return sanitized || "Sem nome";
+        }
+
+        function collectLeafContentEntries(value, path = [], result = []) {
+          if (Array.isArray(value)) {
+            if (path.length && value.length) {
+              result.push({
+                path: [...path],
+                questionIds: [...new Set(value.filter((item) => typeof item === "string"))],
+              });
+            }
+
+            return result;
+          }
+
+          if (!value || typeof value !== "object") {
+            return result;
+          }
+
+          for (const [label, child] of Object.entries(value)) {
+            collectLeafContentEntries(child, [...path, label], result);
+          }
+
+          return result;
+        }
+
+        function buildQuestionsDownloadForContent(path, loadedQuestions) {
+          const downloadedQuestions = {};
+
+          for (const question of loadedQuestions) {
+            const questionId = `${question.exame}:${question.numero}`;
+
+            downloadedQuestions[questionId] = {
+              exame: question.exame,
+              numero: question.numero,
+              contexto: question.contexto || [],
+              comando: question.comando || "",
+              alternativas: question.alternativas || {},
+              gabarito: question.gabarito ?? "",
+            };
+
+            if (question.motivo !== undefined) {
+              downloadedQuestions[questionId].motivo = question.motivo;
+            }
+          }
+
+          return {
+            filtro: {
+              conteudo: formatPath(path),
+              caminho_conteudo: [...path],
+              arquivos_selecionados: [...selectedExamFiles.value],
+              quantidade: loadedQuestions.length,
+            },
+            questoes: downloadedQuestions,
+          };
+        }
+
+        async function downloadSelectedQuestionsByContent() {
+          if (!selectedFileCount.value || !thematicIndex.value?.conteudos) {
+            return;
+          }
+
+          if (!window.JSZip) {
+            errorMessage.value =
+              "Não foi possível carregar a biblioteca necessária para gerar o ZIP.";
+            return;
+          }
+
+          try {
+            isDownloadingQuestionsByContent.value = true;
+            errorMessage.value = "";
+            saveMessage.value = "";
+
+            const zip = new JSZip();
+            const leafEntries = collectLeafContentEntries(
+              thematicIndex.value.conteudos,
+            );
+            let generatedFileCount = 0;
+
+            for (const entry of leafEntries) {
+              const selectedQuestionIds = entry.questionIds
+                .filter((questionId) => {
+                  const { examName } = parseQuestionId(questionId);
+
+                  return selectedExamNames.value.has(examName);
+                })
+                .sort(compareQuestionIds);
+
+              if (!selectedQuestionIds.length) {
+                continue;
+              }
+
+              const loadedQuestions = [];
+
+              for (const questionId of selectedQuestionIds) {
+                loadedQuestions.push(await loadQuestionById(questionId));
+              }
+
+              const pathSegments = entry.path.map((segment) =>
+                sanitizeZipPathSegment(formatTreeLabel(segment)),
+              );
+              const fileName = `${pathSegments.pop()}.json`;
+              const zipPath = [...pathSegments, fileName].join("/");
+              const download = buildQuestionsDownloadForContent(
+                entry.path,
+                loadedQuestions,
+              );
+
+              zip.file(
+                zipPath,
+                JSON.stringify(download, null, 2) + "\n",
+              );
+              generatedFileCount += 1;
+            }
+
+            if (!generatedFileCount) {
+              throw new Error(
+                "Nenhuma questão das séries selecionadas foi encontrada no índice temático.",
+              );
+            }
+
+            const blob = await zip.generateAsync({
+              type: "blob",
+              compression: "DEFLATE",
+              compressionOptions: { level: 6 },
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            const bankName = sanitizeFileName(
+              statisticsDirectoryName.value || "banco-de-questoes",
+            );
+
+            link.href = url;
+            link.download = `${bankName || "banco-de-questoes"}-por-assunto.zip`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+
+            saveMessage.value = `${generatedFileCount} arquivo(s) por assunto foram incluídos no ZIP.`;
+          } catch (error) {
+            errorMessage.value =
+              error instanceof Error
+                ? error.message
+                : "Não foi possível gerar o arquivo ZIP.";
+          } finally {
+            isDownloadingQuestionsByContent.value = false;
+          }
+        }
+
         function toggleAllPatterns() {
           selectedExamFiles.value = allPatternsSelected.value
             ? []
@@ -2900,6 +3069,7 @@
           unindexedExamNames,
           allPatternsSelected,
           isLoadingStatisticsQuestions,
+          isDownloadingQuestionsByContent,
           handleDirectoryChange,
           toggleAllPatterns,
           selectedFileCountForPattern,
@@ -2913,6 +3083,7 @@
           toggleFolderSelection,
           toggleFolderExpanded,
           downloadLoadedQuestions,
+          downloadSelectedQuestionsByContent,
           selectContentPath,
           clearContentSelection,
           loadSelectedStatisticsQuestions,
