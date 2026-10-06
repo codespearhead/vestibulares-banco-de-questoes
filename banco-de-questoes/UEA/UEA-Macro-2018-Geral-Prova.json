@@ -1481,12 +1481,7 @@
       }
     },
     "44": {
-      "contexto": [
-        {
-          "mimeType": "text/plain",
-          "conteudo": "Analise o heredograma."
-        }
-      ],
+      "contexto": [],
       "comando": "A malária é uma protozoose cujo agente etiológico pertence ao gênero Plasmodium. Em uma das etapas do ciclo da doença, formas infestantes parasitam os eritrócitos humanos. Sobre essa etapa do ciclo da doença, assinale a alternativa correta.",
       "alternativas": {
         "A": {
