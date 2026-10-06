@@ -944,11 +944,11 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "países subdesenvolvidos não industrializados, países subdesenvolvidos industrializados e países desen volvidos."
+          "conteudo": "países subdesenvolvidos não industrializados, países subdesenvolvidos industrializados e países desenvolvidos."
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "países desenvolvidos, países subdesenvolvidos não industrializados e países subdesenvolvidos indus trializados."
+          "conteudo": "países desenvolvidos, países subdesenvolvidos não industrializados e países subdesenvolvidos industrializados."
         },
         "C": {
           "mimeType": "text/plain",
@@ -956,7 +956,7 @@
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "países subdesenvolvidos industrializados, países desenvolvidos e países subdesenvolvidos não indus trializados."
+          "conteudo": "países subdesenvolvidos industrializados, países desenvolvidos e países subdesenvolvidos não industrializados."
         },
         "E": {
           "mimeType": "text/plain",

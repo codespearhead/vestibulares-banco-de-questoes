@@ -58,7 +58,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "uma célula-flama, responsável pela captura de alimentos, e um espermatozoide, responsável pela repro dução."
+          "conteudo": "uma célula-flama, responsável pela captura de alimentos, e um espermatozoide, responsável pela reprodução."
         },
         "B": {
           "mimeType": "text/plain",
@@ -109,11 +109,11 @@
         },
         "D": {
           "mimeType": "text/plain",
-          "conteudo": "seleção natural dos insetos com estiletes longos na região central e mais curtos na região sul da Fló rida, devido à variabilidade genética na população de insetos."
+          "conteudo": "seleção natural dos insetos com estiletes longos na região central e mais curtos na região sul da Flórida, devido à variabilidade genética na população de insetos."
         },
         "E": {
           "mimeType": "text/plain",
-          "conteudo": "adaptação, já que os insetos de estilete curto migra ram para a região sul da Flórida e forçaram esta estrutura durante a alimentação, promovendo seu alongamento."
+          "conteudo": "adaptação, já que os insetos de estilete curto migraram para a região sul da Flórida e forçaram esta estrutura durante a alimentação, promovendo seu alongamento."
         }
       }
     },
@@ -121,7 +121,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "A espécie Psyllaephagus baccharidis é um inseto que ataca as ninfas de outro inseto, o Baccharopelma dracun culifoliae. Este suga a seiva e induz a formação de galhas - um tipo de tumor de planta - no alecrim-do-campo. O P. baccharidis localiza as galhas ainda pequenas e, com seu aparelho ovopositor, põe seus ovos nas ninfas. Cada larva do invasor se desenvolve dentro de uma ninfa e, após determinado período, devora os tecidos do hospedeiro, usando o envoltório externo (a cutícula) como pupa, um processo denominado mumificação. Após a metamorfose, o P. baccharidis sai da pupa que está dentro da galha, escava um túnel através da parede do tumor vegetal e emerge.\n\n(Ciência hoje, abril de 2012. Adaptado.)"
+          "conteudo": "A espécie Psyllaephagus baccharidis é um inseto que ataca as ninfas de outro inseto, o Baccharopelma dracunculifoliae. Este suga a seiva e induz a formação de galhas - um tipo de tumor de planta - no alecrim-do-campo. O P. baccharidis localiza as galhas ainda pequenas e, com seu aparelho ovopositor, põe seus ovos nas ninfas. Cada larva do invasor se desenvolve dentro de uma ninfa e, após determinado período, devora os tecidos do hospedeiro, usando o envoltório externo (a cutícula) como pupa, um processo denominado mumificação. Após a metamorfose, o P. baccharidis sai da pupa que está dentro da galha, escava um túnel através da parede do tumor vegetal e emerge.\n\n(Ciência hoje, abril de 2012. Adaptado.)"
         }
       ],
       "comando": "As relações ecológicas interespecíficas que acontecem entre o B. dracunculifoliae e o alecrim-do-campo (quando o inseto suga a seiva da planta) e entre o P. baccharidis e o alecrim-do-campo são classificadas, respectivamente, como",
@@ -259,7 +259,7 @@
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "estimular a secreção de renina, e inibir a de aldos terona e ADH."
+          "conteudo": "estimular a secreção de renina, e inibir a de aldosterona e ADH."
         },
         "C": {
           "mimeType": "text/plain",
@@ -490,7 +490,7 @@
           "conteudo": "\"Na tabela periódica, a energia de ionização dos elementos aumenta da esquerda para a direita nos períodos e de baixo para cima nos grupos.\""
         }
       ],
-      "comando": "O exame dos dados sobre as primeiras energias de ionização mostra algumas exceções a essa regra. Para exemplificar essas exceções podem-se comparar os valo res das primeiras energias de ionização dos elementos",
+      "comando": "O exame dos dados sobre as primeiras energias de ionização mostra algumas exceções a essa regra. Para exemplificar essas exceções podem-se comparar os valores das primeiras energias de ionização dos elementos",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -746,7 +746,7 @@
     },
     "23": {
       "contexto": [],
-      "comando": "A gravação de nomes e frases em diferentes metais feita com o uso de brocas resultou em uma mistura em pó de cobre, alumínio e prata. Para separar a prata dessa mis tura, pode ser feito, a 25 °C, o seguinte procedimento:",
+      "comando": "A gravação de nomes e frases em diferentes metais feita com o uso de brocas resultou em uma mistura em pó de cobre, alumínio e prata. Para separar a prata dessa mistura, pode ser feito, a 25 °C, o seguinte procedimento:",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
@@ -809,7 +809,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Se você perguntar como está a economia em um município que passou a combater os desmatamentos, é possível que ouça como resposta: \"vai devagar\". Isso porque, ao eliminar as derrubadas ilegais, também são excluí das as atividades econômicas relacionadas a elas. Isso vai desde a venda de carvão e madeira até o comércio de motosserras, o posto de combustível e a oficina mecânica. Toda uma economia local gira em torno da degradação da natureza. Ao combater o desmatamento, portanto, é preciso também investir na substituição da economia local por uma mais sustentável.\n\n(Thaís Herrero. \"Governadores querem fundo privado para proteger a floresta\". http://epoca.globo.com. Adaptado.)"
+          "conteudo": "Se você perguntar como está a economia em um município que passou a combater os desmatamentos, é possível que ouça como resposta: \"vai devagar\". Isso porque, ao eliminar as derrubadas ilegais, também são excluídas as atividades econômicas relacionadas a elas. Isso vai desde a venda de carvão e madeira até o comércio de motosserras, o posto de combustível e a oficina mecânica. Toda uma economia local gira em torno da degradação da natureza. Ao combater o desmatamento, portanto, é preciso também investir na substituição da economia local por uma mais sustentável.\n\n(Thaís Herrero. \"Governadores querem fundo privado para proteger a floresta\". http://epoca.globo.com. Adaptado.)"
         }
       ],
       "comando": "A autora do texto defende que",
@@ -840,14 +840,14 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Se você perguntar como está a economia em um município que passou a combater os desmatamentos, é possível que ouça como resposta: \"vai devagar\". Isso porque, ao eliminar as derrubadas ilegais, também são excluí das as atividades econômicas relacionadas a elas. Isso vai desde a venda de carvão e madeira até o comércio de motosserras, o posto de combustível e a oficina mecânica. Toda uma economia local gira em torno da degradação da natureza. Ao combater o desmatamento, portanto, é preciso também investir na substituição da economia local por uma mais sustentável.\n\n(Thaís Herrero. \"Governadores querem fundo privado para proteger a floresta\". http://epoca.globo.com. Adaptado.)"
+          "conteudo": "Se você perguntar como está a economia em um município que passou a combater os desmatamentos, é possível que ouça como resposta: \"vai devagar\". Isso porque, ao eliminar as derrubadas ilegais, também são excluídas as atividades econômicas relacionadas a elas. Isso vai desde a venda de carvão e madeira até o comércio de motosserras, o posto de combustível e a oficina mecânica. Toda uma economia local gira em torno da degradação da natureza. Ao combater o desmatamento, portanto, é preciso também investir na substituição da economia local por uma mais sustentável.\n\n(Thaís Herrero. \"Governadores querem fundo privado para proteger a floresta\". http://epoca.globo.com. Adaptado.)"
         }
       ],
       "comando": "O trecho \"ao eliminar as derrubadas ilegais, também são excluídas as atividades econômicas relacionadas a elas.\" está reescrito de acordo com a norma-padrão da língua portuguesa em:",
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "se for eliminadas as derrubadas ilegais, também se excluirá as atividades econômicas que estiver rela cionadas a elas."
+          "conteudo": "se for eliminadas as derrubadas ilegais, também se excluirá as atividades econômicas que estiver relacionadas a elas."
         },
         "B": {
           "mimeType": "text/plain",
@@ -855,7 +855,7 @@
         },
         "C": {
           "mimeType": "text/plain",
-          "conteudo": "sendo eliminadas as derrubadas ilegais, também esta rá sendo excluídas as atividades econômicas que tem relação com elas."
+          "conteudo": "sendo eliminadas as derrubadas ilegais, também estará sendo excluídas as atividades econômicas que tem relação com elas."
         },
         "D": {
           "mimeType": "text/plain",
@@ -1002,7 +1002,7 @@
       "alternativas": {
         "A": {
           "mimeType": "text/plain",
-          "conteudo": "para se sentir plenamente realizada, a mulher pre cisava se casar."
+          "conteudo": "para se sentir plenamente realizada, a mulher precisava se casar."
         },
         "B": {
           "mimeType": "text/plain",
@@ -1057,7 +1057,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Enciclopédia Britânica\n\nA Hevea brasiliensis é uma espécie vegetal da família das euforbiáceas e aparecerá sempre em minha história como os bastidores do palco estão para a cena de uma comédia. Ela é a fonte principal da extração do látex. No estado adulto tem cerca de 30 metros de altura e um tronco de 3 metros de circunferência. É uma bela árvore, não há dúvida, e quando pude reconhecer um desses espécimes no meio da selva, não deixei de render as minhas homenagens. As folhas são verde-escuro e de suave contato. Dentro do tronco corre uma seiva branca, o látex. O látex solidificado se transforma em bor racha. Os botânicos não sabiam a função exata do látex no metabolismo da árvore. Mas isso não tinha nenhuma importância, já que os comerciantes haviam descoberto uma função menos botânica para o látex. O interessante é que a Hevea brasiliensis é uma planta hermafrodita.\n\n(Galvez, Imperador do Acre, 2001. Adaptado.)"
+          "conteudo": "Enciclopédia Britânica\n\nA Hevea brasiliensis é uma espécie vegetal da família das euforbiáceas e aparecerá sempre em minha história como os bastidores do palco estão para a cena de uma comédia. Ela é a fonte principal da extração do látex. No estado adulto tem cerca de 30 metros de altura e um tronco de 3 metros de circunferência. É uma bela árvore, não há dúvida, e quando pude reconhecer um desses espécimes no meio da selva, não deixei de render as minhas homenagens. As folhas são verde-escuro e de suave contato. Dentro do tronco corre uma seiva branca, o látex. O látex solidificado se transforma em borracha. Os botânicos não sabiam a função exata do látex no metabolismo da árvore. Mas isso não tinha nenhuma importância, já que os comerciantes haviam descoberto uma função menos botânica para o látex. O interessante é que a Hevea brasiliensis é uma planta hermafrodita.\n\n(Galvez, Imperador do Acre, 2001. Adaptado.)"
         }
       ],
       "comando": "Nesse trecho, o enunciador situa a história",
@@ -1068,7 +1068,7 @@
         },
         "B": {
           "mimeType": "text/plain",
-          "conteudo": "no auge do ciclo da borracha, usando uma linguagem bem-humorada para se referir à exploração econô mica do látex."
+          "conteudo": "no auge do ciclo da borracha, usando uma linguagem bem-humorada para se referir à exploração econômica do látex."
         },
         "C": {
           "mimeType": "text/plain",
@@ -1088,7 +1088,7 @@
       "contexto": [
         {
           "mimeType": "text/plain",
-          "conteudo": "Enciclopédia Britânica\n\nA Hevea brasiliensis é uma espécie vegetal da família das euforbiáceas e aparecerá sempre em minha história como os bastidores do palco estão para a cena de uma comédia. Ela é a fonte principal da extração do látex. No estado adulto tem cerca de 30 metros de altura e um tronco de 3 metros de circunferência. É uma bela árvore, não há dúvida, e quando pude reconhecer um desses espécimes no meio da selva, não deixei de render as minhas homenagens. As folhas são verde-escuro e de suave contato. Dentro do tronco corre uma seiva branca, o látex. O látex solidificado se transforma em bor racha. Os botânicos não sabiam a função exata do látex no metabolismo da árvore. Mas isso não tinha nenhuma importância, já que os comerciantes haviam descoberto uma função menos botânica para o látex. O interessante é que a Hevea brasiliensis é uma planta hermafrodita.\n\n(Galvez, Imperador do Acre, 2001. Adaptado.)"
+          "conteudo": "Enciclopédia Britânica\n\nA Hevea brasiliensis é uma espécie vegetal da família das euforbiáceas e aparecerá sempre em minha história como os bastidores do palco estão para a cena de uma comédia. Ela é a fonte principal da extração do látex. No estado adulto tem cerca de 30 metros de altura e um tronco de 3 metros de circunferência. É uma bela árvore, não há dúvida, e quando pude reconhecer um desses espécimes no meio da selva, não deixei de render as minhas homenagens. As folhas são verde-escuro e de suave contato. Dentro do tronco corre uma seiva branca, o látex. O látex solidificado se transforma em borracha. Os botânicos não sabiam a função exata do látex no metabolismo da árvore. Mas isso não tinha nenhuma importância, já que os comerciantes haviam descoberto uma função menos botânica para o látex. O interessante é que a Hevea brasiliensis é uma planta hermafrodita.\n\n(Galvez, Imperador do Acre, 2001. Adaptado.)"
         }
       ],
       "comando": "Nesse trecho, predomina a",
