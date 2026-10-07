@@ -373,6 +373,13 @@
               <button type="button" class="rounded-lg bg-gray-800 px-4 py-2.5 font-bold text-white hover:bg-gray-900" @click="downloadLoadedQuestions">
                 Baixar questões
               </button>
+              <button type="button" class="rounded-lg bg-gray-800 px-4 py-2.5 font-bold text-white hover:bg-gray-900" @click="copyCurrentQuestion">
+                Copiar questão
+              </button>
+              <label class="flex items-center gap-2 py-2.5 text-sm font-bold">
+                <input type="checkbox" v-model="copyIncludeImages" class="h-4 w-4" />
+                Incluir imagens
+              </label>
             </div>
           </div>
 
@@ -663,6 +670,7 @@
         const questionKeyOrder = ref([]);
         const answerKeyOrder = ref([]);
         const saveMessage = ref("");
+        const copyIncludeImages = ref(true);
         const isJsonEditorOpen = ref(false);
         const jsonEditorText = ref("");
         const jsonEditorError = ref("");
@@ -1893,6 +1901,100 @@
             },
             questoes: downloadedQuestions,
           };
+        }
+
+        function getCurrentQuestionJson() {
+          let source = null;
+
+          if (!isReadOnly.value) {
+            source = findCurrentQuestionSource()?.question;
+          } else {
+            const question = currentQuestion.value;
+            const json = examJsonCache.get(question.exame);
+
+            if (json?.questoes && !Array.isArray(json.questoes)) {
+              source = json.questoes[question.numero];
+            } else {
+              for (const collection of Object.values(json || {})) {
+                if (!Array.isArray(collection)) {
+                  continue;
+                }
+
+                source = collection.find(
+                  (item) => String(item.questao ?? "") === String(question.numero),
+                );
+
+                if (source) {
+                  break;
+                }
+              }
+            }
+          }
+
+          if (!source) {
+            return null;
+          }
+
+          const result = JSON.parse(JSON.stringify(source));
+
+          if (!copyIncludeImages.value) {
+            const content = result.saida_esperada ?? result;
+
+            if (Array.isArray(content.contexto)) {
+              content.contexto = content.contexto.filter(
+                (item) => !item?.mimeType?.startsWith("image/"),
+              );
+            }
+          }
+
+          return result;
+        }
+
+        async function copyCurrentQuestion() {
+          if (!currentQuestion.value) {
+            return;
+          }
+
+          errorMessage.value = "";
+          saveMessage.value = "";
+
+          try {
+            const source = getCurrentQuestionJson();
+
+            if (!source) {
+              throw new Error("Não foi possível localizar a questão no JSON original.");
+            }
+
+            const text = JSON.stringify(source, null, 2);
+
+            try {
+              await navigator.clipboard.writeText(text);
+            } catch {
+              const textarea = document.createElement("textarea");
+              const previousFocus = document.activeElement;
+              textarea.value = text;
+              textarea.style.position = "fixed";
+              textarea.style.opacity = "0";
+              textarea.setAttribute("readonly", "");
+              document.body.appendChild(textarea);
+
+              try {
+                textarea.select();
+                if (!document.execCommand("copy")) {
+                  throw new Error("Não foi possível copiar o JSON. Verifique a permissão da área de transferência.");
+                }
+              } finally {
+                textarea.remove();
+                previousFocus?.focus();
+              }
+            }
+
+            saveMessage.value = "JSON da questão copiado.";
+          } catch (error) {
+            errorMessage.value = error instanceof Error
+              ? error.message
+              : "Não foi possível copiar o JSON da questão.";
+          }
         }
 
         function downloadLoadedQuestions() {
@@ -3132,6 +3234,8 @@
           toggleFolderSelection,
           toggleFolderExpanded,
           downloadLoadedQuestions,
+          copyCurrentQuestion,
+          copyIncludeImages,
           downloadSelectedQuestionsByContent,
           selectContentPath,
           clearContentSelection,
