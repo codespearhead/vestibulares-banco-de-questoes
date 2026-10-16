@@ -94,7 +94,7 @@
         <div class="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 class="mb-1.5 text-lg font-bold">Pasta do banco de questões</h2>
-            <p class="mb-2 text-sm text-gray-600">Selecione uma pasta, escolha um conteúdo e abra as questões encontradas.</p>
+            <p class="mb-2 text-sm text-gray-600">Selecione uma pasta e as provas que deseja abrir. Opcionalmente, filtre as questões por conteúdo.</p>
             <button type="button" class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-bold hover:bg-gray-50" @click="handleDirectoryChange">
               Selecionar pasta
             </button>
@@ -150,7 +150,9 @@
             <span class="block text-sm text-gray-600">
               {{
               selectedFileCount
+              ? selectedContentPath.length
               ? `${selectedFileCount} arquivo(s) · ${filteredQuestionIds.length} questão(ões)`
+              : `${selectedFileCount} arquivo(s) · todas as questões (sem filtro)`
               : 'Nenhuma prova selecionada. Clique aqui e selecione uma ou mais provas em "Séries de provas" para começar.'
               }}
             </span>
@@ -228,7 +230,7 @@
 
             <section>
               <div class="mb-2 flex items-center justify-between gap-2">
-                <h2 class="text-lg font-bold">Conteúdos</h2>
+                <h2 class="text-lg font-bold">Filtrar por conteúdo</h2>
                 <button v-if="selectedContentPath.length" type="button" class="text-sm font-bold text-blue-700 hover:underline" @click="clearContentSelection">
                   Limpar
                 </button>
@@ -252,7 +254,9 @@
                   {{
                   selectedContentPath.length
                   ? formatPath(selectedContentPath)
-                  : "Selecione um conteúdo"
+                  : selectedFileCount
+                  ? "Todas as questões das provas selecionadas"
+                  : "Selecione uma ou mais provas"
                   }}
                 </p>
               </div>
@@ -266,11 +270,13 @@
                   }}
                 </button>
 
-                <button type="button" class="rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300" :disabled="!selectedContentPath.length || !filteredQuestionIds.length || isLoadingStatisticsQuestions" @click="loadSelectedStatisticsQuestions">
+                <button type="button" class="rounded-lg bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300" :disabled="!selectedFileCount || (selectedContentPath.length && !filteredQuestionIds.length) || isLoadingStatisticsQuestions" @click="loadSelectedStatisticsQuestions">
                   {{
                   isLoadingStatisticsQuestions
                   ? "Carregando..."
-                  : `Abrir ${filteredQuestionIds.length} questão(ões)`
+                  : selectedContentPath.length
+                  ? `Abrir ${filteredQuestionIds.length} questão(ões)`
+                  : "Abrir todas as questões"
                   }}
                 </button>
               </div>
@@ -279,7 +285,8 @@
             <div class="grid gap-3 sm:grid-cols-3">
               <div class="rounded-lg bg-gray-50 p-3">
                 <div class="text-xs font-bold uppercase text-gray-500">Questões</div>
-                <div class="mt-1 text-2xl font-bold">{{ filteredQuestionIds.length }}</div>
+                <div class="mt-1 text-2xl font-bold">{{ selectedContentPath.length ? filteredQuestionIds.length : (isCountingSelectedQuestions ? "…" : selectedQuestionCount ?? "—") }}</div>
+                <p v-if="!selectedContentPath.length && selectedQuestionCountError" class="mt-1 text-sm text-red-700">{{ selectedQuestionCountError }}</p>
               </div>
               <div class="rounded-lg bg-gray-50 p-3">
                 <div class="text-xs font-bold uppercase text-gray-500">Séries</div>
@@ -653,6 +660,10 @@
         const isLoadingStatisticsQuestions = ref(false);
         const isDownloadingQuestionsByContent = ref(false);
         const examJsonCache = new Map();
+        const selectedQuestionCount = ref(0);
+        const isCountingSelectedQuestions = ref(false);
+        const selectedQuestionCountError = ref("");
+        let selectedQuestionCountRequest = 0;
 
         const examKeys = ref([]);
         const selectedExamKey = ref("");
@@ -1746,6 +1757,63 @@
           return json;
         }
 
+        function countExamQuestions(json) {
+          if (
+            json.questoes &&
+            typeof json.questoes === "object" &&
+            !Array.isArray(json.questoes)
+          ) {
+            return Object.keys(json.questoes).length;
+          }
+
+          return Object.values(json).reduce((total, collection) => {
+            if (!Array.isArray(collection)) {
+              return total;
+            }
+
+            return total + collection.filter(
+              (question) => question && question.questao != null,
+            ).length;
+          }, 0);
+        }
+
+        async function updateSelectedQuestionCount() {
+          const request = ++selectedQuestionCountRequest;
+          const examNames = [...selectedExamNames.value].filter(
+            (examName) => examFileMap.value.has(examName),
+          );
+
+          selectedQuestionCountError.value = "";
+          if (!examNames.length) {
+            selectedQuestionCount.value = 0;
+            isCountingSelectedQuestions.value = false;
+            return;
+          }
+
+          isCountingSelectedQuestions.value = true;
+          try {
+            const counts = await Promise.all(
+              examNames.map(async (examName) =>
+                countExamQuestions(await loadExamJson(examName)),
+              ),
+            );
+
+            if (request === selectedQuestionCountRequest) {
+              selectedQuestionCount.value = counts.reduce((a, b) => a + b, 0);
+            }
+          } catch (error) {
+            if (request === selectedQuestionCountRequest) {
+              selectedQuestionCount.value = null;
+              selectedQuestionCountError.value =
+                error instanceof Error ? error.message : "Não foi possível contar as questões.";
+            }
+          } finally {
+            if (request === selectedQuestionCountRequest) {
+              isCountingSelectedQuestions.value = false;
+            }
+          }
+        }
+
         async function loadQuestionById(questionId) {
           const { examName, questionNumber } =
             parseQuestionId(questionId);
@@ -1802,8 +1870,50 @@
             errorMessage.value = "";
             const loadedQuestions = [];
 
-            for (const questionId of filteredQuestionIds.value) {
-              loadedQuestions.push(await loadQuestionById(questionId));
+            if (selectedContentPath.value.length) {
+              for (const questionId of [...filteredQuestionIds.value]) {
+                loadedQuestions.push(await loadQuestionById(questionId));
+              }
+            } else {
+              const examNames = [...selectedExamNames.value]
+                .filter((examName) => examFileMap.value.has(examName))
+                .sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+              for (const examName of examNames) {
+                const json = await loadExamJson(examName);
+
+                if (
+                  json.questoes &&
+                  typeof json.questoes === "object" &&
+                  !Array.isArray(json.questoes)
+                ) {
+                  for (const [numero, question] of Object.entries(json.questoes)) {
+                    loadedQuestions.push({
+                      ...question,
+                      exame: examName,
+                      numero,
+                      gabarito: json.gabarito?.[numero] ?? question.gabarito ?? "",
+                    });
+                  }
+                } else {
+                  for (const [collectionName, collection] of Object.entries(json)) {
+                    if (!Array.isArray(collection)) {
+                      continue;
+                    }
+
+                    for (const question of collection) {
+                      if (!question || question.questao == null) {
+                        continue;
+                      }
+
+                      loadedQuestions.push({
+                        ...normalizeQuestion(question, collectionName),
+                        exame: examName,
+                      });
+                    }
+                  }
+                }
+              }
             }
 
             setQuestions(
@@ -3157,6 +3267,12 @@
         );
 
         watch(
+          [selectedExamFiles, examFileMap],
+          updateSelectedQuestionCount,
+          { deep: true },
+        );
+
+        watch(
           selectedExamFiles,
           () => {
             selectedExamPatterns.value = examPatternEntries.value
@@ -3219,6 +3335,9 @@
           contentTree,
           filteredQuestionIds,
           selectedFileCount,
+          selectedQuestionCount,
+          isCountingSelectedQuestions,
+          selectedQuestionCountError,
           unindexedExamNames,
           allPatternsSelected,
           isLoadingStatisticsQuestions,
