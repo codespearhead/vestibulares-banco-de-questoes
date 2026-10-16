@@ -23874,6 +23874,1873 @@
           "relevancia": "principal"
         }
       ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:01": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "meio_ambiente",
+            "conservacao_ambiental",
+            "corredor_ecologico",
+            "fluxo_genico"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:02": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "saude",
+            "prevencao_de_doencas",
+            "cancer_do_colo_do_utero",
+            "vacinacao_contra_hpv_e_exame_papanicolau"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:03": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "ecologia",
+            "relacoes_ecologicas",
+            "relacoes_interespecificas",
+            "parasitismo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:04": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "metabolismo_energetico",
+            "fotossintese",
+            "reagentes_e_produtos"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "biologia",
+            "ecologia",
+            "produtividade_primaria",
+            "aumento_da_fixacao_de_carbono"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:05": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "divisao_celular",
+            "meiose",
+            "nao_disjuncao_cromossomica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:06": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "nucleo_celular",
+            "poros_nucleares",
+            "transporte_de_rna_e_nucleotideos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:07": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "fisiologia_humana",
+            "sistema_digestorio",
+            "pancreas",
+            "funcao_exocrina"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:08": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "biotecnologia",
+            "engenharia_genetica",
+            "terapia_genica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:09": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "metabolismo_energetico",
+            "fermentacao",
+            "metabolismo_heterotrofico"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:10": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "genetica",
+            "heranca_quantitativa",
+            "genes_aditivos",
+            "calculo_de_probabilidade"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:11": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "fisiologia_humana",
+            "sistema_muscular",
+            "juncao_neuromuscular",
+            "bloqueio_de_receptores_de_acetilcolina"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "biologia",
+            "fisiologia_humana",
+            "sistema_nervoso",
+            "impulso_nervoso",
+            "potencial_de_acao"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:12": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "evolucao",
+            "mecanismos_evolutivos",
+            "selecao_natural",
+            "acao_do_ambiente"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:13": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "estados_fisicos_da_materia",
+            "temperaturas_de_mudanca_de_estado",
+            "estado_fisico"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:14": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "gases",
+            "transformacao_geral_dos_gases",
+            "pressao_e_volume"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:15": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_ambiental",
+            "poluicao_atmosferica",
+            "chuva_acida",
+            "oxidos_de_enxofre"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:16": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "separacao_de_misturas",
+            "destilacao_fracionada",
+            "mistura_homogenea_liquido_liquido"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "quimica",
+            "quimica_organica",
+            "polimeros",
+            "polimerizacao",
+            "monomeros_e_polimeros"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:17": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "metabolismo_energetico",
+            "fermentacao",
+            "alcoolica_e_latica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:18": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "bioquimica",
+            "carboidratos",
+            "polissacarideos",
+            "glicose"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:19": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_inorganica",
+            "oxidos",
+            "oxidos_basicos",
+            "neutralizacao_da_acidez"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:20": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "calculos_quimicos",
+            "estequiometria",
+            "quantidade_de_materia",
+            "relacoes_estequiometricas"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:21": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "termoquimica",
+            "lei_de_hess",
+            "entalpia_de_reacao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:22": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "eletroquimica",
+            "pilhas_e_baterias",
+            "potencial_da_pilha"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "eletroquimica",
+            "pilhas_e_baterias",
+            "anodo_e_catodo"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:23": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "equilibrio_quimico",
+            "equilibrio_acido_base",
+            "ph"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:24": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_organica",
+            "funcoes_organicas",
+            "identificacao_de_funcoes",
+            "grupos_funcionais"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:25": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "semantica",
+            "figuras_de_linguagem",
+            "metafora"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:26": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "leitura",
+            "linguagem_e_comunicacao",
+            "funcoes_da_linguagem",
+            "metalinguagem"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:27": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "oracao_subordinada_adjetiva",
+            "pronome_relativo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:28": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "literatura",
+            "leitura_literaria",
+            "personagem",
+            "policarpo_quaresma",
+            "patriotismo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:29": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "semantica",
+            "denotacao_e_conotacao",
+            "sentido_figurado"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:30": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "oracao_subordinada_adverbial",
+            "concessao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:31": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "vozes_verbais",
+            "voz_passiva_analitica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:32": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "coesao_referencial",
+            "pronomes",
+            "referente_pronominal"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:33": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "leitura",
+            "interpretacao_de_texto",
+            "inferencia",
+            "tese_do_autor"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:34": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "semantica",
+            "sinonimia",
+            "substituicao_lexical"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:35": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "producao_textual",
+            "enunciacao",
+            "interlocucao",
+            "direcionamento_ao_leitor"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Específicas-Biológicas-Prova:36": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "literatura",
+            "historia_da_literatura",
+            "parnasianismo",
+            "caracteristicas",
+            "perfeicao_formal"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:01": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "oracao_subordinada_adverbial",
+            "tempo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:02": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "literatura",
+            "historia_da_literatura",
+            "modernismo",
+            "macunaima",
+            "caracterizacao_de_personagem"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:03": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "discurso_direto_e_indireto",
+            "transposicao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:04": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "sintaxe",
+            "ordem_direta_e_inversa",
+            "identificacao_do_sujeito"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:05": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "literatura",
+            "historia_da_literatura",
+            "modernismo",
+            "macunaima",
+            "contraste_entre_floresta_e_cidade"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:06": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "artes",
+            "artes_visuais",
+            "arte_abstrata",
+            "nao_figuracao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:07": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "gramatica",
+            "semantica",
+            "sinonimia",
+            "substituicao_lexical"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:08": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_portuguesa",
+            "leitura",
+            "interpretacao_de_texto",
+            "tese_e_argumentacao",
+            "posicionamento_do_autor"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:09": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_inglesa",
+            "leitura",
+            "interpretacao_de_texto",
+            "localizacao_de_informacao",
+            "compreensao_literal"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:10": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_inglesa",
+            "gramatica",
+            "pronomes",
+            "pronome_relativo",
+            "referente_pronominal"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:11": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_inglesa",
+            "gramatica",
+            "conectivos",
+            "exemplificacao",
+            "like"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:12": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "lingua_inglesa",
+            "gramatica",
+            "verbos_modais",
+            "possibilidade",
+            "may_e_can"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:13": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "historia_antiga",
+            "imperio_romano",
+            "culto_imperial",
+            "legitimacao_do_poder"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:14": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "idade_media",
+            "sociedade_feudal",
+            "estamentos_sociais",
+            "clero_nobreza_e_servos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:15": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "idade_moderna",
+            "expansao_maritima_europeia",
+            "grandes_navegacoes",
+            "fatores_da_expansao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:16": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "idade_moderna",
+            "sistema_colonial",
+            "plantation",
+            "monocultura_escravista_exportadora"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:17": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "filosofia",
+            "filosofia_moderna",
+            "iluminismo",
+            "montesquieu",
+            "separacao_dos_poderes"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:18": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "idade_moderna",
+            "revolucao_francesa",
+            "tomada_da_bastilha",
+            "participacao_popular"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:19": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "historia_contemporanea",
+            "independencias_da_america_latina",
+            "formacao_dos_estados_nacionais",
+            "construcao_de_herois_nacionais"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:20": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "brasil_imperio",
+            "abolicao_da_escravidao",
+            "lei_eusebio_de_queiros",
+            "fim_do_trafico_transatlantico"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:21": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "brasil_republica",
+            "primeira_republica",
+            "ciclo_da_borracha",
+            "belle_epoque_amazonense"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:22": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "historia",
+            "brasil_republica",
+            "era_vargas",
+            "estado_novo",
+            "segunda_guerra_mundial"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:23": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "sociologia",
+            "teoria_sociologica",
+            "pierre_bourdieu",
+            "habitus"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "sociologia",
+            "desigualdade_social",
+            "racismo",
+            "desigualdade_etnico_racial",
+            "sociedade_brasileira"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:24": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "filosofia",
+            "filosofia_moderna",
+            "kant",
+            "teoria_do_conhecimento",
+            "fenomeno_e_entendimento"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:25": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "espaco_geografico",
+            "categorias_da_geografia",
+            "territorio",
+            "poder_e_gestao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:26": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_fisica",
+            "climatologia",
+            "movimentos_da_terra",
+            "duracao_do_dia_e_da_noite"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:27": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_fisica",
+            "geologia",
+            "estrutura_geologica",
+            "escudos_cristalinos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:28": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_fisica",
+            "climatologia",
+            "fenomenos_climaticos",
+            "el_nino",
+            "seca_na_amazonia"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:29": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "meio_ambiente",
+            "acordos_ambientais",
+            "protocolo_de_cartagena",
+            "biosseguranca_de_organismos_modificados"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:30": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_urbana",
+            "mobilidade_urbana",
+            "transporte_coletivo",
+            "expansao_do_transporte_individual"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:31": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_da_populacao",
+            "migracoes_internas",
+            "ocupacao_da_amazonia",
+            "projetos_de_desenvolvimento"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:32": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geopolitica",
+            "territorio_maritimo",
+            "zona_economica_exclusiva",
+            "exploracao_de_petroleo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:33": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_da_populacao",
+            "migracoes_internacionais",
+            "refugio_humanitario",
+            "fluxos_para_o_brasil"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:34": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_urbana",
+            "urbanizacao",
+            "planejamento_estatal",
+            "china"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:35": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_economica",
+            "comercio_internacional",
+            "protecionismo",
+            "disputa_por_mercados"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:36": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geopolitica",
+            "conflitos_no_oriente_medio",
+            "libano",
+            "hezbollah"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:37": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "metodologia_cientifica",
+            "metodo_cientifico",
+            "observacao_e_experimentacao",
+            "geracao_espontanea"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:38": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "ecologia",
+            "cadeias_e_teias_alimentares",
+            "niveis_troficos",
+            "organismo_em_multiplos_niveis"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:39": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "imunologia",
+            "imunizacao_passiva",
+            "soro_antiveneno",
+            "anticorpos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:40": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "membrana_plasmatica",
+            "osmose",
+            "plasmolise"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:41": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "genetica",
+            "heranca_mendeliana",
+            "alelos_letais",
+            "proporcao_fenotipica_dois_para_um"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:42": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "citologia",
+            "divisao_celular",
+            "ciclo_celular",
+            "fase_g2_e_duplicacao_cromossomica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:43": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "evolucao",
+            "evidencias_da_evolucao",
+            "anatomia_comparada",
+            "evolucao_convergente"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:44": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "fisiologia_humana",
+            "sistema_urinario",
+            "nefron",
+            "filtracao_glomerular"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:45": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "biotecnologia",
+            "analise_de_dna",
+            "eletroforese",
+            "identificacao_genetica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:46": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "taxonomia",
+            "classificacao_dos_seres_vivos",
+            "tres_dominios",
+            "bacteria_archaea_e_eukarya"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:47": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "genetica",
+            "biologia_molecular",
+            "codigo_genetico",
+            "degeneracao_do_codigo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:48": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "bioquimica",
+            "enzimas",
+            "fatores_que_afetam_a_atividade",
+            "temperatura"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:49": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "grandezas_e_medidas",
+            "razao_e_proporcao",
+            "igualdade_de_razoes",
+            "determinacao_de_quantidades"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:50": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "algebra",
+            "sistemas_lineares",
+            "sistema_de_equacoes",
+            "precos_de_produtos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:51": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "analise_combinatoria",
+            "combinacao",
+            "escolha_sem_ordem",
+            "selecao_de_elementos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:52": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "matematica_financeira",
+            "porcentagem",
+            "juros_simples",
+            "taxa_de_juros"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:53": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "sequencias",
+            "progressao_aritmetica",
+            "soma_dos_termos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:54": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "algebra",
+            "inequacoes_do_primeiro_grau",
+            "aplicacao_em_funcao_afim"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:55": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "estatistica",
+            "representacao_de_dados",
+            "grafico_de_setores",
+            "porcentagem"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:56": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "geometria_espacial",
+            "prismas",
+            "volumes",
+            "prisma_de_base_quadrada"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:57": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "algebra",
+            "funcoes",
+            "funcao_quadratica",
+            "raizes_da_funcao",
+            "forma_fatorada"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "matematica",
+            "algebra",
+            "funcoes",
+            "funcao_quadratica",
+            "grafico",
+            "vertice_da_parabola"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:58": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "geometria_plana",
+            "area_de_poligonos",
+            "retangulo",
+            "composicao_de_areas"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:59": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "geometria_plana",
+            "teorema_de_pitagoras",
+            "retangulo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:60": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "matematica",
+            "estatistica",
+            "medidas_de_tendencia_central",
+            "media_aritmetica",
+            "valor_desconhecido"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:61": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "mecanica",
+            "cinematica",
+            "movimento_uniforme",
+            "velocidade_media"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:62": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "mecanica",
+            "energia",
+            "transformacoes_de_energia",
+            "usina_hidreletrica",
+            "energia_potencial_cinetica_e_eletrica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:63": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "mecanica",
+            "dinamica",
+            "segunda_lei_de_newton",
+            "forca_massa_e_aceleracao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:64": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "termologia",
+            "propagacao_de_calor",
+            "conducao_conveccao_e_irradiacao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:65": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "eletricidade",
+            "eletrodinamica",
+            "energia_eletrica",
+            "potencia_eletrica",
+            "consumo_de_energia"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:66": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "eletricidade",
+            "eletrodinamica",
+            "corrente_eletrica",
+            "carga_e_tempo"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:67": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "ondulatoria",
+            "ondas_eletromagneticas",
+            "radiacao_ionizante",
+            "raios_x_e_gama"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:68": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "eletricidade",
+            "eletromagnetismo",
+            "geracao_de_energia_eletrica",
+            "efeito_fotovoltaico"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:69": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "geografia",
+            "geografia_economica",
+            "fontes_de_energia",
+            "energia_renovavel",
+            "eolica_e_solar"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:70": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "ondulatoria",
+            "classificacao_das_ondas",
+            "onda_transversal_e_longitudinal",
+            "onda_mecanica"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:71": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "termologia",
+            "dilatacao_termica",
+            "dilatacao_linear",
+            "calculo_do_coeficiente"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:72": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "fisica",
+            "optica",
+            "optica_geometrica",
+            "refracao",
+            "deformacao_aparente"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:73": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "estados_fisicos_da_materia",
+            "mudancas_de_estado_fisico",
+            "ressublimacao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:74": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_nuclear",
+            "radioatividade",
+            "emissoes_e_decaimento",
+            "radiacao_gama"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:75": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "estrutura_atomica",
+            "isotopos",
+            "numero_de_neutrons"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:76": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "propriedades_dos_materiais",
+            "metais",
+            "valor_economico_e_reciclagem"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:77": {
+      "gabarito": "D",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "origem_da_vida",
+            "evolucao_quimica",
+            "hipotese_de_oparin_e_haldane",
+            "formacao_de_compostos_organicos"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:78": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_ambiental",
+            "combustiveis",
+            "biocombustiveis",
+            "origem_renovavel"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:79": {
+      "gabarito": "B",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "ecologia",
+            "ciclos_biogeoquimicos",
+            "ciclo_do_carbono",
+            "fixacao_de_carbono"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:80": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "cinetica_quimica",
+            "fatores_que_afetam_a_velocidade",
+            "temperatura_concentracao_e_superficie_de_contato"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:81": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_ambiental",
+            "tratamento_de_esgoto",
+            "desinfeccao",
+            "cloro"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:82": {
+      "gabarito": "C",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "fisico_quimica",
+            "solucoes",
+            "solubilidade",
+            "polaridade_molecular"
+          ],
+          "relevancia": "principal"
+        },
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "tabela_periodica",
+            "classificacao_dos_elementos",
+            "periodos_e_familias"
+          ],
+          "relevancia": "secundaria"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:83": {
+      "gabarito": "A",
+      "classificacoes": [
+        {
+          "caminho": [
+            "biologia",
+            "metodologia_cientifica",
+            "metodo_cientifico",
+            "etapas_do_metodo",
+            "experimentacao"
+          ],
+          "relevancia": "principal"
+        }
+      ]
+    },
+    "UEA-Macro-2026-Geral-Prova:84": {
+      "gabarito": "E",
+      "classificacoes": [
+        {
+          "caminho": [
+            "quimica",
+            "quimica_geral",
+            "seguranca_no_laboratorio",
+            "risco_de_inflamabilidade",
+            "extintor_de_incendio"
+          ],
+          "relevancia": "principal"
+        }
+      ]
     }
   },
   "conteudos": {
@@ -23895,6 +25762,11 @@
         }
       },
       "artes_visuais": {
+        "arte_abstrata": {
+          "nao_figuracao": [
+            "UEA-Macro-2026-Geral-Prova:06"
+          ]
+        },
         "leitura_de_imagem": {
           "escultura": {
             "integracao_entre_os_povos": [
@@ -23962,14 +25834,16 @@
         "carboidratos": {
           "polissacarideos": {
             "glicose": [
-              "UEA-Macro-2019-Geral-Prova:38"
+              "UEA-Macro-2019-Geral-Prova:38",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:18"
             ]
           }
         },
         "enzimas": {
           "fatores_que_afetam_a_atividade": {
             "temperatura": [
-              "UEA-Macro-2016-Específicas-Biológicas-Prova:02"
+              "UEA-Macro-2016-Específicas-Biológicas-Prova:02",
+              "UEA-Macro-2026-Geral-Prova:48"
             ]
           }
         },
@@ -24014,7 +25888,8 @@
         "analise_de_dna": {
           "eletroforese": {
             "identificacao_genetica": [
-              "UEA-Macro-2013-Específicas-Biológicas-Prova:12"
+              "UEA-Macro-2013-Específicas-Biológicas-Prova:12",
+              "UEA-Macro-2026-Geral-Prova:45"
             ]
           },
           "reacao_em_cadeia_da_polimerase": {
@@ -24029,6 +25904,9 @@
               "UEA-Macro-2013-Específicas-Biológicas-Prova:12"
             ]
           },
+          "terapia_genica": [
+            "UEA-Macro-2026-Específicas-Biológicas-Prova:08"
+          ],
           "transgenia": {
             "producao_de_insulina": [
               "UEA-Macro-2025-Geral-Prova:45"
@@ -24078,7 +25956,15 @@
           }
         },
         "divisao_celular": {
+          "ciclo_celular": {
+            "fase_g2_e_duplicacao_cromossomica": [
+              "UEA-Macro-2026-Geral-Prova:42"
+            ]
+          },
           "meiose": {
+            "nao_disjuncao_cromossomica": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:05"
+            ],
             "profase_i": {
               "crossing_over": [
                 "UEA-Macro-2021-Específicas-Biológicas-Prova:02"
@@ -24127,7 +26013,8 @@
               "UEA-Macro-2013-Geral-Prova:37"
             ],
             "plasmolise": [
-              "UEA-Macro-2017-Geral-Prova:38"
+              "UEA-Macro-2017-Geral-Prova:38",
+              "UEA-Macro-2026-Geral-Prova:40"
             ]
           },
           "transporte_ativo": {
@@ -24162,10 +26049,12 @@
           },
           "fermentacao": {
             "alcoolica_e_latica": [
-              "UEA-Macro-2016-Geral-Prova:39"
+              "UEA-Macro-2016-Geral-Prova:39",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:17"
             ],
             "metabolismo_heterotrofico": [
-              "UEA-Macro-2018-Específicas-Biológicas-Prova:07"
+              "UEA-Macro-2018-Específicas-Biológicas-Prova:07",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:09"
             ],
             "saldo_de_atp": [
               "UEA-Macro-2014-Geral-Prova:48"
@@ -24183,7 +26072,8 @@
               "UEA-Macro-2023-Específicas-Biológicas-Prova:03"
             ],
             "reagentes_e_produtos": [
-              "UEA-Macro-2025-Geral-Prova:41"
+              "UEA-Macro-2025-Geral-Prova:41",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:04"
             ]
           },
           "glicolise": {
@@ -24223,6 +26113,13 @@
           "pseudopodes": {
             "fagocitose": [
               "UEA-Macro-2022-Específicas-Biológicas-Prova:07"
+            ]
+          }
+        },
+        "nucleo_celular": {
+          "poros_nucleares": {
+            "transporte_de_rna_e_nucleotideos": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:06"
             ]
           }
         },
@@ -24279,7 +26176,8 @@
               "UEA-Macro-2021-Geral-Prova:47"
             ],
             "organismo_em_multiplos_niveis": [
-              "UEA-Macro-2024-Geral-Prova:40"
+              "UEA-Macro-2024-Geral-Prova:40",
+              "UEA-Macro-2026-Geral-Prova:38"
             ]
           },
           "piramide_ecologica": {
@@ -24301,7 +26199,8 @@
           },
           "ciclo_do_carbono": {
             "fixacao_de_carbono": [
-              "UEA-Macro-2025-Geral-Prova:75"
+              "UEA-Macro-2025-Geral-Prova:75",
+              "UEA-Macro-2026-Geral-Prova:79"
             ]
           },
           "ciclo_do_nitrogenio": {
@@ -24375,6 +26274,11 @@
             ]
           }
         },
+        "produtividade_primaria": {
+          "aumento_da_fixacao_de_carbono": [
+            "UEA-Macro-2026-Específicas-Biológicas-Prova:04"
+          ]
+        },
         "relacoes_ecologicas": {
           "classificacao": {
             "intraespecifica_e_interespecifica": [
@@ -24403,6 +26307,9 @@
             "identificacao_de_relacoes": [
               "UEA-Macro-2021-Específicas-Biológicas-Prova:12",
               "UEA-Macro-2023-Específicas-Biológicas-Prova:12"
+            ],
+            "parasitismo": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:03"
             ]
           }
         },
@@ -24479,6 +26386,9 @@
         },
         "evidencias_da_evolucao": {
           "anatomia_comparada": {
+            "evolucao_convergente": [
+              "UEA-Macro-2026-Geral-Prova:43"
+            ],
             "homologia": [
               "UEA-Macro-2017-Geral-Prova:47"
             ]
@@ -24523,7 +26433,8 @@
           },
           "selecao_natural": {
             "acao_do_ambiente": [
-              "UEA-Macro-2019-Geral-Prova:45"
+              "UEA-Macro-2019-Geral-Prova:45",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:12"
             ],
             "resistencia_bacteriana": {
               "uso_de_antibioticos": [
@@ -24634,7 +26545,8 @@
           },
           "pancreas": {
             "funcao_exocrina": [
-              "UEA-Macro-2025-Geral-Prova:38"
+              "UEA-Macro-2025-Geral-Prova:38",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:07"
             ]
           }
         },
@@ -24670,6 +26582,11 @@
             "acido_latico": [
               "UEA-Macro-2021-Geral-Prova:40"
             ]
+          },
+          "juncao_neuromuscular": {
+            "bloqueio_de_receptores_de_acetilcolina": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:11"
+            ]
           }
         },
         "sistema_nervoso": {
@@ -24685,7 +26602,8 @@
             "potencial_de_acao": [
               "UEA-Macro-2015-Específicas-Biológicas-Prova:10",
               "UEA-Macro-2020-Específicas-Biológicas-Prova:05",
-              "UEA-Macro-2024-Específicas-Biológicas-Prova:08"
+              "UEA-Macro-2024-Específicas-Biológicas-Prova:08",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:11"
             ]
           },
           "sinapse_quimica": {
@@ -24723,6 +26641,13 @@
               "UEA-Macro-2022-Geral-Prova:42"
             ]
           }
+        },
+        "sistema_urinario": {
+          "nefron": {
+            "filtracao_glomerular": [
+              "UEA-Macro-2026-Geral-Prova:44"
+            ]
+          }
         }
       },
       "genetica": {
@@ -24756,6 +26681,9 @@
                 "UEA-Macro-2018-Geral-Prova:38"
               ]
             },
+            "degeneracao_do_codigo": [
+              "UEA-Macro-2026-Geral-Prova:47"
+            ],
             "transcricao_e_traducao": [
               "UEA-Macro-2019-Específicas-Biológicas-Prova:02"
             ]
@@ -24840,6 +26768,11 @@
           }
         },
         "heranca_mendeliana": {
+          "alelos_letais": {
+            "proporcao_fenotipica_dois_para_um": [
+              "UEA-Macro-2026-Geral-Prova:41"
+            ]
+          },
           "alelos_multiplos": {
             "dominancia_em_serie": [
               "UEA-Macro-2013-Específicas-Biológicas-Prova:10"
@@ -24904,6 +26837,13 @@
             ],
             "segregacao_independente": [
               "UEA-Macro-2024-Específicas-Biológicas-Prova:12"
+            ]
+          }
+        },
+        "heranca_quantitativa": {
+          "genes_aditivos": {
+            "calculo_de_probabilidade": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:10"
             ]
           }
         },
@@ -25030,6 +26970,13 @@
         }
       },
       "imunologia": {
+        "imunizacao_passiva": {
+          "soro_antiveneno": {
+            "anticorpos": [
+              "UEA-Macro-2026-Geral-Prova:39"
+            ]
+          }
+        },
         "resposta_imune": {
           "imunizacao_e_rejeicao": {
             "mecanismos_imunologicos": [
@@ -25049,7 +26996,8 @@
           "etapas_do_metodo": {
             "experimentacao": [
               "UEA-Macro-2017-Geral-Prova:39",
-              "UEA-Macro-2024-Geral-Prova:43"
+              "UEA-Macro-2024-Geral-Prova:43",
+              "UEA-Macro-2026-Geral-Prova:83"
             ]
           },
           "hipoteses_e_experimentos": {
@@ -25060,7 +27008,8 @@
           },
           "observacao_e_experimentacao": {
             "geracao_espontanea": [
-              "UEA-Macro-2018-Geral-Prova:37"
+              "UEA-Macro-2018-Geral-Prova:37",
+              "UEA-Macro-2026-Geral-Prova:37"
             ]
           }
         }
@@ -25142,7 +27091,8 @@
           },
           "hipotese_de_oparin_e_haldane": {
             "formacao_de_compostos_organicos": [
-              "UEA-Macro-2025-Geral-Prova:39"
+              "UEA-Macro-2025-Geral-Prova:39",
+              "UEA-Macro-2026-Geral-Prova:77"
             ]
           }
         },
@@ -25274,6 +27224,13 @@
               "UEA-Macro-2013-Específicas-Biológicas-Prova:03"
             ]
           }
+        },
+        "prevencao_de_doencas": {
+          "cancer_do_colo_do_utero": {
+            "vacinacao_contra_hpv_e_exame_papanicolau": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:02"
+            ]
+          }
         }
       },
       "taxonomia": {
@@ -25298,6 +27255,11 @@
           "especie": {
             "variabilidade_fenotipica": [
               "UEA-Macro-2025-Geral-Prova:43"
+            ]
+          },
+          "tres_dominios": {
+            "bacteria_archaea_e_eukarya": [
+              "UEA-Macro-2026-Geral-Prova:46"
             ]
           }
         },
@@ -25548,6 +27510,13 @@
             ]
           }
         },
+        "iluminismo": {
+          "montesquieu": {
+            "separacao_dos_poderes": [
+              "UEA-Macro-2026-Geral-Prova:17"
+            ]
+          }
+        },
         "immanuel_kant": {
           "filosofia_politica": {
             "autonomia_e_liberdade": [
@@ -25558,7 +27527,8 @@
         "kant": {
           "teoria_do_conhecimento": {
             "fenomeno_e_entendimento": [
-              "UEA-Macro-2017-Geral-Prova:24"
+              "UEA-Macro-2017-Geral-Prova:24",
+              "UEA-Macro-2026-Geral-Prova:24"
             ]
           }
         }
@@ -25604,7 +27574,8 @@
           },
           "corrente_eletrica": {
             "carga_e_tempo": [
-              "UEA-Macro-2024-Geral-Prova:71"
+              "UEA-Macro-2024-Geral-Prova:71",
+              "UEA-Macro-2026-Geral-Prova:66"
             ],
             "quantidade_de_eletrons": [
               "UEA-Macro-2019-Geral-Prova:71"
@@ -25621,7 +27592,8 @@
             },
             "potencia_eletrica": {
               "consumo_de_energia": [
-                "UEA-Macro-2017-Geral-Prova:72"
+                "UEA-Macro-2017-Geral-Prova:72",
+                "UEA-Macro-2026-Geral-Prova:65"
               ],
               "consumo_em_quilowatt_hora": [
                 "UEA-Macro-2022-Geral-Prova:71"
@@ -25656,6 +27628,11 @@
                 "UEA-Macro-2014-Geral-Prova:72"
               ]
             }
+          },
+          "geracao_de_energia_eletrica": {
+            "efeito_fotovoltaico": [
+              "UEA-Macro-2026-Geral-Prova:68"
+            ]
           },
           "magnetismo": {
             "imas": {
@@ -25827,7 +27804,8 @@
             "velocidade_media": [
               "UEA-Macro-2013-Geral-Prova:62",
               "UEA-Macro-2023-Geral-Prova:61",
-              "UEA-Macro-2025-Geral-Prova:61"
+              "UEA-Macro-2025-Geral-Prova:61",
+              "UEA-Macro-2026-Geral-Prova:61"
             ]
           },
           "movimento_uniformemente_variado": {
@@ -25898,7 +27876,8 @@
             ],
             "forca_massa_e_aceleracao": [
               "UEA-Macro-2017-Geral-Prova:65",
-              "UEA-Macro-2025-Geral-Prova:63"
+              "UEA-Macro-2025-Geral-Prova:63",
+              "UEA-Macro-2026-Geral-Prova:63"
             ],
             "forca_resultante": [
               "UEA-Macro-2016-Geral-Prova:62"
@@ -25954,7 +27933,8 @@
             },
             "usina_hidreletrica": {
               "energia_potencial_cinetica_e_eletrica": [
-                "UEA-Macro-2022-Geral-Prova:66"
+                "UEA-Macro-2022-Geral-Prova:66",
+                "UEA-Macro-2026-Geral-Prova:62"
               ]
             }
           }
@@ -26047,7 +28027,8 @@
         "classificacao_das_ondas": {
           "onda_transversal_e_longitudinal": {
             "onda_mecanica": [
-              "UEA-Macro-2015-Geral-Prova:68"
+              "UEA-Macro-2015-Geral-Prova:68",
+              "UEA-Macro-2026-Geral-Prova:70"
             ]
           }
         },
@@ -26091,6 +28072,11 @@
           }
         },
         "ondas_eletromagneticas": {
+          "radiacao_ionizante": {
+            "raios_x_e_gama": [
+              "UEA-Macro-2026-Geral-Prova:67"
+            ]
+          },
           "refracao": {
             "frequencia": [
               "UEA-Macro-2021-Geral-Prova:69"
@@ -26186,7 +28172,8 @@
           },
           "refracao": {
             "deformacao_aparente": [
-              "UEA-Macro-2014-Geral-Prova:68"
+              "UEA-Macro-2014-Geral-Prova:68",
+              "UEA-Macro-2026-Geral-Prova:72"
             ],
             "indice_de_refracao": {
               "_questoes_diretas": [
@@ -26233,6 +28220,9 @@
             ]
           },
           "dilatacao_linear": {
+            "calculo_do_coeficiente": [
+              "UEA-Macro-2026-Geral-Prova:71"
+            ],
             "comparacao_de_coeficientes": [
               "UEA-Macro-2022-Geral-Prova:67"
             ]
@@ -26261,6 +28251,9 @@
           }
         },
         "propagacao_de_calor": {
+          "conducao_conveccao_e_irradiacao": [
+            "UEA-Macro-2026-Geral-Prova:64"
+          ],
           "conducao_e_conveccao": {
             "cozimento_a_vapor": [
               "UEA-Macro-2023-Geral-Prova:65"
@@ -26396,7 +28389,8 @@
         "categorias_da_geografia": {
           "territorio": {
             "poder_e_gestao": [
-              "UEA-Macro-2013-Geral-Prova:26"
+              "UEA-Macro-2013-Geral-Prova:26",
+              "UEA-Macro-2026-Geral-Prova:25"
             ]
           }
         }
@@ -26577,6 +28571,11 @@
             "distribuicao_por_genero_e_origem": [
               "UEA-Macro-2022-Geral-Prova:28"
             ]
+          },
+          "refugio_humanitario": {
+            "fluxos_para_o_brasil": [
+              "UEA-Macro-2026-Geral-Prova:33"
+            ]
           }
         },
         "migracoes_internas": {
@@ -26592,7 +28591,8 @@
           },
           "ocupacao_da_amazonia": {
             "projetos_de_desenvolvimento": [
-              "UEA-Macro-2015-Geral-Prova:30"
+              "UEA-Macro-2015-Geral-Prova:30",
+              "UEA-Macro-2026-Geral-Prova:31"
             ]
           }
         },
@@ -26697,6 +28697,11 @@
           }
         },
         "comercio_internacional": {
+          "protecionismo": {
+            "disputa_por_mercados": [
+              "UEA-Macro-2026-Geral-Prova:35"
+            ]
+          },
           "relacao_brasil_china": {
             "commodities_e_protecionismo": [
               "UEA-Macro-2013-Geral-Prova:28"
@@ -26785,6 +28790,11 @@
           "energia_nuclear": {
             "residuo_radioativo": [
               "UEA-Macro-2013-Geral-Prova:32"
+            ]
+          },
+          "energia_renovavel": {
+            "eolica_e_solar": [
+              "UEA-Macro-2026-Geral-Prova:69"
             ]
           }
         },
@@ -26930,7 +28940,17 @@
               ]
             }
           },
+          "fenomenos_climaticos": {
+            "el_nino": {
+              "seca_na_amazonia": [
+                "UEA-Macro-2026-Geral-Prova:28"
+              ]
+            }
+          },
           "movimentos_da_terra": {
+            "duracao_do_dia_e_da_noite": [
+              "UEA-Macro-2026-Geral-Prova:26"
+            ],
             "translacao_e_inclinacao_do_eixo": {
               "estacoes_do_ano": [
                 "UEA-Macro-2016-Geral-Prova:25"
@@ -26952,6 +28972,13 @@
                 "UEA-Macro-2015-Geral-Prova:27"
               ]
             }
+          }
+        },
+        "geologia": {
+          "estrutura_geologica": {
+            "escudos_cristalinos": [
+              "UEA-Macro-2026-Geral-Prova:27"
+            ]
           }
         },
         "hidrografia": {
@@ -27076,6 +29103,11 @@
             "periferizacao": [
               "UEA-Macro-2020-Geral-Prova:32"
             ]
+          },
+          "transporte_coletivo": {
+            "expansao_do_transporte_individual": [
+              "UEA-Macro-2026-Geral-Prova:30"
+            ]
           }
         },
         "problemas_urbanos": {
@@ -27104,6 +29136,11 @@
           "expansao_urbana": {
             "ocupacao_de_varzeas": [
               "UEA-Macro-2021-Geral-Prova:34"
+            ]
+          },
+          "planejamento_estatal": {
+            "china": [
+              "UEA-Macro-2026-Geral-Prova:34"
             ]
           },
           "verticalizacao": {
@@ -27141,6 +29178,11 @@
           }
         },
         "conflitos_no_oriente_medio": {
+          "libano": {
+            "hezbollah": [
+              "UEA-Macro-2026-Geral-Prova:36"
+            ]
+          },
           "questao_palestina": {
             "criacao_do_estado_de_israel": [
               "UEA-Macro-2014-Geral-Prova:36"
@@ -27203,6 +29245,13 @@
             ]
           }
         },
+        "territorio_maritimo": {
+          "zona_economica_exclusiva": {
+            "exploracao_de_petroleo": [
+              "UEA-Macro-2026-Geral-Prova:32"
+            ]
+          }
+        },
         "trafico_internacional_de_pessoas": {
           "fluxos_e_destinos": {
             "exploracao_sexual": [
@@ -27227,6 +29276,11 @@
       },
       "meio_ambiente": {
         "acordos_ambientais": {
+          "protocolo_de_cartagena": {
+            "biosseguranca_de_organismos_modificados": [
+              "UEA-Macro-2026-Geral-Prova:29"
+            ]
+          },
           "protocolo_de_montreal": {
             "camada_de_ozonio": [
               "UEA-Macro-2021-Geral-Prova:35",
@@ -27251,7 +29305,8 @@
             ],
             "fluxo_genico": [
               "UEA-Macro-2019-Geral-Prova:28",
-              "UEA-Macro-2024-Geral-Prova:42"
+              "UEA-Macro-2024-Geral-Prova:42",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:01"
             ]
           }
         },
@@ -27425,7 +29480,8 @@
         "abolicao_da_escravidao": {
           "lei_eusebio_de_queiros": {
             "fim_do_trafico_transatlantico": [
-              "UEA-Macro-2022-Geral-Prova:18"
+              "UEA-Macro-2022-Geral-Prova:18",
+              "UEA-Macro-2026-Geral-Prova:20"
             ]
           }
         },
@@ -27535,7 +29591,8 @@
           },
           "estado_novo": {
             "segunda_guerra_mundial": [
-              "UEA-Macro-2018-Geral-Prova:21"
+              "UEA-Macro-2018-Geral-Prova:21",
+              "UEA-Macro-2026-Geral-Prova:22"
             ]
           },
           "identidade_nacional": {
@@ -27593,7 +29650,8 @@
               "UEA-Macro-2024-Geral-Prova:22"
             ],
             "belle_epoque_amazonense": [
-              "UEA-Macro-2022-Geral-Prova:19"
+              "UEA-Macro-2022-Geral-Prova:19",
+              "UEA-Macro-2026-Geral-Prova:21"
             ]
           },
           "constituicao_de_1891": {
@@ -27701,6 +29759,11 @@
             "sincretismo_religioso": [
               "UEA-Macro-2021-Geral-Prova:14"
             ]
+          },
+          "culto_imperial": {
+            "legitimacao_do_poder": [
+              "UEA-Macro-2026-Geral-Prova:13"
+            ]
           }
         },
         "roma_antiga": {
@@ -27773,6 +29836,11 @@
           }
         },
         "independencias_da_america_latina": {
+          "formacao_dos_estados_nacionais": {
+            "construcao_de_herois_nacionais": [
+              "UEA-Macro-2026-Geral-Prova:19"
+            ]
+          },
           "processo_de_independencia": {
             "manutencao_da_ordem_social": [
               "UEA-Macro-2020-Geral-Prova:15"
@@ -27960,7 +30028,8 @@
         "sociedade_feudal": {
           "estamentos_sociais": {
             "clero_nobreza_e_servos": [
-              "UEA-Macro-2013-Geral-Prova:16"
+              "UEA-Macro-2013-Geral-Prova:16",
+              "UEA-Macro-2026-Geral-Prova:14"
             ]
           }
         }
@@ -28005,7 +30074,8 @@
         "expansao_maritima_europeia": {
           "grandes_navegacoes": {
             "fatores_da_expansao": [
-              "UEA-Macro-2021-Geral-Prova:15"
+              "UEA-Macro-2021-Geral-Prova:15",
+              "UEA-Macro-2026-Geral-Prova:15"
             ]
           },
           "navegacoes_portuguesas": {
@@ -28060,9 +30130,19 @@
             "jacobinos_e_girondinos": [
               "UEA-Macro-2022-Geral-Prova:16"
             ]
+          },
+          "tomada_da_bastilha": {
+            "participacao_popular": [
+              "UEA-Macro-2026-Geral-Prova:18"
+            ]
           }
         },
         "sistema_colonial": {
+          "plantation": {
+            "monocultura_escravista_exportadora": [
+              "UEA-Macro-2026-Geral-Prova:16"
+            ]
+          },
           "trafico_atlantico_de_escravizados": {
             "comercio_triangular": [
               "UEA-Macro-2015-Geral-Prova:16"
@@ -28149,6 +30229,11 @@
             "as_well_as": [
               "UEA-Macro-2021-Geral-Prova:11"
             ]
+          },
+          "exemplificacao": {
+            "like": [
+              "UEA-Macro-2026-Geral-Prova:11"
+            ]
           }
         },
         "conjuncoes": {
@@ -28193,7 +30278,8 @@
           "pronome_relativo": {
             "referente_pronominal": [
               "UEA-Macro-2015-Geral-Prova:12",
-              "UEA-Macro-2023-Geral-Prova:12"
+              "UEA-Macro-2023-Geral-Prova:12",
+              "UEA-Macro-2026-Geral-Prova:10"
             ]
           }
         },
@@ -28220,7 +30306,8 @@
           },
           "possibilidade": {
             "may_e_can": [
-              "UEA-Macro-2018-Geral-Prova:12"
+              "UEA-Macro-2018-Geral-Prova:12",
+              "UEA-Macro-2026-Geral-Prova:12"
             ]
           },
           "should": {
@@ -28286,7 +30373,8 @@
               "UEA-Macro-2021-Geral-Prova:09",
               "UEA-Macro-2021-Geral-Prova:10",
               "UEA-Macro-2025-Geral-Prova:09",
-              "UEA-Macro-2025-Geral-Prova:10"
+              "UEA-Macro-2025-Geral-Prova:10",
+              "UEA-Macro-2026-Geral-Prova:09"
             ],
             "demarcacao_de_terras_indigenas": [
               "UEA-Macro-2017-Geral-Prova:11"
@@ -28364,7 +30452,8 @@
         "coesao_referencial": {
           "pronomes": {
             "referente_pronominal": [
-              "UEA-Macro-2023-Geral-Prova:04"
+              "UEA-Macro-2023-Geral-Prova:04",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:32"
             ]
           }
         },
@@ -28479,7 +30568,8 @@
           },
           "denotacao_e_conotacao": {
             "sentido_figurado": [
-              "UEA-Macro-2023-Geral-Prova:08"
+              "UEA-Macro-2023-Geral-Prova:08",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:29"
             ]
           },
           "efeito_de_sentido": {
@@ -28507,7 +30597,8 @@
           "figuras_de_linguagem": {
             "metafora": [
               "UEA-Macro-2013-Geral-Prova:03",
-              "UEA-Macro-2022-Geral-Prova:05"
+              "UEA-Macro-2022-Geral-Prova:05",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:25"
             ],
             "paradoxo": [
               "UEA-Macro-2025-Geral-Prova:01"
@@ -28567,7 +30658,9 @@
           "sinonimia": {
             "substituicao_lexical": [
               "UEA-Macro-2013-Específicas-Biológicas-Prova:35",
-              "UEA-Macro-2022-Geral-Prova:07"
+              "UEA-Macro-2022-Geral-Prova:07",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:34",
+              "UEA-Macro-2026-Geral-Prova:07"
             ]
           },
           "valor_semantico": {
@@ -28594,24 +30687,28 @@
           },
           "discurso_direto_e_indireto": {
             "transposicao": [
-              "UEA-Macro-2024-Específicas-Biológicas-Prova:29"
+              "UEA-Macro-2024-Específicas-Biológicas-Prova:29",
+              "UEA-Macro-2026-Geral-Prova:03"
             ]
           },
           "oracao_subordinada_adjetiva": {
             "pronome_relativo": [
               "UEA-Macro-2013-Geral-Prova:06",
-              "UEA-Macro-2023-Específicas-Biológicas-Prova:28"
+              "UEA-Macro-2023-Específicas-Biológicas-Prova:28",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:27"
             ]
           },
           "oracao_subordinada_adverbial": {
             "concessao": [
-              "UEA-Macro-2023-Específicas-Biológicas-Prova:27"
+              "UEA-Macro-2023-Específicas-Biológicas-Prova:27",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:30"
             ],
             "finalidade": [
               "UEA-Macro-2019-Específicas-Biológicas-Prova:31"
             ],
             "tempo": [
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:29"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:29",
+              "UEA-Macro-2026-Geral-Prova:01"
             ]
           },
           "oracao_subordinada_substantiva": {
@@ -28627,7 +30724,8 @@
           },
           "ordem_direta_e_inversa": {
             "identificacao_do_sujeito": [
-              "UEA-Macro-2018-Geral-Prova:05"
+              "UEA-Macro-2018-Geral-Prova:05",
+              "UEA-Macro-2026-Geral-Prova:04"
             ]
           },
           "pontuacao": {
@@ -28693,7 +30791,8 @@
               "UEA-Macro-2025-Específicas-Biológicas-Prova:35"
             ],
             "voz_passiva_analitica": [
-              "UEA-Macro-2024-Geral-Prova:05"
+              "UEA-Macro-2024-Geral-Prova:05",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:31"
             ]
           }
         }
@@ -28775,7 +30874,8 @@
               "UEA-Macro-2022-Geral-Prova:02"
             ],
             "tese_do_autor": [
-              "UEA-Macro-2014-Específicas-Biológicas-Prova:25"
+              "UEA-Macro-2014-Específicas-Biológicas-Prova:25",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:33"
             ],
             "valorizacao_do_proprio_trabalho": [
               "UEA-Macro-2020-Geral-Prova:08"
@@ -28830,7 +30930,8 @@
           },
           "tese_e_argumentacao": {
             "posicionamento_do_autor": [
-              "UEA-Macro-2016-Geral-Prova:01"
+              "UEA-Macro-2016-Geral-Prova:01",
+              "UEA-Macro-2026-Geral-Prova:08"
             ]
           }
         },
@@ -28838,7 +30939,8 @@
           "funcoes_da_linguagem": {
             "metalinguagem": [
               "UEA-Macro-2023-Específicas-Biológicas-Prova:34",
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:26"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:26",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:26"
             ]
           }
         },
@@ -28921,6 +31023,11 @@
           "impessoalizacao": {
             "indice_de_indeterminacao_do_sujeito": [
               "UEA-Macro-2013-Específicas-Biológicas-Prova:34"
+            ]
+          },
+          "interlocucao": {
+            "direcionamento_ao_leitor": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:35"
             ]
           }
         },
@@ -29094,7 +31201,11 @@
           },
           "macunaima": {
             "caracterizacao_de_personagem": [
-              "UEA-Macro-2025-Geral-Prova:07"
+              "UEA-Macro-2025-Geral-Prova:07",
+              "UEA-Macro-2026-Geral-Prova:02"
+            ],
+            "contraste_entre_floresta_e_cidade": [
+              "UEA-Macro-2026-Geral-Prova:05"
             ]
           },
           "primeira_fase": {
@@ -29129,7 +31240,8 @@
               "UEA-Macro-2018-Geral-Prova:06"
             ],
             "perfeicao_formal": [
-              "UEA-Macro-2013-Específicas-Biológicas-Prova:30"
+              "UEA-Macro-2013-Específicas-Biológicas-Prova:30",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:36"
             ]
           },
           "classicismo": {
@@ -29331,7 +31443,8 @@
           },
           "policarpo_quaresma": {
             "patriotismo": [
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:27"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:27",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:28"
             ]
           },
           "relacoes_entre_personagens": {
@@ -29511,7 +31624,8 @@
               "vertice_da_parabola": [
                 "UEA-Macro-2020-Geral-Prova:55",
                 "UEA-Macro-2023-Geral-Prova:53",
-                "UEA-Macro-2025-Geral-Prova:53"
+                "UEA-Macro-2025-Geral-Prova:53",
+                "UEA-Macro-2026-Geral-Prova:57"
               ]
             },
             "grafico_da_parabola": {
@@ -29531,7 +31645,8 @@
             },
             "raizes_da_funcao": {
               "forma_fatorada": [
-                "UEA-Macro-2022-Geral-Prova:52"
+                "UEA-Macro-2022-Geral-Prova:52",
+                "UEA-Macro-2026-Geral-Prova:57"
               ]
             }
           },
@@ -29542,6 +31657,11 @@
               ]
             }
           }
+        },
+        "inequacoes_do_primeiro_grau": {
+          "aplicacao_em_funcao_afim": [
+            "UEA-Macro-2026-Geral-Prova:54"
+          ]
         },
         "matrizes": {
           "determinante": {
@@ -29602,7 +31722,8 @@
           },
           "sistema_de_equacoes": {
             "precos_de_produtos": [
-              "UEA-Macro-2024-Geral-Prova:55"
+              "UEA-Macro-2024-Geral-Prova:55",
+              "UEA-Macro-2026-Geral-Prova:50"
             ],
             "problema_com_precos": [
               "UEA-Macro-2015-Geral-Prova:49",
@@ -29625,6 +31746,9 @@
           "escolha_sem_ordem": {
             "distribuicao_em_grupos": [
               "UEA-Macro-2013-Geral-Prova:52"
+            ],
+            "selecao_de_elementos": [
+              "UEA-Macro-2026-Geral-Prova:51"
             ],
             "selecao_de_filmes": [
               "UEA-Macro-2023-Geral-Prova:52"
@@ -29693,7 +31817,8 @@
             ],
             "valor_desconhecido": [
               "UEA-Macro-2014-Geral-Prova:54",
-              "UEA-Macro-2023-Geral-Prova:58"
+              "UEA-Macro-2023-Geral-Prova:58",
+              "UEA-Macro-2026-Geral-Prova:60"
             ]
           },
           "media_aritmetica_ponderada": {
@@ -29734,7 +31859,8 @@
               "UEA-Macro-2013-Específicas-Biológicas-Prova:08"
             ],
             "porcentagem": [
-              "UEA-Macro-2016-Geral-Prova:50"
+              "UEA-Macro-2016-Geral-Prova:50",
+              "UEA-Macro-2026-Geral-Prova:55"
             ]
           }
         }
@@ -29843,7 +31969,8 @@
               "UEA-Macro-2023-Geral-Prova:56"
             ],
             "prisma_de_base_quadrada": [
-              "UEA-Macro-2024-Geral-Prova:59"
+              "UEA-Macro-2024-Geral-Prova:59",
+              "UEA-Macro-2026-Geral-Prova:56"
             ]
           }
         },
@@ -29906,7 +32033,12 @@
         "area_de_poligonos": {
           "hexagono_regular": [
             "UEA-Macro-2013-Geral-Prova:57"
-          ]
+          ],
+          "retangulo": {
+            "composicao_de_areas": [
+              "UEA-Macro-2026-Geral-Prova:58"
+            ]
+          }
         },
         "circulo": {
           "area": {
@@ -29995,7 +32127,8 @@
             "UEA-Macro-2024-Geral-Prova:58"
           ],
           "retangulo": [
-            "UEA-Macro-2025-Geral-Prova:56"
+            "UEA-Macro-2025-Geral-Prova:56",
+            "UEA-Macro-2026-Geral-Prova:59"
           ]
         },
         "triangulo_retangulo": {
@@ -30044,7 +32177,8 @@
           },
           "igualdade_de_razoes": {
             "determinacao_de_quantidades": [
-              "UEA-Macro-2025-Geral-Prova:60"
+              "UEA-Macro-2025-Geral-Prova:60",
+              "UEA-Macro-2026-Geral-Prova:49"
             ],
             "matriculados_e_aprovados": [
               "UEA-Macro-2023-Geral-Prova:55"
@@ -30101,7 +32235,8 @@
               "UEA-Macro-2017-Geral-Prova:52"
             ],
             "taxa_de_juros": [
-              "UEA-Macro-2023-Geral-Prova:60"
+              "UEA-Macro-2023-Geral-Prova:60",
+              "UEA-Macro-2026-Geral-Prova:52"
             ]
           },
           "porcentagem_de_porcentagem": {
@@ -30174,6 +32309,9 @@
       "sequencias": {
         "progressao_aritmetica": {
           "soma_dos_termos": {
+            "_questoes_diretas": [
+              "UEA-Macro-2026-Geral-Prova:53"
+            ],
             "alturas_de_livros": [
               "UEA-Macro-2021-Geral-Prova:49"
             ],
@@ -30383,7 +32521,8 @@
               "UEA-Macro-2025-Específicas-Biológicas-Prova:20",
               "UEA-Macro-2025-Específicas-Biológicas-Prova:21",
               "UEA-Macro-2025-Específicas-Biológicas-Prova:23",
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:24"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:24",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:20"
             ]
           },
           "reagente_limitante": {
@@ -30430,7 +32569,8 @@
               "UEA-Macro-2020-Geral-Prova:78"
             ],
             "temperatura_concentracao_e_superficie_de_contato": [
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:19"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:19",
+              "UEA-Macro-2026-Geral-Prova:80"
             ],
             "velocidade_de_reacao": [
               "UEA-Macro-2020-Específicas-Biológicas-Prova:19",
@@ -30486,14 +32626,16 @@
             "anodo_e_catodo": [
               "UEA-Macro-2013-Específicas-Biológicas-Prova:21",
               "UEA-Macro-2021-Geral-Prova:80",
-              "UEA-Macro-2023-Geral-Prova:80"
+              "UEA-Macro-2023-Geral-Prova:80",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:22"
             ],
             "potencial_da_bateria": [
               "UEA-Macro-2020-Geral-Prova:83"
             ],
             "potencial_da_pilha": [
               "UEA-Macro-2014-Específicas-Biológicas-Prova:20",
-              "UEA-Macro-2025-Geral-Prova:76"
+              "UEA-Macro-2025-Geral-Prova:76",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:22"
             ]
           },
           "pilhas_e_eletrolise": {
@@ -30530,7 +32672,8 @@
                 "UEA-Macro-2021-Específicas-Biológicas-Prova:21",
                 "UEA-Macro-2022-Específicas-Biológicas-Prova:15",
                 "UEA-Macro-2023-Específicas-Biológicas-Prova:24",
-                "UEA-Macro-2024-Específicas-Biológicas-Prova:22"
+                "UEA-Macro-2024-Específicas-Biológicas-Prova:22",
+                "UEA-Macro-2026-Específicas-Biológicas-Prova:23"
               ],
               "calculo_de_ph": [
                 "UEA-Macro-2020-Geral-Prova:82"
@@ -30595,7 +32738,8 @@
           },
           "transformacao_geral_dos_gases": {
             "pressao_e_volume": [
-              "UEA-Macro-2017-Geral-Prova:81"
+              "UEA-Macro-2017-Geral-Prova:81",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:14"
             ]
           },
           "transformacoes_gasosas": {
@@ -30675,7 +32819,10 @@
               "corpo_de_fundo": [
                 "UEA-Macro-2022-Geral-Prova:76"
               ]
-            }
+            },
+            "polaridade_molecular": [
+              "UEA-Macro-2026-Geral-Prova:82"
+            ]
           },
           "solubilidade_de_gases": {
             "efeito_da_temperatura": [
@@ -30724,7 +32871,8 @@
           },
           "lei_de_hess": {
             "entalpia_de_reacao": [
-              "UEA-Macro-2016-Geral-Prova:79"
+              "UEA-Macro-2016-Geral-Prova:79",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:21"
             ]
           },
           "poder_calorifico": {
@@ -30743,11 +32891,17 @@
         "combustiveis": {
           "biocombustiveis": {
             "origem_renovavel": [
-              "UEA-Macro-2023-Geral-Prova:82"
+              "UEA-Macro-2023-Geral-Prova:82",
+              "UEA-Macro-2026-Geral-Prova:78"
             ]
           }
         },
         "poluicao_atmosferica": {
+          "chuva_acida": {
+            "oxidos_de_enxofre": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:15"
+            ]
+          },
           "efeito_estufa": {
             "dioxido_de_carbono": [
               "UEA-Macro-2025-Geral-Prova:77"
@@ -30763,6 +32917,13 @@
           "oxigenio_dissolvido": {
             "indicador_de_qualidade": [
               "UEA-Macro-2024-Geral-Prova:77"
+            ]
+          }
+        },
+        "tratamento_de_esgoto": {
+          "desinfeccao": {
+            "cloro": [
+              "UEA-Macro-2026-Geral-Prova:81"
             ]
           }
         }
@@ -30793,12 +32954,16 @@
             ],
             "fusao_sublimacao_e_liquefacao": [
               "UEA-Macro-2014-Específicas-Biológicas-Prova:13"
+            ],
+            "ressublimacao": [
+              "UEA-Macro-2026-Geral-Prova:73"
             ]
           },
           "temperaturas_de_mudanca_de_estado": {
             "estado_fisico": [
               "UEA-Macro-2023-Geral-Prova:73",
-              "UEA-Macro-2024-Geral-Prova:73"
+              "UEA-Macro-2024-Geral-Prova:73",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:13"
             ]
           }
         },
@@ -30837,7 +33002,8 @@
             ],
             "numero_de_neutrons": [
               "UEA-Macro-2013-Geral-Prova:74",
-              "UEA-Macro-2023-Geral-Prova:76"
+              "UEA-Macro-2023-Geral-Prova:76",
+              "UEA-Macro-2026-Geral-Prova:75"
             ]
           },
           "modelos_atomicos": {
@@ -30934,6 +33100,11 @@
             "sais_ionicos": [
               "UEA-Macro-2013-Específicas-Biológicas-Prova:19"
             ]
+          },
+          "metais": {
+            "valor_economico_e_reciclagem": [
+              "UEA-Macro-2026-Geral-Prova:76"
+            ]
           }
         },
         "propriedades_periodicas": {
@@ -31008,6 +33179,13 @@
             ]
           }
         },
+        "seguranca_no_laboratorio": {
+          "risco_de_inflamabilidade": {
+            "extintor_de_incendio": [
+              "UEA-Macro-2026-Geral-Prova:84"
+            ]
+          }
+        },
         "separacao_de_misturas": {
           "decantacao": {
             "funil_de_separacao": [
@@ -31019,7 +33197,8 @@
           },
           "destilacao_fracionada": {
             "mistura_homogenea_liquido_liquido": [
-              "UEA-Macro-2025-Geral-Prova:73"
+              "UEA-Macro-2025-Geral-Prova:73",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:16"
             ]
           },
           "destilacao_simples": {
@@ -31103,7 +33282,8 @@
               "UEA-Macro-2016-Específicas-Biológicas-Prova:17",
               "UEA-Macro-2016-Específicas-Biológicas-Prova:18",
               "UEA-Macro-2024-Específicas-Biológicas-Prova:14",
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:17"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:17",
+              "UEA-Macro-2026-Geral-Prova:82"
             ]
           },
           "elementos_quimicos": {
@@ -31182,6 +33362,11 @@
               "UEA-Macro-2017-Geral-Prova:80"
             ]
           },
+          "oxidos_basicos": {
+            "neutralizacao_da_acidez": [
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:19"
+            ]
+          },
           "reacao_com_agua": {
             "acido_carbonico": [
               "UEA-Macro-2018-Geral-Prova:79"
@@ -31243,6 +33428,9 @@
               "UEA-Macro-2024-Específicas-Biológicas-Prova:20",
               "UEA-Macro-2024-Específicas-Biológicas-Prova:24",
               "UEA-Macro-2025-Específicas-Biológicas-Prova:13"
+            ],
+            "radiacao_gama": [
+              "UEA-Macro-2026-Geral-Prova:74"
             ]
           },
           "emissoes_radioativas": {
@@ -31369,7 +33557,8 @@
               "UEA-Macro-2023-Específicas-Biológicas-Prova:21",
               "UEA-Macro-2023-Específicas-Biológicas-Prova:23",
               "UEA-Macro-2024-Específicas-Biológicas-Prova:16",
-              "UEA-Macro-2025-Específicas-Biológicas-Prova:15"
+              "UEA-Macro-2025-Específicas-Biológicas-Prova:15",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:24"
             ]
           }
         },
@@ -31422,7 +33611,8 @@
               "UEA-Macro-2023-Geral-Prova:83"
             ],
             "monomeros_e_polimeros": [
-              "UEA-Macro-2017-Específicas-Biológicas-Prova:20"
+              "UEA-Macro-2017-Específicas-Biológicas-Prova:20",
+              "UEA-Macro-2026-Específicas-Biológicas-Prova:16"
             ]
           },
           "polimeros_naturais": {
@@ -31491,7 +33681,8 @@
           },
           "desigualdade_etnico_racial": {
             "sociedade_brasileira": [
-              "UEA-Macro-2023-Geral-Prova:21"
+              "UEA-Macro-2023-Geral-Prova:21",
+              "UEA-Macro-2026-Geral-Prova:23"
             ]
           }
         }
@@ -31569,6 +33760,13 @@
               "UEA-Macro-2023-Geral-Prova:17"
             ]
           }
+        }
+      },
+      "teoria_sociologica": {
+        "pierre_bourdieu": {
+          "habitus": [
+            "UEA-Macro-2026-Geral-Prova:23"
+          ]
         }
       }
     }
