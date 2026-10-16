@@ -148,7 +148,11 @@
           <span>
             <span class="block text-lg font-bold">Filtros e resultado</span>
             <span class="block text-sm text-gray-600">
-              {{ selectedFileCount }} arquivo(s) · {{ filteredQuestionIds.length }} questão(ões)
+              {{
+              selectedFileCount
+              ? `${selectedFileCount} arquivo(s) · ${filteredQuestionIds.length} questão(ões)`
+              : 'Nenhuma prova selecionada. Clique aqui e selecione uma ou mais provas em "Séries de provas" para começar.'
+              }}
             </span>
           </span>
           <span class="text-xl text-gray-500">
@@ -1700,9 +1704,7 @@
             selectedExamPatterns.value = [...patternMap.keys()].sort(
               (a, b) => a.localeCompare(b, "pt-BR"),
             );
-            selectedExamFiles.value = [...fileMap.keys()].sort((a, b) =>
-              a.localeCompare(b, "pt-BR"),
-            );
+            selectedExamFiles.value = [];
             expandedExamPatterns.value = [];
             expandedExamFolders.value = [];
             statisticsFiltersCollapsed.value = true;
