@@ -44,6 +44,9 @@ Siga as especificações contidas no arquivo `prompt.json`.
 > [!IMPORTANT]
 > Caso o LLM se recuse a gerar a resposta após a `validacaoPrevia`, vide [tratamento_de_recusas_pelo_llm](./prompt/01-minerar-questoes-e-gabarito/tratamento_de_recusas_pelo_llm/).
 
+> [!IMPORTANT]
+> A notação de questões anuladas varia muito no gabarito a ser fornecido ao LLM. Às vezes é escrito "Anulada", às vezes "N", etc. Portanto, avise-o sobre a notação usada caso haja alguma questão anulada, e mande-o atribuir o valor "ANULADA" a tais questões.
+
 B.1.2 - Se tudo der certo, será enviado no chat o conteúdo de um arquivo JSON. Salve-o em um arquivo JSON temporário, como `a.json`, e abra tal arquivo no "Modo de Edição" presente ao abrir o [./index.html](./index.html) no seu navegador web. Se as questões extraídas estiverem de acordo com o PDF da prova, envie:
 
 ```
