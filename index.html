@@ -727,6 +727,10 @@
             return "";
           }
 
+          if (normalizedAnswer.value === "ANULADA") {
+            return "Questão anulada pela banca.";
+          }
+
           if (!selectedAlternative.value) {
             return "Gabarito: " + normalizedAnswer.value;
           }
@@ -3119,6 +3123,13 @@
         }
 
         function alternativeClass(letter) {
+          if (normalizedAnswer.value === "ANULADA") {
+            return {
+              "border-blue-300 bg-blue-50":
+                selectedAlternative.value === letter,
+            };
+          }
+
           return {
             "border-blue-300 bg-blue-50":
               selectedAlternative.value === letter,
